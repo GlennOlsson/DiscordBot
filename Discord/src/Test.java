@@ -70,7 +70,7 @@ public class Test extends ListenerAdapter{
 						System.out.println("CONTAINS");
 						url=url+"gifv";
 					}
-					channel.sendMessage(event.getAuthor().getName()+" shared: **"+title+"** "+url).queue();
+					channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
 					event.getMessage().deleteMessage().queue();
 //					input = new URL(url).openStream();
 				} catch (Exception e) {
