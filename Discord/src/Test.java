@@ -23,43 +23,43 @@ public class Test extends ListenerAdapter{
 
 		TextChannel channel = jda.getTextChannels().get(0);
 		channel.sendMessage("Sucessfully logged in!").queue();
-				
-//		InputStream input=null;
-//		try {
-//			input = new URL("https://video.twimg.com/ext_tw_video/832625181017378816/pu/vid/720x1280/L_wImVqsGhKH-K3o.mp4").openStream();
-//		} catch (MalformedURLException e) {
-//			// FIXME Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// FIXME Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
-//		channel.sendFile(input, "", null).queue();;
-		
-		
-		
-//		EmbedBuilder messageEmbed = new EmbedBuilder()
-//				.setAuthor("Glenn", "https://i.imgur.com/VnMNmTm.jpg", "https://s-media-cache-ak0.pinimg.com/originals/76/df/0e/76df0e6607a4eee8018759d72ff4ce84.jpg")
-////				.setThumbnail("https://i.imgur.com/VnMNmTm.jpg")
-//				.setTitle("hey")
-////				.setUrl("https://www.youtube.com/watch?v=kQjaUW9diyA")
-//				.addBlankField(true)
-//				.addField("hey","SUP",true)
-//				.addBlankField(true)
-//				.setVideo("https://www.youtube.com/watch?v=AuA2EAgAegE&t=6s")
-////				.setImage("https://i.imgur.com/VnMNmTm.jpg")
-//				.setColor(Color.black)
-//				.setProvider("Youtube", "https://www.youtube.com")
-//				;
-		
-//		messageEmbed.setVideo("https://video.twimg.com/ext_tw_video/832625181017378816/pu/vid/720x1280/L_wImVqsGhKH-K3o.mp4");
-		
-//		MessageEmbed ms = messageEmbed.build();
-//		
-//		System.err.println(ms.getSiteProvider().getName());
-//		
-//		channel.sendMessage(ms).queue();;
+
+		//		InputStream input=null;
+		//		try {
+		//			input = new URL("https://video.twimg.com/ext_tw_video/832625181017378816/pu/vid/720x1280/L_wImVqsGhKH-K3o.mp4").openStream();
+		//		} catch (MalformedURLException e) {
+		//			// FIXME Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (IOException e) {
+		//			// FIXME Auto-generated catch block
+		//			e.printStackTrace();
+		//		}
+
+		//		channel.sendFile(input, "", null).queue();;
+
+
+
+		//		EmbedBuilder messageEmbed = new EmbedBuilder()
+		//				.setAuthor("Glenn", "https://i.imgur.com/VnMNmTm.jpg", "https://s-media-cache-ak0.pinimg.com/originals/76/df/0e/76df0e6607a4eee8018759d72ff4ce84.jpg")
+		////				.setThumbnail("https://i.imgur.com/VnMNmTm.jpg")
+		//				.setTitle("hey")
+		////				.setUrl("https://www.youtube.com/watch?v=kQjaUW9diyA")
+		//				.addBlankField(true)
+		//				.addField("hey","SUP",true)
+		//				.addBlankField(true)
+		//				.setVideo("https://www.youtube.com/watch?v=AuA2EAgAegE&t=6s")
+		////				.setImage("https://i.imgur.com/VnMNmTm.jpg")
+		//				.setColor(Color.black)
+		//				.setProvider("Youtube", "https://www.youtube.com")
+		//				;
+
+		//		messageEmbed.setVideo("https://video.twimg.com/ext_tw_video/832625181017378816/pu/vid/720x1280/L_wImVqsGhKH-K3o.mp4");
+
+		//		MessageEmbed ms = messageEmbed.build();
+		//		
+		//		System.err.println(ms.getSiteProvider().getName());
+		//		
+		//		channel.sendMessage(ms).queue();;
 
 		//		Document doc;
 		//		try {
@@ -103,16 +103,19 @@ public class Test extends ListenerAdapter{
 					url = doc.select(".title > a").attr("href");
 					title=doc.select(".title > a").text();
 					System.out.println(url + " = RUL");
-					if(url.toLowerCase().contains("imgur")&&!url.toLowerCase().contains("gif")&&!url.toLowerCase().contains("gifv")){
-						System.out.println("CONTAINS");
-						url=url+"gifv";
+					if(!url.substring(0,3).equals("/r/")){
+						if(url.toLowerCase().contains("imgur")&&!url.toLowerCase().contains("gif")&&!url.toLowerCase().contains("gifv")){
+							System.out.println("CONTAINS");
+							url=url+"gifv";
+						}
+						channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
+						event.getMessage().deleteMessage().queue();
+						//					input = new URL(url).openStream();
 					}
-					channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
-					event.getMessage().deleteMessage().queue();
-//					input = new URL(url).openStream();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
 				//			channel.sendFile(input,"gif", null).queue();
 			}
 		}
