@@ -1,5 +1,6 @@
 
 import java.io.InputStream;
+
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 
@@ -7,8 +8,10 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class Test extends ListenerAdapter{
@@ -25,54 +28,6 @@ public class Test extends ListenerAdapter{
 		TextChannel channel = jda.getTextChannels().get(0);
 		channel.sendMessage("Sucessfully logged in!").queue();
 
-		//		InputStream input=null;
-		//		try {
-		//			input = new URL("https://video.twimg.com/ext_tw_video/832625181017378816/pu/vid/720x1280/L_wImVqsGhKH-K3o.mp4").openStream();
-		//		} catch (MalformedURLException e) {
-		//			// FIXME Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (IOException e) {
-		//			// FIXME Auto-generated catch block
-		//			e.printStackTrace();
-		//		}
-
-		//		channel.sendFile(input, "", null).queue();;
-
-
-
-		//		EmbedBuilder messageEmbed = new EmbedBuilder()
-		//				.setAuthor("Glenn", "https://i.imgur.com/VnMNmTm.jpg", "https://s-media-cache-ak0.pinimg.com/originals/76/df/0e/76df0e6607a4eee8018759d72ff4ce84.jpg")
-		////				.setThumbnail("https://i.imgur.com/VnMNmTm.jpg")
-		//				.setTitle("hey")
-		////				.setUrl("https://www.youtube.com/watch?v=kQjaUW9diyA")
-		//				.addBlankField(true)
-		//				.addField("hey","SUP",true)
-		//				.addBlankField(true)
-		//				.setVideo("https://www.youtube.com/watch?v=AuA2EAgAegE&t=6s")
-		////				.setImage("https://i.imgur.com/VnMNmTm.jpg")
-		//				.setColor(Color.black)
-		//				.setProvider("Youtube", "https://www.youtube.com")
-		//				;
-
-		//		messageEmbed.setVideo("https://video.twimg.com/ext_tw_video/832625181017378816/pu/vid/720x1280/L_wImVqsGhKH-K3o.mp4");
-
-		//		MessageEmbed ms = messageEmbed.build();
-		//		
-		//		System.err.println(ms.getSiteProvider().getName());
-		//		
-		//		channel.sendMessage(ms).queue();;
-
-		//		Document doc;
-		//		try {
-		//			doc = Jsoup.parse(new URL("https://www.reddit.com/r/shittyrainbow6/comments/5uon69/best_tactic_for_blitz/?st=izb6fq4z&sh=ef62c48f"), 10000);
-		//			System.out.println(doc.getElementsByClass("may-blank"));
-		//		} catch (Exception e) {
-		//			e.printStackTrace();
-		//		}
-
-
-
-
 	}
 
 	public Test(){
@@ -83,45 +38,123 @@ public class Test extends ListenerAdapter{
 	public void onMessageReceived(MessageReceivedEvent event){
 
 		if(!event.getAuthor().getName().equals("KakansBot")){
-
+			String content = event.getMessage().getContent();
 			MessageChannel channel = event.getChannel();
 			InputStream input=null;
-			String message=event.getMessage().getContent();
-			//			try {
-			////				input = new URL("https://i.redd.it/r24hirgxehgy.png").openStream();
-			//				Document doc = Jsoup.parse(new URL("https://www.reddit.com/r/shittyrainbow6/comments/5uon69/best_tactic_for_blitz/?st=izb6fq4z&sh=ef62c48f"), 10000);
-			//				System.out.println(doc.getElementsByClass("may-blank"));
-			//				
-			//				
-			//			} catch (Exception e) {
-			//				e.printStackTrace();
-			//			}
-			if(message.contains("https://www.reddit")||message.contains("http://www.reddit")||message.contains("https://reddit")||message.contains("http://reddit")){
-				Document doc;
-				String url = null, title = null;
-				try {
-					doc = Jsoup.connect(event.getMessage().getContent()).userAgent("Chrome").get();
-					url = doc.select(".title > a").attr("href");
-					title=doc.select(".title > a").text();
-					System.out.println(url + " = RUL");
-					if(!url.substring(0,3).equals("/r/")){
-						if(url.toLowerCase().contains("imgur")&&!url.toLowerCase().contains("gif")&&!url.toLowerCase().contains("gifv")){
-							System.out.println("CONTAINS");
-							url=url+".gifv";
+
+			if(Character.toString(content.charAt(0)).equals(";")){
+				//Reddit command
+				if(content.contains("https://www.reddit")||content.contains("http://www.reddit")||
+						content.contains("https://reddit")||content.contains("http://reddit")){
+					//If reddit post
+					Document doc;
+					String url = null, title = null;
+					try {
+						doc = Jsoup.connect(event.getMessage().getContent()).userAgent("Chrome").get();
+						url = doc.select(".title > a").attr("href");
+						title=doc.select(".title > a").text();
+						System.out.println(url + " = RUL");
+						if(!url.substring(0,3).equals("/r/")){
+							//If not textpost
+							channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
+							event.getMessage().deleteMessage().queue();
 						}
-						channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
-						event.getMessage().deleteMessage().queue();
-						//					input = new URL(url).openStream();
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
-				} catch (Exception e) {
-					e.printStackTrace();
+					return;
 				}
 
-				//			channel.sendFile(input,"gif", null).queue();
+				//Gif command
+				else if(content.toLowerCase().contains(";gif")&&content.toLowerCase().substring(0, 4).equals(";gif")){
+					Document doc=null;
+					String url=null, query=null;
+					try {
+						query = content.substring(5, content.length()).replace(" ", "-");
+						doc = Jsoup.connect("https://www.tenor.co/search/"+query+"-gifs").userAgent("Chrome").get();
+						url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child(1) > figure:nth-child(1) > a").attr("href");
+
+						channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();	
+						try {
+							event.getMessage().deleteMessage();
+						} catch (Exception e) {
+							// FIXME: handle exception
+							System.out.println("Cannot delete message, probably because of private message channel");
+						}
+
+					} catch (Exception e) {
+						// FIXME Auto-generated catch block
+						channel.sendMessage("Error with ;gif command. Use ';help gif' to get help with the command, wither here or in PM").queue();
+					}
+					return;
+				}
+
+				//Up command
+				else if(content.toLowerCase().equals(";up")){
+					channel.sendMessage("Yes, I am online. I am on the following channels: ").queue();
+					for (int i = 0; i < event.getJDA().getTextChannels().size(); i++) {
+						channel.sendMessage(event.getJDA().getTextChannels().get(i).getName() + " - "+channel.getJDA().getTextChannels().get(i).getGuild().getName()).queue();
+					}
+					return;
+				}
+
+				//Help command
+				if(content.toLowerCase().contains(";help")&&content.toLowerCase().substring(0, 5).equals(";help")){
+					if(content.length()>";help".length()){
+						String argument = content.substring(6).toLowerCase();
+						if(argument.equals("reddit")||argument.equals(";reddit")){
+							//if help about reddit feature
+							channel.sendMessage("The **Reddit feature** is very simple. You just post a reddit link for an image/gif, and I will"
+									+ " send the direct link to the content, resulting in the content being visible in the chat. Textposts will just be ignored").queue();
+							return;
+						}
+						else if (argument.equals("gif")||argument.equals(";gif")) {
+							//if help about ;gif
+							channel.sendMessage("With the **;gif** feature, you just follow the command with a space, and then type your search quotas for the gif. "
+									+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -").queue();
+							return;
+						}
+						else if (argument.equals("up")||argument.equals(";up")) {
+							//if help about ;up
+							channel.sendMessage("The **;up** command is only used to check if I am awake. If more than one of me replies,"
+									+ " or I don't reply att all, something is spooky").queue();
+							return;
+						}
+						else if (argument.length()>1) {
+							channel.sendMessage("Sorry, but your argument did not get a match").queue();
+						}
+					}
+					String command = "";
+					String[] features = {"Reddit",";gif",";up"};
+					for (int i = 0; i < features.length; i++) {
+						command = command+ features[i]+", ";	
+					}
+					command=command+" ;help";
+					channel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
+							+ "followed by one of the features listed, to see specified help for that command. Can also be done in PM").queue();
+					return;
+				}
+
+				else{
+					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
+				}
 			}
 		}
 	}
 
+	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
+
+		PrivateChannel channel=event.getChannel();
+		String content = event.getMessage().getContent();
+
+		if(!event.getAuthor().getName().equals("KakansBot")){
+			if(!Character.toString(content.charAt(0)).equals(";")){
+				channel.sendMessage("Sorry, you did not start your message with the \";\" character. I am a bot, and will only accept commands starting with ;"
+						+ " You can use ;help for example, to see what commands you can use. Uppercase or lowercase does not matter").queue();
+				return;
+			}
+		}
+	}
 
 
 
