@@ -1,3 +1,7 @@
+//Lägg till .gif message: Vid specielt meddelande (T.ex. "!gif Rainbow6"), sök på Tenor.co på den stringen
+//och skicka, kanske 6 första gifsen. Användaren kan sedan välja en av de 6 [1-6], eller ingen [0], så tas båda meddelandena bort, och
+//valda gifen skickas
+
 import java.io.InputStream;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
@@ -106,7 +110,7 @@ public class Test extends ListenerAdapter{
 					if(!url.substring(0,3).equals("/r/")){
 						if(url.toLowerCase().contains("imgur")&&!url.toLowerCase().contains("gif")&&!url.toLowerCase().contains("gifv")){
 							System.out.println("CONTAINS");
-							url=url+"gifv";
+							url=url+".gifv";
 						}
 						channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
 						event.getMessage().deleteMessage().queue();
