@@ -42,11 +42,21 @@ public class Test extends ListenerAdapter{
 			MessageChannel channel = event.getChannel();
 			InputStream input=null;
 
-			if(Character.toString(content.charAt(0)).equals(";")){
-				//Reddit command
-				if(content.contains("https://www.reddit")||content.contains("http://www.reddit")||
-						content.contains("https://reddit")||content.contains("http://reddit")){
+			//Reddit command
+				if(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
+				   content.substring(0,"http://www.reddit".length()).contains("http://www.reddit")||
+					content.substring(0,"https://reddit".length().contains("https://reddit")||
+					content.substring(0,"http://reddit".length().contains("http://reddit")){
 					//If reddit post
+						
+					if(content.contains(" ")){
+					String[] split = content.split(" ");
+					if(split.length>2||split[1].length>0){
+					return;	
+					}
+					content=split[0];	
+					}
+						
 					Document doc;
 					String url = null, title = null;
 					try {
@@ -64,6 +74,8 @@ public class Test extends ListenerAdapter{
 					}
 					return;
 				}
+			
+			if(Character.toString(content.charAt(0)).equals(";")){
 
 				//Gif command
 				else if(content.toLowerCase().contains(";gif")&&content.toLowerCase().substring(0, 4).equals(";gif")){
