@@ -41,6 +41,8 @@ public class Test extends ListenerAdapter{
 			String content = event.getMessage().getContent().toLowerCase(), contentCase=event.getMessage().getContent();
 			MessageChannel channel = event.getChannel();
 			InputStream input=null;
+			
+			channel.sendTyping();
 
 			//Reddit command
 				if((content.contains("://reddit")||content.contains("://www.reddit"))&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
@@ -79,6 +81,11 @@ public class Test extends ListenerAdapter{
 
 				//Gif command
 				if(content.toLowerCase().contains(";gif")&&content.toLowerCase().substring(0, 4).equals(";gif")){
+					if(content.length()>";gif".length()&&!Character.toString(content.charAt(";gif".length())).equals(" ")){
+						//if the character after ;help is not *space*
+						channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
+						return;
+					}
 					Document doc=null;
 					String url=null, query=null;
 					try {
@@ -117,6 +124,11 @@ public class Test extends ListenerAdapter{
 				//Help command
 				if(content.toLowerCase().contains(";help")&&content.toLowerCase().substring(0, 5).equals(";help")){
 					if(content.length()>";help".length()){
+						if(!Character.toString(content.charAt(";help".length())).equals(" ")){
+							//if the character after ;help is not *space*
+							channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
+							return;
+						}
 						String argument = content.substring(6).toLowerCase();
 						if(argument.equals("reddit")||argument.equals(";reddit")){
 							//if help about reddit feature
@@ -146,7 +158,7 @@ public class Test extends ListenerAdapter{
 						}
 					}
 					String command = "";
-					String[] features = {"Reddit",";gif",";up","source"};
+					String[] features = {"Reddit",";gif",";up",";source"};
 					for (int i = 0; i < features.length; i++) {
 						command = command+ features[i]+", ";	
 					}
@@ -159,7 +171,7 @@ public class Test extends ListenerAdapter{
 				else{
 					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
 				}
-			}
+			}		
 		}
 	}
 
@@ -169,6 +181,9 @@ public class Test extends ListenerAdapter{
 		String content = event.getMessage().getContent();
 
 		if(!event.getAuthor().getName().equals("KakansBot")){
+			
+			channel.sendTyping();
+			
 			if(!Character.toString(content.charAt(0)).equals(";")){
 				channel.sendMessage("Sorry, you did not start your message with the \";\" character. I am a bot, and will only accept commands starting with ;"
 						+ " You can use ;help for example, to see what commands you can use. Uppercase or lowercase does not matter").queue();
