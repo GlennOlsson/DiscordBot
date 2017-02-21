@@ -1,16 +1,11 @@
-import java.io.IOException;
-
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-import com.sun.syndication.io.SyndFeedInput;
 
 public class Test2 {
 
 	public static void main(String[] args) {
 		// FIXME Auto-generated method stub
 
-		String url = "https://www.reddit.com/r/ImGoingToHellForThis/comments/5v9667/hate_when_this_happens/";
+		String url = "https://i.imgur.com/NVm3bNn.mp4";
 		
 		Document doc=null;
 		//		try {
@@ -20,11 +15,18 @@ public class Test2 {
 		//			e.printStackTrace();
 		//	}
 		try {
-			doc = Jsoup.connect(url+".rss").userAgent("Chrome").get();
-		} catch (IOException e) {
+//			doc = Jsoup.connect(url).userAgent("Mozilla").get();
+		
+//			title=doc.select("title").get(1).text();
+			
+//			System.out.println(doc.select("title").get(1).text());
+//			
+//			System.out.println(text);
+		
+		} catch (Exception e) {
 			// FIXME Auto-generated catch block
 			e.printStackTrace();
 		}
-		SyndFeedInput feedInput = new SyndFeedInput();
+
 	}
 }
