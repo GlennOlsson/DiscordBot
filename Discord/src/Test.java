@@ -109,7 +109,7 @@ public class Test extends ListenerAdapter{
 					}
 					return;
 				}
-				else if(content.toLowerCase().equals(";up")){
+				else if(content.toLowerCase().equals(";source")){
 					channel.sendMessage("Nice, you are qurious! Here's the link to github: https://github.com/kakan9898/DiscordBot").queue();
 					return;
 				}
