@@ -136,7 +136,7 @@ public class Test extends ListenerAdapter{
 									+ " or I don't reply att all, something is spooky").queue();
 							return;
 						}
-						else if (argument.equals("up")||argument.equals(";up")) {
+						else if (argument.equals("source")||argument.equals(";source")) {
 							
 							channel.sendMessage("You can send **;source** to get the link to my source code").queue();
 							
