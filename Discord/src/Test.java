@@ -21,13 +21,13 @@ public class Test extends ListenerAdapter{
 		JDA jda = null;
 		try {
 			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new Test()).buildBlocking();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		TextChannel channel = jda.getTextChannels().get(0);
 		channel.sendMessage("Sucessfully logged in!").queue();
-
 	}
 
 	public Test(){
@@ -41,46 +41,77 @@ public class Test extends ListenerAdapter{
 			String content = event.getMessage().getContent().toLowerCase(), contentCase=event.getMessage().getContent();
 			MessageChannel channel = event.getChannel();
 			InputStream input=null;
-			
+
 			channel.sendTyping();
 
 			//Reddit command
-				if((content.contains("://reddit")||content.contains("://www.reddit"))&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
-				   content.substring(0,"http://www.reddit".length()).contains("http://www.reddit")||
+			if((content.contains("://reddit")||content.contains("://www.reddit"))&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
+					content.substring(0,"http://www.reddit".length()).contains("http://www.reddit")||
 					content.substring(0,"https://reddit".length()).contains("https://reddit")||
 					content.substring(0,"http://reddit".length()).contains("http://reddit"))){
-					//If reddit post
-						
-					if(content.contains(" ")){
+				//If reddit post
+
+				if(content.contains(" ")){
 					String[] split = content.split(" ");
 					if(split.length>2||split[1].length()>0){
-					return;	
+						return;	
 					}
 					content=split[0];	
+				}
+
+				Document doc;
+				String url = null, title = null;
+				try {
+					doc = Jsoup.connect(event.getMessage().getContent()).userAgent("Chrome").get();
+					if(doc.toString().toLowerCase().contains("8+ to view this community")){
+						//if NSFW sub
+						doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Mozilla").get();
+						url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
+								doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
+						title=doc.select("title").get(1).text();
+
+						if(!url.contains("www.reddit.com")){
+							//if not textpost
+							System.out.println(url + " = RUL");
+
+							System.out.println(url.charAt(url.length()-5) + "  -- "+url.charAt(url.length()-4));
+
+							if(url.contains("imgur.com")&&(Character.toString(url.charAt(url.length()-5)).equals(".")||
+									Character.toString(url.charAt(url.length()-4)).equals("."))){
+								url=url.substring(0,url.lastIndexOf("."));
+							}
+
+							channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** "+url).queue();
+							event.getMessage().deleteMessage().queue();
+						}
 					}
-						
-					Document doc;
-					String url = null, title = null;
-					try {
-						doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Chrome").get();
-						
+					else{
+						//if SFW sub
 						//url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
-								//doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
-						
+						//doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
+
 						url = doc.select(".title > a").attr("href");
 						title=doc.select(".title > a").text();
 						System.out.println(url + " = RUL");
 						if(!url.substring(0,3).equals("/r/")){
 							//If not textpost
+
+							if(url.contains("imgur.com")&&(Character.toString(url.charAt(url.length()-5)).equals(".")||
+									Character.toString(url.charAt(url.length()-4)).equals("."))){
+								url=url.substring(0,url.lastIndexOf("."));
+							}
+
 							channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
 							event.getMessage().deleteMessage().queue();
 						}
-					} catch (Exception e) {
-						e.printStackTrace();
 					}
-					return;
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			
+
+				return;
+			}
+
 			if(Character.toString(content.charAt(0)).equals(";")){
 
 				//Gif command
@@ -153,9 +184,9 @@ public class Test extends ListenerAdapter{
 							return;
 						}
 						else if (argument.equals("source")||argument.equals(";source")) {
-							
+
 							channel.sendMessage("You can send **;source** to get the link to my source code").queue();
-							
+
 						}
 						else if (argument.length()>1) {
 							channel.sendMessage("Sorry, but your argument did not get a match").queue();
@@ -185,9 +216,9 @@ public class Test extends ListenerAdapter{
 		String content = event.getMessage().getContent();
 
 		if(!event.getAuthor().getName().equals("KakansBot")){
-			
+
 			channel.sendTyping();
-			
+
 			if(!Character.toString(content.charAt(0)).equals(";")){
 				channel.sendMessage("Sorry, you did not start your message with the \";\" character. I am a bot, and will only accept commands starting with ;"
 						+ " You can use ;help for example, to see what commands you can use. Uppercase or lowercase does not matter").queue();

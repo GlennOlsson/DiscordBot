@@ -12,10 +12,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/Discord/JDA-3.0.BETA2_108-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="rome-1.0.jar" sourcepath="rome-1.0-sources.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/Discord/rome-1.0-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="JDA-3.0.BETA2_108-withDependencies.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
