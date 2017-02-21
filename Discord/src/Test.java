@@ -43,7 +43,7 @@ public class Test extends ListenerAdapter{
 			InputStream input=null;
 
 			//Reddit command
-				if(content.contains("reddit")&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
+				if((content.contains("://reddit")||content.contains("://www.reddit"))&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
 				   content.substring(0,"http://www.reddit".length()).contains("http://www.reddit")||
 					content.substring(0,"https://reddit".length()).contains("https://reddit")||
 					content.substring(0,"http://reddit".length()).contains("http://reddit"))){
