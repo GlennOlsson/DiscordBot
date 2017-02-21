@@ -3,6 +3,8 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import com.sun.syndication.io.SyndFeedInput;
+
 public class Test2 {
 
 	public static void main(String[] args) {
@@ -23,13 +25,6 @@ public class Test2 {
 			// FIXME Auto-generated catch block
 			e.printStackTrace();
 		}
-		String docString = doc.toString();
-		
-		docString=docString.substring(docString.indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
-				docString.indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
-		
-//		docString=docString.replaceAll("amp;amp;", "");
-		
-		System.out.println(docString);
+		SyndFeedInput feedInput = new SyndFeedInput();
 	}
 }
