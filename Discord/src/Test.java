@@ -64,10 +64,10 @@ public class Test extends ListenerAdapter{
 					try {
 						doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Chrome").get();
 						
-						url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
-								doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
+						//url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
+								//doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
 						
-//						url = doc.select(".title > a").attr("href");
+						url = doc.select(".title > a").attr("href");
 						title=doc.select(".title > a").text();
 						System.out.println(url + " = RUL");
 						if(!url.substring(0,3).equals("/r/")){
