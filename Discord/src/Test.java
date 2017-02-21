@@ -51,7 +51,7 @@ public class Test extends ListenerAdapter{
 						
 					if(content.contains(" ")){
 					String[] split = content.split(" ");
-					if(split.length()>2||split[1].length()>0){
+					if(split.length>2||split[1].length()>0){
 					return;	
 					}
 					content=split[0];	
