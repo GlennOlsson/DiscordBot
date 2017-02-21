@@ -78,7 +78,7 @@ public class Test extends ListenerAdapter{
 			if(Character.toString(content.charAt(0)).equals(";")){
 
 				//Gif command
-				else if(content.toLowerCase().contains(";gif")&&content.toLowerCase().substring(0, 4).equals(";gif")){
+				if(content.toLowerCase().contains(";gif")&&content.toLowerCase().substring(0, 4).equals(";gif")){
 					Document doc=null;
 					String url=null, query=null;
 					try {
