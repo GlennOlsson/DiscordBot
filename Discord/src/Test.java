@@ -109,6 +109,10 @@ public class Test extends ListenerAdapter{
 					}
 					return;
 				}
+				else if(content.toLowerCase().equals(";up")){
+					channel.sendMessage("Nice, you are qurious! Here's the link to github: https://github.com/kakan9898/DiscordBot").queue();
+					return;
+				}
 
 				//Help command
 				if(content.toLowerCase().contains(";help")&&content.toLowerCase().substring(0, 5).equals(";help")){
@@ -132,12 +136,17 @@ public class Test extends ListenerAdapter{
 									+ " or I don't reply att all, something is spooky").queue();
 							return;
 						}
+						else if (argument.equals("up")||argument.equals(";up")) {
+							
+							channel.sendMessage("You can send **;source** to get the link to my source code").queue();
+							
+						}
 						else if (argument.length()>1) {
 							channel.sendMessage("Sorry, but your argument did not get a match").queue();
 						}
 					}
 					String command = "";
-					String[] features = {"Reddit",";gif",";up"};
+					String[] features = {"Reddit",";gif",";up","source"};
 					for (int i = 0; i < features.length; i++) {
 						command = command+ features[i]+", ";	
 					}
