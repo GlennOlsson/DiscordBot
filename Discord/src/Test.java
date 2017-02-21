@@ -38,15 +38,15 @@ public class Test extends ListenerAdapter{
 	public void onMessageReceived(MessageReceivedEvent event){
 
 		if(!event.getAuthor().getName().equals("KakansBot")){
-			String content = event.getMessage().getContent();
+			String content = event.getMessage().getContent().toLowerCase(), contentCase=event.getMessage().getContent();
 			MessageChannel channel = event.getChannel();
 			InputStream input=null;
 
 			//Reddit command
-				if(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
+				if(content.contains("reddit")&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
 				   content.substring(0,"http://www.reddit".length()).contains("http://www.reddit")||
 					content.substring(0,"https://reddit".length()).contains("https://reddit")||
-					content.substring(0,"http://reddit".length()).contains("http://reddit")){
+					content.substring(0,"http://reddit".length()).contains("http://reddit"))){
 					//If reddit post
 						
 					if(content.contains(" ")){
