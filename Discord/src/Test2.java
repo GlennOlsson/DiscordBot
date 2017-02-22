@@ -1,5 +1,9 @@
 import org.jsoup.nodes.Document;
 
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.JDABuilder;
+
 public class Test2 {
 
 	public static void main(String[] args) {
@@ -14,17 +18,11 @@ public class Test2 {
 		//		} catch (Exception e) {
 		//			e.printStackTrace();
 		//	}
+		JDA jda = null;
 		try {
-//			doc = Jsoup.connect(url).userAgent("Mozilla").get();
-		
-//			title=doc.select("title").get(1).text();
+			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new Test()).buildBlocking();
 			
-//			System.out.println(doc.select("title").get(1).text());
-//			
-//			System.out.println(text);
-		
 		} catch (Exception e) {
-			// FIXME Auto-generated catch block
 			e.printStackTrace();
 		}
 
