@@ -81,7 +81,7 @@ public class Test extends ListenerAdapter{
 								url=url.substring(0,url.lastIndexOf("."));
 							}
 
-							channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** "+url).queue();
+							channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** - "+url).queue();
 							event.getMessage().deleteMessage().queue();
 						}
 					}
@@ -101,7 +101,7 @@ public class Test extends ListenerAdapter{
 								url=url.substring(0,url.lastIndexOf("."));
 							}
 
-							channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** "+url).queue();
+							channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url).queue();
 							event.getMessage().deleteMessage().queue();
 						}
 					}
@@ -204,9 +204,9 @@ public class Test extends ListenerAdapter{
 					return;
 				}
 
-				else{
-					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
-				}
+//				else{
+//					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
+//				}
 			}		
 		}
 	}
