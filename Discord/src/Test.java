@@ -39,7 +39,7 @@ public class Test extends ListenerAdapter{
 
 	public void onMessageReceived(MessageReceivedEvent event){
 
-		if(!event.getAuthor().getName().equals("KakansBot")){
+		if(!event.getAuthor().getName().equals("Kakan's Bot")){
 			String content = event.getMessage().getContent().toLowerCase(), contentCase=event.getMessage().getContent();
 			MessageChannel channel = event.getChannel();
 			InputStream input=null;
@@ -218,7 +218,7 @@ public class Test extends ListenerAdapter{
 		PrivateChannel channel=event.getChannel();
 		String content = event.getMessage().getContent();
 
-		if(!event.getAuthor().getName().equals("KakansBot")){
+		if(!event.getAuthor().getName().equals("Kakan's Bot")){
 
 			channel.sendTyping();
 
