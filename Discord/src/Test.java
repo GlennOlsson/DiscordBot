@@ -26,7 +26,9 @@ public class Test extends ListenerAdapter{
 			e.printStackTrace();
 		}
 
-		TextChannel channel = jda.getTextChannels().get(0);
+//		jda.getGuildsByName("Kakanistan", true).get(0).getTextChannels().get(0);
+		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
+//		channel = jda.getTextChannels().get(0);
 		channel.sendMessage("Sucessfully logged in!").queue();
 	}
 
