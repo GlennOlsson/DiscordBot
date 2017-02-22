@@ -144,13 +144,13 @@ public class Test extends ListenerAdapter{
 				}
 
 				//Up command
-				else if(content.toLowerCase().equals(";up")){
-					channel.sendMessage("Yes, I am online. I am on the following channels: ").queue();
-					for (int i = 0; i < event.getJDA().getTextChannels().size(); i++) {
-						channel.sendMessage(event.getJDA().getTextChannels().get(i).getName() + " - "+channel.getJDA().getTextChannels().get(i).getGuild().getName()).queue();
-					}
-					return;
-				}
+//				else if(content.toLowerCase().equals(";up")){
+//					channel.sendMessage("Yes, I am online. I am on the following channels: ").queue();
+//					for (int i = 0; i < event.getJDA().getTextChannels().size(); i++) {
+//						channel.sendMessage(event.getJDA().getTextChannels().get(i).getName() + " - "+channel.getJDA().getTextChannels().get(i).getGuild().getName()).queue();
+//					}
+//					return;
+//				}
 				else if(content.toLowerCase().equals(";source")){
 					channel.sendMessage("Nice, you are qurious! Here's the link to github: https://github.com/kakan9898/DiscordBot").queue();
 					return;
@@ -177,12 +177,12 @@ public class Test extends ListenerAdapter{
 									+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -").queue();
 							return;
 						}
-						else if (argument.equals("up")||argument.equals(";up")) {
-							//if help about ;up
-							channel.sendMessage("The **;up** command is only used to check if I am awake. If more than one of me replies,"
-									+ " or I don't reply att all, something is spooky").queue();
-							return;
-						}
+//						else if (argument.equals("up")||argument.equals(";up")) {
+//							//if help about ;up
+//							channel.sendMessage("The **;up** command is only used to check if I am awake. If more than one of me replies,"
+//									+ " or I don't reply att all, something is spooky").queue();
+//							return;
+//						}
 						else if (argument.equals("source")||argument.equals(";source")) {
 
 							channel.sendMessage("You can send **;source** to get the link to my source code").queue();
@@ -193,13 +193,14 @@ public class Test extends ListenerAdapter{
 						}
 					}
 					String command = "";
-					String[] features = {"Reddit",";gif",";up",";source"};
+					String[] features = {"Reddit",";gif",";source"};
 					for (int i = 0; i < features.length; i++) {
 						command = command+ features[i]+", ";	
 					}
 					command=command+" ;help";
 					channel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
 							+ "followed by one of the features listed, to see specified help for that command. Can also be done in PM").queue();
+				
 					return;
 				}
 
