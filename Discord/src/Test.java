@@ -130,7 +130,7 @@ public class Test extends ListenerAdapter{
 
 						channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();	
 						try {
-							event.getMessage().deleteMessage();
+							event.getMessage().deleteMessage().queue();;
 						} catch (Exception e) {
 							// FIXME: handle exception
 							System.out.println("Cannot delete message, probably because of private message channel");
