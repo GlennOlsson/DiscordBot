@@ -99,8 +99,8 @@ public class Test extends ListenerAdapter{
 							//If not textpost
 
 							if(url.contains("imgur.com")&&(Character.toString(url.charAt(url.length()-5)).equals(".")||
-									Character.toString(url.charAt(url.length()-4)).equals("."))){
-								url=url.substring(0,url.lastIndexOf("."));
+									Character.toString(url.charAt(url.length()-4)).equals("."))&&url.substring(url.lastIndexOf(".")+1,url.length()).equals("mp4")){
+								url=url.substring(0,url.lastIndexOf(".mp4"));
 							}
 
 							channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url).queue();
