@@ -169,8 +169,7 @@ public class Test extends ListenerAdapter{
 				// FIXME Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			for (int i = 0; i < amount; i++) {
+			for (int i = 0; i < amount+1; i++) {
 				if(argument.equals("bots")){
 					if(historyList.get(i).getAuthor().isBot()){
 						historyList.get(i).deleteMessage().queue();	
@@ -191,7 +190,6 @@ public class Test extends ListenerAdapter{
 					//if all user's messages shall go
 					historyList.get(i).deleteMessage().queue();	
 				}
-				event.getMessage().deleteMessage().queue();;
 			}
 			System.err.println(amount+" = amount");
 		}
