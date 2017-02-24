@@ -78,7 +78,7 @@ public class DiscordBot extends ListenerAdapter{
 
 				//Up command
 				else if(content.toLowerCase().equals(";up")){
-//					up(channel, event, content);
+					//					up(channel, event, content);
 					return;
 				}
 
@@ -110,7 +110,7 @@ public class DiscordBot extends ListenerAdapter{
 		MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
 		channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
 	}
-	
+
 	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
 
 		TextChannel channel =event.getTextChannel();
@@ -134,7 +134,7 @@ public class DiscordBot extends ListenerAdapter{
 		}
 		if(permission){
 			int amount = 1;
-			String argument="all";
+			String argument1="all";
 			if(content.contains(" ")){
 				try {
 					amount=Integer.parseInt(content.split(" ")[1]);
@@ -145,14 +145,23 @@ public class DiscordBot extends ListenerAdapter{
 					// FIXME: handle exception
 					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();;
 				}
-				if(content.split(" ").length==3){
+				if(content.split(" ").length>1){
+					//If at least length=3
 					if(content.split(" ")[2].toLowerCase().equals("bots")||content.split(" ")[2].toLowerCase().equals("users")||
 							content.split(" ")[2].toLowerCase().equals("all")){
-						argument=content.split(" ")[2].toLowerCase();
+						argument1=content.split(" ")[2].toLowerCase();
 					}
 
 				}
-				if(content.split(" ").length>=4){
+				if(content.split(" ").length==4){
+	
+					for (int i = 0; i < channel.getMembers().size(); i++) {
+						if(channel.getMembers().get(i).getNickname().toLowerCase().equals(content.split(" ")[2].toLowerCase())){
+							
+						}
+					}
+				}
+				else if (content.split(" ").length>4) {
 					channel.sendMessage("To many arguments *"+event.getAuthor().getAsMention() +"*, aborting command").queue();
 					return;
 				}
@@ -174,7 +183,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 			event.getMessage().deleteMessage().queue();
 			for (int i = 1; i < amount+1; i++) {
-				if(argument.equals("bots")){
+				if(argument1.equals("bots")){
 					if(historyList.get(i).getAuthor().isBot()){
 						historyList.get(i).deleteMessage().queue();	
 					}
@@ -182,7 +191,7 @@ public class DiscordBot extends ListenerAdapter{
 						amount++;
 					}
 				}
-				else if (argument.equals("users")) {
+				else if (argument1.equals("users")) {
 					if(!historyList.get(i).getAuthor().isBot()){
 						historyList.get(i).deleteMessage().queue();	
 					}
@@ -303,6 +312,16 @@ public class DiscordBot extends ListenerAdapter{
 		return;
 	}
 
+	public void up(MessageChannel channel, MessageReceivedEvent event, String content){
+		channel.sendMessage("Yes, I am online. I am on the following channels: ").queue();
+		for (int i = 0; i < event.getJDA().getTextChannels().size(); i++) {
+			channel.sendMessage(event.getJDA().getTextChannels().get(i).getName() + " - "+channel.getJDA().getTextChannels().get(i).getGuild().getName()).queue();
+		}
+		return;
+
+
+	}
+
 	public void help(MessageChannel channel, MessageReceivedEvent event, String content) {
 		if(content.length()>";help".length()){
 			if(!Character.toString(content.charAt(";help".length())).equals(" ")){
@@ -333,14 +352,14 @@ public class DiscordBot extends ListenerAdapter{
 				channel.sendMessage("You can send **;source** to get the link to my source code").queue();
 				return;
 			}
-			
+
 			else if (argument.equals("clean")||argument.equals(";clean")) {
 				channel.sendMessage("Whith **;clean**, you can remove a certain amount of messages, from the channel. You can specify both the ammount, and "
 						+ "messages from what kind of account that shall be removed. You must be authorized to use this."
 						+ " Use like: ;clean [1-100] [bots,users,all]").queue();
 				return;
 			}
-			
+
 			else if (argument.length()>1) {
 				channel.sendMessage("Sorry, but your argument did not get a match").queue();
 			}
@@ -358,14 +377,6 @@ public class DiscordBot extends ListenerAdapter{
 
 	}
 
-	public void up(MessageChannel channel, MessageReceivedEvent event, String content){
-		channel.sendMessage("Yes, I am online. I am on the following channels: ").queue();
-		for (int i = 0; i < event.getJDA().getTextChannels().size(); i++) {
-			channel.sendMessage(event.getJDA().getTextChannels().get(i).getName() + " - "+channel.getJDA().getTextChannels().get(i).getGuild().getName()).queue();
-		}
-		return;
 
-
-	}
 
 }
