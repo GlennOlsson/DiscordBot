@@ -174,7 +174,7 @@ public class Test extends ListenerAdapter{
 				e.printStackTrace();
 			}
 			event.getMessage().deleteMessage().queue();
-			for (int i = 1; i < amount+2; i++) {
+			for (int i = 1; i < amount+1; i++) {
 				if(argument.equals("bots")){
 					if(historyList.get(i).getAuthor().isBot()){
 						historyList.get(i).deleteMessage().queue();	
