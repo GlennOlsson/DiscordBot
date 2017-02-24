@@ -145,7 +145,7 @@ public class DiscordBot extends ListenerAdapter{
 					// FIXME: handle exception
 					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();;
 				}
-				if(content.split(" ").length>1){
+				if(content.split(" ").length>2){
 					//If at least length=3
 					if(content.split(" ")[2].toLowerCase().equals("bots")||content.split(" ")[2].toLowerCase().equals("users")||
 							content.split(" ")[2].toLowerCase().equals("all")){
