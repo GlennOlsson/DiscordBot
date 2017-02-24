@@ -53,7 +53,7 @@ public class DiscordBot extends ListenerAdapter{
 			if(Character.toString(content.charAt(0)).equals(";")){
 
 				//Clean command
-				if(event.getMessage().getContent().toString().contains(";clean")&&content.substring(0,";clean".length()).equals(";clean")){
+				if(content.toLowerCase().contains(";clean")&&content.toLowerCase().substring(0,";clean".length()).equals(";clean")){
 					clean(channel, event, content);
 					return;
 				}
