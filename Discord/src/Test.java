@@ -13,6 +13,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -112,6 +113,11 @@ public class Test extends ListenerAdapter{
 		}
 	}
 
+	public void onGuildMemberJoin(GuildMemberJoinEvent event){
+		MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
+		channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
+	}
+	
 	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
 
 		TextChannel channel =event.getTextChannel();
