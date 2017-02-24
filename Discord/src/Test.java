@@ -112,7 +112,15 @@ public class Test extends ListenerAdapter{
 		}
 	}
 
-	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
+	
+
+
+public void onGuildMemberJoinEvent(){
+
+}
+
+
+public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
 
 		TextChannel channel =event.getTextChannel();
 
