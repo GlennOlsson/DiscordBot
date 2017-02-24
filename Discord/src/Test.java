@@ -67,21 +67,25 @@ public class Test extends ListenerAdapter{
 				//Gif command
 				else if(content.toLowerCase().contains(";gif")&&content.toLowerCase().substring(0, 4).equals(";gif")){
 					gif(channel, event, content);
+					return;
 				}
 
 				//Source command
 				else if(content.toLowerCase().equals(";source")){
 					source(channel);
+					return;
 				}
 
 				//Help command
 				else if(content.toLowerCase().contains(";help")&&content.toLowerCase().substring(0, 5).equals(";help")){
 					help(channel, event, content);
+					return;
 				}
 
 				//Up command
 				else if(content.toLowerCase().equals(";up")){
 //					up(channel, event, content);
+					return;
 				}
 
 				//				else{
@@ -327,12 +331,14 @@ public class Test extends ListenerAdapter{
 			//			}
 			else if (argument.equals("source")||argument.equals(";source")) {
 				channel.sendMessage("You can send **;source** to get the link to my source code").queue();
+				return;
 			}
 			
 			else if (argument.equals("clean")||argument.equals(";clean")) {
 				channel.sendMessage("Whith **;clean**, you can remove a certain amount of messages, from the channel. You can specify both the ammount, and "
 						+ "messages from what kind of account that shall be removed. You must be authorized to use this."
 						+ " Use like: ;clean [1-100] [bots,users,all]").queue();
+				return;
 			}
 			
 			else if (argument.length()>1) {
