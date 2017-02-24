@@ -191,7 +191,7 @@ public class Test extends ListenerAdapter{
 					//if all user's messages shall go
 					historyList.get(i).deleteMessage().queue();	
 				}
-				event.getMessage().deleteMessage();
+				event.getMessage().deleteMessage().queue();;
 			}
 			System.err.println(amount+" = amount");
 		}
