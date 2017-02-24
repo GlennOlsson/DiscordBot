@@ -11,13 +11,13 @@ import net.dv8tion.jda.core.events.message.*;
 import net.dv8tion.jda.core.events.message.priv.*;
 import net.dv8tion.jda.core.hooks.*;
 
-public class Test extends ListenerAdapter{
+public class DiscordBot extends ListenerAdapter{
 
 	public static void main(String[] args) {
 		//		new Test();
 		JDA jda = null;
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new Test()).buildBlocking();
+			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new DiscordBot()).buildBlocking();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -29,7 +29,7 @@ public class Test extends ListenerAdapter{
 		channel.sendMessage("Sucessfully logged in!").queue();
 	}
 
-	public Test(){
+	public DiscordBot(){
 
 		//		System.exit(3);
 	}
