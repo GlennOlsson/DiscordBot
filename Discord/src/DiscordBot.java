@@ -114,7 +114,6 @@ public class DiscordBot extends ListenerAdapter{
 	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
 
 		TextChannel channel =event.getTextChannel();
-
 		List<Role> roles = null;
 		for (int i = 0; i < channel.getMembers().size(); i++) {		
 			if(channel.getMembers().get(i).getUser()==event.getAuthor()){
@@ -134,7 +133,9 @@ public class DiscordBot extends ListenerAdapter{
 		}
 		if(permission){
 			int amount = 1;
-			String argument1="all";
+			String argument1="all", argument2="all";
+
+			//Arguments
 			if(content.contains(" ")){
 				try {
 					amount=Integer.parseInt(content.split(" ")[1]);
@@ -145,7 +146,7 @@ public class DiscordBot extends ListenerAdapter{
 					// FIXME: handle exception
 					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();;
 				}
-				if(content.split(" ").length>2){
+				if(content.split(" ").length>=3){
 					//If at least length=3
 					if(content.split(" ")[2].toLowerCase().equals("bots")||content.split(" ")[2].toLowerCase().equals("users")||
 							content.split(" ")[2].toLowerCase().equals("all")){
@@ -153,18 +154,26 @@ public class DiscordBot extends ListenerAdapter{
 					}
 
 				}
-				if(content.split(" ").length==4){
-	
+				if(content.split(" ").length>=4){
+					argument2=content.substring(content.indexOf(content.split(" ")[3].toLowerCase()));
+					System.out.println(argument2 + " == arg 2");
+					Boolean hasMemeber=false;
 					for (int i = 0; i < channel.getMembers().size(); i++) {
-						if(channel.getMembers().get(i).getNickname().toLowerCase().equals(content.split(" ")[2].toLowerCase())){
-							
+						System.err.println(channel.getMembers().get(i).getUser().getName().toLowerCase());
+						if(channel.getMembers().get(i).getUser().getName().toLowerCase().equals(argument2)){
+							System.out.println("AYYYY");
+							hasMemeber=true;
 						}
 					}
+					if(!hasMemeber){
+						channel.sendMessage("This channel does not have a user with that name. Aborting command").queue();
+						return;
+					}
 				}
-				else if (content.split(" ").length>4) {
-					channel.sendMessage("To many arguments *"+event.getAuthor().getAsMention() +"*, aborting command").queue();
-					return;
-				}
+//				else if (content.split(" ").length>5) {
+//					channel.sendMessage("To many arguments *"+event.getAuthor().getAsMention() +"*, aborting command").queue();
+//					return;
+//				}
 			}
 			else{
 				//					event.getAuthor().getPrivateChannel().sendMessage("No amount specified, deleting one").queue();;
@@ -185,7 +194,17 @@ public class DiscordBot extends ListenerAdapter{
 			for (int i = 1; i < amount+1; i++) {
 				if(argument1.equals("bots")){
 					if(historyList.get(i).getAuthor().isBot()){
-						historyList.get(i).deleteMessage().queue();	
+						if(argument2.equals("all")){
+							historyList.get(i).deleteMessage().queue();	
+						}
+						else {
+							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
+								historyList.get(i).deleteMessage().queue();	
+							}
+							else {
+								amount++;
+							}
+						}
 					}
 					else{
 						amount++;
@@ -193,7 +212,17 @@ public class DiscordBot extends ListenerAdapter{
 				}
 				else if (argument1.equals("users")) {
 					if(!historyList.get(i).getAuthor().isBot()){
-						historyList.get(i).deleteMessage().queue();	
+						if(argument2.equals("all")){
+							historyList.get(i).deleteMessage().queue();	
+						}
+						else {
+							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
+								historyList.get(i).deleteMessage().queue();	
+							}
+							else {
+								amount++;
+							}
+						}
 					}
 					else{
 						amount++;
@@ -201,7 +230,17 @@ public class DiscordBot extends ListenerAdapter{
 				}
 				else {
 					//if all user's messages shall go
-					historyList.get(i).deleteMessage().queue();	
+					if(argument2.equals("all")){
+						historyList.get(i).deleteMessage().queue();	
+					}
+					else {
+						if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
+							historyList.get(i).deleteMessage().queue();	
+						}
+						else {
+							amount++;
+						}
+					}
 				}
 			}
 			System.err.println(amount+" = amount");
