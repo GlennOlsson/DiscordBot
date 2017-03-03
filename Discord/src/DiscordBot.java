@@ -72,7 +72,18 @@ public class DiscordBot extends ListenerAdapter{
 
 				//Help command
 				else if(content.toLowerCase().contains(";help")&&content.toLowerCase().substring(0, 5).equals(";help")){
-					help(channel, event, content);
+					
+					PrivateChannel privateChannel=null;
+					
+					if(event.getAuthor().hasPrivateChannel()){
+						privateChannel=event.getAuthor().getPrivateChannel();
+					}
+					else {
+						event.getAuthor().openPrivateChannel().queue();
+						privateChannel=event.getAuthor().getPrivateChannel();
+					}
+					
+					help(privateChannel, event, content);
 					return;
 				}
 
