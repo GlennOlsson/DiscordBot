@@ -6,6 +6,8 @@ import org.jsoup.nodes.*;
 
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.events.ReadyEvent;
+import net.dv8tion.jda.core.events.ReconnectedEvent;
 import net.dv8tion.jda.core.events.guild.member.*;
 import net.dv8tion.jda.core.events.message.*;
 import net.dv8tion.jda.core.events.message.priv.*;
@@ -27,13 +29,22 @@ public class DiscordBot extends ListenerAdapter{
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		//		channel = jda.getTextChannels().get(0);
 		
-		Game game = Game.of(";help");
-		
-		jda.getPresence().setGame(game);
+//		Game game = Game.of(";help");
+//		jda.getPresence().setGame(game);
 		
 		channel.sendMessage("Sucessfully logged in!").queue();
 	}
 
+	 public void onReady(ReadyEvent event) {
+	        super.onReady(event);
+	        event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+	    }
+
+	    @Override
+	    public void onReconnect(ReconnectedEvent event) {
+	        event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+	    }
+	
 	public DiscordBot(){
 
 		//		System.exit(3);
