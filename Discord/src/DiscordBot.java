@@ -26,6 +26,11 @@ public class DiscordBot extends ListenerAdapter{
 		//		jda.getGuildsByName("Kakanistan", true).get(0).getTextChannels().get(0);
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		//		channel = jda.getTextChannels().get(0);
+		
+		Game game = Game.of(";help");
+		
+		jda.getPresence().setGame(game);
+		
 		channel.sendMessage("Sucessfully logged in!").queue();
 	}
 
