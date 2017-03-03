@@ -66,6 +66,7 @@ public class DiscordBot extends ListenerAdapter{
 				reddit(channel, event, content);
 			}
 
+			//; commands
 			if(Character.toString(content.charAt(0)).equals(";")){
 				
 				String command = content.substring(1);
