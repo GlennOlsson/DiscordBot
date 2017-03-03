@@ -67,46 +67,33 @@ public class DiscordBot extends ListenerAdapter{
 			}
 
 			if(Character.toString(content.charAt(0)).equals(";")){
+				
+				String command = content.substring(1);
+				
+				if(command.contains(" ")){
+					command=command.split(" ")[0];
+				}
 
-				//Clean command
-				if(content.toLowerCase().contains(";clean")&&content.toLowerCase().substring(0,";clean".length()).equals(";clean")){
+				switch (command) {
+				case "clean":
 					clean(channel, event, content);
-					return;
-				}
-
-				//Gif command
-				else if(content.toLowerCase().contains(";gif")&&content.toLowerCase().substring(0, 4).equals(";gif")){
-					gif(channel, event, content);
-					return;
-				}
-
-				//Source command
-				else if(content.toLowerCase().equals(";source")){
-					source(channel);
-					return;
-				}
-
-				//Help command
-				else if(content.toLowerCase().contains(";help")&&content.toLowerCase().substring(0, 5).equals(";help")){
+					break;
 					
-					PrivateChannel privateChannel=null;
+				case "gif":
+					System.out.println("Ay yao");
+					break;
 					
-					if(event.getAuthor().hasPrivateChannel()){
-						privateChannel=event.getAuthor().getPrivateChannel();
-					}
-					else {
-						event.getAuthor().openPrivateChannel().queue();
-						privateChannel=event.getAuthor().getPrivateChannel();
-					}
+				case "source":
+					System.out.println("Ay yao");
+					break;
 					
-					help(privateChannel, event, content);
-					return;
-				}
-
-				//Up command
-				else if(content.toLowerCase().equals(";up")){
-					//					up(channel, event, content);
-					return;
+				case "up":
+//					up(channel, event, content);
+					break;			
+					
+				case "help":
+					help(event, content);
+					break;
 				}
 
 				//				else{
@@ -388,46 +375,57 @@ public class DiscordBot extends ListenerAdapter{
 
 	}
 
-	public void help(MessageChannel channel, MessageReceivedEvent event, String content) {
+	public void help(MessageReceivedEvent event, String content) {
+		
+		PrivateChannel privateChannel=null;
+		
+		if(event.getAuthor().hasPrivateChannel()){
+			privateChannel=event.getAuthor().getPrivateChannel();
+		}
+		else {
+			event.getAuthor().openPrivateChannel().queue();
+			privateChannel=event.getAuthor().getPrivateChannel();
+		}
+		
 		if(content.length()>";help".length()){
 			if(!Character.toString(content.charAt(";help".length())).equals(" ")){
 				//if the character after ;help is not *space*
-				channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
+				privateChannel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
 				return;
 			}
 			String argument = content.substring(6).toLowerCase();
 			if(argument.equals("reddit")||argument.equals(";reddit")){
 				//if help about reddit feature
-				channel.sendMessage("The **Reddit feature** is very simple. You just post a reddit link for an image/gif, and I will"
+				privateChannel.sendMessage("The **Reddit feature** is very simple. You just post a reddit link for an image/gif, and I will"
 						+ " send the direct link to the content, resulting in the content being visible in the chat. Textposts will just be ignored").queue();
 				return;
 			}
 			else if (argument.equals("gif")||argument.equals(";gif")) {
 				//if help about ;gif
-				channel.sendMessage("With the **;gif** feature, you just follow the command with a space, and then type your search quotas for the gif. "
+				privateChannel.sendMessage("With the **;gif** feature, you just follow the command with a space, and then type your search quotas for the gif. "
 						+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -").queue();
 				return;
 			}
 			//			else if (argument.equals("up")||argument.equals(";up")) {
 			//				//if help about ;up
-			//				channel.sendMessage("The **;up** command is only used to check if I am awake. If more than one of me replies,"
+			//				privateChannel.sendMessage("The **;up** command is only used to check if I am awake. If more than one of me replies,"
 			//						+ " or I don't reply att all, something is spooky").queue();
 			//				return;
 			//			}
 			else if (argument.equals("source")||argument.equals(";source")) {
-				channel.sendMessage("You can send **;source** to get the link to my source code").queue();
+				privateChannel.sendMessage("You can send **;source** to get the link to my source code").queue();
 				return;
 			}
 
 			else if (argument.equals("clean")||argument.equals(";clean")) {
-				channel.sendMessage("Whith **;clean**, you can remove a certain amount of messages, from the channel. You can specify both the ammount, and "
+				privateChannel.sendMessage("Whith **;clean**, you can remove a certain amount of messages, from the privateChannel. You can specify both the ammount, and "
 						+ "messages from what kind of account that shall be removed. You must be authorized to use this."
 						+ " Use like: ;clean [1-100] [bots,users,all]").queue();
 				return;
 			}
 
 			else if (argument.length()>1) {
-				channel.sendMessage("Sorry, but your argument did not get a match").queue();
+				privateChannel.sendMessage("Sorry, but your argument did not get a match").queue();
 			}
 		}
 		String command = "";
@@ -436,7 +434,7 @@ public class DiscordBot extends ListenerAdapter{
 			command = command+ features[i]+", ";	
 		}
 		command=command+" ;help";
-		channel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
+		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
 				+ "followed by one of the features listed, to see specified help for that command. Can also be done in PM").queue();
 
 		return;
