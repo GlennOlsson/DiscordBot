@@ -201,7 +201,7 @@ public class DiscordBot extends ListenerAdapter{
 			channel.getHistory().retrievePast(100).queue();
 			List<Message> historyList = null;
 			try {
-				historyList=history.retrievePast(100).block();
+				historyList=history.retrievePast(100).complete(true);
 			} catch (Exception e) {
 				// FIXME Auto-generated catch block
 				e.printStackTrace();
