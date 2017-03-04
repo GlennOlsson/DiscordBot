@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.*;
 
 import org.jsoup.*;
@@ -28,23 +29,23 @@ public class DiscordBot extends ListenerAdapter{
 		//		jda.getGuildsByName("Kakanistan", true).get(0).getTextChannels().get(0);
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		//		channel = jda.getTextChannels().get(0);
-		
-//		Game game = Game.of(";help");
-//		jda.getPresence().setGame(game);
-		
+
+		//		Game game = Game.of(";help");
+		//		jda.getPresence().setGame(game);
+
 		channel.sendMessage("Sucessfully logged in!").queue();
 	}
 
-	 public void onReady(ReadyEvent event) {
-	        super.onReady(event);
-	        event.getJDA().getPresence().setGame(Game.of("Send ;help"));
-	    }
+	public void onReady(ReadyEvent event) {
+		super.onReady(event);
+		event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+	}
 
-	    @Override
-	    public void onReconnect(ReconnectedEvent event) {
-	        event.getJDA().getPresence().setGame(Game.of("Send ;help"));
-	    }
-	
+	@Override
+	public void onReconnect(ReconnectedEvent event) {
+		event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+	}
+
 	public DiscordBot(){
 
 		//		System.exit(3);
@@ -67,10 +68,10 @@ public class DiscordBot extends ListenerAdapter{
 			}
 
 			//; commands
-			if(Character.toString(content.charAt(0)).equals(";")){
-				
+			if(content.length()>0&&Character.toString(content.charAt(0)).equals(";")){
+
 				String command = content.substring(1);
-				
+
 				if(command.contains(" ")){
 					command=command.split(" ")[0];
 				}
@@ -79,19 +80,19 @@ public class DiscordBot extends ListenerAdapter{
 				case "clean":
 					clean(channel, event, content);
 					break;
-					
+
 				case "gif":
 					System.out.println("Ay yao");
 					break;
-					
+
 				case "source":
 					System.out.println("Ay yao");
 					break;
-					
+
 				case "up":
-//					up(channel, event, content);
+					//					up(channel, event, content);
 					break;			
-					
+
 				case "help":
 					help(event, content);
 					break;
@@ -185,10 +186,10 @@ public class DiscordBot extends ListenerAdapter{
 						return;
 					}
 				}
-//				else if (content.split(" ").length>5) {
-//					channel.sendMessage("To many arguments *"+event.getAuthor().getAsMention() +"*, aborting command").queue();
-//					return;
-//				}
+				//				else if (content.split(" ").length>5) {
+				//					channel.sendMessage("To many arguments *"+event.getAuthor().getAsMention() +"*, aborting command").queue();
+				//					return;
+				//				}
 			}
 			else{
 				//					event.getAuthor().getPrivateChannel().sendMessage("No amount specified, deleting one").queue();;
@@ -205,16 +206,16 @@ public class DiscordBot extends ListenerAdapter{
 				// FIXME Auto-generated catch block
 				e.printStackTrace();
 			}
-			event.getMessage().deleteMessage().queue();
+			event.getMessage().delete().queue();
 			for (int i = 1; i < amount+1; i++) {
 				if(argument1.equals("bots")){
 					if(historyList.get(i).getAuthor().isBot()){
 						if(argument2.equals("all")){
-							historyList.get(i).deleteMessage().queue();	
+							historyList.get(i).delete().queue();	
 						}
 						else {
 							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-								historyList.get(i).deleteMessage().queue();	
+								historyList.get(i).delete().queue();	
 							}
 							else {
 								amount++;
@@ -228,11 +229,11 @@ public class DiscordBot extends ListenerAdapter{
 				else if (argument1.equals("users")) {
 					if(!historyList.get(i).getAuthor().isBot()){
 						if(argument2.equals("all")){
-							historyList.get(i).deleteMessage().queue();	
+							historyList.get(i).delete().queue();	
 						}
 						else {
 							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-								historyList.get(i).deleteMessage().queue();	
+								historyList.get(i).delete().queue();	
 							}
 							else {
 								amount++;
@@ -246,11 +247,11 @@ public class DiscordBot extends ListenerAdapter{
 				else {
 					//if all user's messages shall go
 					if(argument2.equals("all")){
-						historyList.get(i).deleteMessage().queue();	
+						historyList.get(i).delete().queue();	
 					}
 					else {
 						if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-							historyList.get(i).deleteMessage().queue();	
+							historyList.get(i).delete().queue();	
 						}
 						else {
 							amount++;
@@ -283,25 +284,76 @@ public class DiscordBot extends ListenerAdapter{
 		try {
 			doc = Jsoup.connect(event.getMessage().getContent()).userAgent("Chrome").get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
-				//if NSFW sub
+				//-- if NSFW sub --
 				doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Mozilla").get();
 				url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
 						doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
 				title=doc.select("title").get(1).text();
 
 				if(!url.contains("www.reddit.com")){
+
 					//if not textpost
+
 					System.out.println(url + " = RUL");
 
-					System.out.println(url.charAt(url.length()-5) + "  -- "+url.charAt(url.length()-4));
+					if(url.contains("imgur.com")){
 
-					if(url.contains("imgur.com")&&(Character.toString(url.charAt(url.length()-5)).equals(".")||
-							Character.toString(url.charAt(url.length()-4)).equals("."))){
-						url=url.substring(0,url.lastIndexOf("."));
+						String url2=null;
+
+						if(url.length()-url.lastIndexOf(".")<=5){
+
+							System.out.println("<=5");
+
+							//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
+							if(url.substring(url.lastIndexOf(".")).equals(".mp4")){
+								url2=url.replace(".mp4", ".gifv");
+							}
+							//Makes imgur.com/IDNUMBER.gif --> imgur.com/IDNUMBER.gifv
+							else if (url.substring(url.lastIndexOf(".")).equals(".gif")) {
+								url2=url.replace(".gif",".gifv");
+							}
+							else {
+								url2=url;
+							}
+							System.out.println(url2 + " ==== URL2");
+						}
+						if(url.length()-url.lastIndexOf(".")>5){
+							System.out.println(">5");
+							try {					
+								//Tries to get .zoom class (the class of the link if it's a picture
+
+								Document doc2=null;
+
+								try {
+									doc2=Jsoup.connect(url).userAgent("Chrome").get();
+								} catch (IOException e) {
+									// FIXME Auto-generated catch block
+									e.printStackTrace();
+								}
+
+								doc2.select(".zoom").attr("href");
+								url2="http:"+doc2.select(".zoom").attr("href");
+								System.out.println(url2+" = URL2");
+								if(url2.length()<7){
+									//Fails because .zoom does not exist --> not picture
+									System.out.println("ERROR");
+									throw new Exception();
+								}
+
+							} catch (Exception e) {
+								// FIXME: handle exception
+								//Moving image: Gif, Gifv, mp4...
+								url2=url+".gifv";
+							}
+						}
+						channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** - "+url2).queue();
+						event.getMessage().delete().queue();
+
 					}
-
-					channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** - "+url).queue();
-					event.getMessage().deleteMessage().queue();
+					else{
+						channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** - "+url).queue();
+						event.getMessage().delete().queue();
+					}
 				}
 			}
 			else{
@@ -315,13 +367,65 @@ public class DiscordBot extends ListenerAdapter{
 				if(!url.substring(0,3).equals("/r/")){
 					//If not textpost
 
-					if(url.contains("imgur.com")&&(Character.toString(url.charAt(url.length()-5)).equals(".")||
-							Character.toString(url.charAt(url.length()-4)).equals("."))&&url.substring(url.lastIndexOf(".")+1,url.length()).equals("mp4")){
-						url=url.substring(0,url.lastIndexOf(".mp4"));
+					if(url.contains("imgur.com")){
+
+						String url2=null;
+
+						if(url.length()-url.lastIndexOf(".")<=5){
+
+							System.out.println("<=5");
+
+							//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
+							if(url.substring(url.lastIndexOf(".")).equals(".mp4")){
+								url2=url.replace(".mp4", ".gifv");
+							}
+							//Makes imgur.com/IDNUMBER.gif --> imgur.com/IDNUMBER.gifv
+							else if (url.substring(url.lastIndexOf(".")).equals(".gif")) {
+								url2=url.replace(".gif",".gifv");
+							}
+							else {
+								url2=url;
+							}
+							System.out.println(url2 + " ==== URL2");
+						}
+						if(url.length()-url.lastIndexOf(".")>5){
+							System.out.println(">5");
+							try {					
+								//Tries to get .zoom class (the class of the link if it's a picture
+
+								Document doc2=null;
+
+								try {
+									doc2=Jsoup.connect(url).userAgent("Chrome").get();
+								} catch (IOException e) {
+									// FIXME Auto-generated catch block
+									e.printStackTrace();
+								}
+
+								doc2.select(".zoom").attr("href");
+								url2="http:"+doc2.select(".zoom").attr("href");
+								System.out.println(url2+" = URL2");
+								if(url2.length()<7){
+									//Fails because .zoom does not exist --> not picture
+									System.out.println("ERROR");
+									throw new Exception();
+								}
+
+							} catch (Exception e) {
+								// FIXME: handle exception
+								//Moving image: Gif, Gifv, mp4...
+								url2=url+".gifv";
+							}
+						}
+						channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url2).queue();
+						event.getMessage().delete().queue();
+
 					}
 
-					channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url).queue();
-					event.getMessage().deleteMessage().queue();
+					else{
+						channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url).queue();
+						event.getMessage().delete().queue();
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -347,7 +451,7 @@ public class DiscordBot extends ListenerAdapter{
 
 			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();	
 			try {
-				event.getMessage().deleteMessage().queue();;
+				event.getMessage().delete().queue();;
 			} catch (Exception e) {
 				// FIXME: handle exception
 				System.out.println("Cannot delete message, probably because of private message channel");
@@ -377,9 +481,9 @@ public class DiscordBot extends ListenerAdapter{
 	}
 
 	public void help(MessageReceivedEvent event, String content) {
-		
+
 		PrivateChannel privateChannel=null;
-		
+
 		if(event.getAuthor().hasPrivateChannel()){
 			privateChannel=event.getAuthor().getPrivateChannel();
 		}
@@ -387,7 +491,7 @@ public class DiscordBot extends ListenerAdapter{
 			event.getAuthor().openPrivateChannel().queue();
 			privateChannel=event.getAuthor().getPrivateChannel();
 		}
-		
+
 		if(content.length()>";help".length()){
 			if(!Character.toString(content.charAt(";help".length())).equals(" ")){
 				//if the character after ;help is not *space*
