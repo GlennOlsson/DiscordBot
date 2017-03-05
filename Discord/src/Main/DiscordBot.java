@@ -45,6 +45,11 @@ org.eclipse.jgit.api.errors.JGitInternalException: Entry not found by path: Disc
 
 Must go by DiscordBot/Discord... ?
 
+
+https://www.reddit.com/r/ImGoingToHellForThis/comments/5xidvg/picking_up_girls/?st=IZWZ6JZH&sh=51454908
+
+
+
 */
 
 
