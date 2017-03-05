@@ -1,7 +1,3 @@
-##LMAOjshhsshbjnmfcgvbhntfcgvbjmk,
-
---------------
-
 ##New error at 5/3 - 23:22:2
  java.lang.NullPointerException
 	at Main.LoggExceptions.main(LoggExceptions.java:18)

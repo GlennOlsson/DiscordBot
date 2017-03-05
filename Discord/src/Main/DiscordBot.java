@@ -12,6 +12,14 @@ in case of ;, message user what preix is
 
 runtime in settning.json, so one can indentify which run the error message is from
 
+-------
+
+reply when prefix is changed
+
+-------
+
+Always have ; as a prefix, as well
+
 */
 
 
