@@ -97,6 +97,8 @@ public class LoggExceptions {
 	}
 	public static void error(Exception exception, String whyThough) {
 		//Skicka mail till mig
+		System.err.println(" ---- FUCK FUCK FUCK ----");
+		exception.printStackTrace();
 	}
 
 }
