@@ -1,1 +1,1 @@
-javac -d bin -sourcepath src -cp JDA-3.0.BETA2_143.jar:JDA-3.0.BETA2_143-withDependencies.jar:jsoup-1.8.1.jar:json-simple-1.1.1.jar src/DiscordBot.java
+javac -d bin -sourcepath src -cp JDA-3.0.BETA2_143.jar:JDA-3.0.BETA2_143-withDependencies.jar:jsoup-1.8.1.jar:json-simple-1.1.1.jar src/Main/DiscordBot.java
