@@ -20,6 +20,31 @@ reply when prefix is changed
 
 Always have ; as a prefix, as well
 
+--------
+
+org.eclipse.jgit.api.errors.JGitInternalException: Entry not found by path: Discord/Files/Errorlog.md
+        at org.eclipse.jgit.api.CommitCommand.createTemporaryIndex(CommitCommand.java:480)
+        at org.eclipse.jgit.api.CommitCommand.call(CommitCommand.java:236)
+        at Main.LoggExceptions.Logg(LoggExceptions.java:74)
+        at Main.DiscordBot.reddit(DiscordBot.java:343)
+        at Main.DiscordBot.onMessageReceived(DiscordBot.java:107)
+        at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+        at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+        at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+        at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+        at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+        at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+        at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+        at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+        at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+        at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+        at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+        at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+        at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+        at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+Must go by DiscordBot/Discord... ?
+
 */
 
 
