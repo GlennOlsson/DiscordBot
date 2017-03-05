@@ -1,7 +1,17 @@
+/* ----------TODO
+Make a catch class -> either saves all stackTrace in a file, or sends an email to me with it
+-----------
+Add prefix to help command, and reply with just the prefix if not authorized
 
+*/
+
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 
@@ -25,13 +35,7 @@ public class DiscordBot extends ListenerAdapter{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		//		jda.getGuildsByName("Kakanistan", true).get(0).getTextChannels().get(0);
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-		//		channel = jda.getTextChannels().get(0);
-
-		//		Game game = Game.of(";help");
-		//		jda.getPresence().setGame(game);
 
 		channel.sendMessage("Sucessfully logged in!").queue();
 	}
@@ -59,21 +63,34 @@ public class DiscordBot extends ListenerAdapter{
 
 			channel.sendTyping();
 
+			if(content.toLowerCase().equals("prefix")){
+				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+					channel.sendMessage("The current prefix on our private chat is :\""+getPrefix(channel.getId())+"\"").queue();
+				}
+				else{
+					channel.sendMessage("The current prefix on "+event.getGuild().getName()+" is :\""+getPrefix(channel.getId())+"\"").queue();
+				}
+			}
+
 			//Reddit command
 			if((content.contains("://reddit")||content.contains("://www.reddit"))&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
 					content.substring(0,"http://www.reddit".length()).contains("http://www.reddit")||
 					content.substring(0,"https://reddit".length()).contains("https://reddit")||
 					content.substring(0,"http://reddit".length()).contains("http://reddit"))){
 				reddit(channel, event, content);
+				return;
 			}
 
-			//; commands
-			if(content.length()>0&&Character.toString(content.charAt(0)).equals(";")){
+			String prefix = getPrefix(channel.getId());
 
-				String command = content.substring(1);
+			if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
+				//; commands
 
+				String command = content.substring(prefix.length()), afterCommand = "";
 				if(command.contains(" ")){
 					command=command.split(" ")[0];
+					afterCommand = content.substring(prefix.length()+command.length()+1);
+					System.out.println("Aftercommand=\""+afterCommand+"\"");
 				}
 
 				switch (command) {
@@ -82,11 +99,15 @@ public class DiscordBot extends ListenerAdapter{
 					break;
 
 				case "gif":
-					System.out.println("Ay yao");
+					gif(channel, event, content);
 					break;
 
 				case "source":
-					System.out.println("Ay yao");
+					source(channel);
+					break;
+
+				case "prefix":
+					prefix(channel, event, content, afterCommand);
 					break;
 
 				case "up":
@@ -114,9 +135,24 @@ public class DiscordBot extends ListenerAdapter{
 
 			channel.sendTyping();
 
-			if(!Character.toString(content.charAt(0)).equals(";")){
-				channel.sendMessage("Sorry, you did not start your message with the \";\" character. I am a bot, and will only accept commands starting with ;"
-						+ " You can use ;help for example, to see what commands you can use. Uppercase or lowercase does not matter").queue();
+			String prefix=getPrefix(channel.getId());
+
+			if(content.equals("prefix")){
+				return;
+			}
+			
+			else if(content.length()>=prefix.length()){
+				if(!content.substring(0, prefix.length()).equals(prefix)){
+					channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
+							+ "commands starting with "+prefix+". You can use "+prefix+"help for example, to see what commands you can use."
+							+ " Uppercase or lowercase does not matter").queue();
+					return;
+				}
+			}
+			else {
+				channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
+						+ "commands starting with "+prefix+". You can use \""+prefix+"help\" for example, to see what commands you can use."
+						+ " Uppercase or lowercase does not matter").queue();
 				return;
 			}
 		}
@@ -130,24 +166,9 @@ public class DiscordBot extends ListenerAdapter{
 	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
 
 		TextChannel channel =event.getTextChannel();
-		List<Role> roles = null;
-		for (int i = 0; i < channel.getMembers().size(); i++) {		
-			if(channel.getMembers().get(i).getUser()==event.getAuthor()){
-				roles =channel.getMembers().get(i).getRoles();
-				i= channel.getMembers().size()+5;
-			}
-		}
+		String[] roleList ={"Moderator", "Commissioner", "Server Owner"};
 
-		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
-		Boolean permission=false;
-		for (int i = 0; i < roles.size(); i++) {
-			if(roles.get(i).getName().toLowerCase().equals("moderator")||roles.get(i).getName().toLowerCase().equals("commissioner")||
-					roles.get(i).getName().toLowerCase().equals("server owner")){
-				permission=true;
-				i=roles.size()+5;
-			}
-		}
-		if(permission){
+		if(isAuthorized(channel, event, content, roleList)){
 			int amount = 1;
 			String argument1="all", argument2="all";
 
@@ -175,9 +196,8 @@ public class DiscordBot extends ListenerAdapter{
 					System.out.println(argument2 + " == arg 2");
 					Boolean hasMemeber=false;
 					for (int i = 0; i < channel.getMembers().size(); i++) {
-						System.err.println(channel.getMembers().get(i).getUser().getName().toLowerCase());
 						if(channel.getMembers().get(i).getUser().getName().toLowerCase().equals(argument2)){
-							System.out.println("AYYYY");
+							System.out.println("CHANNEL HAS USER");
 							hasMemeber=true;
 						}
 					}
@@ -437,11 +457,6 @@ public class DiscordBot extends ListenerAdapter{
 	}
 
 	public void gif(MessageChannel channel, MessageReceivedEvent event, String content) {
-		if(content.length()>";gif".length()&&!Character.toString(content.charAt(";gif".length())).equals(" ")){
-			//if the character after ;help is not *space*
-			channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
-			return;
-		}
 		Document doc=null;
 		String url=null, query=null;
 		try {
@@ -468,6 +483,16 @@ public class DiscordBot extends ListenerAdapter{
 	public void source(MessageChannel channel){
 		channel.sendMessage("Nice, you are qurious! Here's the link to github: https://github.com/kakan9898/DiscordBot").queue();
 		return;
+	}
+
+	public void prefix(MessageChannel channel, MessageReceivedEvent event, String content, String newPrefix) {
+		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
+		if(isAuthorized(event.getTextChannel(), event, content, roleslist)){
+			System.out.println("HALLELULIA");
+			if(!newPrefix.equals("")){
+				setPrefix(channel.getId(),newPrefix);
+			}
+		}
 	}
 
 	public void up(MessageChannel channel, MessageReceivedEvent event, String content){
@@ -546,6 +571,79 @@ public class DiscordBot extends ListenerAdapter{
 
 	}
 
+	public static void setPrefix(String id, String prefix) {
 
+		try {
+			JSONParser parser = new JSONParser();
+			Object object = parser.parse(new FileReader("Settings/settings.json"));
+
+			JSONObject jsonObject = (JSONObject) object;
+
+			jsonObject.put("prefix"+id, prefix);
+
+			//WRITING JSON
+			try (FileWriter file = new FileWriter("Settings/settings.json")){
+				file.write(jsonObject.toJSONString());
+				System.out.println("Successfully wrote "+jsonObject.toJSONString());
+			}
+		}
+		catch (Exception e) {
+			// FIXME: handle exception
+			e.printStackTrace();
+			System.err.println("-- ERROR IN WRITING IN settings.json --");
+		}
+	}
+
+	public String getPrefix(String id) {
+
+		//Check prefix
+		try {
+			String prefix=";";
+			JSONParser parser = new JSONParser();
+			Object object = parser.parse(new FileReader("Settings/settings.json"));
+			JSONObject jsonObject = (JSONObject) object;
+
+			if(jsonObject.containsKey("prefix"+id)){
+				prefix=(String) jsonObject.get("prefix"+id);
+				return prefix;
+			}
+			else {
+				//If specific prefix for channel doesn't exist
+				return ";";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("ERROR WITH PREFIX, RETURNING \";\"");
+			return ";";
+		} 
+	}
+
+	public Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String content, String[] roleList) {
+		List<Role> roles = null;
+
+		if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
+			for (int i = 0; i < textChannel.getMembers().size(); i++) {		
+				if(textChannel.getMembers().get(i).getUser()==event.getAuthor()){
+					roles =textChannel.getMembers().get(i).getRoles();
+					//just so it stops the loop for sure
+					i = textChannel.getMembers().size()+5;
+				}
+			}
+			ArrayList<String> rolesName = new ArrayList<>();
+			for (int i = 0; i < roles.size(); i++) {
+				rolesName.add(roles.get(i).getName().toString().toLowerCase());
+				for (int j = 0; j < roleList.length; j++) {
+					if(rolesName.contains(roleList[j].toLowerCase())){
+						return true;
+					}
+				}
+			}
+		}
+		else {
+			return true;
+		}
+		return false;
+
+	}
 
 }
