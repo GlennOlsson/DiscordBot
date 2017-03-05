@@ -9,9 +9,6 @@ public class RetrieveSetting {
 		secret, setting;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(getKey("prefix282109399617634304", JSONDocument.setting));
-	}
 	public static String getKey(String key, JSONDocument fileSort){
 
 		if(fileSort==JSONDocument.secret){
@@ -29,7 +26,7 @@ public class RetrieveSetting {
 
 				JSONObject jsonObject = (JSONObject) object;
 
-				return (String) jsonObject.get("oath");
+				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -41,10 +38,7 @@ public class RetrieveSetting {
 				JSONParser parser = new JSONParser();
 				Object object = null;
 
-				
 					object = parser.parse(new FileReader("Files/settings.json"));
-			
-				
 
 				JSONObject jsonObject = (JSONObject) object;
 
