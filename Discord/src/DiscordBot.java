@@ -145,7 +145,7 @@ public class DiscordBot extends ListenerAdapter{
 				if(!content.substring(0, prefix.length()).equals(prefix)){
 					channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 							+ "commands starting with "+prefix+". You can use "+prefix+"help for example, to see what commands you can use."
-							+ " Uppercase or lowercase does not matter").queue();
+							+ " BLAHBKAHBLAHUppercase or lowercase does not matter").queue();
 					return;
 				}
 			}
