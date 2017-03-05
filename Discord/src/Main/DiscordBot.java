@@ -1,3 +1,4 @@
+package Main;
 /* ----------TODO
 Make a catch class -> either saves all stackTrace in a file, or sends an email to me with it
 -----------
@@ -9,24 +10,35 @@ in case of ;, message user what preix is
 
 */
 
+
+import Main.RetrieveSetting.JSONDocument;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.jsoup.*;
-import org.jsoup.nodes.*;
-
-import net.dv8tion.jda.core.*;
-import net.dv8tion.jda.core.entities.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.MessageHistory;
+import net.dv8tion.jda.core.entities.PrivateChannel;
+import net.dv8tion.jda.core.entities.Role;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.ReconnectedEvent;
-import net.dv8tion.jda.core.events.guild.member.*;
-import net.dv8tion.jda.core.events.message.*;
-import net.dv8tion.jda.core.events.message.priv.*;
-import net.dv8tion.jda.core.hooks.*;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class DiscordBot extends ListenerAdapter{
 
@@ -34,8 +46,7 @@ public class DiscordBot extends ListenerAdapter{
 		//		new Test();
 		JDA jda = null;
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new DiscordBot()).buildBlocking();
-
+			jda = new JDABuilder(AccountType.BOT).setToken(RetrieveSetting.getKey("oath",JSONDocument.secret)).addListener(new DiscordBot()).buildBlocking();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

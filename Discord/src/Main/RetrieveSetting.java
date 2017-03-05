@@ -1,3 +1,4 @@
+package Main;
 import java.io.FileReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -7,13 +8,13 @@ public class RetrieveSetting {
 	enum JSONDocument {
 		secret, setting;
 	}
+
 	public static void main(String[] args) {
-		System.out.println(getKey(null, JSONDocument.secret));
+		System.out.println(getKey("prefix282109399617634304", JSONDocument.setting));
 	}
+	public static String getKey(String key, JSONDocument fileSort){
 
-	public static String getKey(String key, JSONDocument whichFile){
-
-		if(whichFile==JSONDocument.secret){
+		if(fileSort==JSONDocument.secret){
 			try {
 				String prefix=";";
 				JSONParser parser = new JSONParser();
@@ -34,8 +35,24 @@ public class RetrieveSetting {
 				e.printStackTrace();
 			}
 		}
-		else if (whichFile==JSONDocument.setting) {
+		else if (fileSort==JSONDocument.setting) {
+			try {
+				String prefix=";";
+				JSONParser parser = new JSONParser();
+				Object object = null;
 
+				
+					object = parser.parse(new FileReader("Files/settings.json"));
+			
+				
+
+				JSONObject jsonObject = (JSONObject) object;
+
+				return (String) jsonObject.get(key);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 

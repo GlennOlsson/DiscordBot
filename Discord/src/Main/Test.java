@@ -1,3 +1,6 @@
+package Main;
+
+import Main.RetrieveSetting.JSONDocument;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +23,7 @@ public class Test extends ListenerAdapter{
 
 		JDA jda = null;
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new Test()).buildBlocking();
+			jda = new JDABuilder(AccountType.BOT).setToken(RetrieveSetting.getKey("oath",JSONDocument.secret)).addListener(new Test()).buildBlocking();
 
 		} catch (Exception e) {
 			
@@ -30,6 +33,7 @@ public class Test extends ListenerAdapter{
 
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
+		System.out.println(RetrieveSetting.getKey("prefix283333281477558272", JSONDocument.setting));
 		
 	}
 
