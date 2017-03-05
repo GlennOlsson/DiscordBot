@@ -332,11 +332,16 @@ public class DiscordBot extends ListenerAdapter{
 			doc = Jsoup.connect(event.getMessage().getContent()).userAgent("Chrome").get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
 				//-- if NSFW sub --
-				doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Mozilla").get();
+				try{
+					doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Mozilla").get();
+				
 				url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
 						doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
 				title=doc.select("title").get(1).text();
-
+				}catch (Exception e) {
+					// FIXME: handle exception
+					LoggExceptions.Logg(e);
+				}
 				if(!url.contains("www.reddit.com")){
 
 					//if not textpost
