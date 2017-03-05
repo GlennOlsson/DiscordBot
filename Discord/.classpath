@@ -17,5 +17,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/Discord/JDA-3.0.BETA2_143-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

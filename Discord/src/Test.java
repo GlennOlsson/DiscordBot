@@ -4,13 +4,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.jsoup.nodes.*;
-
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -22,15 +18,6 @@ public class Test extends ListenerAdapter{
 	public static void main(String[] args) {
 		// FIXME Auto-generated method stub
 
-		String url = "https://i.imgur.com/NVm3bNn.mp4";
-
-		Document doc=null;
-		//		try {
-		//			doc = Jsoup.connect("http://www.reddit.com/r/shittyrainbow6/comments/5uon69/best_tactic_for_blitz/").userAgent("Chrome").get();
-		//			System.out.println(doc.select("#media-preview-5uon69 > div > a").attr("href"));
-		//		} catch (Exception e) {
-		//			e.printStackTrace();
-		//	}
 		JDA jda = null;
 		try {
 			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new Test()).buildBlocking();
@@ -41,29 +28,24 @@ public class Test extends ListenerAdapter{
 
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
-		for (Member string : channels.getMembers()) {
-			if(string.getUser().getName().toLowerCase().equals("kakan")){
-				System.err.println(string.getUser());
-			}
-		}
-
-		Game game = Game.of("Hayy!");
-		
-		jda.getPresence().setGame(game);
-		
-		//		System.out.println(jda.getShardInfo());
-
 	}
 
 	public Test(){
 
 	}
 	public void onMessageReceived(MessageReceivedEvent event){	
+		
+		if(event.getAuthor().getName().equals("Kakan")){
+		DiscordBot.setPrefix(event.getChannel(), event, event.getMessage().getContent());
+		}
 		String content = event.getMessage().getContent().toLowerCase();
 
 		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
-			PrivateChannel privateChannel=null;
 			
+			event.getMessage().delete().queue();
+			
+			PrivateChannel privateChannel=null;
+
 			if(event.getAuthor().hasPrivateChannel()){
 				privateChannel=event.getAuthor().getPrivateChannel();
 			}
@@ -71,11 +53,11 @@ public class Test extends ListenerAdapter{
 				event.getAuthor().openPrivateChannel().queue();
 				privateChannel=event.getAuthor().getPrivateChannel();
 			}
-			
+
 			privateChannel.sendMessage("Sup").queue();
-			
-			
-			
+
+
+
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){

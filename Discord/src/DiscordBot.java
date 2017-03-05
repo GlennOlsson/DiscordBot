@@ -1,7 +1,13 @@
+//TODO
+//Make a catch class -> either saves all stackTrace in a file, or sends an email to me with it
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 
@@ -25,13 +31,7 @@ public class DiscordBot extends ListenerAdapter{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		//		jda.getGuildsByName("Kakanistan", true).get(0).getTextChannels().get(0);
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-		//		channel = jda.getTextChannels().get(0);
-
-		//		Game game = Game.of(";help");
-		//		jda.getPresence().setGame(game);
 
 		channel.sendMessage("Sucessfully logged in!").queue();
 	}
@@ -65,10 +65,15 @@ public class DiscordBot extends ListenerAdapter{
 					content.substring(0,"https://reddit".length()).contains("https://reddit")||
 					content.substring(0,"http://reddit".length()).contains("http://reddit"))){
 				reddit(channel, event, content);
+				return;
 			}
 
-			//; commands
-			if(content.length()>0&&Character.toString(content.charAt(0)).equals(";")){
+			String prefix = getPrefix(channel, event);
+			
+			System.out.println(prefix);
+
+			if(content.length()>0&&Character.toString(content.charAt(0)).equals(prefix)){
+				//; commands
 
 				String command = content.substring(1);
 
@@ -82,11 +87,11 @@ public class DiscordBot extends ListenerAdapter{
 					break;
 
 				case "gif":
-					System.out.println("Ay yao");
+					gif(channel, event, content);
 					break;
 
 				case "source":
-					System.out.println("Ay yao");
+					source(channel);
 					break;
 
 				case "up":
@@ -546,6 +551,58 @@ public class DiscordBot extends ListenerAdapter{
 
 	}
 
+	public static void setPrefix(MessageChannel channel, MessageReceivedEvent event, String content) {
+
+		if(!content.contains(" ")){
+			channel.sendMessage("Must contain prefix").queue();
+		}
+		else {
+			try {
+				String prefix = content.substring(content.split(" ")[0].length()+1);
+
+				JSONParser parser = new JSONParser();
+				Object object = parser.parse(new FileReader("Settings/settings.json"));
+
+				JSONObject jsonObject = (JSONObject) object;
+
+				jsonObject.put("prefix"+channel.getId().toString(), prefix);
+
+				try (FileWriter file = new FileWriter("Settings/settings.json")){
+					file.write(jsonObject.toJSONString());
+					System.out.println("Successfully wrote prefix "+jsonObject.toJSONString());
+				}
+			}
+			catch (Exception e) {
+				// FIXME: handle exception
+				e.printStackTrace();
+				System.err.println("-- ERROR IN WRITING IN settings.json --");
+			}
+		}
+	}
+
+	public String getPrefix(MessageChannel channel, MessageReceivedEvent event) {
+
+		//Check prefix
+		try {
+			String prefix=";";
+			JSONParser parser = new JSONParser();
+			Object object = parser.parse(new FileReader("Settings/settings.json"));
+			JSONObject jsonObject = (JSONObject) object;
+
+			if(jsonObject.containsKey("prefix"+channel.getId())){
+				prefix=(String) jsonObject.get("prefix");
+				return prefix;
+			}
+			else {
+				//If specific prefix for channel doesn't exist
+				return ";";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("ERROR WITH PREFIX, RETURNING \";\"");
+			return ";";
+		} 
+	}
 
 
 }
