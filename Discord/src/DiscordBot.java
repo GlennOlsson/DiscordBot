@@ -3,6 +3,10 @@ Make a catch class -> either saves all stackTrace in a file, or sends an email t
 -----------
 Add prefix to help command, and reply with just the prefix if not authorized
 
+-----------
+
+in case of ;, message user what preix is
+
 */
 
 import java.io.FileReader;
@@ -575,14 +579,14 @@ public class DiscordBot extends ListenerAdapter{
 
 		try {
 			JSONParser parser = new JSONParser();
-			Object object = parser.parse(new FileReader("Settings/settings.json"));
+			Object object = parser.parse(new FileReader("Files/settings.json"));
 
 			JSONObject jsonObject = (JSONObject) object;
 
 			jsonObject.put("prefix"+id, prefix);
 
 			//WRITING JSON
-			try (FileWriter file = new FileWriter("Settings/settings.json")){
+			try (FileWriter file = new FileWriter("Files/settings.json")){
 				file.write(jsonObject.toJSONString());
 				System.out.println("Successfully wrote "+jsonObject.toJSONString());
 			}
@@ -600,7 +604,7 @@ public class DiscordBot extends ListenerAdapter{
 		try {
 			String prefix=";";
 			JSONParser parser = new JSONParser();
-			Object object = parser.parse(new FileReader("Settings/settings.json"));
+			Object object = parser.parse(new FileReader("Files/settings.json"));
 			JSONObject jsonObject = (JSONObject) object;
 
 			if(jsonObject.containsKey("prefix"+id)){

@@ -34,30 +34,29 @@ public class Test extends ListenerAdapter{
 
 	}
 	public void onMessageReceived(MessageReceivedEvent event){	
-		
+
 		if(event.getAuthor().getName().equals("Kakan")){
-		DiscordBot.setPrefix(event.getChannel(), event, event.getMessage().getContent());
-		}
-		String content = event.getMessage().getContent().toLowerCase();
+			String content = event.getMessage().getContent().toLowerCase();
 
-		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
-			
-			event.getMessage().delete().queue();
-			
-			PrivateChannel privateChannel=null;
+			if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
 
-			if(event.getAuthor().hasPrivateChannel()){
-				privateChannel=event.getAuthor().getPrivateChannel();
+				event.getMessage().delete().queue();
+
+				PrivateChannel privateChannel=null;
+
+				if(event.getAuthor().hasPrivateChannel()){
+					privateChannel=event.getAuthor().getPrivateChannel();
+				}
+				else {
+					event.getAuthor().openPrivateChannel().queue();
+					privateChannel=event.getAuthor().getPrivateChannel();
+				}
+
+				privateChannel.sendMessage("Sup").queue();
+
+
+
 			}
-			else {
-				event.getAuthor().openPrivateChannel().queue();
-				privateChannel=event.getAuthor().getPrivateChannel();
-			}
-
-			privateChannel.sendMessage("Sup").queue();
-
-
-
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
@@ -122,7 +121,9 @@ public class Test extends ListenerAdapter{
 		}
 
 	}
+
 }
+
 
 
 
