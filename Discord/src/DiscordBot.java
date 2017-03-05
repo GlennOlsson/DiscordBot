@@ -129,7 +129,7 @@ public class DiscordBot extends ListenerAdapter{
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
 
 		PrivateChannel channel=event.getChannel();
-		String content = event.getMessage().getContent();
+		String content = event.getMessage().getContent().toLowerCase();
 
 		if(!event.getAuthor().getName().equals("Kakan's Bot")){
 
@@ -142,10 +142,10 @@ public class DiscordBot extends ListenerAdapter{
 			}
 			
 			else if(content.length()>=prefix.length()){
-				if(!content.substring(0, prefix.length()).equals(prefix)){
+				if(!content.substring(0, prefix.length()).toLowerCase().equals(prefix.toLowerCase)){
 					channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 							+ "commands starting with "+prefix+". You can use "+prefix+"help for example, to see what commands you can use."
-							+ " BLAHBKAHBLAHUppercase or lowercase does not matter").queue();
+							+ " Uppercase or lowercase does not matter").queue();
 					return;
 				}
 			}
