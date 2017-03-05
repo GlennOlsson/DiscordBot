@@ -18,5 +18,19 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-ext-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-jcl-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-jdk14-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-log4j12-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-migrator-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-nop-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-simple-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/jcl-over-slf4j-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/jul-to-slf4j-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/log4j-over-slf4j-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/org.eclipse.jgit-4.6.0.201612231935-r-javadoc.jar"/>
+	<classpathentry kind="lib" path="JGIT/org.eclipse.jgit-4.6.0.201612231935-r.jar"/>
+	<classpathentry kind="lib" path="JGIT/osgi-over-slf4j-1.7.24.jar"/>
+	<classpathentry kind="lib" path="JGIT/slf4j-android-1.7.24.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -8,6 +8,10 @@ Add prefix to help command, and reply with just the prefix if not authorized
 
 in case of ;, message user what preix is
 
+-------
+
+runtime in settning.json, so one can indentify which run the error message is from
+
 */
 
 
@@ -533,6 +537,8 @@ public class DiscordBot extends ListenerAdapter{
 		}
 
 		if(content.length()>";help".length()){
+			//Doesn't work with other prefixes?
+			
 			if(!Character.toString(content.charAt(";help".length())).equals(" ")){
 				//if the character after ;help is not *space*
 				privateChannel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();

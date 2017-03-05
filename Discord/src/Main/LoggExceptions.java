@@ -41,7 +41,7 @@ public class LoggExceptions {
 		newContent="##New error at "+currentTime+"\n "+errors.toString()+"\n---------------\n\n";
 		
 		try{
-			FileReader reader = new FileReader("Files/Errorlog.log");
+			FileReader reader = new FileReader("Files/Errorlog.md");
 			BufferedReader br = new BufferedReader(reader); 
 			Iterator<String> iterator= br.lines().iterator();
 			//Saves the earlier content to currentContent string
@@ -49,13 +49,14 @@ public class LoggExceptions {
 				currentContent+=iterator.next()+"\n";
 			}
 			//Writes old + new content
-			try(FileWriter file = new FileWriter("Files/Errorlog.log")){
+			try(FileWriter file = new FileWriter("Files/Errorlog.md")){
 				file.write(newContent+""+currentContent);
 			}
 			catch (Exception e) {
 				// FIXME: handle exception
 				error(e);
 			}
+			
 		}
 		catch (Exception e) {
 			// FIXME: handle exception
