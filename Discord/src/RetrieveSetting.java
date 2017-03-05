@@ -23,7 +23,7 @@ public class RetrieveSetting {
 					object = parser.parse(new FileReader("C:\\Users\\Glenn\\Documents\\DiscordBot\\Secret.json"));
 				}
 				else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
-					object =  parser.parse(new FileReader("~\\DiscordBot\\Secret.json"));
+					object =  parser.parse(new FileReader("~/DiscordBot/Secret.json"));
 				}
 
 				JSONObject jsonObject = (JSONObject) object;
