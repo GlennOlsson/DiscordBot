@@ -23,11 +23,14 @@ public class Test extends ListenerAdapter{
 			jda = new JDABuilder(AccountType.BOT).setToken("MjgyMTE2NTYzMjY2NDM3MTIw.C4m_Kw.R-8jmpM6wycnqX0xGvv_wNYjoJ0").addListener(new Test()).buildBlocking();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			
+			LoggExceptions.Logg(e);
+			
 		}
 
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
+		
 	}
 
 	public Test(){
