@@ -108,7 +108,7 @@ public class DiscordBot extends ListenerAdapter{
 				reddit(channel, event, content);
 				return;
 			}
-			
+
 			//Get's prefix
 			String prefix=";";
 			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
@@ -159,7 +159,11 @@ public class DiscordBot extends ListenerAdapter{
 				//				else{
 				//					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
 				//				}
-			}		
+			}
+			else {
+				//Call event but with ; as command
+				onMessageReceived(event);
+			}
 		}
 	}
 
@@ -219,8 +223,9 @@ public class DiscordBot extends ListenerAdapter{
 					}
 				} catch (Exception e) {
 					// FIXME: handle exception
+
+					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();
 					LoggExceptions.Logg(e, content, event.getMessage().getId());
-					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();;
 				}
 				if(content.split(" ").length>=3){
 					//If at least length=3
@@ -263,6 +268,7 @@ public class DiscordBot extends ListenerAdapter{
 				historyList=history.retrievePast(100).complete(true);
 			} catch (Exception e) {
 				// FIXME Auto-generated catch block
+				channel.sendMessage("Error, contact Kakan with id: "+event.getMessage().getId());
 				LoggExceptions.Logg(e, content, event.getMessage().getId());
 			}
 			event.getMessage().delete().queue();
@@ -388,9 +394,9 @@ public class DiscordBot extends ListenerAdapter{
 								try {
 									doc2=Jsoup.connect(url).userAgent("Chrome").get();
 								} catch (Exception e) {
-									// FIXME Auto-generated catch block
-									LoggExceptions.Logg(e, content, event.getMessage().getId());
+									// FIXME Auto-generated catch block;
 									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
+									LoggExceptions.Logg(e, content, event.getMessage().getId());
 								}
 
 								doc2.select(".zoom").attr("href");
@@ -405,10 +411,8 @@ public class DiscordBot extends ListenerAdapter{
 							} catch (Exception e) {
 								// FIXME: handle exception
 								//Moving image: Gif, Gifv, mp4...
-
-								LoggExceptions.Logg(e, content, event.getMessage().getId());
-
 								url2=url+".gifv";
+
 							}
 						}
 						channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** - "+url2).queue();
@@ -464,8 +468,8 @@ public class DiscordBot extends ListenerAdapter{
 									doc2=Jsoup.connect(url).userAgent("Chrome").get();
 								} catch (IOException e) {
 									// FIXME Auto-generated catch block
-									LoggExceptions.Logg(e, content, event.getMessage().getId());
 									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
+									LoggExceptions.Logg(e, content, event.getMessage().getId());
 								}
 
 								doc2.select(".zoom").attr("href");
@@ -480,9 +484,6 @@ public class DiscordBot extends ListenerAdapter{
 							} catch (Exception e) {
 								// FIXME: handle exception
 								//Moving image: Gif, Gifv, mp4...
-
-								LoggExceptions.Logg(e, content, event.getMessage().getId());
-
 								url2=url+".gifv";
 							}
 						}
@@ -498,8 +499,8 @@ public class DiscordBot extends ListenerAdapter{
 				}
 			}
 		} catch (Exception e) {
-			LoggExceptions.Logg(e, content, event.getMessage().getId());
 			event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
+			LoggExceptions.Logg(e, content, event.getMessage().getId());
 		}
 
 		return;
@@ -516,19 +517,21 @@ public class DiscordBot extends ListenerAdapter{
 
 			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();	
 			try {
-				event.getMessage().delete().queue();;
+				if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
+					event.getMessage().delete().queue();;
+				}
 			} catch (Exception e) {
 				// FIXME: handle exception
-				LoggExceptions.Logg(e, content, event.getMessage().getId());
 				event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
-				System.out.println("Cannot delete message, probably because of private message channel");
+				LoggExceptions.Logg(e, content, event.getMessage().getId());
 			}
 
 		} catch (Exception e) {
 			// FIXME Auto-generated catch block
+			channel.sendMessage("Error with ;gif command. Use ';help gif' to get help with the command, wither here or in PM").queue();
+
 			LoggExceptions.Logg(e, content, event.getMessage().getId());
 
-			channel.sendMessage("Error with ;gif command. Use ';help gif' to get help with the command, wither here or in PM").queue();
 		}
 		return;
 
@@ -653,8 +656,9 @@ public class DiscordBot extends ListenerAdapter{
 		}
 		catch (Exception e) {
 			// FIXME: handle exception
-			LoggExceptions.Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--");
+
 			System.err.println("-- ERROR IN WRITING IN settings.json --");
+			LoggExceptions.Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--");
 		}
 	}
 
@@ -676,8 +680,9 @@ public class DiscordBot extends ListenerAdapter{
 				return ";";
 			}
 		} catch (Exception e) {
-			LoggExceptions.Logg(e, "In getPrefix", "Here's string Id: --"+id+"--");
+
 			System.err.println("ERROR WITH PREFIX, RETURNING \";\"");
+			LoggExceptions.Logg(e, "In getPrefix", "Here's string Id: --"+id+"--");
 			return ";";
 		} 
 	}

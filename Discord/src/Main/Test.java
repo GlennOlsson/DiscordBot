@@ -44,6 +44,8 @@ public class Test extends ListenerAdapter{
 
 		if(event.getAuthor().getName().equals("Kakan")){
 			
+			System.out.println(event.getChannel().getId() + " - CHANNEL --- GUILD - "+event.getGuild().getId());
+			
 			String content = event.getMessage().getContent().toLowerCase();
 
 			if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
