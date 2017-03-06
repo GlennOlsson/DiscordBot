@@ -68,7 +68,7 @@ public class DiscordBot extends ListenerAdapter{
 		channel.sendMessage("Sucessfully logged in!").queue();
 		
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
-		RetrieveSetting.setKey("runCount", Integer.toString(Integer.parseInt(RetrieveSetting.getKey("runCound", JSONDocument.setting))+1));
+		RetrieveSetting.setKey("runCount", Integer.toString(Integer.parseInt(RetrieveSetting.getKey("runCount", JSONDocument.setting))+1));
 		}
 		
 	}
