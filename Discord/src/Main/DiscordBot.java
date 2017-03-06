@@ -646,6 +646,7 @@ public class DiscordBot extends ListenerAdapter{
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void setPrefix(String id, String prefix) {
 
 		try {
