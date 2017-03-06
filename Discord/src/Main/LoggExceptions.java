@@ -69,7 +69,7 @@ public class LoggExceptions {
 				
 				try {
 
-					Git git = new Git(new FileRepository("/home/pi/DiscordBot/.git"));
+					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
 					
 					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Updated Errorlog").call();
 					
