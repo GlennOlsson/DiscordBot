@@ -1,3 +1,27 @@
+##New error at 6/3 - 18:16:58
+Message was: ;gif oops i did it again
+Id: 288359308662407168
+java.lang.IllegalStateException: Cannot delete another User's messages in a Group or PrivateChannel.
+	at net.dv8tion.jda.core.entities.impl.MessageImpl.delete(MessageImpl.java:470)
+	at Main.DiscordBot.gif(DiscordBot.java:538)
+	at Main.DiscordBot.onMessageReceived(DiscordBot.java:159)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 6/3 - 12:37:14
 Message was: ==https://www.reddit.com/r/imgoingtohellforthis/comments/5xidvg/picking_up_girls/?st=izwz6jzh&sh=51454908==
 java.lang.StringIndexOutOfBoundsException: String index out of range: -21
