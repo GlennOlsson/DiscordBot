@@ -29,7 +29,7 @@ public class RetrieveSetting {
 				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+				LoggExceptions.Logg(e, "Error in fetching from secret file", "String key: --"+key+"--");
 			}
 		}
 		else if (fileSort==JSONDocument.setting) {
@@ -45,7 +45,8 @@ public class RetrieveSetting {
 				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
-				e.printStackTrace();
+
+				LoggExceptions.Logg(e, "Error in fetching from settings file", "String key: --"+key+"--");
 			}
 		}
 

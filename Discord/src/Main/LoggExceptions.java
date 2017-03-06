@@ -14,7 +14,6 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
-
 import Main.RetrieveSetting.JSONDocument;
 
 public class LoggExceptions {
@@ -25,12 +24,12 @@ public class LoggExceptions {
 			list.add("foo");
 		} catch (Exception e) {
 			// FIXME: handle exception
-			Logg(e, "Test from main");
+			Logg(e, "Test from main", "Main in LoggExeption");
 		}
 
 	}
 
-	public static void Logg(Exception exception, String content) {
+	public static void Logg(Exception exception, String content, String id) {
 
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			//if linux (RasPi)
@@ -46,7 +45,7 @@ public class LoggExceptions {
 			SimpleDateFormat sdf = new SimpleDateFormat("d/M - H:m:s");
 			String currentTime =sdf.format(cal.getTime());
 
-			newContent="##New error at "+currentTime+"\nMessage was: =="+content+"==\n"+errors.toString()+"\n---------------\n\n";
+			newContent="##New error at "+currentTime+"\nMessage was: "+content+"\nId: "+id+"\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
 				FileReader reader = new FileReader("Files/Errorlog.md");
@@ -62,7 +61,7 @@ public class LoggExceptions {
 				}
 				catch (Exception e) {
 					// FIXME: handle exception
-					error(e, "Error writing file");
+					error(e, "Error writing file", content, id);
 				}
 				
 				//Succeded to write, now shall commit and push
@@ -81,13 +80,13 @@ public class LoggExceptions {
 
 				} catch (Exception e) {
 					// FIXME Auto-generated catch block
-					error(e, "Error with git");
+					error(e, "Error with git", content, id);
 				}
 
 			}
 			catch (Exception e) {
 				// FIXME: handle exception
-				error(e, "Error with reading, maybe");
+				error(e, "Error with reading, maybe", content, id);
 			}
 		}
 		else {
@@ -95,10 +94,10 @@ public class LoggExceptions {
 			exception.printStackTrace();
 		}
 	}
-	public static void error(Exception exception, String whyThough) {
+	public static void error(Exception exception, String whyThough, String content, String id) {
 		//Skicka mail till mig
 		System.err.println(" ---- FUCK FUCK FUCK ----");
-//		exception.printStackTrace();
+		exception.printStackTrace();
 	}
 
 }
