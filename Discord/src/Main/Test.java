@@ -27,7 +27,7 @@ public class Test extends ListenerAdapter{
 
 		} catch (Exception e) {
 			
-			LoggExceptions.Logg(e);
+			LoggExceptions.Logg(e, "Test from Test.java");
 			
 		}
 

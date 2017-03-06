@@ -25,12 +25,12 @@ public class LoggExceptions {
 			list.add("foo");
 		} catch (Exception e) {
 			// FIXME: handle exception
-			Logg(e);
+			Logg(e, "Test from main");
 		}
 
 	}
 
-	public static void Logg(Exception exception) {
+	public static void Logg(Exception exception, String content) {
 
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			//if linux (RasPi)
@@ -46,7 +46,7 @@ public class LoggExceptions {
 			SimpleDateFormat sdf = new SimpleDateFormat("d/M - H:m:s");
 			String currentTime =sdf.format(cal.getTime());
 
-			newContent="##New error at "+currentTime+"\n "+errors.toString()+"\n---------------\n\n";
+			newContent="##New error at "+currentTime+"\nMessage was: =="+content+"==\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
 				FileReader reader = new FileReader("Files/Errorlog.md");

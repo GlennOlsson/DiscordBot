@@ -370,7 +370,7 @@ public class DiscordBot extends ListenerAdapter{
 				title=doc.select("title").get(1).text();
 				}catch (Exception e) {
 					// FIXME: handle exception
-					LoggExceptions.Logg(e);
+					LoggExceptions.Logg(e, content);
 				}
 				if(!url.contains("www.reddit.com")){
 
