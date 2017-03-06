@@ -43,6 +43,7 @@ public class Test extends ListenerAdapter{
 	public void onMessageReceived(MessageReceivedEvent event){	
 
 		if(event.getAuthor().getName().equals("Kakan")){
+			
 			String content = event.getMessage().getContent().toLowerCase();
 
 			if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
