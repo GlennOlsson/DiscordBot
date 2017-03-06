@@ -66,6 +66,11 @@ public class DiscordBot extends ListenerAdapter{
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
 		channel.sendMessage("Sucessfully logged in!").queue();
+		
+		if(System.getProperty("os.name").toLowerCase().contains("linux")){
+		RetrieveSetting.setKey("runCount", Integer.toString(Integer.parseInt(RetrieveSetting.getKey("runCound", JSONDocument.setting))+1));
+		}
+		
 	}
 
 	public void onReady(ReadyEvent event) {
@@ -667,7 +672,7 @@ public class DiscordBot extends ListenerAdapter{
 			//WRITING JSON
 			try (FileWriter file = new FileWriter("Files/settings.json")){
 				file.write(jsonObject.toJSONString());
-				System.out.println("Successfully wrote "+jsonObject.toJSONString());
+				System.out.println("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
 			}
 		}
 		catch (Exception e) {
