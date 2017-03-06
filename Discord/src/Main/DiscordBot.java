@@ -21,36 +21,7 @@ reply when prefix is changed
 Always have ; as a prefix, as well
 
 --------
-
-org.eclipse.jgit.api.errors.JGitInternalException: Entry not found by path: Discord/Files/Errorlog.md
-        at org.eclipse.jgit.api.CommitCommand.createTemporaryIndex(CommitCommand.java:480)
-        at org.eclipse.jgit.api.CommitCommand.call(CommitCommand.java:236)
-        at Main.LoggExceptions.Logg(LoggExceptions.java:74)
-        at Main.DiscordBot.reddit(DiscordBot.java:343)
-        at Main.DiscordBot.onMessageReceived(DiscordBot.java:107)
-        at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
-        at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
-        at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
-        at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
-        at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
-        at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
-        at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
-        at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
-        at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
-        at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
-        at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
-        at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
-        at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
-        at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
-
-Must go by DiscordBot/Discord... ?
-
-
-https://www.reddit.com/r/ImGoingToHellForThis/comments/5xidvg/picking_up_girls/?st=IZWZ6JZH&sh=51454908
-
-
-
-*/
+ */
 
 
 import Main.RetrieveSetting.JSONDocument;
@@ -137,8 +108,17 @@ public class DiscordBot extends ListenerAdapter{
 				reddit(channel, event, content);
 				return;
 			}
-
-			String prefix = getPrefix(channel.getId());
+			
+			//Get's prefix
+			String prefix=";";
+			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+				//if privatechannel ---> no guildId
+				prefix=getPrefix(channel.getId());
+			}
+			else {
+				//Not private --> has guild Id
+				prefix=getPrefix(event.getGuild().getId());
+			}
 
 			if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
 				//; commands
@@ -190,14 +170,15 @@ public class DiscordBot extends ListenerAdapter{
 
 		if(!event.getAuthor().getName().equals("Kakan's Bot")){
 
-			channel.sendTyping();
+			channel.sendTyping();	
 
+			//Already checked if private
 			String prefix=getPrefix(channel.getId());
 
 			if(content.equals("prefix")){
 				return;
 			}
-			
+
 			else if(content.length()>=prefix.length()){
 				if(!content.substring(0, prefix.length()).equals(prefix)){
 					channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
@@ -363,13 +344,13 @@ public class DiscordBot extends ListenerAdapter{
 			doc = Jsoup.connect(event.getMessage().getContent()).userAgent("Chrome").get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
 				//-- if NSFW sub --
-					doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Mozilla").get();
-				
+				doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Mozilla").get();
+
 				url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
 						doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
 				title=doc.select("title").get(1).text();
-	
-				
+
+
 				if(!url.contains("www.reddit.com")){
 
 					//if not textpost
@@ -424,9 +405,9 @@ public class DiscordBot extends ListenerAdapter{
 							} catch (Exception e) {
 								// FIXME: handle exception
 								//Moving image: Gif, Gifv, mp4...
-								
+
 								LoggExceptions.Logg(e, content, event.getMessage().getId());
-								
+
 								url2=url+".gifv";
 							}
 						}
@@ -499,9 +480,9 @@ public class DiscordBot extends ListenerAdapter{
 							} catch (Exception e) {
 								// FIXME: handle exception
 								//Moving image: Gif, Gifv, mp4...
-								
+
 								LoggExceptions.Logg(e, content, event.getMessage().getId());
-								
+
 								url2=url+".gifv";
 							}
 						}
@@ -563,7 +544,14 @@ public class DiscordBot extends ListenerAdapter{
 		if(isAuthorized(event.getTextChannel(), event, content, roleslist)){
 			System.out.println("HALLELULIA");
 			if(!newPrefix.equals("")){
-				setPrefix(channel.getId(),newPrefix);
+				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+					//if privatechannel ---> no guildId
+					setPrefix(channel.getId(),newPrefix);
+				}
+				else {
+					//Not private --> has guild Id
+					setPrefix(event.getGuild().getId(),newPrefix);
+				}
 			}
 		}
 	}
@@ -592,7 +580,7 @@ public class DiscordBot extends ListenerAdapter{
 
 		if(content.length()>";help".length()){
 			//Doesn't work with other prefixes?
-			
+
 			if(!Character.toString(content.charAt(";help".length())).equals(" ")){
 				//if the character after ;help is not *space*
 				privateChannel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
