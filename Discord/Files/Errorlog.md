@@ -1,3 +1,16 @@
+##New error at 6/3 - 20:3:5
+Message was: Error in fetching from settings file
+Id: String key: --runCound--
+Unexpected character (<) at position 0.
+	at org.json.simple.parser.Yylex.yylex(Yylex.java:610)
+	at org.json.simple.parser.JSONParser.nextToken(JSONParser.java:269)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
+	at Main.RetrieveSetting.getKey(RetrieveSetting.java:43)
+	at Main.DiscordBot.main(DiscordBot.java:71)
+
+---------------
+
 ##New error at 6/3 - 20:2:38
 Message was: In getPrefix
 Id: Here's string Id: --247301726271438848--
