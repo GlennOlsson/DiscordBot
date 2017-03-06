@@ -10,6 +10,7 @@ import java.util.List;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -44,7 +45,7 @@ public class Test extends ListenerAdapter{
 
 		if(event.getAuthor().getName().equals("Kakan")){
 			
-			System.out.println(event.getChannel().getId() + " - CHANNEL --- GUILD - "+event.getGuild().getId());
+			System.out.println(event.getChannel().getType().equals(ChannelType.PRIVATE));
 			
 			String content = event.getMessage().getContent().toLowerCase();
 

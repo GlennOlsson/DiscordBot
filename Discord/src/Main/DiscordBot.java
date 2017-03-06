@@ -93,10 +93,12 @@ public class DiscordBot extends ListenerAdapter{
 
 			if(content.toLowerCase().equals("prefix")){
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+					//Private channel
 					channel.sendMessage("The current prefix on our private chat is :\""+getPrefix(channel.getId())+"\"").queue();
 				}
 				else{
-					channel.sendMessage("The current prefix on "+event.getGuild().getName()+" is :\""+getPrefix(channel.getId())+"\"").queue();
+					//Not private
+					channel.sendMessage("The current prefix on "+event.getGuild().getName()+" is :\""+getPrefix(event.getGuild().getId())+"\"").queue();
 				}
 			}
 
@@ -129,8 +131,7 @@ public class DiscordBot extends ListenerAdapter{
 	}
 
 	private void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel) {
-		// FIXME Auto-generated method stub
-
+		// Made so that it can check ; as a prefix, if the first check fails. This way, ; is always a prefix	
 
 		if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
 			//; commands
