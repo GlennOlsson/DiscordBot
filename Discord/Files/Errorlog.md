@@ -1,3 +1,97 @@
+##New error at 6/3 - 20:6:8
+Message was: In getPrefix
+Id: Here's string Id: --282109399617634304--
+Unexpected character (<) at position 0.
+	at org.json.simple.parser.Yylex.yylex(Yylex.java:610)
+	at org.json.simple.parser.JSONParser.nextToken(JSONParser.java:269)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
+	at Main.DiscordBot.getPrefix(DiscordBot.java:692)
+	at Main.DiscordBot.onMessageReceived(DiscordBot.java:127)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
+##New error at 6/3 - 20:3:5
+Message was: Error in fetching from settings file
+Id: String key: --runCound--
+Unexpected character (<) at position 0.
+	at org.json.simple.parser.Yylex.yylex(Yylex.java:610)
+	at org.json.simple.parser.JSONParser.nextToken(JSONParser.java:269)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
+	at Main.RetrieveSetting.getKey(RetrieveSetting.java:43)
+	at Main.DiscordBot.main(DiscordBot.java:71)
+
+---------------
+
+##New error at 6/3 - 20:2:38
+Message was: In getPrefix
+Id: Here's string Id: --247301726271438848--
+Unexpected character (<) at position 0.
+	at org.json.simple.parser.Yylex.yylex(Yylex.java:610)
+	at org.json.simple.parser.JSONParser.nextToken(JSONParser.java:269)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
+	at Main.DiscordBot.getPrefix(DiscordBot.java:686)
+	at Main.DiscordBot.onMessageReceived(DiscordBot.java:122)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
+##New error at 6/3 - 20:2:29
+Message was: In getPrefix
+Id: Here's string Id: --247301726271438848--
+Unexpected character (<) at position 0.
+	at org.json.simple.parser.Yylex.yylex(Yylex.java:610)
+	at org.json.simple.parser.JSONParser.nextToken(JSONParser.java:269)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
+	at Main.DiscordBot.getPrefix(DiscordBot.java:686)
+	at Main.DiscordBot.onMessageReceived(DiscordBot.java:122)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 6/3 - 18:54:25
 Message was: #gif
 Id: 288368740158930944
