@@ -1,26 +1,11 @@
 package Main;
 /* ----------TODO
-Make a catch class -> either saves all stackTrace in a file, or sends an email to me with it
------------
+
 Add prefix to help command, and reply with just the prefix if not authorized
-
------------
-
-in case of ;, message user what preix is
-
--------
-
-runtime in settning.json, so one can indentify which run the error message is from
-
--------
-
-reply when prefix is changed
-
--------
-
-Always have ; as a prefix, as well
-
 --------
+
+Divide all these methods into classes in Main package
+
  */
 
 

@@ -42,7 +42,7 @@ public class LoggExceptions {
 
 			//Saves title and such to newContent, including current time
 			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("d/M - H:m:s");
+			SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
 			String currentTime =sdf.format(cal.getTime());
 
 			newContent="##New error at "+currentTime+"\nMessage was: "+content+"\nId: "+id+"\n"+errors.toString()+"\n---------------\n\n";
