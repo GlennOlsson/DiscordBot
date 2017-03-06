@@ -66,6 +66,11 @@ public class DiscordBot extends ListenerAdapter{
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
 		channel.sendMessage("Sucessfully logged in!").queue();
+		
+		if(System.getProperty("os.name").toLowerCase().contains("linux")){
+		RetrieveSetting.setKey("runCount", Integer.toString(Integer.parseInt(RetrieveSetting.getKey("runCound", JSONDocument.setting))+1));
+		}
+		
 	}
 
 	public void onReady(ReadyEvent event) {
@@ -198,7 +203,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 
 			else if(content.length()>=prefix.length()){
-				if(!content.substring(0, prefix.length()).equals(prefix)){
+				if(!content.substring(0, prefix.length()).equals(prefix)&&!Character.toString(content.charAt(0)).equals(";")){
 					channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 							+ "commands starting with "+prefix+". You can use "+prefix+"help for example, to see what commands you can use."
 							+ " Uppercase or lowercase does not matter").queue();
@@ -206,6 +211,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 			}
 			else {
+				if(!Character.toString(content.charAt(0)).equals(";"))
 				channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 						+ "commands starting with "+prefix+". You can use \""+prefix+"help\" for example, to see what commands you can use."
 						+ " Uppercase or lowercase does not matter").queue();
@@ -666,7 +672,7 @@ public class DiscordBot extends ListenerAdapter{
 			//WRITING JSON
 			try (FileWriter file = new FileWriter("Files/settings.json")){
 				file.write(jsonObject.toJSONString());
-				System.out.println("Successfully wrote "+jsonObject.toJSONString());
+				System.out.println("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
 			}
 		}
 		catch (Exception e) {
