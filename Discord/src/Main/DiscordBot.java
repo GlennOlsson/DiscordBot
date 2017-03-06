@@ -198,7 +198,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 
 			else if(content.length()>=prefix.length()){
-				if(!content.substring(0, prefix.length()).equals(prefix)){
+				if(!content.substring(0, prefix.length()).equals(prefix)&&!Character.toString(content.charAt(0)).equals(";")){
 					channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 							+ "commands starting with "+prefix+". You can use "+prefix+"help for example, to see what commands you can use."
 							+ " Uppercase or lowercase does not matter").queue();
@@ -206,6 +206,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 			}
 			else {
+				if(!Character.toString(content.charAt(0)).equals(";"))
 				channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 						+ "commands starting with "+prefix+". You can use \""+prefix+"help\" for example, to see what commands you can use."
 						+ " Uppercase or lowercase does not matter").queue();
