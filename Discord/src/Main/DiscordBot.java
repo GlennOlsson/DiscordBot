@@ -120,49 +120,62 @@ public class DiscordBot extends ListenerAdapter{
 				prefix=getPrefix(event.getGuild().getId());
 			}
 
-			if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
-				//; commands
+			onMessageReceivedPrefix(event, prefix, content, channel);
 
-				String command = content.substring(prefix.length()), afterCommand = "";
-				if(command.contains(" ")){
-					command=command.split(" ")[0];
-					afterCommand = content.substring(prefix.length()+command.length()+1);
-					System.out.println("Aftercommand=\""+afterCommand+"\"");
-				}
 
-				switch (command) {
-				case "clean":
-					clean(channel, event, content);
-					break;
 
-				case "gif":
-					gif(channel, event, content);
-					break;
 
-				case "source":
-					source(channel);
-					break;
+		}
+	}
 
-				case "prefix":
-					prefix(channel, event, content, afterCommand);
-					break;
+	private void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel) {
+		// FIXME Auto-generated method stub
 
-				case "up":
-					//					up(channel, event, content);
-					break;			
 
-				case "help":
-					help(event, content);
-					break;
-				}
+		if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
+			//; commands
 
-				//				else{
-				//					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
-				//				}
+			String command = content.substring(prefix.length()), afterCommand = "";
+			if(command.contains(" ")){
+				command=command.split(" ")[0];
+				afterCommand = content.substring(prefix.length()+command.length()+1);
+				System.out.println("Aftercommand=\""+afterCommand+"\"");
 			}
-			else {
+
+			switch (command) {
+			case "clean":
+				clean(channel, event, content);
+				break;
+
+			case "gif":
+				gif(channel, event, content);
+				break;
+
+			case "source":
+				source(channel);
+				break;
+
+			case "prefix":
+				prefix(channel, event, content, afterCommand);
+				break;
+
+			case "up":
+				//					up(channel, event, content);
+				break;			
+
+			case "help":
+				help(event, content);
+				break;
+			}
+
+			//				else{
+			//					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
+			//				}
+		}
+		else {
+			if(!prefix.equals(";")){
 				//Call event but with ; as command
-				onMessageReceived(event);
+				onMessageReceivedPrefix(event, ";", content, channel);
 			}
 		}
 	}
@@ -555,6 +568,7 @@ public class DiscordBot extends ListenerAdapter{
 					//Not private --> has guild Id
 					setPrefix(event.getGuild().getId(),newPrefix);
 				}
+				channel.sendMessage("Prefix successfully changed to \""+newPrefix+"\"").queue();
 			}
 		}
 	}
