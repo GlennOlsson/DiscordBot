@@ -201,7 +201,7 @@ public class DiscordBot extends ListenerAdapter{
 		channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
 		
 		event.getGuild().getTextChannelsByName("server_management", true).get(0).sendMessage("The user "+event.getMember().getUser().getName()+
-				" with the # id "+ event.getMember().getUser().getDiscriminator()).queue();
+				" with the # id "+ event.getMember().getUser().getDiscriminator() + " just joind us").queue();
 	}
 
 	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
