@@ -6,37 +6,28 @@ Add prefix to help command, and reply with just the prefix if not authorized
 
 Divide all these methods into classes in Main package
 
+--------
+
+Send a message in server_management when someone joins guild, with name and Id
+
  */
 
 
-import Main.RetrieveSetting.JSONDocument;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import Main.RetrieveSetting.*;
+import java.io.*;
+import java.util.*;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.MessageHistory;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.ReadyEvent;
-import net.dv8tion.jda.core.events.ReconnectedEvent;
-import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import org.json.simple.*;
+import org.json.simple.parser.*;
+import org.jsoup.*;
+import org.jsoup.nodes.*;
+import net.dv8tion.jda.core.*;
+import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.events.*;
+import net.dv8tion.jda.core.events.guild.member.*;
+import net.dv8tion.jda.core.events.message.*;
+import net.dv8tion.jda.core.events.message.priv.*;
+import net.dv8tion.jda.core.hooks.*;
 
 public class DiscordBot extends ListenerAdapter{
 
@@ -208,6 +199,9 @@ public class DiscordBot extends ListenerAdapter{
 	public void onGuildMemberJoin(GuildMemberJoinEvent event){
 		MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
 		channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
+		
+		event.getGuild().getTextChannelsByName("server_management", true).get(0).sendMessage("The user "+event.getMember().getUser().getName()+
+				" with the # id "+ event.getMember().getUser().getDiscriminator()).queue();
 	}
 
 	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
