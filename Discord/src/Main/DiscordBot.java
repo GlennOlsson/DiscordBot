@@ -30,6 +30,7 @@ import net.dv8tion.jda.core.events.message.priv.*;
 import net.dv8tion.jda.core.hooks.*;
 
 public class DiscordBot extends ListenerAdapter{
+	
 
 	public static void main(String[] args) {
 		//		new Test();
@@ -42,11 +43,11 @@ public class DiscordBot extends ListenerAdapter{
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
 		channel.sendMessage("Sucessfully logged in!").queue();
-		
+
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 		RetrieveSetting.setKey("runCount", Integer.toString(Integer.parseInt(RetrieveSetting.getKey("runCount", JSONDocument.setting))+1));
 		}
-		
+
 	}
 
 	public void onReady(ReadyEvent event) {
@@ -112,7 +113,7 @@ public class DiscordBot extends ListenerAdapter{
 	}
 
 	private void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel) {
-		// Made so that it can check ; as a prefix, if the first check fails. This way, ; is always a prefix	
+		// Made so that it can check ; as a prefix, if the first check fails. This way, ; is always a prefix
 
 		if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
 			//; commands
@@ -143,7 +144,7 @@ public class DiscordBot extends ListenerAdapter{
 
 			case "up":
 				//					up(channel, event, content);
-				break;			
+				break;
 
 			case "help":
 				help(event, content);
@@ -169,7 +170,7 @@ public class DiscordBot extends ListenerAdapter{
 
 		if(!event.getAuthor().getName().equals("Kakan's Bot")){
 
-			channel.sendTyping();	
+			channel.sendTyping();
 
 			//Already checked if private
 			String prefix=getPrefix(channel.getId());
@@ -199,7 +200,7 @@ public class DiscordBot extends ListenerAdapter{
 	public void onGuildMemberJoin(GuildMemberJoinEvent event){
 		MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
 		channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
-		
+
 		event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
 				"** with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
 				+"** just joined us").queue();
@@ -276,11 +277,11 @@ public class DiscordBot extends ListenerAdapter{
 				if(argument1.equals("bots")){
 					if(historyList.get(i).getAuthor().isBot()){
 						if(argument2.equals("all")){
-							historyList.get(i).delete().queue();	
+							historyList.get(i).delete().queue();
 						}
 						else {
 							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-								historyList.get(i).delete().queue();	
+								historyList.get(i).delete().queue();
 							}
 							else {
 								amount++;
@@ -294,11 +295,11 @@ public class DiscordBot extends ListenerAdapter{
 				else if (argument1.equals("users")) {
 					if(!historyList.get(i).getAuthor().isBot()){
 						if(argument2.equals("all")){
-							historyList.get(i).delete().queue();	
+							historyList.get(i).delete().queue();
 						}
 						else {
 							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-								historyList.get(i).delete().queue();	
+								historyList.get(i).delete().queue();
 							}
 							else {
 								amount++;
@@ -312,11 +313,11 @@ public class DiscordBot extends ListenerAdapter{
 				else {
 					//if all user's messages shall go
 					if(argument2.equals("all")){
-						historyList.get(i).delete().queue();	
+						historyList.get(i).delete().queue();
 					}
 					else {
 						if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-							historyList.get(i).delete().queue();	
+							historyList.get(i).delete().queue();
 						}
 						else {
 							amount++;
@@ -339,9 +340,9 @@ public class DiscordBot extends ListenerAdapter{
 		if(content.contains(" ")){
 			String[] split = content.split(" ");
 			if(split.length>2||split[1].length()>0){
-				return;	
+				return;
 			}
-			content=split[0];	
+			content=split[0];
 		}
 
 		Document doc;
@@ -386,7 +387,7 @@ public class DiscordBot extends ListenerAdapter{
 						}
 						if(url.length()-url.lastIndexOf(".")>5){
 							System.out.println(">5");
-							try {					
+							try {
 								//Tries to get .zoom class (the class of the link if it's a picture
 
 								Document doc2=null;
@@ -459,7 +460,7 @@ public class DiscordBot extends ListenerAdapter{
 						}
 						if(url.length()-url.lastIndexOf(".")>5){
 							System.out.println(">5");
-							try {					
+							try {
 								//Tries to get .zoom class (the class of the link if it's a picture
 
 								Document doc2=null;
@@ -515,7 +516,7 @@ public class DiscordBot extends ListenerAdapter{
 			doc = Jsoup.connect("https://www.tenor.co/search/"+query+"-gifs").userAgent("Chrome").get();
 			url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child(1) > figure:nth-child(1) > a").attr("href");
 
-			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();	
+			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();
 			try {
 				if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					event.getMessage().delete().queue();;
@@ -628,7 +629,7 @@ public class DiscordBot extends ListenerAdapter{
 		String command = "";
 		String[] features = {"Reddit",";gif",";source",";clean"};
 		for (int i = 0; i < features.length; i++) {
-			command = command+ features[i]+", ";	
+			command = command+ features[i]+", ";
 		}
 		command=command+" ;help";
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
@@ -685,14 +686,14 @@ public class DiscordBot extends ListenerAdapter{
 			System.err.println("ERROR WITH PREFIX, RETURNING \";\"");
 			LoggExceptions.Logg(e, "In getPrefix", "Here's string Id: --"+id+"--");
 			return ";";
-		} 
+		}
 	}
 
 	public Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String content, String[] roleList) {
 		List<Role> roles = null;
 
 		if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
-			for (int i = 0; i < textChannel.getMembers().size(); i++) {		
+			for (int i = 0; i < textChannel.getMembers().size(); i++) {
 				if(textChannel.getMembers().get(i).getUser()==event.getAuthor()){
 					roles =textChannel.getMembers().get(i).getRoles();
 					//just so it stops the loop for sure
