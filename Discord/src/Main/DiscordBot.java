@@ -15,6 +15,8 @@ Send a message in server_management when someone joins guild, with name and Id
 
 import Main.RetrieveSetting.*;
 import java.io.*;
+import java.net.URI;
+import java.net.URL;
 import java.util.*;
 
 import org.json.simple.*;
@@ -348,10 +350,14 @@ public class DiscordBot extends ListenerAdapter{
 		Document doc;
 		String url = null, title = null;
 		try {
-			doc = Jsoup.connect(event.getMessage().getContent()).userAgent("Chrome").get();
+			
+			URL uri = new URL(event.getMessage().getContent());
+			URI uri2 = new URI(uri.getProtocol(), uri.getUserInfo(), uri.getHost(), uri.getPort(), uri.getPath(), uri.getQuery(), uri.getRef());
+			
+			doc = Jsoup.connect(uri2.toASCIIString()).userAgent("Chrome").get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
 				//-- if NSFW sub --
-				doc = Jsoup.connect(event.getMessage().getContent()+".rss").userAgent("Mozilla").get();
+				doc = Jsoup.connect(uri2.toASCIIString()+".rss").userAgent("Mozilla").get();
 
 				url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
 						doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
@@ -393,7 +399,11 @@ public class DiscordBot extends ListenerAdapter{
 								Document doc2=null;
 
 								try {
-									doc2=Jsoup.connect(url).userAgent("Chrome").get();
+									URL uri3 = new URL(url);
+									URI uri4 = new URI(uri3.getProtocol(), uri3.getUserInfo(), uri3.getHost(), uri3.getPort(),
+											uri3.getPath(), uri3.getQuery(), uri3.getRef());
+									
+									doc2 = Jsoup.connect(uri2.toASCIIString()).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block;
 									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
@@ -466,7 +476,11 @@ public class DiscordBot extends ListenerAdapter{
 								Document doc2=null;
 
 								try {
-									doc2=Jsoup.connect(url).userAgent("Chrome").get();
+									URL uri3 = new URL(url);
+									URI uri4 = new URI(uri3.getProtocol(), uri3.getUserInfo(), uri3.getHost(), uri3.getPort(),
+											uri3.getPath(), uri3.getQuery(), uri3.getRef());
+									
+									doc2 = Jsoup.connect(uri2.toASCIIString()).userAgent("Chrome").get();
 								} catch (IOException e) {
 									// FIXME Auto-generated catch block
 									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
@@ -513,7 +527,12 @@ public class DiscordBot extends ListenerAdapter{
 		String url=null, query=null;
 		try {
 			query = content.substring(5, content.length()).replace(" ", "-");
-			doc = Jsoup.connect("https://www.tenor.co/search/"+query+"-gifs").userAgent("Chrome").get();
+			
+			URL uri3 = new URL("https://www.tenor.co/search/"+query+"-gifs");
+			URI uri4 = new URI(uri3.getProtocol(), uri3.getUserInfo(), uri3.getHost(), uri3.getPort(),
+					uri3.getPath(), uri3.getQuery(), uri3.getRef());
+			
+			doc = Jsoup.connect(uri4.toASCIIString()).userAgent("Chrome").get();
 			url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child(1) > figure:nth-child(1) > a").attr("href");
 
 			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();
