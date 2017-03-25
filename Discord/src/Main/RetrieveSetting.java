@@ -31,7 +31,7 @@ public class RetrieveSetting {
 				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
-				LoggExceptions.Logg(e, "Error in fetching from secret file", "String key: --"+key+"--");
+				LoggExceptions.Logg(e, "Error in fetching from secret file", "String key: --"+key+"--", null);
 			}
 		}
 		else if (fileSort==JSONDocument.setting) {
@@ -47,7 +47,7 @@ public class RetrieveSetting {
 				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
-				LoggExceptions.Logg(e, "Error in fetching from settings file", "String key: --"+key+"--");
+				LoggExceptions.Logg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
 			}
 		}
 
@@ -74,7 +74,7 @@ public class RetrieveSetting {
 			}
 			
 		} catch (Exception e) {
-			LoggExceptions.Logg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json");
+			LoggExceptions.Logg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
 
 		}
 	}

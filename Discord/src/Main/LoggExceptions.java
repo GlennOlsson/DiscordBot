@@ -15,6 +15,8 @@ import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import Main.RetrieveSetting.JSONDocument;
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class LoggExceptions {
 
@@ -24,12 +26,12 @@ public class LoggExceptions {
 			list.add("foo");
 		} catch (Exception e) {
 			// FIXME: handle exception
-			Logg(e, "Test from main", "Main in LoggExeption");
+			Logg(e, "Test from main", "Main in LoggExeption", null);
 		}
 
 	}
 
-	public static void Logg(Exception exception, String content, String id) {
+	public static void Logg(Exception exception, String content, String id, MessageReceivedEvent event) {
 
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			//if linux (RasPi)
@@ -45,7 +47,21 @@ public class LoggExceptions {
 			SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
 			String currentTime =sdf.format(cal.getTime());
 
-			newContent="##New error at "+currentTime+"\nMessage was: "+content+"\nId: "+id+"\n"+errors.toString()+"\n---------------\n\n";
+			String eventMessage=null, guild=null;
+			
+			if(event!=null){
+				if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
+					guild=", in the "+event.getGuild().getName()+" guild";
+				}
+				else{
+					guild =", in a Private message group";
+				}
+				
+				eventMessage="\nThe sender was "+event.getAuthor().getName()+"#"+event.getAuthor().getDiscriminator()+" in the " +event.getChannel().getName()+ 
+			" channel"+guild;
+			}
+			
+			newContent="##New error at "+currentTime+"\nMessage was: "+content+"\nId: "+id+eventMessage+"\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
 				FileReader reader = new FileReader("Files/Errorlog.md");

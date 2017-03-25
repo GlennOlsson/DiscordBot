@@ -27,14 +27,11 @@ public class Test extends ListenerAdapter{
 
 		} catch (Exception e) {
 			
-			LoggExceptions.Logg(e, "JDA Fail in Test", "JDA Fail in Test");
+			LoggExceptions.Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
 
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-
-		System.out.println(jda.getGuildsByName("Rezylo syndicate", true).get(0).
-				getTextChannelsByName("server_management", true).get(0).getMembers());
 		
 	}
 
@@ -73,6 +70,8 @@ public class Test extends ListenerAdapter{
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
 
 		String content = event.getMessage().getContent().toLowerCase();
+		
+		System.out.println(event.getChannel().getName());
 
 		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
 			System.out.println();

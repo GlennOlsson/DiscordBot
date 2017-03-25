@@ -40,7 +40,7 @@ public class DiscordBot extends ListenerAdapter{
 		try {
 			jda = new JDABuilder(AccountType.BOT).setToken(RetrieveSetting.getKey("oath",JSONDocument.secret)).addListener(new DiscordBot()).buildBlocking();
 		} catch (Exception e) {
-			LoggExceptions.Logg(e, "JDA Builder", "JDA Builder");
+			LoggExceptions.Logg(e, "JDA Builder", "JDA Builder", null);
 		}
 		TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
@@ -228,7 +228,7 @@ public class DiscordBot extends ListenerAdapter{
 					// FIXME: handle exception
 
 					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();
-					LoggExceptions.Logg(e, content, event.getMessage().getId());
+					LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 				}
 				if(content.split(" ").length>=3){
 					//If at least length=3
@@ -272,7 +272,7 @@ public class DiscordBot extends ListenerAdapter{
 			} catch (Exception e) {
 				// FIXME Auto-generated catch block
 				channel.sendMessage("Error, contact Kakan with id: "+event.getMessage().getId());
-				LoggExceptions.Logg(e, content, event.getMessage().getId());
+				LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 			}
 			event.getMessage().delete().queue();
 			for (int i = 1; i < amount+1; i++) {
@@ -407,7 +407,7 @@ public class DiscordBot extends ListenerAdapter{
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block;
 									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
-									LoggExceptions.Logg(e, content, event.getMessage().getId());
+									LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 								}
 
 								doc2.select(".zoom").attr("href");
@@ -481,10 +481,10 @@ public class DiscordBot extends ListenerAdapter{
 											uri3.getPath(), uri3.getQuery(), uri3.getRef());
 									
 									doc2 = Jsoup.connect(uri2.toASCIIString()).userAgent("Chrome").get();
-								} catch (IOException e) {
+								} catch (Exception e) {
 									// FIXME Auto-generated catch block
 									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
-									LoggExceptions.Logg(e, content, event.getMessage().getId());
+									LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 								}
 
 								doc2.select(".zoom").attr("href");
@@ -515,7 +515,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 		} catch (Exception e) {
 			event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
-			LoggExceptions.Logg(e, content, event.getMessage().getId());
+			LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 		}
 
 		return;
@@ -543,14 +543,14 @@ public class DiscordBot extends ListenerAdapter{
 			} catch (Exception e) {
 				// FIXME: handle exception
 				event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
-				LoggExceptions.Logg(e, content, event.getMessage().getId());
+				LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 			}
 
 		} catch (Exception e) {
 			// FIXME Auto-generated catch block
 			channel.sendMessage("Error with ;gif command. Use ';help gif' to get help with the command, wither here or in PM").queue();
 
-			LoggExceptions.Logg(e, content, event.getMessage().getId());
+			LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 
 		}
 		return;
@@ -679,7 +679,7 @@ public class DiscordBot extends ListenerAdapter{
 			// FIXME: handle exception
 
 			System.err.println("-- ERROR IN WRITING IN settings.json --");
-			LoggExceptions.Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--");
+			LoggExceptions.Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
 		}
 	}
 
@@ -703,7 +703,7 @@ public class DiscordBot extends ListenerAdapter{
 		} catch (Exception e) {
 
 			System.err.println("ERROR WITH PREFIX, RETURNING \";\"");
-			LoggExceptions.Logg(e, "In getPrefix", "Here's string Id: --"+id+"--");
+			LoggExceptions.Logg(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
 			return ";";
 		}
 	}
