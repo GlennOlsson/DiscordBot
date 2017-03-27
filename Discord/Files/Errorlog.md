@@ -1,3 +1,6 @@
+Now!
+------
+
 ##New error at 26/3 - 09:54:18
 Message was: https://www.reddit.com/r/sweden/comments/61g9e6/hittat_p%c3%a5_rpolanball/
 Id: 295495657135800320
