@@ -70,7 +70,7 @@ public class DiscordBot extends ListenerAdapter{
 			System.err.println("Printed: " + message + " at: "+currentTime);
 		}
 		else{
-			System.out.println("Printed: " + message + " at: "+currentTime);
+			System.out.println("["+currentTime+"] "+ message);
 		}
 		
 	}

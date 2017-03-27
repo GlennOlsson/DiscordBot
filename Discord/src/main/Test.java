@@ -1,6 +1,5 @@
 package main;
 
-import static commands.gif.gifs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,7 +29,6 @@ public class Test extends ListenerAdapter{
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		String id="165507757519273984";
 		
-		gifs("waddup");
 		System.err.println("eyy");
 
 //		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
