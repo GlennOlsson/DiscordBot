@@ -23,7 +23,7 @@ public class Test extends ListenerAdapter{
 
 		} catch (Exception e) {
 			
-			LoggExceptions.Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+			IO.Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);

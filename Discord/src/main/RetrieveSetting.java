@@ -30,7 +30,7 @@ public class RetrieveSetting {
 				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
-				LoggExceptions.Logg(e, "Error in fetching from secret file", "String key: --"+key+"--", null);
+				IO.Logg(e, "Error in fetching from secret file", "String key: --"+key+"--", null);
 			}
 		}
 		else if (fileSort==JSONDocument.setting) {
@@ -46,7 +46,7 @@ public class RetrieveSetting {
 				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
-				LoggExceptions.Logg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
+				IO.Logg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
 			}
 		}
 
@@ -69,11 +69,11 @@ public class RetrieveSetting {
 			
 			try (FileWriter file = new FileWriter("Files/settings.json")){
 				file.write(jsonObject.toJSONString());
-				DiscordBot.print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
+				IO.print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
 			}
 			
 		} catch (Exception e) {
-			LoggExceptions.Logg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
+			IO.Logg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
 
 		}
 	}
