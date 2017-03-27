@@ -1,3 +1,33 @@
+##New error at 27/3 - 11:21:00
+Message was: ;gif whatthefuckdidyoujustsayaboutmeyoulittleshitillhaveyouknowigraduated...
+Id: 295879872226787329
+The sender was Kakan#2926 in the general channel, in the Kakanistan guild
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=404, URL=https://www.tenor.co/search/whatthefuckdidyoujustsayaboutmeyoulittleshitillhaveyouknowigraduated...-gifs
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:459)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:434)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:181)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:170)
+	at Main.DiscordBot.gif(DiscordBot.java:547)
+	at Main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:148)
+	at Main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:175)
+	at Main.DiscordBot.onMessageReceived(DiscordBot.java:121)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 27/3 - 11:09:34
 Message was: ;gif fuckssaödslöfka
 Id: 295876997345968128
