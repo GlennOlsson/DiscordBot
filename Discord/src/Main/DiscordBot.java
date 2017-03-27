@@ -11,9 +11,8 @@ Divide all these methods into classes in Main package
 
 import Main.RetrieveSetting.*;
 import java.io.*;
-import java.net.URI;
-import java.net.URL;
-import java.text.SimpleDateFormat;
+import java.net.*;
+import java.text.*;
 import java.util.*;
 
 import org.json.simple.*;
@@ -283,7 +282,7 @@ public class DiscordBot extends ListenerAdapter{
 				historyList=history.retrievePast(100).complete(true);
 			} catch (Exception e) {
 				// FIXME Auto-generated catch block
-				channel.sendMessage("Error, contact Kakan with id: "+event.getMessage().getId());
+				channel.sendMessage("Error, contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id: "+event.getMessage().getId());
 				LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 			}
 			event.getMessage().delete().queue();
@@ -418,7 +417,7 @@ public class DiscordBot extends ListenerAdapter{
 									doc2 = Jsoup.connect(uri2.toASCIIString()).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block;
-									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
+									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 									LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 								}
 
@@ -495,7 +494,7 @@ public class DiscordBot extends ListenerAdapter{
 									doc2 = Jsoup.connect(uri2.toASCIIString()).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block
-									event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
+									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 									LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 								}
 
@@ -526,7 +525,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 			}
 		} catch (Exception e) {
-			event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
+			event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 			LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 		}
 
@@ -554,7 +553,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 			} catch (Exception e) {
 				// FIXME: handle exception
-				event.getChannel().sendMessage("Error was caught. Contact Kakan with id "+event.getMessage().getId());
+				event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 				LoggExceptions.Logg(e, content, event.getMessage().getId(), event);
 			}
 

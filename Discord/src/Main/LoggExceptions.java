@@ -1,22 +1,15 @@
 package Main;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
+import java.io.*;
+import java.text.*;
+import java.util.*;
 
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.internal.storage.file.FileRepository;
-import org.eclipse.jgit.transport.CredentialsProvider;
-import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
-import Main.RetrieveSetting.JSONDocument;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import org.eclipse.jgit.api.*;
+import org.eclipse.jgit.internal.storage.file.*;
+import org.eclipse.jgit.transport.*;
+import Main.RetrieveSetting.*;
+import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.events.message.*;
 
 public class LoggExceptions {
 

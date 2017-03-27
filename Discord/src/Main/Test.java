@@ -9,7 +9,6 @@ import Main.RetrieveSetting.JSONDocument;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -30,9 +29,11 @@ public class Test extends ListenerAdapter{
 			LoggExceptions.Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
+		String id="165507757519273984";
+		
 
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-		
+//		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
 	}
 
 	public Test(){
@@ -42,7 +43,7 @@ public class Test extends ListenerAdapter{
 
 		if(event.getAuthor().getName().equals("Kakan")){
 			
-			System.out.println(event.getChannel().getType().equals(ChannelType.PRIVATE));
+			System.out.println();
 			
 			String content = event.getMessage().getContent().toLowerCase();
 
@@ -62,8 +63,6 @@ public class Test extends ListenerAdapter{
 
 				privateChannel.sendMessage("Sup").queue();
 
-
-
 			}
 		}
 	}
@@ -71,8 +70,12 @@ public class Test extends ListenerAdapter{
 
 		String content = event.getMessage().getContent().toLowerCase();
 		
-		System.out.println(event.getChannel().getName());
+		System.out.println();
 
+		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
+			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
+		}
+		
 		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
 			System.out.println();
 		}
