@@ -223,9 +223,9 @@ public class DiscordBot extends ListenerAdapter{
 		}
 		else {
 			event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
-		event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just joined your guild \""+
-					event.getGuild().getName()+"\". *If you want to recieve these as private messages, create a channel called \"modlog\", and I will post"
-							+ "this information there*").queue();
+		event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just joined your guild \"**"+
+					event.getGuild().getName()+"**\". *If you don't want to recieve these as private messages, create a channel called \"modlog\", and I will post"
+							+ " this information there*").queue();
 		}
 	}
 
