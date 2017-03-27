@@ -85,7 +85,7 @@ public class IO {
 					@SuppressWarnings("resource")
 					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
 
-					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Updated Errorlog").call();
+					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Error caught").call();
 
 					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", RetrieveSetting.getKey("gitPass", JSONDocument.secret));
 
