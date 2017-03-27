@@ -1,3 +1,36 @@
+##New error at 27/3 - 11:09:34
+Message was: ;gif fuckssaödslöfka
+Id: 295876997345968128
+The sender was Kakan#2926 in the Kakan channel, in a Private message group
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=404, URL=https://www.tenor.co/search/fuckssa%C3%B6dsl%C3%B6fka-gifs
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:459)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:434)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:181)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:170)
+	at Main.DiscordBot.gif(DiscordBot.java:535)
+	at Main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:136)
+	at Main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:163)
+	at Main.DiscordBot.onMessageReceived(DiscordBot.java:109)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
+Now!
+------
+
 ##New error at 26/3 - 09:54:18
 Message was: https://www.reddit.com/r/sweden/comments/61g9e6/hittat_p%c3%a5_rpolanball/
 Id: 295495657135800320
