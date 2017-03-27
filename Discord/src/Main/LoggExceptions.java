@@ -37,6 +37,8 @@ public class LoggExceptions {
 			//if linux (RasPi)
 			String currentContent = "", newContent = "";
 
+			DiscordBot.print("An error was caught", true);
+			
 			//Parses the stackTrace as string for it to be saved
 			StringWriter errors = new StringWriter();
 			exception.printStackTrace(new PrintWriter(errors));

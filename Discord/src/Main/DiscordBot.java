@@ -6,10 +6,6 @@ Add prefix to help command, and reply with just the prefix if not authorized
 
 Divide all these methods into classes in Main package
 
---------
-
-Send a message in server_management when someone joins guild, with name and Id
-
  */
 
 
@@ -61,6 +57,7 @@ public class DiscordBot extends ListenerAdapter{
 	@Override
 	public void onReconnect(ReconnectedEvent event) {
 		event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+		print("Reconected", false);
 	}
 	
 	public static void print(String message, Boolean isErrPrint) {
