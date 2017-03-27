@@ -92,7 +92,7 @@ public class LoggExceptions {
 					
 					git.push().setRemote("origin").setCredentialsProvider(cp).call();
 					
-					System.out.println("Push succesfull");
+					DiscordBot.print("Push succesfull", false);
 
 				} catch (Exception e) {
 					// FIXME Auto-generated catch block
@@ -112,7 +112,7 @@ public class LoggExceptions {
 	}
 	public static void error(Exception exception, String whyThough, String content, String id) {
 		//Skicka mail till mig
-		System.err.println(" ---- FUCK FUCK FUCK ----");
+		DiscordBot.print(" ---- FUCK FUCK FUCK ----", true);
 		exception.printStackTrace();
 	}
 

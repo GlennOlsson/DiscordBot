@@ -70,7 +70,7 @@ public class RetrieveSetting {
 			
 			try (FileWriter file = new FileWriter("Files/settings.json")){
 				file.write(jsonObject.toJSONString());
-				System.out.println("Successfully wrote {\""+key+"\":\""+value+"\"}");
+				DiscordBot.print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
 			}
 			
 		} catch (Exception e) {

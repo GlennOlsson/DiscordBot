@@ -17,6 +17,7 @@ import Main.RetrieveSetting.*;
 import java.io.*;
 import java.net.URI;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.json.simple.*;
@@ -60,6 +61,20 @@ public class DiscordBot extends ListenerAdapter{
 	@Override
 	public void onReconnect(ReconnectedEvent event) {
 		event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+	}
+	
+	public static void print(String message, Boolean isErrPrint) {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
+		String currentTime =sdf.format(cal.getTime());
+		
+		if(isErrPrint){
+			System.err.println("Printed: " + message + " at: "+currentTime);
+		}
+		else{
+			System.out.println("Printed: " + message + " at: "+currentTime);
+		}
+		
 	}
 
 	public DiscordBot(){
@@ -124,7 +139,7 @@ public class DiscordBot extends ListenerAdapter{
 			if(command.contains(" ")){
 				command=command.split(" ")[0];
 				afterCommand = content.substring(prefix.length()+command.length()+1);
-				System.out.println("Aftercommand=\""+afterCommand+"\"");
+				print("Aftercommand=\""+afterCommand+"\"", false);
 			}
 
 			switch (command) {
@@ -240,11 +255,11 @@ public class DiscordBot extends ListenerAdapter{
 				}
 				if(content.split(" ").length>=4){
 					argument2=content.substring(content.indexOf(content.split(" ")[3].toLowerCase()));
-					System.out.println(argument2 + " == arg 2");
+					print(argument2 + " == arg 2", false);
 					Boolean hasMemeber=false;
 					for (int i = 0; i < channel.getMembers().size(); i++) {
 						if(channel.getMembers().get(i).getUser().getName().toLowerCase().equals(argument2)){
-							System.out.println("CHANNEL HAS USER");
+							print("CHANNEL HAS USER", false);
 							hasMemeber=true;
 						}
 					}
@@ -327,7 +342,7 @@ public class DiscordBot extends ListenerAdapter{
 					}
 				}
 			}
-			System.err.println(amount+" = amount");
+			print(amount+" = amount", true);
 		}
 		else {
 			//				channel.sendMessage("You are not authorized to execute that command, *"+event.getAuthor().getAsMention()+"*. Contact a Moderator").queue();
@@ -368,7 +383,7 @@ public class DiscordBot extends ListenerAdapter{
 
 					//if not textpost
 
-					System.out.println(url + " = RUL");
+					print(url + " = RUL", false);
 
 					if(url.contains("imgur.com")){
 
@@ -376,7 +391,7 @@ public class DiscordBot extends ListenerAdapter{
 
 						if(url.length()-url.lastIndexOf(".")<=5){
 
-							System.out.println("<=5");
+							print("<=5", false);
 
 							//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
 							if(url.substring(url.lastIndexOf(".")).equals(".mp4")){
@@ -389,10 +404,10 @@ public class DiscordBot extends ListenerAdapter{
 							else {
 								url2=url;
 							}
-							System.out.println(url2 + " ==== URL2");
+							print(url2 + " ==== URL2", false);
 						}
 						if(url.length()-url.lastIndexOf(".")>5){
-							System.out.println(">5");
+							print(">5", false);
 							try {
 								//Tries to get .zoom class (the class of the link if it's a picture
 
@@ -412,10 +427,10 @@ public class DiscordBot extends ListenerAdapter{
 
 								doc2.select(".zoom").attr("href");
 								url2="http:"+doc2.select(".zoom").attr("href");
-								System.out.println(url2+" = URL2");
+								print(url2+" = URL2", false);
 								if(url2.length()<7){
 									//Fails because .zoom does not exist --> not picture
-									System.out.println("ERROR");
+									print("ERROR", false);
 									throw new Exception();
 								}
 
@@ -443,7 +458,7 @@ public class DiscordBot extends ListenerAdapter{
 
 				url = doc.select(".title > a").attr("href");
 				title=doc.select(".title > a").text();
-				System.out.println(url + " = RUL");
+				print(url + " = RUL", false);
 				if(!url.substring(0,3).equals("/r/")){
 					//If not textpost
 
@@ -453,7 +468,7 @@ public class DiscordBot extends ListenerAdapter{
 
 						if(url.length()-url.lastIndexOf(".")<=5){
 
-							System.out.println("<=5");
+							print("<=5", false);
 
 							//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
 							if(url.substring(url.lastIndexOf(".")).equals(".mp4")){
@@ -466,10 +481,10 @@ public class DiscordBot extends ListenerAdapter{
 							else {
 								url2=url;
 							}
-							System.out.println(url2 + " ==== URL2");
+							print(url2 + " ==== URL2", false);
 						}
 						if(url.length()-url.lastIndexOf(".")>5){
-							System.out.println(">5");
+							print(">5", false);
 							try {
 								//Tries to get .zoom class (the class of the link if it's a picture
 
@@ -489,10 +504,10 @@ public class DiscordBot extends ListenerAdapter{
 
 								doc2.select(".zoom").attr("href");
 								url2="http:"+doc2.select(".zoom").attr("href");
-								System.out.println(url2+" = URL2");
+								print(url2+" = URL2", false);
 								if(url2.length()<7){
 									//Fails because .zoom does not exist --> not picture
-									System.out.println("ERROR");
+									print("ERROR", false);
 									throw new Exception();
 								}
 
@@ -565,7 +580,7 @@ public class DiscordBot extends ListenerAdapter{
 	public void prefix(MessageChannel channel, MessageReceivedEvent event, String content, String newPrefix) {
 		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
 		if(isAuthorized(event.getTextChannel(), event, content, roleslist)){
-			System.out.println("HALLELULIA");
+			print("HALLELULIA", false);
 			if(!newPrefix.equals("")){
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//if privatechannel ---> no guildId
@@ -672,13 +687,13 @@ public class DiscordBot extends ListenerAdapter{
 			//WRITING JSON
 			try (FileWriter file = new FileWriter("Files/settings.json")){
 				file.write(jsonObject.toJSONString());
-				System.out.println("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
+				print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
 			}
 		}
 		catch (Exception e) {
 			// FIXME: handle exception
 
-			System.err.println("-- ERROR IN WRITING IN settings.json --");
+			print("-- ERROR IN WRITING IN settings.json --", true);
 			LoggExceptions.Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
 		}
 	}
@@ -702,7 +717,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 		} catch (Exception e) {
 
-			System.err.println("ERROR WITH PREFIX, RETURNING \";\"");
+			print("ERROR WITH PREFIX, RETURNING \";\"", true);
 			LoggExceptions.Logg(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
 			return ";";
 		}
