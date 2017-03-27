@@ -1,19 +1,17 @@
-package Main;
+package main;
 
+import static commands.gif.gifs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Main.RetrieveSetting.JSONDocument;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import main.RetrieveSetting.*;
+import net.dv8tion.jda.core.*;
+import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.events.message.*;
+import net.dv8tion.jda.core.events.message.priv.*;
+import net.dv8tion.jda.core.hooks.*;
 
 public class Test extends ListenerAdapter{
 
@@ -29,10 +27,12 @@ public class Test extends ListenerAdapter{
 			LoggExceptions.Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
+		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		String id="165507757519273984";
 		
+		gifs("waddup");
+		System.err.println("eyy");
 
-		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 //		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
 	}
 

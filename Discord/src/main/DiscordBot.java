@@ -1,4 +1,4 @@
-package Main;
+package main;
 /* ----------TODO
 
 Add prefix to help command, and reply with just the prefix if not authorized
@@ -9,7 +9,6 @@ Divide all these methods into classes in Main package
  */
 
 
-import Main.RetrieveSetting.*;
 import java.io.*;
 import java.net.*;
 import java.text.*;
@@ -19,6 +18,9 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
+
+import main.RetrieveSetting.*;
+import main.LoggExceptions;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.*;
@@ -214,9 +216,17 @@ public class DiscordBot extends ListenerAdapter{
 		MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
 		channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
 
+		if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
 		event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
 				"** with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
 				+"** just joined us").queue();
+		}
+		else {
+			event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
+		event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just joined your guild \""+
+					event.getGuild().getName()+"\". *If you want to recieve these as private messages, create a channel called \"modlog\", and I will post"
+							+ "this information there*").queue();
+		}
 	}
 
 	public void clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){

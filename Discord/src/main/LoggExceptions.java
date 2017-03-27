@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.io.*;
 import java.text.*;
@@ -7,7 +7,8 @@ import java.util.*;
 import org.eclipse.jgit.api.*;
 import org.eclipse.jgit.internal.storage.file.*;
 import org.eclipse.jgit.transport.*;
-import Main.RetrieveSetting.*;
+
+import main.RetrieveSetting.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.*;
 
