@@ -123,7 +123,7 @@ public class IO {
 		String currentTime =sdf.format(cal.getTime());
 
 		if(isErrPrint){
-			System.err.println("Printed: " + message + " at: "+currentTime);
+			System.err.println("["+currentTime+"] (ERR) "+ message);
 		}
 		else{
 			System.out.println("["+currentTime+"] "+ message);
