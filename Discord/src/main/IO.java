@@ -62,6 +62,7 @@ public class IO {
 
 			try{
 				FileReader reader = new FileReader("Files/Errorlog.md");
+				@SuppressWarnings("resource")
 				BufferedReader br = new BufferedReader(reader); 
 				Iterator<String> iterator= br.lines().iterator();
 				//Saves the earlier content to currentContent string
@@ -81,6 +82,7 @@ public class IO {
 
 				try {
 
+					@SuppressWarnings("resource")
 					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
 
 					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Updated Errorlog").call();
@@ -129,6 +131,7 @@ public class IO {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void setPrefix(String id, String prefix) {
 
 		try {
