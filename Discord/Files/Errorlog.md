@@ -1,3 +1,33 @@
+##New error at 28/3 - 11:39:28
+Message was: ;gif fjgjdaqqdgnjh
+Id: 296246906852737024
+The sender was Kakan#2926 in the Kakan channel, in a Private message group
+org.jsoup.HttpStatusException: HTTP error fetching URL. Status=404, URL=https://www.tenor.co/search/fjgjdaqqdgnjh-gifs
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:459)
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:434)
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:181)
+	at org.jsoup.helper.HttpConnection.get(HttpConnection.java:170)
+	at commands.Commands.gif(Commands.java:326)
+	at main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:125)
+	at main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:152)
+	at main.DiscordBot.onMessageReceived(DiscordBot.java:102)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 27/3 - 19:59:06
 Message was: https://www.reddit.com/r/gifs/comments/61sggi/the_future_of_car_technology/
 Id: 296010233266831362
