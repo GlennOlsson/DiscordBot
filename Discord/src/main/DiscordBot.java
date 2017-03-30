@@ -1,7 +1,7 @@
 package main;
 /* ----------TODO
 
-Reply with just the prefix if not authorized
+Send mail if error is caught while Error Logging
 
  */
 
