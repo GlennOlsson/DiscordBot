@@ -6,7 +6,7 @@ Reply with just the prefix if not authorized
  */
 
 
-import commands.Commands;
+import commands.*;
 import main.RetrieveSetting.*;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
