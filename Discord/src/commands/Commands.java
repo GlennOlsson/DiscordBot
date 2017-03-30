@@ -367,10 +367,10 @@ public class Commands{
 		}
 		else {
 			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
-				channel.sendMessage(IO.getPrefix(channel.getId())).queue();
+				channel.sendMessage("Unauthorized. Current prefix: "+IO.getPrefix(channel.getId())).queue();
 			}
 			else{
-				channel.sendMessage(event.getGuild().getId()).queue();
+				channel.sendMessage("Unauthorized. Current prefix: "+IO.getPrefix(event.getGuild().getId())).queue();
 			}
 		}
 	}
