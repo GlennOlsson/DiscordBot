@@ -1,19 +1,14 @@
 package commands;
 
-import java.util.List;
+import java.util.*;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import org.jsoup.*;
+import org.jsoup.nodes.*;
 
-import main.IO;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.MessageHistory;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.exceptions.RateLimitedException;
+import main.*;
+import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.events.message.*;
+import net.dv8tion.jda.core.exceptions.*;
 
 public class Commands{
 
@@ -68,7 +63,7 @@ public class Commands{
 					}
 				}
 			}
-			
+
 			MessageHistory history = channel.getHistory();
 			channel.getHistory().retrievePast(100).queue();
 			List<Message> historyList = null;
@@ -155,7 +150,7 @@ public class Commands{
 		Document doc;
 		String url = null, title = null;
 		try {
-			
+
 			doc = Jsoup.connect(IO.convertUrl(event.getMessage().getContent())).userAgent("Chrome").get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
 				//-- if NSFW sub --
@@ -201,7 +196,7 @@ public class Commands{
 								Document doc2=null;
 
 								try {
-									
+
 									doc2 = Jsoup.connect(IO.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block;
@@ -275,7 +270,7 @@ public class Commands{
 								Document doc2=null;
 
 								try {
-									
+
 									doc2 = Jsoup.connect(IO.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block
@@ -323,7 +318,7 @@ public class Commands{
 		String url=null, query=null;
 		try {
 			query = content.substring(5, content.length()).replace(" ", "-");
-			
+
 			doc = Jsoup.connect(IO.convertUrl("https://www.tenor.co/search/"+query+"-gifs")).userAgent("Chrome").get();
 			url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child(1) > figure:nth-child(1) > a").attr("href");
 
@@ -368,6 +363,14 @@ public class Commands{
 					IO.setPrefix(event.getGuild().getId(),newPrefix);
 				}
 				channel.sendMessage("Prefix successfully changed to \""+newPrefix+"\"").queue();
+			}
+		}
+		else {
+			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+				channel.sendMessage("Unauthorized. Current prefix: "+IO.getPrefix(channel.getId())).queue();
+			}
+			else{
+				channel.sendMessage("Unauthorized. Current prefix: "+IO.getPrefix(event.getGuild().getId())).queue();
 			}
 		}
 	}
@@ -449,7 +452,7 @@ public class Commands{
 			}
 		}
 		String command = "";
-		String[] features = {"Reddit",";gif",";source",";clean","prefix"};
+		String[] features = {"Reddit",";gif",";source",";clean",";prefix"};
 		for (int i = 0; i < features.length; i++) {
 			command = command+ features[i]+", ";
 		}
@@ -462,5 +465,5 @@ public class Commands{
 	}
 
 
-	
+
 }
