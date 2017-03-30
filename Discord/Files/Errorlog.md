@@ -1,3 +1,28 @@
+##New error at 30/3 - 12:53:44
+Message was: https://www.reddit.com/r/sweden/comments/3diy4r/dags_att_göra_det_ranal_inte_kunnat_nsfw/?ref=search_posts
+Id: 296990349153402881
+The sender was Kakan#2926 in the general channel, in the Kakanistan guild
+java.lang.StringIndexOutOfBoundsException: String index out of range: -21
+	at java.lang.String.substring(String.java:1967)
+	at commands.Commands.reddit(Commands.java:164)
+	at main.DiscordBot.onMessageReceived(DiscordBot.java:101)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 30/3 - 12:53:18
 Message was: https://www.reddit.com/r/sweden/comments/3diy4r/dags_att_g%c3%b6ra_det_ranal_inte_kunnat_nsfw/?ref=search_posts
 Id: 296990266009714689
