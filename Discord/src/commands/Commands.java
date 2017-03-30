@@ -1,7 +1,5 @@
 package commands;
 
-import java.net.URI;
-import java.net.URL;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -158,13 +156,10 @@ public class Commands{
 		String url = null, title = null;
 		try {
 			
-			URL uri = new URL(event.getMessage().getContent());
-			URI uri2 = new URI(uri.getProtocol(), uri.getUserInfo(), uri.getHost(), uri.getPort(), uri.getPath(), uri.getQuery(), uri.getRef());
-			
-			doc = Jsoup.connect(uri2.toASCIIString()).userAgent("Chrome").get();
+			doc = Jsoup.connect(IO.convertUrl(event.getMessage().getContent())).userAgent("Chrome").get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
 				//-- if NSFW sub --
-				doc = Jsoup.connect(uri2.toASCIIString()+".rss").userAgent("Mozilla").get();
+				doc = Jsoup.connect(IO.convertUrl(event.getMessage().getContent())+".rss").userAgent("Mozilla").get();
 
 				url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
 						doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
@@ -206,11 +201,8 @@ public class Commands{
 								Document doc2=null;
 
 								try {
-									URL uri3 = new URL(url);
-									URI uri4 = new URI(uri3.getProtocol(), uri3.getUserInfo(), uri3.getHost(), uri3.getPort(),
-											uri3.getPath(), uri3.getQuery(), uri3.getRef());
 									
-									doc2 = Jsoup.connect(uri4.toASCIIString()).userAgent("Chrome").get();
+									doc2 = Jsoup.connect(IO.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block;
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
@@ -283,11 +275,8 @@ public class Commands{
 								Document doc2=null;
 
 								try {
-									URL uri3 = new URL(url);
-									URI uri4 = new URI(uri3.getProtocol(), uri3.getUserInfo(), uri3.getHost(), uri3.getPort(),
-											uri3.getPath(), uri3.getQuery(), uri3.getRef());
 									
-									doc2 = Jsoup.connect(uri4.toASCIIString()).userAgent("Chrome").get();
+									doc2 = Jsoup.connect(IO.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
@@ -335,11 +324,7 @@ public class Commands{
 		try {
 			query = content.substring(5, content.length()).replace(" ", "-");
 			
-			URL uri3 = new URL("https://www.tenor.co/search/"+query+"-gifs");
-			URI uri4 = new URI(uri3.getProtocol(), uri3.getUserInfo(), uri3.getHost(), uri3.getPort(),
-					uri3.getPath(), uri3.getQuery(), uri3.getRef());
-			
-			doc = Jsoup.connect(uri4.toASCIIString()).userAgent("Chrome").get();
+			doc = Jsoup.connect(IO.convertUrl("https://www.tenor.co/search/"+query+"-gifs")).userAgent("Chrome").get();
 			url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child(1) > figure:nth-child(1) > a").attr("href");
 
 			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();

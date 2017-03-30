@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +19,7 @@ import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.jsoup.Jsoup;
 
 import main.RetrieveSetting.JSONDocument;
 import net.dv8tion.jda.core.entities.ChannelType;
@@ -116,7 +119,6 @@ public class IO {
 		exception.printStackTrace();
 	}
 
-
 	public static void print(String message, Boolean isErrPrint) {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
@@ -206,6 +208,29 @@ public class IO {
 			return true;
 		}
 		return false;
+
+	}
+
+	public static String convertUrl(String urlToConvert){
+		try {
+			//If this works, then the first provided url works
+			Jsoup.connect(urlToConvert).userAgent("Chrome").get();
+			return urlToConvert;
+		} catch (Exception e) {
+			//If provided url does not work
+			try {
+				URL url = new URL(urlToConvert);
+				URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
+
+				return uri.toASCIIString();
+			} catch (Exception e2) {
+				// FIXME: handle exception
+				Logg(e2, "Error in convertUrl", "Error with URL -> URI  -> URI.toASCIIString", null);
+			}
+
+		}
+		return null;
+
 
 	}
 
