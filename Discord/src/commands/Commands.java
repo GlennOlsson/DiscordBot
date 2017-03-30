@@ -449,7 +449,7 @@ public class Commands{
 			}
 		}
 		String command = "";
-		String[] features = {"Reddit",";gif",";source",";clean","prefix"};
+		String[] features = {"Reddit",";gif",";source",";clean",";prefix"};
 		for (int i = 0; i < features.length; i++) {
 			command = command+ features[i]+", ";
 		}

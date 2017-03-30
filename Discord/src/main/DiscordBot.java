@@ -1,14 +1,7 @@
 package main;
 /* ----------TODO
 
-Add prefix to help command, and reply with just the prefix if not authorized
---------
-
-Divide all these methods into classes in Main package
-
---------
-
-Fix so that it only "fixes" urls that need fixing. If a link that already has been fixed gets sent, it just returns an error, atm
+Reply with just the prefix if not authorized
 
  */
 
