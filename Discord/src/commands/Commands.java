@@ -15,6 +15,7 @@ import net.dv8tion.jda.core.entities.MessageHistory;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.exceptions.RateLimitedException;
 
 public class Commands{
 
@@ -404,7 +405,12 @@ public class Commands{
 			privateChannel=event.getAuthor().getPrivateChannel();
 		}
 		else {
-			event.getAuthor().openPrivateChannel().queue();
+			try {
+				event.getAuthor().openPrivateChannel().complete(true);
+			} catch (RateLimitedException e) {
+				// FIXME Auto-generated catch block
+				IO.Logg(e, content, "Could not create PrivateChannel", event);
+			}
 			privateChannel=event.getAuthor().getPrivateChannel();
 		}
 
@@ -426,7 +432,7 @@ public class Commands{
 			else if (argument.equals("gif")||argument.equals(";gif")) {
 				//if help about ;gif
 				privateChannel.sendMessage("With the **;gif** feature, you just follow the command with a space, and then type your search quotas for the gif. "
-						+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -").queue();
+						+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -. Use like: ;gif <quotas>").queue();
 				return;
 			}
 			//			else if (argument.equals("up")||argument.equals(";up")) {
@@ -446,17 +452,23 @@ public class Commands{
 						+ " Use like: ;clean [1-100] [bots,users,all]").queue();
 				return;
 			}
-
+			else if (argument.equals("prefix")||argument.equals(";prefix")) {
+				privateChannel.sendMessage("If you send **;prefix**, followed by whatever, you can change the prefix (the sign before the command, here, ; is the prefix)"
+						+ " for the server, or private channel. Although, **;** will always be standard, and can always be used. "
+						+ "Also, if you would send only **prefix**, without any actuall prefix, I will reply with the current prefix of the server/private channel. "
+						+ "Use like: ;prefix <newPrefix>").queue();
+				return;
+			}
 			else if (argument.length()>1) {
 				privateChannel.sendMessage("Sorry, but your argument did not get a match").queue();
 			}
 		}
 		String command = "";
-		String[] features = {"Reddit",";gif",";source",";clean"};
+		String[] features = {"Reddit",";gif",";source",";clean","prefix"};
 		for (int i = 0; i < features.length; i++) {
 			command = command+ features[i]+", ";
 		}
-		command=command+" ;help";
+		command+=";help";
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
 				+ "followed by one of the features listed, to see specified help for that command. Can also be done in PM").queue();
 
