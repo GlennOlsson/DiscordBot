@@ -3,7 +3,7 @@ package commands;
 import org.jsoup.*;
 import org.jsoup.nodes.*;
 
-import main.IO;
+import backend.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.*;
 
@@ -29,10 +29,10 @@ public class Reddit {
 		String url = null, title = null;
 		try {
 
-			doc = Jsoup.connect(IO.convertUrl(event.getMessage().getContent())).userAgent("Chrome").get();
+			doc = Jsoup.connect(Return.convertUrl(event.getMessage().getContent())).userAgent("Chrome").get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
 				//-- if NSFW sub --
-				doc = Jsoup.connect(IO.convertUrl(event.getMessage().getContent())+".rss").userAgent("Mozilla").get();
+				doc = Jsoup.connect(Return.convertUrl(event.getMessage().getContent())+".rss").userAgent("Mozilla").get();
 
 				url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
 						doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
@@ -43,7 +43,7 @@ public class Reddit {
 
 					//if not textpost
 
-					IO.print(url + " = RUL", false);
+					new Print(url + " = RUL", false);
 
 					if(url.contains("imgur.com")){
 
@@ -51,7 +51,7 @@ public class Reddit {
 
 						if(url.length()-url.lastIndexOf(".")<=5){
 
-							IO.print("<=5", false);
+							new Print("<=5", false);
 
 							//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
 							if(url.substring(url.lastIndexOf(".")).equals(".mp4")){
@@ -64,10 +64,10 @@ public class Reddit {
 							else {
 								url2=url;
 							}
-							IO.print(url2 + " ==== URL2", false);
+							new Print(url2 + " ==== URL2", false);
 						}
 						if(url.length()-url.lastIndexOf(".")>5){
-							IO.print(">5", false);
+							new Print(">5", false);
 							try {
 								//Tries to get .zoom class (the class of the link if it's a picture
 
@@ -75,19 +75,19 @@ public class Reddit {
 
 								try {
 
-									doc2 = Jsoup.connect(IO.convertUrl(url)).userAgent("Chrome").get();
+									doc2 = Jsoup.connect(Return.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block;
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-									IO.Logg(e, content, event.getMessage().getId(), event);
+									new Logg(e, content, event.getMessage().getId(), event);
 								}
 
 								doc2.select(".zoom").attr("href");
 								url2="http:"+doc2.select(".zoom").attr("href");
-								IO.print(url2+" = URL2", false);
+								new Print(url2+" = URL2", false);
 								if(url2.length()<7){
 									//Fails because .zoom does not exist --> not picture
-									IO.print("ERROR", false);
+									new Print("ERROR", false);
 									throw new Exception();
 								}
 
@@ -115,7 +115,7 @@ public class Reddit {
 
 				url = doc.select(".title > a").attr("href");
 				title=doc.select(".title > a").text();
-				IO.print(url + " = RUL", false);
+				new Print(url + " = RUL", false);
 				if(!url.substring(0,3).equals("/r/")){
 					//If not textpost
 
@@ -125,7 +125,7 @@ public class Reddit {
 
 						if(url.length()-url.lastIndexOf(".")<=5){
 
-							IO.print("<=5", false);
+							new Print("<=5", false);
 
 							//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
 							if(url.substring(url.lastIndexOf(".")).equals(".mp4")){
@@ -138,10 +138,10 @@ public class Reddit {
 							else {
 								url2=url;
 							}
-							IO.print(url2 + " ==== URL2", false);
+							new Print(url2 + " ==== URL2", false);
 						}
 						if(url.length()-url.lastIndexOf(".")>5){
-							IO.print(">5", false);
+							new Print(">5", false);
 							try {
 								//Tries to get .zoom class (the class of the link if it's a picture
 
@@ -149,19 +149,19 @@ public class Reddit {
 
 								try {
 
-									doc2 = Jsoup.connect(IO.convertUrl(url)).userAgent("Chrome").get();
+									doc2 = Jsoup.connect(Return.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-									IO.Logg(e, content, event.getMessage().getId(), event);
+									new Logg(e, content, event.getMessage().getId(), event);
 								}
 
 								doc2.select(".zoom").attr("href");
 								url2="http:"+doc2.select(".zoom").attr("href");
-								IO.print(url2+" = URL2", false);
+								new Print(url2+" = URL2", false);
 								if(url2.length()<7){
 									//Fails because .zoom does not exist --> not picture
-									IO.print("ERROR", false);
+									new Print("ERROR", false);
 									throw new Exception();
 								}
 
@@ -184,7 +184,7 @@ public class Reddit {
 			}
 		} catch (Exception e) {
 			event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-			IO.Logg(e, content, event.getMessage().getId(), event);
+			new Logg(e, content, event.getMessage().getId(), event);
 		}
 
 		return;

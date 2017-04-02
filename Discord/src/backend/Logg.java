@@ -14,8 +14,7 @@ import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
-import main.RetrieveSetting;
-import main.RetrieveSetting.JSONDocument;
+import backend.ReadWrite.JSONDocument;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -81,7 +80,7 @@ public class Logg {
 
 					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Error caught").call();
 
-					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", RetrieveSetting.getKey("gitPass", JSONDocument.secret));
+					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", ReadWrite.getKey("gitPass", JSONDocument.secret));
 
 					git.push().setRemote("origin").setCredentialsProvider(cp).call();
 

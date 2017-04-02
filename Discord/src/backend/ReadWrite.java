@@ -15,6 +15,10 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 
 public class ReadWrite {
+	
+	public enum JSONDocument {
+		secret, setting;
+	}
 
 	public static Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String content, String[] roleList) {
 		List<Role> roles = null;
@@ -69,6 +73,7 @@ public class ReadWrite {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void setPrefix(String id, String prefix) {
 
 		try {
@@ -92,6 +97,67 @@ public class ReadWrite {
 			new Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
 		}
 	}
+	
+	//Earlier RetrieveSetting.java
+	public static String getKey(String key, JSONDocument fileSort){
+		if(fileSort==JSONDocument.secret){
+			try {
+				JSONParser parser = new JSONParser();
+				Object object = null;
 
+				if(System.getProperty("os.name").toLowerCase().contains("windows")){
+					object = parser.parse(new FileReader("C:\\Users\\Glenn\\Documents\\DiscordBot\\Secret.json"));
+				}
+				else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+					object =  parser.parse(new FileReader("/home/pi/DiscordBot/Secret.json"));
+				}
+
+				JSONObject jsonObject = (JSONObject) object;
+
+				return (String) jsonObject.get(key);
+
+			} catch (Exception e) {
+				new Logg(e, "Error in fetching from secret file", "String key: --"+key+"--", null);
+			}
+		}
+		else if (fileSort==JSONDocument.setting) {
+			try {
+				JSONParser parser = new JSONParser();
+				Object object = null;
+
+				object = parser.parse(new FileReader("Files/settings.json"));
+
+				JSONObject jsonObject = (JSONObject) object;
+
+				return (String) jsonObject.get(key);
+
+			} catch (Exception e) {
+				new Logg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
+			}
+		}
+		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public static void setKey(String key, String value){
+
+		try {
+			JSONParser parser = new JSONParser();
+			Object object = null;
+
+			object = parser.parse(new FileReader("Files/settings.json"));
+
+			JSONObject jsonObject = (JSONObject) object;
+
+			jsonObject.put(key, value);
+
+			try (FileWriter file = new FileWriter("Files/settings.json")){
+				file.write(jsonObject.toJSONString());
+				new Print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
+			}
+
+		} catch (Exception e) {
+			new Logg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
+		}
+	}
 
 }

@@ -1,6 +1,6 @@
 package commands;
 
-import main.IO;
+import backend.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.*;
 import net.dv8tion.jda.core.exceptions.*;
@@ -18,7 +18,7 @@ public class Help {
 				event.getAuthor().openPrivateChannel().complete(true);
 			} catch (RateLimitedException e) {
 				// FIXME Auto-generated catch block
-				IO.Logg(e, content, "Could not create PrivateChannel", event);
+				new Logg(e, content, "Could not create PrivateChannel", event);
 			}
 			privateChannel=event.getAuthor().getPrivateChannel();
 		}

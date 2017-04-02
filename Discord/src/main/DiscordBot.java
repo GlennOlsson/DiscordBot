@@ -7,7 +7,8 @@ Send mail if error is caught while Error Logging
 
 
 import commands.*;
-import main.RetrieveSetting.*;
+import backend.*;
+import backend.ReadWrite.*;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.*;
@@ -15,6 +16,7 @@ import net.dv8tion.jda.core.events.guild.member.*;
 import net.dv8tion.jda.core.events.message.*;
 import net.dv8tion.jda.core.events.message.priv.*;
 import net.dv8tion.jda.core.hooks.*;
+
 
 public class DiscordBot extends ListenerAdapter{
 
@@ -24,19 +26,25 @@ public class DiscordBot extends ListenerAdapter{
 			//		new Test();
 			JDA jda = null;
 			try {
-				jda = new JDABuilder(AccountType.BOT).setToken(RetrieveSetting.getKey("oath",JSONDocument.secret)).addListener(new DiscordBot()).buildBlocking();
+				jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath",JSONDocument.secret)).addListener(new DiscordBot()).buildBlocking();
 			} catch (Exception e) {
-				IO.Logg(e, "JDA Builder", "JDA Builder", null);
+				new Logg(e, "JDA Builder", "JDA Builder", null);
 			}
 			TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 
 			channel.sendMessage("Sucessfully logged in!").queue();
 
+			try{
 			if(System.getProperty("os.name").toLowerCase().contains("linux")){
-				RetrieveSetting.setKey("runCount", Integer.toString(Integer.parseInt(RetrieveSetting.getKey("runCount", JSONDocument.setting))+1));
+				ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount", JSONDocument.setting))+1));
+			}
+			}catch (Exception e) {
+				// FIXME: handle exception
+				//Probably could not convert string -> int
+				new Logg(e, "Error in Main", "Probably error with String -> int. runCount: \""+ReadWrite.getKey("runCount", JSONDocument.setting)+"\"", null);
 			}
 		} catch (Exception e) {
-			IO.Logg(e, "Error in Main", "Unkown error", null);
+			new Logg(e, "Error in Main", "Unkown error", null);
 		}
 	}
 
@@ -45,7 +53,7 @@ public class DiscordBot extends ListenerAdapter{
 			super.onReady(event);
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
 		}catch (Exception e) {
-			IO.Logg(e, "Error in onReady", "Unknown error", null);
+			new Logg(e, "Error in onReady", "Unknown error", null);
 		}
 	}
 
@@ -55,9 +63,9 @@ public class DiscordBot extends ListenerAdapter{
 			super.onReconnect(event);
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
 
-			IO.print("Reconected", false);
+			new Print("Reconected", false);
 		}catch (Exception e) {
-			IO.Logg(e, "Error in onReconnect", "Unknown error", null);
+			new Logg(e, "Error in onReconnect", "Unknown error", null);
 		}
 	}
 
@@ -77,11 +85,11 @@ public class DiscordBot extends ListenerAdapter{
 				if(content.toLowerCase().equals("prefix")){
 					if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 						//Private channel
-						channel.sendMessage("The current prefix on our private chat is :\""+IO.getPrefix(channel.getId())+"\"").queue();
+						channel.sendMessage("The current prefix on our private chat is :\""+ReadWrite.getPrefix(channel.getId())+"\"").queue();
 					}
 					else{
 						//Not private
-						channel.sendMessage("The current prefix on "+event.getGuild().getName()+" is :\""+IO.getPrefix(event.getGuild().getId())+"\"").queue();
+						channel.sendMessage("The current prefix on "+event.getGuild().getName()+" is :\""+ReadWrite.getPrefix(event.getGuild().getId())+"\"").queue();
 					}
 				}
 
@@ -93,7 +101,7 @@ public class DiscordBot extends ListenerAdapter{
 					try {
 						new Reddit(channel, event, content);
 					} catch (Exception e) {
-						IO.Logg(e, content, "Error with reddit command", event);
+						new Logg(e, content, "Error with reddit command", event);
 					}
 
 					return;
@@ -103,22 +111,22 @@ public class DiscordBot extends ListenerAdapter{
 				String prefix=";";
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//if privatechannel ---> no guildId
-					prefix=IO.getPrefix(channel.getId());
+					prefix=ReadWrite.getPrefix(channel.getId());
 				}
 				else {
 					//Not private --> has guild Id
-					prefix=IO.getPrefix(event.getGuild().getId());
+					prefix=ReadWrite.getPrefix(event.getGuild().getId());
 				}
 				try {
 					onMessageReceivedPrefix(event, prefix, content, channel);
 				} catch (Exception e) {
 					// FIXME: handle exception
-					IO.Logg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageRecievedPrefix for "+channel.getName()+ " channel", event);
+					new Logg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageRecievedPrefix for "+channel.getName()+ " channel", event);
 				}
 			}
 		}catch (Exception e) {
 			// FIXME: handle exception
-			IO.Logg(e, "Error with onMessageRecievedEvent","Unknown error", event);
+			new Logg(e, "Error with onMessageRecievedEvent","Unknown error", event);
 		}
 	}
 
@@ -132,7 +140,7 @@ public class DiscordBot extends ListenerAdapter{
 			if(command.contains(" ")){
 				command=command.split(" ")[0];
 				afterCommand = content.substring(prefix.length()+command.length()+1);
-				IO.print("Aftercommand=\""+afterCommand+"\"", false);
+				new Print("Aftercommand=\""+afterCommand+"\"", false);
 			}
 
 			switch (command) {
@@ -140,7 +148,7 @@ public class DiscordBot extends ListenerAdapter{
 				try {
 					new Clean(channel, event, content);
 				} catch (Exception e) {
-					IO.Logg(e, content, "Error with clean command", event);
+					new Logg(e, content, "Error with clean command", event);
 				}
 				break;
 
@@ -148,7 +156,7 @@ public class DiscordBot extends ListenerAdapter{
 				try {
 					new Gif(channel, event, content);
 				} catch (Exception e) {
-					IO.Logg(e, content, "Error with gif command", event);
+					new Logg(e, content, "Error with gif command", event);
 				}
 				break;
 
@@ -156,7 +164,7 @@ public class DiscordBot extends ListenerAdapter{
 				try {
 					new Source(channel);
 				} catch (Exception e) {
-					IO.Logg(e, content, "Error with source command", event);
+					new Logg(e, content, "Error with source command", event);
 				}
 				break;
 
@@ -164,7 +172,7 @@ public class DiscordBot extends ListenerAdapter{
 				try {
 					new Prefix(channel, event, content, afterCommand);
 				} catch (Exception e) {
-					IO.Logg(e, content, "Error with prefix command", event);
+					new Logg(e, content, "Error with prefix command", event);
 				}
 				break;
 
@@ -172,7 +180,7 @@ public class DiscordBot extends ListenerAdapter{
 				try {
 					//					new Up(channel, event, content);
 				} catch (Exception e) {
-					IO.Logg(e, content, "Error with up command", event);
+					new Logg(e, content, "Error with up command", event);
 				}
 				break;
 
@@ -181,7 +189,7 @@ public class DiscordBot extends ListenerAdapter{
 				try {
 					new Help(event, content);
 				} catch (Exception e) {
-					IO.Logg(e, content, "Error with help command", event);
+					new Logg(e, content, "Error with help command", event);
 				}
 				break;
 			}
@@ -208,7 +216,7 @@ public class DiscordBot extends ListenerAdapter{
 				channel.sendTyping();
 
 				//Already checked if private
-				String prefix=IO.getPrefix(channel.getId());
+				String prefix=ReadWrite.getPrefix(channel.getId());
 
 				if(content.equals("prefix")){
 					return;
@@ -231,7 +239,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 			}
 		}catch (Exception e) {
-			IO.Logg(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
+			new Logg(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
 					", channel: +"+event.getChannel().getName()+", MessageID: "+event.getMessage().getId(), "Unknown error in onPrivateMessageRecieved", null);
 		}
 	}
@@ -254,7 +262,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 		}
 		catch (Exception e) {
-			IO.Logg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
+			new Logg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
 					, "Unknown error in onGuildMemeberJoin", null);
 		}
 	}

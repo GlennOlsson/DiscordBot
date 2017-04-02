@@ -2,7 +2,7 @@ package commands;
 
 import java.util.List;
 
-import main.IO;
+import backend.*;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.MessageHistory;
@@ -16,7 +16,7 @@ public class Clean {
 		TextChannel channel =event.getTextChannel();
 		String[] roleList ={"Moderator", "Commissioner", "Server Owner"};
 
-		if(IO.isAuthorized(channel, event, content, roleList)){
+		if(ReadWrite.isAuthorized(channel, event, content, roleList)){
 			int amount = 1;
 			String argument1="all", argument2="all";
 
@@ -31,7 +31,7 @@ public class Clean {
 					// FIXME: handle exception
 
 					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();
-					IO.Logg(e, content, event.getMessage().getId(), event);
+					new Logg(e, content, event.getMessage().getId(), event);
 				}
 				if(content.split(" ").length>=3){
 					//If at least length=3
@@ -43,11 +43,11 @@ public class Clean {
 				}
 				if(content.split(" ").length>=4){
 					argument2=content.substring(content.indexOf(content.split(" ")[3].toLowerCase()));
-					IO.print(argument2 + " == arg 2", false);
+					new Print(argument2 + " == arg 2", false);
 					Boolean hasMemeber=false;
 					for (int i = 0; i < channel.getMembers().size(); i++) {
 						if(channel.getMembers().get(i).getUser().getName().toLowerCase().equals(argument2)){
-							IO.print("CHANNEL HAS USER", false);
+							new Print("CHANNEL HAS USER", false);
 							hasMemeber=true;
 						}
 					}
@@ -66,7 +66,7 @@ public class Clean {
 			} catch (Exception e) {
 				// FIXME Auto-generated catch block
 				channel.sendMessage("Error, contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id: "+event.getMessage().getId());
-				IO.Logg(e, content, event.getMessage().getId(), event);
+				new Logg(e, content, event.getMessage().getId(), event);
 			}
 			event.getMessage().delete().queue();
 			for (int i = 1; i < amount+1; i++) {
@@ -121,7 +121,7 @@ public class Clean {
 					}
 				}
 			}
-			IO.print(amount+" = amount", true);
+			new Print(amount+" = amount", true);
 		}
 		else {
 			//				channel.sendMessage("You are not authorized to execute that command, *"+event.getAuthor().getAsMention()+"*. Contact a Moderator").queue();
