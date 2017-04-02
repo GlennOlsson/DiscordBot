@@ -1,3 +1,29 @@
+##New error at 1/4 - 21:25:15
+Message was: ;gif cats
+Id: 297843872992591875
+The sender was Kakan#2926 in the cats channel, in the Rezylo Syndicate guild
+net.dv8tion.jda.core.exceptions.PermissionException: Cannot perform action due to a lack of Permission. Missing permission: MESSAGE_MANAGE
+	at net.dv8tion.jda.core.entities.impl.MessageImpl.delete(MessageImpl.java:473)
+	at commands.Commands.gif(Commands.java:328)
+	at main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:149)
+	at main.DiscordBot.onMessageReceived(DiscordBot.java:113)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 30/3 - 12:54:24
 Message was: https://www.reddit.com/r/sweden/comments/3diy4r/dags_att_göra_det_ranal_inte_kunnat_nsfw
 Id: 296990522193477632
