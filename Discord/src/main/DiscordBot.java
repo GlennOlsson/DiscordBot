@@ -91,7 +91,7 @@ public class DiscordBot extends ListenerAdapter{
 						content.substring(0,"https://reddit".length()).contains("https://reddit")||
 						content.substring(0,"http://reddit".length()).contains("http://reddit"))){
 					try {
-						Commands.reddit(channel, event, content);
+						new Reddit(channel, event, content);
 					} catch (Exception e) {
 						IO.Logg(e, content, "Error with reddit command", event);
 					}
@@ -138,7 +138,7 @@ public class DiscordBot extends ListenerAdapter{
 			switch (command) {
 			case "clean":
 				try {
-					Commands.clean(channel, event, content);
+					new Clean(channel, event, content);
 				} catch (Exception e) {
 					IO.Logg(e, content, "Error with clean command", event);
 				}
@@ -146,7 +146,7 @@ public class DiscordBot extends ListenerAdapter{
 
 			case "gif":
 				try {
-					Commands.gif(channel, event, content);
+					new Gif(channel, event, content);
 				} catch (Exception e) {
 					IO.Logg(e, content, "Error with gif command", event);
 				}
@@ -154,7 +154,7 @@ public class DiscordBot extends ListenerAdapter{
 
 			case "source":
 				try {
-					Commands.source(channel);
+					new Source(channel);
 				} catch (Exception e) {
 					IO.Logg(e, content, "Error with source command", event);
 				}
@@ -162,7 +162,7 @@ public class DiscordBot extends ListenerAdapter{
 
 			case "prefix":
 				try {
-					Commands.prefix(channel, event, content, afterCommand);
+					new Prefix(channel, event, content, afterCommand);
 				} catch (Exception e) {
 					IO.Logg(e, content, "Error with prefix command", event);
 				}
@@ -170,7 +170,7 @@ public class DiscordBot extends ListenerAdapter{
 
 			case "up":
 				try {
-					//					up(channel, event, content);
+					//					new Up(channel, event, content);
 				} catch (Exception e) {
 					IO.Logg(e, content, "Error with up command", event);
 				}
@@ -179,7 +179,7 @@ public class DiscordBot extends ListenerAdapter{
 			case "help":
 
 				try {
-					Commands.help(event, content);
+					new Help(event, content);
 				} catch (Exception e) {
 					IO.Logg(e, content, "Error with help command", event);
 				}
