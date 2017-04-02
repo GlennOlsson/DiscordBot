@@ -6,7 +6,7 @@ import org.json.simple.parser.*;
 
 public class RetrieveSetting {
 
-	enum JSONDocument {
+	public enum JSONDocument {
 		secret, setting;
 	}
 
