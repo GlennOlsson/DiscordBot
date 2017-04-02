@@ -5,7 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import main.RetrieveSetting.*;
+import backend.*;
+import backend.ReadWrite.JSONDocument;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.*;
@@ -19,11 +20,11 @@ public class Test extends ListenerAdapter{
 
 		JDA jda = null;
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken(RetrieveSetting.getKey("oath",JSONDocument.secret)).addListener(new Test()).buildBlocking();
+			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath",JSONDocument.secret)).addListener(new Test()).buildBlocking();
 
 		} catch (Exception e) {
 			
-			IO.Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+			new Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
