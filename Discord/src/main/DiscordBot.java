@@ -255,6 +255,9 @@ public class DiscordBot extends ListenerAdapter{
 						+"** just joined us").queue();
 			}
 			else {
+				if(!event.getGuild().getOwner().getUser().hasPrivateChannel()){
+					event.getGuild().getOwner().getUser().openPrivateChannel().complete(true);
+				}
 				event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
 						event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just joined your guild \"**"+
 						event.getGuild().getName()+"**\". *If you don't want to recieve these as private messages, create a channel called \"modlog\", and I will post"
