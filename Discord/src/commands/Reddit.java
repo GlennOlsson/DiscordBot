@@ -244,10 +244,6 @@ public class Reddit {
 			event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 			new Logg(e, content, event.getMessage().getId(), event);
 		}
-
 		return;
-
-	}
-
-	
+	}	
 }
