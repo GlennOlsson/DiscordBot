@@ -1,3 +1,25 @@
+##New error at 4/4 - 00:06:54
+Message was: Guild: TEAM SALT, User: FredBoat♪♪#7284
+Id: Unknown error in onGuildMemeberJoinnull
+java.lang.IllegalStateException: There is no PrivateChannel for this user yet! Use User#openPrivateChannel() first!
+	at net.dv8tion.jda.core.entities.impl.UserImpl.getPrivateChannel(UserImpl.java:140)
+	at main.DiscordBot.onGuildMemberJoin(DiscordBot.java:258)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:445)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.GuildMemberAddHandler.handleInternally(GuildMemberAddHandler.java:53)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 3/4 - 01:38:27
 Message was: Guild: TEAM SALT, User: FredBoat#9338
 Id: Unknown error in onGuildMemeberJoinnull
