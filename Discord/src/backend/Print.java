@@ -16,7 +16,7 @@ public class Print {
 		String currentContent="",newContent="";
 		
 		if(isErrPrint==null){
-			newContent=message;
+			newContent="	"+message+"\n";
 		}
 		else if (isErrPrint) {
 			newContent="["+currentTime+"] (ERR) "+ message+"\n";
