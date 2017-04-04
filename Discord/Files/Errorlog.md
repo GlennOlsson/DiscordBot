@@ -1,3 +1,31 @@
+##New error at 4/4 - 16:04:13
+Message was: ;gif ah yeah
+Id: 298850246090293259
+The sender was Kakan#2926 in the server_management channel, in the Rezylo Syndicate guild
+java.lang.IndexOutOfBoundsException: Index: 13, Size: 8
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at java.util.Collections$UnmodifiableList.get(Collections.java:1309)
+	at commands.Gif.<init>(Gif.java:30)
+	at main.DiscordBot.onMessageReceivedPrefix(DiscordBot.java:157)
+	at main.DiscordBot.onMessageReceived(DiscordBot.java:121)
+	at net.dv8tion.jda.core.hooks.ListenerAdapter.onEvent(ListenerAdapter.java:326)
+	at net.dv8tion.jda.core.hooks.InterfacedEventManager.handle(InterfacedEventManager.java:84)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleDefaultMessage(MessageCreateHandler.java:128)
+	at net.dv8tion.jda.core.handle.MessageCreateHandler.handleInternally(MessageCreateHandler.java:50)
+	at net.dv8tion.jda.core.handle.SocketHandler.handle(SocketHandler.java:38)
+	at net.dv8tion.jda.core.requests.WebSocketClient.handleEvent(WebSocketClient.java:722)
+	at net.dv8tion.jda.core.requests.WebSocketClient.onTextMessage(WebSocketClient.java:460)
+	at com.neovisionaries.ws.client.ListenerManager.callOnTextMessage(ListenerManager.java:352)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:262)
+	at com.neovisionaries.ws.client.ReadingThread.callOnTextMessage(ReadingThread.java:240)
+	at com.neovisionaries.ws.client.ReadingThread.handleTextFrame(ReadingThread.java:965)
+	at com.neovisionaries.ws.client.ReadingThread.handleFrame(ReadingThread.java:748)
+	at com.neovisionaries.ws.client.ReadingThread.main(ReadingThread.java:110)
+	at com.neovisionaries.ws.client.ReadingThread.run(ReadingThread.java:66)
+
+---------------
+
 ##New error at 4/4 - 00:17:12
 Message was: Guild: TEAM SALT, User: Ayana#8911
 Id: Unknown error in onGuildMemeberJoinnull
