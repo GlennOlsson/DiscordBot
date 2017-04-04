@@ -3,15 +3,25 @@ package commands;
 import java.util.List;
 
 import backend.*;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.MessageHistory;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.events.message.*;
 
 public class Clean {
 	public Clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
 
+		for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
+			if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
+				//Is KakansBot
+				i=event.getTextChannel().getMembers().size()+5;
+				if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
+					new Print("Clean command, but I don't have MESSAGE_MANAGE permission in "+event.getChannel().getName()
+							+" channel in "+event.getGuild().getName()+" guild", false);
+					messageChannel.sendMessage("I can't delete the message, I need MESSAGE_MANAGE permission for that").queue();
+				return;
+				}
+			}
+		}
 
 		TextChannel channel =event.getTextChannel();
 		String[] roleList ={"Moderator", "Commissioner", "Server Owner"};

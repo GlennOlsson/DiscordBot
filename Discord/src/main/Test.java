@@ -28,9 +28,14 @@ public class Test extends ListenerAdapter{
 			
 		}
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-		String id="165507757519273984";
+		String idKakan="165507757519273984", idKakansBot="282116563266437120";
 		
-		System.err.println("eyy");
+	for (Member member : channels.getMembers()) {
+		if(member.getUser().getId().equals(jda.getSelfUser().getId())){
+			//Is KakansBot
+			System.out.println(member.hasPermission(Permission.MESSAGE_MANAGE));
+		}
+	}
 
 //		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
 	}
@@ -39,8 +44,8 @@ public class Test extends ListenerAdapter{
 
 	}
 	public void onMessageReceived(MessageReceivedEvent event){	
-
 		if(event.getAuthor().getName().equals("Kakan")){
+			
 			
 			System.out.println();
 			
