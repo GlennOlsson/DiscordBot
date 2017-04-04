@@ -35,9 +35,10 @@ public class DiscordBot extends ListenerAdapter{
 			channel.sendMessage("Sucessfully logged in!").queue();
 
 			try{
-			if(System.getProperty("os.name").toLowerCase().contains("linux")){
-				ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount", JSONDocument.setting))+1));
-			}
+				if(System.getProperty("os.name").toLowerCase().contains("linux")){
+					new Print("\n		New run: Nr. "+Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount", JSONDocument.setting))+1)+"\n", null);
+					ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount", JSONDocument.setting))+1));
+				}
 			}catch (Exception e) {
 				// FIXME: handle exception
 				//Probably could not convert string -> int

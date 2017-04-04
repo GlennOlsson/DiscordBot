@@ -15,13 +15,14 @@ public class Print {
 
 		String currentContent="",newContent="";
 		
-		
-
 		if(isErrPrint){
-			newContent="	["+currentTime+"] (ERR) "+ message+"\n";
+			newContent="["+currentTime+"] (ERR) "+ message+"\n";
+		}
+		else if (isErrPrint.equals(null)) {
+			newContent=message;
 		}
 		else{
-			newContent="	["+currentTime+"] "+ message+"\n";
+			newContent="["+currentTime+"] "+ message+"\n";
 		}
 		
 		try{
