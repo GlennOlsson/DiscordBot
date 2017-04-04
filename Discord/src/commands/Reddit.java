@@ -4,6 +4,7 @@ import org.jsoup.*;
 import org.jsoup.nodes.*;
 
 import backend.*;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.*;
 
@@ -99,12 +100,40 @@ public class Reddit {
 							}
 						}
 						channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** - "+url2).queue();
-						event.getMessage().delete().queue();
+						//Check if I have MESSAGE_MANAGE permission, before trying to delete
+
+						for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
+							if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
+								//Is KakansBot
+								i=event.getTextChannel().getMembers().size()+5;
+								if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
+									new Print("Cannot delete initial reddit URL message in "+event.getChannel().getName()
+											+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
+								}
+								else {
+									event.getMessage().delete().queue();
+								}
+							}
+						}
 
 					}
 					else{
 						channel.sendMessage("*"+event.getAuthor().getName()+"* shared (**NSFW POST**): **"+title+"** - "+url).queue();
-						event.getMessage().delete().queue();
+						//Check if I have MESSAGE_MANAGE permission, before trying to delete
+
+						for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
+							if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
+								//Is KakansBot
+								i=event.getTextChannel().getMembers().size()+5;
+								if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
+									new Print("Cannot delete initial reddit URL message in "+event.getChannel().getName()
+											+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
+								}
+								else {
+									event.getMessage().delete().queue();
+								}
+							}
+						}
 					}
 				}
 			}
@@ -172,13 +201,41 @@ public class Reddit {
 							}
 						}
 						channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url2).queue();
-						event.getMessage().delete().queue();
+						//Check if I have MESSAGE_MANAGE permission, before trying to delete
+
+						for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
+							if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
+								//Is KakansBot
+								i=event.getTextChannel().getMembers().size()+5;
+								if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
+									new Print("Cannot delete initial reddit URL message in "+event.getChannel().getName()
+											+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
+								}
+								else {
+									event.getMessage().delete().queue();
+								}
+							}
+						}
 
 					}
 
 					else{
 						channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url).queue();
-						event.getMessage().delete().queue();
+						//Check if I have MESSAGE_MANAGE permission, before trying to delete
+
+						for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
+							if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
+								//Is KakansBot
+								i=event.getTextChannel().getMembers().size()+5;
+								if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
+									new Print("Cannot delete initial reddit URL message in "+event.getChannel().getName()
+											+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
+								}
+								else {
+									event.getMessage().delete().queue();
+								}
+							}
+						}
 					}
 				}
 			}
