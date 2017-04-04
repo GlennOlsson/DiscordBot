@@ -9,12 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.internal.storage.file.FileRepository;
-import org.eclipse.jgit.transport.CredentialsProvider;
-import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
-
-import backend.ReadWrite.JSONDocument;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -54,7 +48,8 @@ public class Logg {
 			newContent="##New error at "+currentTime+"\nMessage was: "+content+"\nId: "+id+eventMessage+"\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
-				FileReader reader = new FileReader("Files/Errorlog.md");
+				String path="/var/lib/tomcat7/webapps/ROOT/";
+				FileReader reader = new FileReader(path+"Errorlog.md");
 				@SuppressWarnings("resource")
 				BufferedReader br = new BufferedReader(reader); 
 				Iterator<String> iterator= br.lines().iterator();
@@ -63,33 +58,35 @@ public class Logg {
 					currentContent+=iterator.next()+"\n";
 				}
 				//Writes old + new content
-				try(FileWriter file = new FileWriter("Files/Errorlog.md")){
+				try(FileWriter file = new FileWriter(path+"Errorlog.md")){
 					file.write(newContent+""+currentContent);
 				}
 				catch (Exception e) {
 					// FIXME: handle exception
 					new Error(e, "Error writing file", content, id);
 				}
+				
+				new Print("Successfully edited", false);
 
 				//Succeded to write, now shall commit and push
 
-				try {
-
-					@SuppressWarnings("resource")
-					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
-
-					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Error caught").call();
-
-					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", ReadWrite.getKey("gitPass", JSONDocument.secret));
-
-					git.push().setRemote("origin").setCredentialsProvider(cp).call();
-
-					new Print("Push succesfull", false);
-
-				} catch (Exception e) {
-					// FIXME Auto-generated catch block
-					new Error(e, "Error with git", content, id);
-				}
+//				try {
+//
+//					@SuppressWarnings("resource")
+//					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
+//
+//					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Error caught").call();
+//
+//					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", ReadWrite.getKey("gitPass", JSONDocument.secret));
+//
+//					git.push().setRemote("origin").setCredentialsProvider(cp).call();
+//
+//					new Print("Push succesfull", false);
+//
+//				} catch (Exception e) {
+//					// FIXME Auto-generated catch block
+//					new Error(e, "Error with git", content, id);
+//				}
 
 			}
 			catch (Exception e) {
