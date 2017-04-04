@@ -26,7 +26,6 @@ public class Gif {
 					for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
 						if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
 							//Is KakansBot
-							i=event.getTextChannel().getMembers().size()+5;
 							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
 								new Print("Cannot delete initial Gif command message in "+event.getChannel().getName()
 										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
@@ -34,6 +33,7 @@ public class Gif {
 							else {
 								event.getMessage().delete().queue();
 							}
+							i=event.getTextChannel().getMembers().size()+5;
 						}
 					}
 

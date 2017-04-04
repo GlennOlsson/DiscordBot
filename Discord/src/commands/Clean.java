@@ -13,13 +13,13 @@ public class Clean {
 		for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
 			if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
 				//Is KakansBot
-				i=event.getTextChannel().getMembers().size()+5;
 				if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
 					new Print("Clean command, but I don't have MESSAGE_MANAGE permission in "+event.getChannel().getName()
 							+" channel in "+event.getGuild().getName()+" guild", false);
 					messageChannel.sendMessage("I can't delete the message, I need MESSAGE_MANAGE permission for that").queue();
 				return;
 				}
+				i=event.getTextChannel().getMembers().size()+5;
 			}
 		}
 
