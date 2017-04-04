@@ -26,7 +26,7 @@ public class Print {
 		
 		try{
 			String path="/var/lib/tomcat7/webapps/ROOT/";
-			FileReader reader = new FileReader(path+"Logg.md");
+			FileReader reader = new FileReader(path+"Print.md");
 			@SuppressWarnings("resource")
 			BufferedReader br = new BufferedReader(reader); 
 			Iterator<String> iterator= br.lines().iterator();
@@ -38,7 +38,7 @@ public class Print {
 
 			currentContent=currentContent.replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>", "");
 
-			try(FileWriter file = new FileWriter(path+"Logg.md")){
+			try(FileWriter file = new FileWriter(path+"Print.md")){
 				file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>"+newContent+""+currentContent);
 			}
 			catch (Exception e) {
