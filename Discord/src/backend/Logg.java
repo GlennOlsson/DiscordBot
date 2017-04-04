@@ -58,8 +58,11 @@ public class Logg {
 					currentContent+=iterator.next()+"\n";
 				}
 				//Writes old + new content
+				
+				currentContent=currentContent.replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>#", "");
+				
 				try(FileWriter file = new FileWriter(path+"Errorlog.md")){
-					file.write(newContent+""+currentContent);
+					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>#"+newContent+""+currentContent);
 				}
 				catch (Exception e) {
 					// FIXME: handle exception
