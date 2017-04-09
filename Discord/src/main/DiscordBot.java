@@ -275,7 +275,7 @@ public class DiscordBot extends ListenerAdapter{
 		
 		String lastMsString = ReadWrite.getKey("dailyMs", JSONDocument.setting);
 		if(lastMsString==null||lastMsString.equals("")){
-			ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
+			ReadWrite.setKey("dailyMs", "0");
 			return;
 		}
 		int lastMs=0;
