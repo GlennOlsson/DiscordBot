@@ -284,7 +284,7 @@ public class DiscordBot extends ListenerAdapter{
 		}catch (Exception e) {
 			// FIXME: handle exception
 			new Print("Error with converting string -> int. Returning method and settign dailyMs JSON key to currentTimeMillis", false);
-			ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
+			ReadWrite.setKey("dailyMs","0");
 			return;
 		}
 		if(System.currentTimeMillis()>=(lastMs+86400000)){
@@ -292,5 +292,6 @@ public class DiscordBot extends ListenerAdapter{
 				new DailyDose("aww", event.getJDA().getTextChannelsByName("aww", true).get(i));
 			}
 		}
+		ReadWrite.setKey("dailyMs",Long.toString(System.currentTimeMillis()));
 	}
 }
