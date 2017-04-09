@@ -23,30 +23,30 @@ public class Test extends ListenerAdapter{
 			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath",JSONDocument.secret)).addListener(new Test()).buildBlocking();
 
 		} catch (Exception e) {
-			
+
 			new Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
-			
+
 		}
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		String idKakan="165507757519273984", idKakansBot="282116563266437120";
-		
-	for (Member member : channels.getMembers()) {
-		if(member.getUser().getId().equals(jda.getSelfUser().getId())){
-			//Is KakansBot
-			System.out.println(member.hasPermission(Permission.MESSAGE_MANAGE));
+
+		for (Member member : channels.getMembers()) {
+			if(member.getUser().getId().equals(jda.getSelfUser().getId())){
+				//Is KakansBot
+				System.out.println(member.hasPermission(Permission.MESSAGE_MANAGE));
+			}
 		}
+
+		//		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
 	}
 
-//		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
-	}
-	
 	public Test(){
-		
+
 	}
-	
+
 	public void onMessageReceived(MessageReceivedEvent event){	
 		if(event.getAuthor().getName().equals("Kakan")){
-			
+
 			String content = event.getMessage().getContent().toLowerCase();
 
 			if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
@@ -71,13 +71,13 @@ public class Test extends ListenerAdapter{
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
 
 		String content = event.getMessage().getContent().toLowerCase();
-		
+
 		System.out.println();
 
 		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
 			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
 		}
-		
+
 		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
 			System.out.println();
 		}

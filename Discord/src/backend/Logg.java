@@ -71,26 +71,6 @@ public class Logg {
 				
 				new Print("Successfully edited", false);
 
-				//Succeded to write, now shall commit and push
-
-//				try {
-//
-//					@SuppressWarnings("resource")
-//					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
-//
-//					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Error caught").call();
-//
-//					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", ReadWrite.getKey("gitPass", JSONDocument.secret));
-//
-//					git.push().setRemote("origin").setCredentialsProvider(cp).call();
-//
-//					new Print("Push succesfull", false);
-//
-//				} catch (Exception e) {
-//					// FIXME Auto-generated catch block
-//					new Error(e, "Error with git", content, id);
-//				}
-
 			}
 			catch (Exception e) {
 				// FIXME: handle exception

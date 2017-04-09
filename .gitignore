@@ -4,3 +4,4 @@ Discord/bin/DiscordBot.class
 *.class
 Discord/bin/Test$2.class
 *.class
+*.json

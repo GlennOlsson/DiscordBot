@@ -16,7 +16,7 @@ public class DailyDose {
 		//Connect to reddit.com/r/*subreddit*
 		Document doc;
 		try {
-			
+			channel=channel.getJDA().getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
 
 			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
