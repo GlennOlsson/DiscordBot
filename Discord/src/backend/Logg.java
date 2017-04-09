@@ -1,4 +1,4 @@
-package Main;
+package backend;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,36 +6,20 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.internal.storage.file.FileRepository;
-import org.eclipse.jgit.transport.CredentialsProvider;
-import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
-import Main.RetrieveSetting.JSONDocument;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class LoggExceptions {
-
-	public static void main(String[] args) {
-		try {
-			ArrayList<String> list =null;
-			list.add("foo");
-		} catch (Exception e) {
-			// FIXME: handle exception
-			Logg(e, "Test from main", "Main in LoggExeption", null);
-		}
-
-	}
-
-	public static void Logg(Exception exception, String content, String id, MessageReceivedEvent event) {
+public class Logg {
+	public Logg(Exception exception, String content, String id, MessageReceivedEvent event) {
 
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			//if linux (RasPi)
 			String currentContent = "", newContent = "";
+
+			new Print("An error was caught", true);
 
 			//Parses the stackTrace as string for it to be saved
 			StringWriter errors = new StringWriter();
@@ -48,7 +32,7 @@ public class LoggExceptions {
 			String currentTime =sdf.format(cal.getTime());
 
 			String eventMessage=null, guild=null;
-			
+
 			if(event!=null){
 				if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					guild=", in the "+event.getGuild().getName()+" guild";
@@ -56,15 +40,17 @@ public class LoggExceptions {
 				else{
 					guild =", in a Private message group";
 				}
-				
+
 				eventMessage="\nThe sender was "+event.getAuthor().getName()+"#"+event.getAuthor().getDiscriminator()+" in the " +event.getChannel().getName()+ 
-			" channel"+guild;
+						" channel"+guild;
 			}
-			
+
 			newContent="##New error at "+currentTime+"\nMessage was: "+content+"\nId: "+id+eventMessage+"\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
-				FileReader reader = new FileReader("Files/Errorlog.md");
+				String path="/var/lib/tomcat7/webapps/ROOT/";
+				FileReader reader = new FileReader(path+"Errorlog.md");
+				@SuppressWarnings("resource")
 				BufferedReader br = new BufferedReader(reader); 
 				Iterator<String> iterator= br.lines().iterator();
 				//Saves the earlier content to currentContent string
@@ -72,48 +58,48 @@ public class LoggExceptions {
 					currentContent+=iterator.next()+"\n";
 				}
 				//Writes old + new content
-				try(FileWriter file = new FileWriter("Files/Errorlog.md")){
-					file.write(newContent+""+currentContent);
+				
+				currentContent=currentContent.replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>", "");
+				
+				try(FileWriter file = new FileWriter(path+"Errorlog.md")){
+					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>"+newContent+""+currentContent);
 				}
 				catch (Exception e) {
 					// FIXME: handle exception
-					error(e, "Error writing file", content, id);
+					new Error(e, "Error writing file", content, id);
 				}
 				
+				new Print("Successfully edited", false);
+
 				//Succeded to write, now shall commit and push
-				
-				try {
 
-					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
-					
-					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Updated Errorlog").call();
-					
-					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", RetrieveSetting.getKey("gitPass", JSONDocument.secret));
-					
-					git.push().setRemote("origin").setCredentialsProvider(cp).call();
-					
-					System.out.println("Push succesfull");
-
-				} catch (Exception e) {
-					// FIXME Auto-generated catch block
-					error(e, "Error with git", content, id);
-				}
+//				try {
+//
+//					@SuppressWarnings("resource")
+//					Git git = new Git(new FileRepository("/home/pi/DiscordBot/DiscordBot/.git"));
+//
+//					git.commit().setOnly("Discord/Files/Errorlog.md").setMessage("Error caught").call();
+//
+//					CredentialsProvider cp = new UsernamePasswordCredentialsProvider("kakan9898", ReadWrite.getKey("gitPass", JSONDocument.secret));
+//
+//					git.push().setRemote("origin").setCredentialsProvider(cp).call();
+//
+//					new Print("Push succesfull", false);
+//
+//				} catch (Exception e) {
+//					// FIXME Auto-generated catch block
+//					new Error(e, "Error with git", content, id);
+//				}
 
 			}
 			catch (Exception e) {
 				// FIXME: handle exception
-				error(e, "Error with reading, maybe", content, id);
+				new Error(e, "Error with reading, maybe", content, id);
 			}
 		}
 		else {
 			//if windows
 			exception.printStackTrace();
 		}
-	}
-	public static void error(Exception exception, String whyThough, String content, String id) {
-		//Skicka mail till mig
-		System.err.println(" ---- FUCK FUCK FUCK ----");
-		exception.printStackTrace();
-	}
-
+	}	
 }

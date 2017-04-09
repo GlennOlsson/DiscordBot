@@ -1,20 +1,17 @@
-package Main;
+package main;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Main.RetrieveSetting.JSONDocument;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.PrivateChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import backend.*;
+import backend.ReadWrite.JSONDocument;
+import net.dv8tion.jda.core.*;
+import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.events.message.*;
+import net.dv8tion.jda.core.events.message.priv.*;
+import net.dv8tion.jda.core.hooks.*;
 
 public class Test extends ListenerAdapter{
 
@@ -23,26 +20,32 @@ public class Test extends ListenerAdapter{
 
 		JDA jda = null;
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken(RetrieveSetting.getKey("oath",JSONDocument.secret)).addListener(new Test()).buildBlocking();
+			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath",JSONDocument.secret)).addListener(new Test()).buildBlocking();
 
 		} catch (Exception e) {
 			
-			LoggExceptions.Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+			new Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
-
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
+		String idKakan="165507757519273984", idKakansBot="282116563266437120";
+		
+	for (Member member : channels.getMembers()) {
+		if(member.getUser().getId().equals(jda.getSelfUser().getId())){
+			//Is KakansBot
+			System.out.println(member.hasPermission(Permission.MESSAGE_MANAGE));
+		}
+	}
+
+//		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
+	}
+	
+	public Test(){
 		
 	}
-
-	public Test(){
-
-	}
+	
 	public void onMessageReceived(MessageReceivedEvent event){	
-
 		if(event.getAuthor().getName().equals("Kakan")){
-			
-			System.out.println(event.getChannel().getType().equals(ChannelType.PRIVATE));
 			
 			String content = event.getMessage().getContent().toLowerCase();
 
@@ -62,8 +65,6 @@ public class Test extends ListenerAdapter{
 
 				privateChannel.sendMessage("Sup").queue();
 
-
-
 			}
 		}
 	}
@@ -71,8 +72,12 @@ public class Test extends ListenerAdapter{
 
 		String content = event.getMessage().getContent().toLowerCase();
 		
-		System.out.println(event.getChannel().getName());
+		System.out.println();
 
+		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
+			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
+		}
+		
 		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
 			System.out.println();
 		}
