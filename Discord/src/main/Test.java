@@ -39,15 +39,13 @@ public class Test extends ListenerAdapter{
 
 //		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
 	}
-
+	
 	public Test(){
-
+		
 	}
+	
 	public void onMessageReceived(MessageReceivedEvent event){	
 		if(event.getAuthor().getName().equals("Kakan")){
-			
-			
-			System.out.println();
 			
 			String content = event.getMessage().getContent().toLowerCase();
 

@@ -9,6 +9,7 @@ Send mail if error is caught while Error Logging
 import commands.*;
 import backend.*;
 import backend.ReadWrite.*;
+import backend.ReadWrite;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.*;
@@ -48,7 +49,7 @@ public class DiscordBot extends ListenerAdapter{
 			new Logg(e, "Error in Main", "Unkown error", null);
 		}
 	}
-
+	
 	public void onReady(ReadyEvent event) {
 		try {
 			super.onReady(event);
@@ -71,7 +72,7 @@ public class DiscordBot extends ListenerAdapter{
 	}
 
 	public DiscordBot(){
-
+		
 		//		System.exit(3);
 	}
 
@@ -270,5 +271,26 @@ public class DiscordBot extends ListenerAdapter{
 					, "Unknown error in onGuildMemeberJoin", null);
 		}
 	}
-
+	public void onGenericEvent(Event event){
+		
+		String lastMsString = ReadWrite.getKey("dailyMs", JSONDocument.setting);
+		if(lastMsString.equals(null)||lastMsString.equals("")){
+			ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
+			return;
+		}
+		int lastMs=0;
+		try{
+			lastMs=Integer.parseInt(lastMsString);
+		}catch (Exception e) {
+			// FIXME: handle exception
+			new Print("Error with converting string -> int. Returning method and settign dailyMs JSON key to currentTimeMillis", false);
+			ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
+			return;
+		}
+		if(System.currentTimeMillis()>=(lastMs+86400000)){
+			for (int i = 0; i < event.getJDA().getTextChannelsByName("aww", true).size(); i++) {
+				new DailyDose("aww", event.getJDA().getTextChannelsByName("aww", true).get(i));
+			}
+		}
+	}
 }
