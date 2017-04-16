@@ -18,6 +18,13 @@ public class Reddit {
 
 		//If reddit post
 
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			// FIXME Auto-generated catch block
+			new Logg(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
+		}
+		
 		if(content.contains(" ")){
 			String[] split = content.split(" ");
 			if(split.length>2||split[1].length()>0){
