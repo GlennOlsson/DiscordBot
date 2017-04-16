@@ -270,6 +270,35 @@ public class DiscordBot extends ListenerAdapter{
 					, "Unknown error in onGuildMemeberJoin", null);
 		}
 	}
+	
+	public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
+		
+		try{
+			MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
+			channel.sendMessage("Bye bye, *"+event.getMember().getAsMention()+"*!").queue();
+
+			if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
+				event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
+						"** with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
+						+"** just left us").queue();
+			}
+			else {
+				if(!event.getGuild().getOwner().getUser().hasPrivateChannel()){
+					event.getGuild().getOwner().getUser().openPrivateChannel().complete(true);
+				}
+				event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
+						event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just left your guild \"**"+
+						event.getGuild().getName()+"**\". *If you don't want to recieve these as private messages, create a channel called \"modlog\", and I will post"
+						+ " this information there*").queue();
+			}
+		}
+		catch (Exception e) {
+			new Logg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
+					, "Unknown error in onGuildMemeberLeave", null);
+		}
+		
+	}
+	
 	public void onGenericEvent(Event event){
 		
 		try{
