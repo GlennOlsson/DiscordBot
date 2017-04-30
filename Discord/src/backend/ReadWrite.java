@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -17,10 +18,10 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class ReadWrite {
 	
 	public enum JSONDocument {
-		secret, setting;
+		secret, setting
 	}
 
-	public static Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String content, String[] roleList) {
+	public static Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String[] roleList) {
 		List<Role> roles = null;
 
 		if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
@@ -34,8 +35,8 @@ public class ReadWrite {
 			ArrayList<String> rolesName = new ArrayList<>();
 			for (int i = 0; i < roles.size(); i++) {
 				rolesName.add(roles.get(i).getName().toString().toLowerCase());
-				for (int j = 0; j < roleList.length; j++) {
-					if(rolesName.contains(roleList[j].toLowerCase())){
+				for (String aRoleList : roleList) {
+					if (rolesName.contains(aRoleList.toLowerCase())) {
 						return true;
 					}
 				}
@@ -54,7 +55,7 @@ public class ReadWrite {
 		try {
 			String prefix=";";
 			JSONParser parser = new JSONParser();
-			Object object = parser.parse(new FileReader("Files/settings.json"));
+			Object object = parser.parse(new FileReader(getPath()));
 			JSONObject jsonObject = (JSONObject) object;
 
 			if(jsonObject.containsKey("prefix"+id)){
@@ -78,21 +79,19 @@ public class ReadWrite {
 
 		try {
 			JSONParser parser = new JSONParser();
-			Object object = parser.parse(new FileReader("Files/settings.json"));
+			Object object = parser.parse(new FileReader(getPath()));
 
 			JSONObject jsonObject = (JSONObject) object;
 
 			jsonObject.put("prefix"+id, prefix);
 
 			//WRITING JSON
-			try (FileWriter file = new FileWriter("Files/settings.json")){
+			try (FileWriter file = new FileWriter(getPath())){
 				file.write(jsonObject.toJSONString());
 				new Print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
 			}
 		}
 		catch (Exception e) {
-			// FIXME: handle exception
-
 			new Print("-- ERROR IN WRITING IN settings.json --", true);
 			new Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
 		}
@@ -105,12 +104,7 @@ public class ReadWrite {
 				JSONParser parser = new JSONParser();
 				Object object = null;
 
-				if(System.getProperty("os.name").toLowerCase().contains("windows")){
-					object = parser.parse(new FileReader("C:\\Users\\Glenn\\Documents\\DiscordBot\\Secret.json"));
-				}
-				else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
-					object =  parser.parse(new FileReader("/home/pi/DiscordBot/Secret.json"));
-				}
+					object = parser.parse(new FileReader(getPath()));
 
 				JSONObject jsonObject = (JSONObject) object;
 
@@ -123,9 +117,7 @@ public class ReadWrite {
 		else if (fileSort==JSONDocument.setting) {
 			try {
 				JSONParser parser = new JSONParser();
-				Object object = null;
-
-				object = parser.parse(new FileReader("Files/settings.json"));
+				Object object = parser.parse(new FileReader(getPath()));
 
 				JSONObject jsonObject = (JSONObject) object;
 
@@ -142,15 +134,13 @@ public class ReadWrite {
 
 		try {
 			JSONParser parser = new JSONParser();
-			Object object = null;
-
-			object = parser.parse(new FileReader("Files/settings.json"));
+			Object object = parser.parse(new FileReader(getPath()));
 
 			JSONObject jsonObject = (JSONObject) object;
 
 			jsonObject.put(key, value);
 
-			try (FileWriter file = new FileWriter("Files/settings.json")){
+			try (FileWriter file = new FileWriter(getPath())){
 				file.write(jsonObject.toJSONString());
 				new Print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
 			}
@@ -160,4 +150,15 @@ public class ReadWrite {
 		}
 	}
 
+	@Nullable
+	@SuppressWarnings("unchecked")
+	public static String getPath(){
+		if(System.getProperty("os.name").toLowerCase().contains("windows")){
+			return "C:\\Users\\Glenn\\Documents\\DiscordBot\\Secret.json";
+		}
+		else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+			return "/home/pi/DiscordBot/Secret.json";
+		}
+		return null;
+	}
 }

@@ -26,7 +26,7 @@ public class Clean {
 		TextChannel channel =event.getTextChannel();
 		String[] roleList ={"Moderator", "Commissioner", "Server Owner"};
 
-		if(ReadWrite.isAuthorized(channel, event, content, roleList)){
+		if(ReadWrite.isAuthorized(channel, event, roleList)){
 			int amount = 1;
 			String argument1="all", argument2="all";
 
