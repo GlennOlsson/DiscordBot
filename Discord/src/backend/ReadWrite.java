@@ -150,7 +150,6 @@ public class ReadWrite {
 		}
 	}
 
-	@Nullable
 	@SuppressWarnings("unchecked")
 	public static String getPath(){
 		if(System.getProperty("os.name").toLowerCase().contains("windows")){
