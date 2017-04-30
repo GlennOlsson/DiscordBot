@@ -30,12 +30,13 @@ public class Test extends ListenerAdapter{
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		String idKakan="165507757519273984", idKakansBot="282116563266437120";
 
-		for (Member member : channels.getMembers()) {
-			if(member.getUser().getId().equals(jda.getSelfUser().getId())){
-				//Is KakansBot
-				System.out.println(member.hasPermission(Permission.MESSAGE_MANAGE));
-			}
-		}
+		EmbedBuilder builder = new EmbedBuilder().
+				setImage("C:\\Users\\Glenn\\AppData\\Roaming\\KakansBot\\image.jpg")
+//				.setThumbnail("https://i.reddituploads.com/049fc05d0edd4cefab124d3ebdc8c980?fit=max&h=1536&w=1536&s=10f001d326f2f13ba134e7ece4d9d408")
+				;
+		
+		channels.sendMessage(builder.build()).queue();
+
 
 		//		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
 	}
@@ -46,27 +47,12 @@ public class Test extends ListenerAdapter{
 
 	public void onMessageReceived(MessageReceivedEvent event){	
 		if(event.getAuthor().getName().equals("Kakan")){
-
-			String content = event.getMessage().getContent().toLowerCase();
-
-			if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
-
-				event.getMessage().delete().queue();
-
-				PrivateChannel privateChannel=null;
-
-				if(event.getAuthor().hasPrivateChannel()){
-					privateChannel=event.getAuthor().getPrivateChannel();
-				}
-				else {
-					event.getAuthor().openPrivateChannel().queue();
-					privateChannel=event.getAuthor().getPrivateChannel();
-				}
-
-				privateChannel.sendMessage("Sup").queue();
-
-			}
-		}
+			EmbedBuilder builder = new EmbedBuilder().
+					setImage("https://i.reddituploads.com/049fc05d0edd4cefab124d3ebdc8c980?fit=max&h=1536&w=1536&s=10f001d326f2f13ba134e7ece4d9d408")
+					.setThumbnail("https://i.reddituploads.com/049fc05d0edd4cefab124d3ebdc8c980?fit=max&h=1536&w=1536&s=10f001d326f2f13ba134e7ece4d9d408");
+			
+			event.getChannel().sendMessage(builder.build()).queue();
+		}	
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
 

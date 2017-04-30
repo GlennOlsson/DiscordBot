@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.events.message.*;
 public class Prefix {
 	public Prefix(MessageChannel channel, MessageReceivedEvent event, String content, String newPrefix) {
 		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
-		if(ReadWrite.isAuthorized(event.getTextChannel(), event, content, roleslist)){
+		if(ReadWrite.isAuthorized(event.getTextChannel(), event, roleslist)){
 			new Print("HALLELULIA", false);
 			if(!newPrefix.equals("")){
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
