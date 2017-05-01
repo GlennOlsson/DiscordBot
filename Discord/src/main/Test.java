@@ -30,29 +30,21 @@ public class Test extends ListenerAdapter{
 		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 		String idKakan="165507757519273984", idKakansBot="282116563266437120";
 
-		EmbedBuilder builder = new EmbedBuilder().
-				setImage("C:\\Users\\Glenn\\AppData\\Roaming\\KakansBot\\image.jpg")
-//				.setThumbnail("https://i.reddituploads.com/049fc05d0edd4cefab124d3ebdc8c980?fit=max&h=1536&w=1536&s=10f001d326f2f13ba134e7ece4d9d408")
-				;
-		
-		channels.sendMessage(builder.build()).queue();
 
 
-		//		channels.sendMessage(jda.getUserById(id).getAsMention()).queue();
 	}
-
 	public Test(){
 
 	}
 
-	public void onMessageReceived(MessageReceivedEvent event){	
+	public void onMessageReceived(MessageReceivedEvent event){
 		if(event.getAuthor().getName().equals("Kakan")){
 			EmbedBuilder builder = new EmbedBuilder().
 					setImage("https://i.reddituploads.com/049fc05d0edd4cefab124d3ebdc8c980?fit=max&h=1536&w=1536&s=10f001d326f2f13ba134e7ece4d9d408")
 					.setThumbnail("https://i.reddituploads.com/049fc05d0edd4cefab124d3ebdc8c980?fit=max&h=1536&w=1536&s=10f001d326f2f13ba134e7ece4d9d408");
-			
+
 			event.getChannel().sendMessage(builder.build()).queue();
-		}	
+		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
 

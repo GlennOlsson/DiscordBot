@@ -20,7 +20,6 @@ import net.dv8tion.jda.core.hooks.*;
 
 public class DiscordBot extends ListenerAdapter{
 
-
 	public static void main(String[] args) {
 		try {		
 			//		new Test();

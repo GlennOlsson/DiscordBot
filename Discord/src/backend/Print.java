@@ -9,12 +9,13 @@ import java.util.Iterator;
 
 public class Print {
 	public Print(String message, Boolean isErrPrint) {
+
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
 			String currentTime =sdf.format(cal.getTime());
 
-			String currentContent="",newContent="";
+			String currentContent="",newContent;
 
 			if(isErrPrint==null){
 				newContent="	"+message+"\n";
@@ -30,7 +31,7 @@ public class Print {
 				String path="/var/lib/tomcat7/webapps/ROOT/";
 				FileReader reader = new FileReader(path+"Print.md");
 				@SuppressWarnings("resource")
-				BufferedReader br = new BufferedReader(reader); 
+				BufferedReader br = new BufferedReader(reader);
 				Iterator<String> iterator= br.lines().iterator();
 				//Saves the earlier content to currentContent string
 				while (iterator.hasNext()) {
