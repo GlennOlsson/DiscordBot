@@ -78,12 +78,21 @@ public class Help {
 						+ "Use like: ;prefix <newPrefix>").queue();
 				return;
 			}
+			
+			else if (argument.equals("game")||argument.equals("games")) {
+				privateChannel.sendMessage("This command enables you to set roles for yourself, consisting of games. " +
+						"You choose the games that you actively play, so that members on the server can mention you, " +
+						"when they just want to notify people on specific games. Send **;game**, and I'll show you available games" +
+						"on the server, and then you choose which to add, one at a time.").queue();
+				return;
+			}
+			
 			else if (argument.length()>1) {
 				privateChannel.sendMessage("Sorry, but your argument did not get a match").queue();
 			}
 		}
 		String command = "";
-		String[] features = {"Reddit",";gif",";source",";clean",";prefix"};
+		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";game"};
 		for (int i = 0; i < features.length; i++) {
 			command = command+ features[i]+", ";
 		}

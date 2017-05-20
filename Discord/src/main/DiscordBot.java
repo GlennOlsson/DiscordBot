@@ -11,6 +11,12 @@
 package main;
 /* ----------TODO
 
+Fix startup of Daily, sends daily eventhough not 24 hours has passed, if program is rebooted
+
+Array in JSON, for GameRoles
+
+Send to all guilds, I can send a message to all guilds, consisting of exactly what I write
+
 Send mail if error is caught while Error Logging
 
  */
@@ -30,9 +36,9 @@ import net.dv8tion.jda.core.hooks.*;
 
 
 public class DiscordBot extends ListenerAdapter{
-
+	
 	public static void main(String[] args) {
-		try {		
+		try {
 			//		new Test();
 			JDA jda = null;
 			try {
@@ -41,9 +47,9 @@ public class DiscordBot extends ListenerAdapter{
 				new Logg(e, "JDA Builder", "JDA Builder", null);
 			}
 			TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-
+			
 			channel.sendMessage("Sucessfully logged in!").queue();
-
+			
 			try{
 				if(System.getProperty("os.name").toLowerCase().contains("linux")){
 					new Print("\n		New run: Nr. "+Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount", JSONDocument.setting))+1)+"\n", null);
@@ -67,32 +73,32 @@ public class DiscordBot extends ListenerAdapter{
 			new Logg(e, "Error in onReady", "Unknown error", null);
 		}
 	}
-
+	
 	@Override
 	public void onReconnect(ReconnectedEvent event) {
 		try {
 			super.onReconnect(event);
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
-
+			
 			new Print("Reconected", false);
 		}catch (Exception e) {
 			new Logg(e, "Error in onReconnect", "Unknown error", null);
 		}
 	}
-
+	
 	public DiscordBot(){
 		
 		//		System.exit(3);
 	}
-
+	
 	public void onMessageReceived(MessageReceivedEvent event){
 		try{
 			if(!event.getAuthor().getName().equals("Kakan's Bot")){
 				String  contentCase=event.getMessage().getContent(), content = event.getMessage().getContent().toLowerCase();
 				MessageChannel channel = event.getChannel();
-
+				
 				channel.sendTyping();
-
+				
 				if(content.toLowerCase().equals("prefix")){
 					if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 						//Private channel
@@ -103,7 +109,7 @@ public class DiscordBot extends ListenerAdapter{
 						channel.sendMessage("The current prefix on "+event.getGuild().getName()+" is :\""+ReadWrite.getPrefix(event.getGuild().getId())+"\"").queue();
 					}
 				}
-
+				
 				//Reddit command
 				if((content.contains("://reddit")||content.contains("://www.reddit"))&&(content.substring(0,"https://www.reddit".length()).contains("https://www.reddit")||
 						content.substring(0,"http://www.reddit".length()).contains("http://www.reddit")||
@@ -114,10 +120,10 @@ public class DiscordBot extends ListenerAdapter{
 					} catch (Exception e) {
 						new Logg(e, content, "Error with reddit command", event);
 					}
-
+					
 					return;
 				}
-
+				
 				//Gets prefix
 				String prefix=";";
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
@@ -140,79 +146,79 @@ public class DiscordBot extends ListenerAdapter{
 			new Logg(e, "Error with onMessageRecievedEvent","Unknown error", event);
 		}
 	}
-
+	
 	private void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel) {
 		// Made so that it can check ; as a prefix, if the first check fails. This way, ; is always a prefix
-
+		
 		if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
 			//; commands
-
+			
 			String command = content.substring(prefix.length()), afterCommand = "";
 			if(command.contains(" ")){
 				command=command.split(" ")[0];
 				afterCommand = content.substring(prefix.length()+command.length()+1);
 				new Print("Aftercommand=\""+afterCommand+"\"", false);
 			}
-
+			
 			switch (command) {
-			case "clean":
-				try {
-					new Clean(channel, event, content);
-				} catch (Exception e) {
-					new Logg(e, content, "Error with clean command", event);
-				}
-				break;
-
-			case "gif":
-				try {
-					new Gif(channel, event, content);
-				} catch (Exception e) {
-					new Logg(e, content, "Error with gif command", event);
-				}
-				break;
-
-			case "source":
-				try {
-					new Source(channel);
-				} catch (Exception e) {
-					new Logg(e, content, "Error with source command", event);
-				}
-				break;
-
-			case "prefix":
-				try {
-					new Prefix(channel, event, content, afterCommand);
-				} catch (Exception e) {
-					new Logg(e, content, "Error with prefix command", event);
-				}
-				break;
-
-			case "up":
-				try {
-					//					new Up(channel, event, content);
-				} catch (Exception e) {
-					new Logg(e, content, "Error with up command", event);
-				}
-				break;
-
+				case "clean":
+					try {
+						new Clean(channel, event, content);
+					} catch (Exception e) {
+						new Logg(e, content, "Error with clean command", event);
+					}
+					break;
+				
+				case "gif":
+					try {
+						new Gif(channel, event, content);
+					} catch (Exception e) {
+						new Logg(e, content, "Error with gif command", event);
+					}
+					break;
+				
+				case "source":
+					try {
+						new Source(channel);
+					} catch (Exception e) {
+						new Logg(e, content, "Error with source command", event);
+					}
+					break;
+				
+				case "prefix":
+					try {
+						new Prefix(channel, event, content, afterCommand);
+					} catch (Exception e) {
+						new Logg(e, content, "Error with prefix command", event);
+					}
+					break;
+				
+				case "up":
+					try {
+						//					new Up(channel, event, content);
+					} catch (Exception e) {
+						new Logg(e, content, "Error with up command", event);
+					}
+					break;
+				
 				case "game":
-				try {
-					new GameRoles(channel, event, afterCommand);
-				}
-
-				catch (Exception e){
-					new Logg(e, content, "Error with game command", event);
-				}
-			case "help":
-
-				try {
-					new Help(event, content);
-				} catch (Exception e) {
-					new Logg(e, content, "Error with help command", event);
-				}
-				break;
+					try {
+						new GameRoles(channel, event, afterCommand);
+					}
+					catch (Exception e){
+						new Logg(e, content, "Error with game command", event);
+					}
+					break;
+				
+				case "help":
+					try {
+						new Help(event, content);
+					} catch (Exception e) {
+						new Logg(e, content, "Error with help command", event);
+					}
+					break;
 			}
-
+			
 			//				else{
 			//					channel.sendMessage("Sorry, I don't recognize that command. Try ;help though").queue();
 			//				}
@@ -224,23 +230,23 @@ public class DiscordBot extends ListenerAdapter{
 			}
 		}
 	}
-
+	
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
 		try{
 			PrivateChannel channel=event.getChannel();
 			String content = event.getMessage().getContent();
-
+			
 			if(!event.getAuthor().getName().equals("Kakan's Bot")){
-
+				
 				channel.sendTyping();
-
+				
 				//Already checked if private
 				String prefix=ReadWrite.getPrefix(channel.getId());
-
+				
 				if(content.equals("prefix")){
 					return;
 				}
-
+				
 				else if(content.length()>=prefix.length()){
 					if(!content.substring(0, prefix.length()).equals(prefix)&&!Character.toString(content.charAt(0)).equals(";")){
 						channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
@@ -262,12 +268,12 @@ public class DiscordBot extends ListenerAdapter{
 					", channel: +"+event.getChannel().getName()+", MessageID: "+event.getMessage().getId(), "Unknown error in onPrivateMessageRecieved", null);
 		}
 	}
-
+	
 	public void onGuildMemberJoin(GuildMemberJoinEvent event){
 		try{
 			MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
 			channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
-
+			
 			if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
 				event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
 						"** with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
@@ -294,7 +300,7 @@ public class DiscordBot extends ListenerAdapter{
 		try{
 			MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
 			channel.sendMessage("Bye bye, *"+event.getMember().getAsMention()+"*!").queue();
-
+			
 			if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
 				event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
 						"** with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
@@ -320,29 +326,29 @@ public class DiscordBot extends ListenerAdapter{
 	public void onGenericEvent(Event event){
 		
 		try{
-		String lastMsString = ReadWrite.getKey("dailyMs", JSONDocument.setting);
-		if(lastMsString==null||lastMsString.equals("")){
-			ReadWrite.setKey("dailyMs", "0");
-			return;
-		}
-		long lastMs=0;
-		try{
-			lastMs=Long.parseLong(lastMsString);
-		}catch (Exception e) {
-			// FIXME: handle exception
-			new Print("Error with converting string -> long. Returning method and settign dailyMs JSON key to currentTimeMillis", false);
-			ReadWrite.setKey("dailyMs",Long.toString(System.currentTimeMillis()));
-			return;
-		}
-		if(System.currentTimeMillis()>=(lastMs+86400000)){
-			for (int i = 0; i < event.getJDA().getTextChannelsByName("aww", true).size(); i++) {
-				new DailyDose("aww", event.getJDA().getTextChannelsByName("aww", true).get(i));
+			String lastMsString = ReadWrite.getKey("dailyMs", JSONDocument.setting);
+			if(lastMsString==null||lastMsString.equals("")){
+				ReadWrite.setKey("dailyMs", "0");
+				return;
 			}
-			ReadWrite.setKey("dailyMs",Long.toString(System.currentTimeMillis()));
-		}
+			long lastMs=0;
+			try{
+				lastMs=Long.parseLong(lastMsString);
+			}catch (Exception e) {
+				// FIXME: handle exception
+				new Print("Error with converting string -> long. Returning method and settign dailyMs JSON key to currentTimeMillis", false);
+				ReadWrite.setKey("dailyMs",Long.toString(System.currentTimeMillis()));
+				return;
+			}
+			if(System.currentTimeMillis()>=(lastMs+86400000)){
+				for (int i = 0; i < event.getJDA().getTextChannelsByName("aww", true).size(); i++) {
+					new DailyDose("aww", event.getJDA().getTextChannelsByName("aww", true).get(i));
+				}
+				ReadWrite.setKey("dailyMs",Long.toString(System.currentTimeMillis()));
+			}
 		}catch (Exception e) {
 			// FIXME: handle exception
-		new Logg(e, "Error in onEvent", "Unknown errorc caught", null);
+			new Logg(e, "Error in onEvent", "Unknown errorc caught", null);
 		}
 	}
 }

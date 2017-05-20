@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 public class Print {
-	public Print(String message, Boolean isErrPrint) {
+	public Print(Object message, Boolean isErrPrint) {
 
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			Calendar cal = Calendar.getInstance();

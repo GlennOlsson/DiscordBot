@@ -11,7 +11,9 @@
       <root url="jar://$PROJECT_DIR$/Discord/JDA-3.0.BETA2_143-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/Discord/JDA-3.0.BETA2_143-withDependencies.jar!/" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/Discord/JDA-3.0.BETA2_143-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>
