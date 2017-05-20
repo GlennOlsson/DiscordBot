@@ -1,7 +1,7 @@
 <component name="CopyrightManager">
-  <settings default="CRight">
+  <settings>
     <module2copyright>
-      <element module="Project Files" copyright="CRight" />
+      <element module="All" copyright="CRight" />
     </module2copyright>
   </settings>
 </component>
