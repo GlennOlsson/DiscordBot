@@ -138,7 +138,7 @@ public class DiscordBot extends ListenerAdapter{
 					prefix=ReadWrite.getPrefix(event.getGuild().getId());
 				}
 				try {
-					onMessageReceivedPrefix(event, prefix, content, channel);
+					onMessageReceivedPrefix(event, prefix, content, channel, contentCase);
 				} catch (Exception e) {
 					// FIXME: handle exception
 					new ErrorLogg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageRecievedPrefix for "+channel.getName()+ " channel", event);
@@ -150,7 +150,8 @@ public class DiscordBot extends ListenerAdapter{
 		}
 	}
 	
-	private void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel) {
+	private void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel,
+	                                     String contentCase) {
 		// Made so that it can check ; as a prefix, if the first check fails. This way, ; is always a prefix
 		
 		if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
@@ -159,7 +160,7 @@ public class DiscordBot extends ListenerAdapter{
 			String command = content.substring(prefix.length()), afterCommand = "";
 			if(command.contains(" ")){
 				command=command.split(" ")[0];
-				afterCommand = content.substring(prefix.length()+command.length()+1);
+				afterCommand = contentCase.substring(prefix.length()+command.length()+1);
 				new Print("Aftercommand=\""+afterCommand+"\"", false);
 			}
 			
@@ -242,7 +243,7 @@ public class DiscordBot extends ListenerAdapter{
 		else {
 			if(!prefix.equals(";")){
 				//Call event but with ; as prefix
-				onMessageReceivedPrefix(event, ";", content, channel);
+				onMessageReceivedPrefix(event, ";", content, channel, contentCase);
 			}
 		}
 	}
