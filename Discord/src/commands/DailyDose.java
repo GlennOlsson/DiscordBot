@@ -36,7 +36,7 @@ public class DailyDose {
 		}
 		catch (Exception e) {
 			// FIXME: handle exception
-			new Logg(e, "Error with DailyDose class", "Unknown error", null);
+			new ErrorLogg(e, "Error with DailyDose class", "Unknown error", null);
 		}
 	}
 }

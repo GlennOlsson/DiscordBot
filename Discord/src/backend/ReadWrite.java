@@ -78,7 +78,7 @@ public class ReadWrite {
 		} catch (Exception e) {
 
 			new Print("ERROR WITH PREFIX, RETURNING \";\"", true);
-			new Logg(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
+			new ErrorLogg(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
 			return ";";
 		}
 	}
@@ -102,28 +102,12 @@ public class ReadWrite {
 		}
 		catch (Exception e) {
 			new Print("-- ERROR IN WRITING IN settings.json --", true);
-			new Logg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
+			new ErrorLogg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
 		}
 	}
 	
 	//Earlier RetrieveSetting.java
-	public static String getKey(String key, JSONDocument fileSort){
-		if(fileSort==JSONDocument.secret){
-			try {
-				JSONParser parser = new JSONParser();
-				Object object = null;
-
-					object = parser.parse(new FileReader(getPath()));
-
-				JSONObject jsonObject = (JSONObject) object;
-
-				return (String) jsonObject.get(key);
-
-			} catch (Exception e) {
-				new Logg(e, "Error in fetching from secret file", "String key: --"+key+"--", null);
-			}
-		}
-		else if (fileSort==JSONDocument.setting) {
+	public static String getKey(String key){
 			try {
 				JSONParser parser = new JSONParser();
 				Object object = parser.parse(new FileReader(getPath()));
@@ -133,9 +117,9 @@ public class ReadWrite {
 				return (String) jsonObject.get(key);
 
 			} catch (Exception e) {
-				new Logg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
+				new ErrorLogg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
 			}
-		}
+
 		return null;
 	}
 	@SuppressWarnings("unchecked")
@@ -155,7 +139,7 @@ public class ReadWrite {
 			}
 
 		} catch (Exception e) {
-			new Logg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
+			new ErrorLogg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
 		}
 	}
 

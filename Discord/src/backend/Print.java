@@ -56,12 +56,12 @@ public class Print {
 				}
 				catch (Exception e) {
 					// FIXME: handle exception
-					new Logg(e, "Error writing Logg.md", "In File.write", null);
+					new ErrorLogg(e, "Error writing ErrorLogg.md", "In File.write", null);
 				}
 			}
 			catch (Exception e) {
 				// FIXME: handle exception
-				new Logg(e, "Error reading Logg.md", "In File.read and others", null);
+				new ErrorLogg(e, "Error reading ErrorLogg.md", "In File.read and others", null);
 			}
 		}
 		else{

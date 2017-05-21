@@ -51,14 +51,14 @@ public class Gif {
 			} catch (Exception e) {
 				// FIXME: handle exception
 				event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-				new Logg(e, content, event.getMessage().getId(), event);
+				new ErrorLogg(e, content, event.getMessage().getId(), event);
 			}
 
 		} catch (Exception e) {
 			// FIXME Auto-generated catch block
 			channel.sendMessage("Error with ;gif command. Use ';help gif' to get help with the command, wither here or in PM").queue();
 
-			new Logg(e, content, event.getMessage().getId(), event);
+			new ErrorLogg(e, content, event.getMessage().getId(), event);
 
 		}
 		return;

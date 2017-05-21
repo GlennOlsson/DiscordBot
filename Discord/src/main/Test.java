@@ -16,33 +16,30 @@ import java.util.Comparator;
 import java.util.List;
 
 import backend.*;
-import backend.ReadWrite.JSONDocument;
 import commands.GameRoles;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.*;
 import net.dv8tion.jda.core.events.message.priv.*;
 import net.dv8tion.jda.core.hooks.*;
+import net.dv8tion.jda.core.managers.GuildController;
 
 public class Test extends ListenerAdapter{
 	
 	public static void main(String[] args) {
 		// FIXME Auto-generated method stub
 		
-//		JDA jda = null;
-//		try {
-//			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath",JSONDocument.secret)).addListener(new Test()).buildBlocking();
-//
-//		} catch (Exception e) {
-//
-//			new Logg(e, "JDA Fail in Test", "JDA Fail in Test", null);
-//
-//		}
-//		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-//		String idKakan="165507757519273984", idKakansBot="282116563266437120";
-//
-		
-		
+		JDA jda = null;
+		try {
+			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).addListener(new Test()).buildBlocking();
+
+		} catch (Exception e) {
+
+			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+
+		}
+		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
+		String idKakan="165507757519273984", idKakansBot="282116563266437120";
 	}
 	public Test(){
 	
@@ -50,13 +47,21 @@ public class Test extends ListenerAdapter{
 	
 	public void onMessageReceived(MessageReceivedEvent event){
 		
-		String content = event.getMessage().getContent().toLowerCase();
+		String content = event.getMessage().getContent(), afterCommand="", command = content.substring(";".length());
 		
-		if(event.getAuthor().getName().equals("Kakan")){
-			if(content.contains("game")){
-				new GameRoles(event.getChannel(), event, content.contains(" ")?
-						content.substring(5) : "");
-			}
+		if(event.getAuthor().getId().equals("165507757519273984")&&event.getGuild().getName().equals("Kakanistan")){
+				if(command.contains(" ")){
+					command=command.split(" ")[0];
+					afterCommand = content.substring(";".length()+command.length()+1);
+					new Print("Aftercommand=\""+afterCommand+"\"", false);
+				}
+
+				if(command.equals("game")){
+					new GameRoles(event.getChannel(),event,afterCommand);
+				}
+				else if(command.equals("editgame")){
+					GameRoles.editRoles(event, event.getChannel(), afterCommand);
+				}
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){

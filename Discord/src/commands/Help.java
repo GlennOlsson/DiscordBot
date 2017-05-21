@@ -28,7 +28,7 @@ public class Help {
 				event.getAuthor().openPrivateChannel().complete(true);
 			} catch (RateLimitedException e) {
 				// FIXME Auto-generated catch block
-				new Logg(e, content, "Could not create PrivateChannel", event);
+				new ErrorLogg(e, content, "Could not create PrivateChannel", event);
 			}
 			privateChannel=event.getAuthor().getPrivateChannel();
 		}

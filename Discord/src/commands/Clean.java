@@ -51,7 +51,7 @@ public class Clean {
 					// FIXME: handle exception
 
 					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();
-					new Logg(e, content, event.getMessage().getId(), event);
+					new ErrorLogg(e, content, event.getMessage().getId(), event);
 				}
 				if(content.split(" ").length>=3){
 					//If at least length=3
@@ -86,7 +86,7 @@ public class Clean {
 			} catch (Exception e) {
 				// FIXME Auto-generated catch block
 				channel.sendMessage("Error, contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id: "+event.getMessage().getId());
-				new Logg(e, content, event.getMessage().getId(), event);
+				new ErrorLogg(e, content, event.getMessage().getId(), event);
 			}
 			event.getMessage().delete().queue();
 			for (int i = 1; i < amount+1; i++) {

@@ -32,7 +32,7 @@ public class Reddit {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
 			// FIXME Auto-generated catch block
-			new Logg(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
+			new ErrorLogg(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
 		}
 		
 		if(content.contains(" ")){
@@ -97,7 +97,7 @@ public class Reddit {
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block;
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-									new Logg(e, content, event.getMessage().getId(), event);
+									new ErrorLogg(e, content, event.getMessage().getId(), event);
 								}
 
 								doc2.select(".zoom").attr("href");
@@ -200,7 +200,7 @@ public class Reddit {
 								} catch (Exception e) {
 									// FIXME Auto-generated catch block
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-									new Logg(e, content, event.getMessage().getId(), event);
+									new ErrorLogg(e, content, event.getMessage().getId(), event);
 								}
 
 								doc2.select(".zoom").attr("href");
@@ -259,7 +259,7 @@ public class Reddit {
 			}
 		} catch (Exception e) {
 			event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-			new Logg(e, content, event.getMessage().getId(), event);
+			new ErrorLogg(e, content, event.getMessage().getId(), event);
 		}
 		return;
 	}	

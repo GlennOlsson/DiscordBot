@@ -30,7 +30,7 @@ public class Return {
 				return uri.toASCIIString();
 			} catch (Exception e2) {
 				// FIXME: handle exception
-				new Logg(e2, "Error in convertUrl", "Error with URL -> URI  -> URI.toASCIIString", null);
+				new ErrorLogg(e2, "Error in convertUrl", "Error with URL -> URI  -> URI.toASCIIString", null);
 			}
 
 		}

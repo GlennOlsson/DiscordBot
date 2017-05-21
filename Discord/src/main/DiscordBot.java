@@ -17,6 +17,8 @@ Array in JSON, for GameRoles
 
 Send to all guilds, I can send a message to all guilds, consisting of exactly what I write
 
+Test to send audio through the bot
+
 Send mail if error is caught while Error Logging
 
  */
@@ -24,7 +26,6 @@ Send mail if error is caught while Error Logging
 
 import commands.*;
 import backend.*;
-import backend.ReadWrite.*;
 import commands.GameRoles;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
@@ -42,9 +43,9 @@ public class DiscordBot extends ListenerAdapter{
 			//		new Test();
 			JDA jda = null;
 			try {
-				jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath",JSONDocument.secret)).addListener(new DiscordBot()).buildBlocking();
+				jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).addListener(new DiscordBot()).buildBlocking();
 			} catch (Exception e) {
-				new Logg(e, "JDA Builder", "JDA Builder", null);
+				new ErrorLogg(e, "JDA Builder", "JDA Builder", null);
 			}
 			TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 			
@@ -52,16 +53,18 @@ public class DiscordBot extends ListenerAdapter{
 			
 			try{
 				if(System.getProperty("os.name").toLowerCase().contains("linux")){
-					new Print("\n		New run: Nr. "+Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount", JSONDocument.setting))+1)+"\n", null);
-					ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount", JSONDocument.setting))+1));
+					new Print("\n		New run: Nr. "+Integer.toString(
+							Integer.parseInt(ReadWrite.getKey("runCount"))+1)+"\n", null);
+					ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount"))+1));
 				}
 			}catch (Exception e) {
 				// FIXME: handle exception
 				//Probably could not convert string -> int
-				new Logg(e, "Error in Main", "Probably error with String -> int. runCount: \""+ReadWrite.getKey("runCount", JSONDocument.setting)+"\"", null);
+				new ErrorLogg(e, "Error in Main", "Probably error with String -> int. runCount: \""+
+						ReadWrite.getKey("runCount")+"\"", null);
 			}
 		} catch (Exception e) {
-			new Logg(e, "Error in Main", "Unkown error", null);
+			new ErrorLogg(e, "Error in Main", "Unkown error", null);
 		}
 	}
 	
@@ -70,7 +73,7 @@ public class DiscordBot extends ListenerAdapter{
 			super.onReady(event);
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
 		}catch (Exception e) {
-			new Logg(e, "Error in onReady", "Unknown error", null);
+			new ErrorLogg(e, "Error in onReady", "Unknown error", null);
 		}
 	}
 	
@@ -82,7 +85,7 @@ public class DiscordBot extends ListenerAdapter{
 			
 			new Print("Reconected", false);
 		}catch (Exception e) {
-			new Logg(e, "Error in onReconnect", "Unknown error", null);
+			new ErrorLogg(e, "Error in onReconnect", "Unknown error", null);
 		}
 	}
 	
@@ -118,7 +121,7 @@ public class DiscordBot extends ListenerAdapter{
 					try {
 						new Reddit(channel, event, content);
 					} catch (Exception e) {
-						new Logg(e, content, "Error with reddit command", event);
+						new ErrorLogg(e, content, "Error with reddit command", event);
 					}
 					
 					return;
@@ -138,12 +141,12 @@ public class DiscordBot extends ListenerAdapter{
 					onMessageReceivedPrefix(event, prefix, content, channel);
 				} catch (Exception e) {
 					// FIXME: handle exception
-					new Logg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageRecievedPrefix for "+channel.getName()+ " channel", event);
+					new ErrorLogg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageRecievedPrefix for "+channel.getName()+ " channel", event);
 				}
 			}
 		}catch (Exception e) {
 			// FIXME: handle exception
-			new Logg(e, "Error with onMessageRecievedEvent","Unknown error", event);
+			new ErrorLogg(e, "Error with onMessageRecievedEvent","Unknown error", event);
 		}
 	}
 	
@@ -165,7 +168,7 @@ public class DiscordBot extends ListenerAdapter{
 					try {
 						new Clean(channel, event, content);
 					} catch (Exception e) {
-						new Logg(e, content, "Error with clean command", event);
+						new ErrorLogg(e, content, "Error with clean command", event);
 					}
 					break;
 				
@@ -173,7 +176,7 @@ public class DiscordBot extends ListenerAdapter{
 					try {
 						new Gif(channel, event, content);
 					} catch (Exception e) {
-						new Logg(e, content, "Error with gif command", event);
+						new ErrorLogg(e, content, "Error with gif command", event);
 					}
 					break;
 				
@@ -181,7 +184,7 @@ public class DiscordBot extends ListenerAdapter{
 					try {
 						new Source(channel);
 					} catch (Exception e) {
-						new Logg(e, content, "Error with source command", event);
+						new ErrorLogg(e, content, "Error with source command", event);
 					}
 					break;
 				
@@ -189,7 +192,7 @@ public class DiscordBot extends ListenerAdapter{
 					try {
 						new Prefix(channel, event, content, afterCommand);
 					} catch (Exception e) {
-						new Logg(e, content, "Error with prefix command", event);
+						new ErrorLogg(e, content, "Error with prefix command", event);
 					}
 					break;
 				
@@ -197,24 +200,37 @@ public class DiscordBot extends ListenerAdapter{
 					try {
 						//					new Up(channel, event, content);
 					} catch (Exception e) {
-						new Logg(e, content, "Error with up command", event);
+						new ErrorLogg(e, content, "Error with up command", event);
 					}
 					break;
 				
 				case "game":
 					try {
-						new GameRoles(channel, event, afterCommand);
+						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
+							new GameRoles(channel, event, afterCommand);
+						}
 					}
 					catch (Exception e){
-						new Logg(e, content, "Error with game command", event);
+						new ErrorLogg(e, content, "Error with game command", event);
 					}
 					break;
 				
+				case "editgame":
+					try {
+						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
+							GameRoles.editRoles(event, channel, afterCommand);
+						}
+					}
+					catch (Exception e){
+						new ErrorLogg(e, content, "Error with editgame command", event);
+					}
+					break;
 				case "help":
+				
 					try {
 						new Help(event, content);
 					} catch (Exception e) {
-						new Logg(e, content, "Error with help command", event);
+						new ErrorLogg(e, content, "Error with help command", event);
 					}
 					break;
 			}
@@ -264,7 +280,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 			}
 		}catch (Exception e) {
-			new Logg(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
+			new ErrorLogg(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
 					", channel: +"+event.getChannel().getName()+", MessageID: "+event.getMessage().getId(), "Unknown error in onPrivateMessageRecieved", null);
 		}
 	}
@@ -290,7 +306,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 		}
 		catch (Exception e) {
-			new Logg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
+			new ErrorLogg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
 					, "Unknown error in onGuildMemeberJoin", null);
 		}
 	}
@@ -317,7 +333,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 		}
 		catch (Exception e) {
-			new Logg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
+			new ErrorLogg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
 					, "Unknown error in onGuildMemeberLeave", null);
 		}
 		
@@ -326,7 +342,7 @@ public class DiscordBot extends ListenerAdapter{
 	public void onGenericEvent(Event event){
 		
 		try{
-			String lastMsString = ReadWrite.getKey("dailyMs", JSONDocument.setting);
+			String lastMsString = ReadWrite.getKey("dailyMs");
 			if(lastMsString==null||lastMsString.equals("")){
 				ReadWrite.setKey("dailyMs", "0");
 				return;
@@ -348,7 +364,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 		}catch (Exception e) {
 			// FIXME: handle exception
-			new Logg(e, "Error in onEvent", "Unknown errorc caught", null);
+			new ErrorLogg(e, "Error in onEvent", "Unknown errorc caught", null);
 		}
 	}
 }
