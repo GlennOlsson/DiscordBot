@@ -11,7 +11,6 @@
 package commands;
 
 import backend.*;
-import com.sun.org.apache.regexp.internal.RE;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.Role;
@@ -117,6 +116,10 @@ public class GameRoles {
 	public static void editRoles(MessageReceivedEvent event, MessageChannel channel, String afterCommand){
 		if(!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.MANAGE_ROLES)){
 			channel.sendMessage("You are not authorized to use this command").queue();
+			return;
+		}
+		if(!event.getGuild().getMember(event.getJDA().getSelfUser()).hasPermission(Permission.MANAGE_ROLES)){
+			channel.sendMessage("I am not authorized to use this command. I need to be able to manage roles first").queue();
 			return;
 		}
 		if(afterCommand.contains(",")) {

@@ -79,11 +79,18 @@ public class Help {
 				return;
 			}
 			
-			else if (argument.equals("game")||argument.equals("games")) {
+			else if (argument.equals("game")||argument.equals(";game")) {
 				privateChannel.sendMessage("This command enables you to set roles for yourself, consisting of games. " +
 						"You choose the games that you actively play, so that members on the server can mention you, " +
 						"when they just want to notify people on specific games. Send **;game**, and I'll show you available games" +
 						"on the server, and then you choose which to add, one at a time.").queue();
+				return;
+			}
+			
+			else if (argument.equals("editgame")||argument.equals(";editgame")) {
+				privateChannel.sendMessage("This command is used by people that has the ability to manage roles in the server." +
+						" By sending **;editgame [add/remove] [name of game]**, I will add a role with the name, and " +
+						"make it possible for the users to add that role themselves.").queue();
 				return;
 			}
 			
@@ -92,13 +99,13 @@ public class Help {
 			}
 		}
 		String command = "";
-		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";game"};
+		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";game",";editgame"};
 		for (int i = 0; i < features.length; i++) {
 			command = command+ features[i]+", ";
 		}
 		command+=";help";
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
-				+ "followed by one of the features listed, to see specified help for that command. Can also be done in PM").queue();
+				+ "followed by one of the features listed, to see specified help for that command. Some can also be done in PM").queue();
 
 		return;
 
