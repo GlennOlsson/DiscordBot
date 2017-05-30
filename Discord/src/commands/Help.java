@@ -120,9 +120,10 @@ public class Help {
 			command = command+ features[i]+", ";
 		}
 		command+=";help";
-		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you can use. Send a ;help "
-				+ "followed by one of the features listed, to see specified help for that command. Some can also be done in PM").queue();
-
+		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you " +
+				"can use. Send a **;help** followed by one of the features listed, to see specified help for that command. Some can" +
+				" also be done in PM. If you need more assistance, contact the creator, "+event.getJDA().
+				getUserById("165507757519273984").getAsMention()+" by PM. He'll be happy to assist you").queue();
 		return;
 
 	}
