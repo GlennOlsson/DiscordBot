@@ -1,11 +1,27 @@
 /*
  * Copyright 2017 Glenn Olsson
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any
+ * person obtaining a copy of this software and associated
+ *  documentation files (the "Software"), to deal in the Software
+ *  without restriction, including without limitation the rights to
+ *  use, copy, modify, merge, publish, distribute, sublicense, and/or
+ *  sell copies of the Software, and to permit persons to whom
+ *  the Software is furnished to do so, subject to the following
+ *  conditions:
  *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall
+ * be included in all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+ * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+ * SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package main;
@@ -13,13 +29,11 @@ package main;
 
 Fix startup of Daily, sends daily eventhough not 24 hours has passed, if program is rebooted
 
-Array in JSON, for GameRoles
-
 Send to all guilds, I can send a message to all guilds, consisting of exactly what I write
 
-Test to send audio through the bot
-
 Send mail if error is caught while Error Logging
+
+GUI for sending messages to servers. Text area, and a list where I can choose which servers to send the specific message to
 
  */
 
@@ -96,7 +110,7 @@ public class DiscordBot extends ListenerAdapter{
 	
 	public void onMessageReceived(MessageReceivedEvent event){
 		try{
-			if(!event.getAuthor().getName().equals("Kakan's Bot")){
+			if(!event.getAuthor().equals(event.getJDA().getSelfUser())){
 				String  contentCase=event.getMessage().getContent(), content = event.getMessage().getContent().toLowerCase();
 				MessageChannel channel = event.getChannel();
 				
@@ -253,7 +267,7 @@ public class DiscordBot extends ListenerAdapter{
 			PrivateChannel channel=event.getChannel();
 			String content = event.getMessage().getContent();
 			
-			if(!event.getAuthor().getName().equals("Kakan's Bot")){
+			if(!event.getAuthor().equals(event.getJDA().getSelfUser())){
 				
 				channel.sendTyping();
 				
