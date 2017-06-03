@@ -66,7 +66,10 @@ public class Help {
 			else if (argument.equals("gif")||argument.equals(";gif")) {
 				//if help about ;gif
 				privateChannel.sendMessage("With the **;gif** feature, you just follow the command with a space, and then type your search quotas for the gif. "
-						+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -. Use like: ;gif <quotas>").queue();
+						+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -. " +
+						"You can also choose another gif than the first one of the search quota. To see the selection, send me a PM like ;gif " +
+						"**QUOTAS** [**LOWER_LIMIT**-**UPPER_LIMIT**]. Then send the gif you want, by sending the corresponding number like " +
+						";gif **QUOTAS** [**NUMBER**]").queue();
 				return;
 			}
 			//			else if (argument.equals("up")||argument.equals(";up")) {
