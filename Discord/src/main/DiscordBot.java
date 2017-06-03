@@ -27,8 +27,6 @@
 package main;
 /* ----------TODO
 
-Send mail if error is caught while Error Logging
-
 Upgrade ;gif, so you can send other gifs than number one at that quota
 
  */
@@ -182,7 +180,7 @@ public class DiscordBot extends ListenerAdapter{
 				
 				case "gif":
 					try {
-						new Gif(channel, event, content);
+						new Gif(channel, event, afterCommand);
 					} catch (Exception e) {
 						new ErrorLogg(e, content, "Error with gif command", event);
 					}

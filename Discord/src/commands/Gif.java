@@ -35,26 +35,101 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.*;
 
 public class Gif {
+	
+	Document doc = null;
+	String url = "", query = null, possiblyNumber="";
+	int indexOfGif = 1;
+	MessageChannel channel;
+	MessageReceivedEvent event;
+	
 	public Gif(MessageChannel channel, MessageReceivedEvent event, String content) {
-		Document doc=null;
-		String url=null, query=null;
 		try {
-			query = content.substring(5, content.length()).replace(" ", "-");
-
+			this.channel = channel;
+			this.event = event;
+			
+			query = content.replace(" ", "-");
+			
+			if(query.contains("[") && query.contains("]")) {
+				String insideBrackets = query.substring(query.indexOf("[")+1, query.indexOf("]"));
+				//If there was a space before the [, the newly generated - will be removed
+				query=query.contains("-[")?query.replace("-["+insideBrackets+"]",""):
+						query.replace("["+insideBrackets+"]","");
+				//If multiple gifs
+				if(insideBrackets.contains("-")) {
+					if(event.getChannel().getType().equals(ChannelType.PRIVATE)) {
+						if(insideBrackets.split("-").length == 2) {
+							//Just one -
+							int lowLimit, highLimit;
+							try {
+								lowLimit = Integer.parseInt(insideBrackets.split("-")[0]);
+								highLimit = Integer.parseInt(insideBrackets.split("-")[1]);
+								if(lowLimit >= highLimit) throw new Exception();
+							} catch (Exception e) {
+								channel.sendMessage("Could not accept those integers. Try again").submit();
+								return;
+							}
+							//We now got an upper limit, and a lower one.
+							for (int i = lowLimit; i < highLimit; i++) {
+								possiblyNumber=" ["+Integer.toString(i)+"]";
+								fetchAndSend(i);
+							}
+							return;
+						} else {
+							//To many -
+							channel.sendMessage("To many - inside the [ ]. You must specify like ;gif QUOTAS [" +
+									"LOW_LIMIT-HIGH_LIMIT]").
+									submit();
+							return;
+						}
+					} else {
+						//Not private channel
+						if(!event.getAuthor().hasPrivateChannel()) {
+							event.getAuthor().openPrivateChannel().complete();
+						}
+						event.getAuthor().getPrivateChannel().sendMessage("You need to send the ;gif command here if you " +
+								"are going to choose between multiple gifs!").complete();
+						return;
+					}
+				}
+				else{
+					//If specific gif
+					try{
+						fetchAndSend(Integer.parseInt(insideBrackets));
+					}
+					catch (Exception e){
+						if(!event.getAuthor().hasPrivateChannel()) {
+						event.getAuthor().openPrivateChannel().complete();
+					}
+						event.getAuthor().getPrivateChannel().sendMessage("Could not accept those integers. Try again").submit();
+					}
+				}
+			}
+			else {
+				fetchAndSend(1);
+			}
+		}
+		catch (Exception e) {
+			new ErrorLogg(e, "Error in Gif.java", "Unknown error", event);
+		}
+	}
+	public void fetchAndSend(int indexOfGif){
+		try{
 			doc = Jsoup.connect(Return.convertUrl("https://www.tenor.co/search/"+query+"-gifs")).userAgent("Chrome").get();
-			url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child(1) > figure:nth-child(1) > a").attr("href");
-
-			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ") + "'*: " +url).queue();
+			url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child" +
+					"(1) > figure:nth-child("+indexOfGif+") > a").attr("href");
+			
+			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ")
+					.replace("["+indexOfGif+"]","")+ "'*: " +url+possiblyNumber).queue();
 			try {
 				if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//Check if I have MESSAGE_MANAGE permission, before trying to delete
-
 					for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
 						if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
 							//Is KakansBot
 							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
 								new Print("Cannot delete initial Gif command message in "+event.getChannel().getName()
-										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
+										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE",
+										false);
 							}
 							else {
 								event.getMessage().delete().queue();
@@ -62,24 +137,17 @@ public class Gif {
 							i=event.getTextChannel().getMembers().size()+5;
 						}
 					}
-
+					
 				}
 			} catch (Exception e) {
-				// FIXME: handle exception
-				event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
-				new ErrorLogg(e, content, event.getMessage().getId(), event);
+				event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").
+						getAsMention()+" with id "+event.getMessage().getId());
+				new ErrorLogg(e, event.getMessage().getContent(), event.getMessage().getId(), event);
 			}
-
-		} catch (Exception e) {
-			// FIXME Auto-generated catch block
-			channel.sendMessage("Error with ;gif command. Use ';help gif' to get help with the command, wither here or in PM").queue();
-
-			new ErrorLogg(e, content, event.getMessage().getId(), event);
-
+			return;
 		}
-		return;
-
+		catch (Exception e){
+			new ErrorLogg(e, "Error in fetchAndSend method in Gif", "Unknown error", event);
+		}
 	}
-
-
 }

@@ -33,6 +33,7 @@ import java.util.List;
 
 import backend.*;
 import commands.GameRoles;
+import commands.Gif;
 import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
@@ -82,18 +83,10 @@ public class Test extends ListenerAdapter{
 		
 		String content = event.getMessage().getContent(), afterCommand="", command = content.substring(";".length());
 		
-		if(event.getAuthor().getId().equals("165507757519273984")&&event.getGuild().getName().equals("Kakanistan")){
-			Message message=null;
-			
-			try {
-				message = event.getChannel().sendMessage("@everyone").complete(true);
-				Thread.sleep(2000);
-			} catch (Exception e) {
-				e.printStackTrace();
+		if(event.getAuthor().getId().equals("165507757519273984")){
+			if(content.contains(";gif")){
+				new Gif(event.getChannel(),event,content.substring(5));
 			}
-			message.delete().submit();
-			
-			
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
