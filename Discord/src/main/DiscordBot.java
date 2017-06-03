@@ -27,10 +27,6 @@
 package main;
 /* ----------TODO
 
-Fix startup of Daily, sends daily eventhough not 24 hours has passed, if program is rebooted
-
-Send to all guilds, I can send a message to all guilds, consisting of exactly what I write
-
 Send mail if error is caught while Error Logging
 
 Upgrade ;gif, so you can send other gifs than number one at that quota
@@ -82,6 +78,8 @@ public class DiscordBot extends ListenerAdapter{
 		}
 	}
 	
+	public DiscordBot(){}
+	
 	public void onReady(ReadyEvent event) {
 		try {
 			super.onReady(event);
@@ -101,11 +99,6 @@ public class DiscordBot extends ListenerAdapter{
 		}catch (Exception e) {
 			new ErrorLogg(e, "Error in onReconnect", "Unknown error", null);
 		}
-	}
-	
-	public DiscordBot(){
-		
-		//		System.exit(3);
 	}
 	
 	public void onMessageReceived(MessageReceivedEvent event){
@@ -241,7 +234,7 @@ public class DiscordBot extends ListenerAdapter{
 					}
 					break;
 				case "help":
-				
+					
 					try {
 						new Help(event, content);
 					} catch (Exception e) {
@@ -354,32 +347,7 @@ public class DiscordBot extends ListenerAdapter{
 		
 	}
 	
-	public void onGenericEvent(Event event){
-		
-		try{
-			String lastMsString = ReadWrite.getKey("dailyMs");
-			if(lastMsString==null||lastMsString.equals("")){
-				ReadWrite.setKey("dailyMs", "0");
-				return;
-			}
-			long lastMs=0;
-			try{
-				lastMs=Long.parseLong(lastMsString);
-			}catch (Exception e) {
-				// FIXME: handle exception
-				new Print("Error with converting string -> long. Returning method and settign dailyMs JSON key to currentTimeMillis", false);
-				ReadWrite.setKey("dailyMs",Long.toString(System.currentTimeMillis()));
-				return;
-			}
-			if(System.currentTimeMillis()>=(lastMs+86400000)){
-				for (int i = 0; i < event.getJDA().getTextChannelsByName("aww", true).size(); i++) {
-					new DailyDose("aww", event.getJDA().getTextChannelsByName("aww", true).get(i));
-				}
-				ReadWrite.setKey("dailyMs",Long.toString(System.currentTimeMillis()));
-			}
-		}catch (Exception e) {
-			// FIXME: handle exception
-			new ErrorLogg(e, "Error in onEvent", "Unknown errorc caught", null);
-		}
+	public void onGenericEvent(Event event) {
+		new DailyDose(event.getJDA());
 	}
 }

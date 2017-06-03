@@ -26,6 +26,7 @@
 
 package commands;
 
+import net.dv8tion.jda.core.JDA;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -34,6 +35,8 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 
 public class DailyDose {
 
+	long recentlyChecked=0;
+	
 	public static void main(String[] args) {
 		// FIXME Auto-generated method stub
 		//		new DailyDose("aww", null);
@@ -53,6 +56,37 @@ public class DailyDose {
 		catch (Exception e) {
 			// FIXME: handle exception
 			new ErrorLogg(e, "Error with DailyDose class", "Unknown error", null);
+		}
+	}
+	public DailyDose(JDA jda) {
+		
+		if(System.currentTimeMillis() >= (recentlyChecked + 86400000)) {
+			
+			try {
+				String lastMsString = ReadWrite.getKey("dailyMs");
+				if(lastMsString == null || lastMsString.equals("")) {
+					ReadWrite.setKey("dailyMs", "0");
+					return;
+				}
+				long lastMs = 0;
+				try {
+					lastMs = Long.parseLong(lastMsString);
+				} catch (Exception e) {
+					// FIXME: handle exception
+					new Print("Error with converting string -> long. Returning method and settign dailyMs JSON key to currentTimeMillis", false);
+					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
+					return;
+				}
+				if(System.currentTimeMillis() >= (lastMs + 86400000)) {
+					for (int i = 0; i < jda.getTextChannelsByName("aww", true).size(); i++) {
+						new DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
+					}
+					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
+				}
+			} catch (Exception e) {
+				// FIXME: handle exception
+				new ErrorLogg(e, "Error in onEvent", "Unknown errorc caught", null);
+			}
 		}
 	}
 }
