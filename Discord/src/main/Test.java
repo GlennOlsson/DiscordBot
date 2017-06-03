@@ -42,10 +42,14 @@ import net.dv8tion.jda.core.hooks.*;
 import net.dv8tion.jda.core.managers.AudioManager;
 import net.dv8tion.jda.core.managers.GuildController;
 import net.dv8tion.jda.core.managers.impl.AudioManagerImpl;
+import net.dv8tion.jda.core.requests.RestAction;
 
 public class Test extends ListenerAdapter{
+	
 	static Guild kakanistan;
 	static TextChannel general;
+	public static String mention, idKakan;
+	
 	public static void main(String[] args) {
 		// FIXME Auto-generated method stub
 		
@@ -55,16 +59,16 @@ public class Test extends ListenerAdapter{
 					.setToken(ReadWrite.getKey("oath"))
 					.addListener(new Test())
 					.buildBlocking();
-
+			
 		} catch (Exception e) {
-
+			
 			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
-
+			
 		}
 		kakanistan=jda.getGuildById("282109399617634304");
 		general = jda.getTextChannelById("282109399617634304");
 		String idKakan="165507757519273984", idKakansBot="282116563266437120";
-		
+
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
@@ -73,30 +77,39 @@ public class Test extends ListenerAdapter{
 	public Test(){
 	
 	}
-
+	
 	public void onMessageReceived(MessageReceivedEvent event){
-
+		
 		String content = event.getMessage().getContent(), afterCommand="", command = content.substring(";".length());
-
+		
 		if(event.getAuthor().getId().equals("165507757519273984")&&event.getGuild().getName().equals("Kakanistan")){
-		
-		
+			Message message=null;
+			
+			try {
+				message = event.getChannel().sendMessage("@everyone").complete(true);
+				Thread.sleep(2000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			message.delete().submit();
+			
+			
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
-
+		
 		String content = event.getMessage().getContent().toLowerCase();
-
+		
 		System.out.println();
-
+		
 		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
 			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
 		}
-
+		
 		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
 			System.out.println();
 		}
-
+		
 		if(content.contains(";send")&&content.substring(0, ";send".length()).equals(";send")){
 			String user= event.getAuthor().getName().toLowerCase() + "#"+event.getAuthor().getDiscriminator().toLowerCase();
 			if (user.equals("kakan#2926")) {
@@ -104,14 +117,14 @@ public class Test extends ListenerAdapter{
 				if(!content.contains(" ")){
 					event.getChannel().sendMessage("-- YOU CAN MESSAGE THE FOLLOWING CHANNELS --").queue();
 					List<TextChannel> channels = event.getJDA().getTextChannels();
-
+					
 					List<String> channelNames=new ArrayList<>();
-
+					
 					for (TextChannel channel : event.getJDA().getTextChannels()) {
 						channelNames.add(channel.getGuild().getName() +" - "+ channel.getName());
-
+						
 					}
-
+					
 					Collections.sort(channelNames, new Comparator<String>() {
 						@Override
 						public int compare(String s1, String s2) {
@@ -123,33 +136,33 @@ public class Test extends ListenerAdapter{
 						i++;
 						event.getChannel().sendMessage(i+". "+string).queue();
 					}
-
+					
 					event.getChannel().sendMessage("-- THAT IS ALL --").queue();
 				}
 				else if (content.split(" ").length==2) {
 					String arg = content.split(" ")[1];
-
+					
 					List<TextChannel> channels = event.getJDA().getTextChannels();
 					List<String> channelNames=new ArrayList<>();
-
+					
 					for (TextChannel channel : event.getJDA().getTextChannels()) {
 						channelNames.add(channel.getGuild().getName() +" - "+ channel.getName());
-
+						
 					}
-
+					
 					Collections.sort(channelNames, new Comparator<String>() {
 						@Override
 						public int compare(String s1, String s2) {
 							return s1.compareToIgnoreCase(s2);
 						}
 					});
-
+					
 					System.out.println(channelNames.get(Integer.parseInt(arg)-1));
-
+					
 				}
 			}
 		}
-
+		
 	}
 	
 }

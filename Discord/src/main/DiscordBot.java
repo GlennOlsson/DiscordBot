@@ -33,8 +33,6 @@ Send to all guilds, I can send a message to all guilds, consisting of exactly wh
 
 Send mail if error is caught while Error Logging
 
-GUI for sending messages to servers. Text area, and a list where I can choose which servers to send the specific message to
-
 Upgrade ;gif, so you can send other gifs than number one at that quota
 
  */

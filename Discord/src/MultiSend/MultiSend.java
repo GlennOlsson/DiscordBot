@@ -29,67 +29,57 @@ package MultiSend;
 import backend.ErrorLogg;
 import backend.Print;
 import backend.ReadWrite;
-import main.Test;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Glenn on 2017-05-31.
  */
-public class MultiSend extends ListenerAdapter {
+public class MultiSend extends ListenerAdapter{
 	
-	JFrame frame = new JFrame();
+	static JFrame frame = new JFrame();
 	
-	JPanel mainPanel, textPanel, serverPanel;
+	static JPanel mainPanel, textPanel, serverPanel;
 	
-	JTextArea textarea = new JTextArea();
+	static JTextArea textarea = new JTextArea();
 	
-	JButton button = new JButton();
+	static JButton button = new JButton();
 	
-	ArrayList<DCheck> checkList = new ArrayList<>();
+	static String mentionKakan="";
+	
+	static ArrayList<DCheck> checkList = new ArrayList<>();
+	
+	static ArrayList<Message> messageList = new ArrayList<Message>();
+	
+	static JDA jda = null;
 	
 	public static void main(String[] args) {
 		
-		JDA jda = null;
-		try {
-			jda = new JDABuilder(AccountType.BOT).setToken("MzE1NzMyMDQyNjE0NTcxMDA4.DBFl9g.nW4qA5dOsvrkMJC-IwGxm38oDNQ").
-					addListener(new Test()).buildBlocking();
-			
-		} catch (Exception e) {
-			
-			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
-			
-		}
-		
-		new Print(jda.getUserById("312269489850941450").getName()+"#"+jda.getUserById("312269489850941450").
-				getDiscriminator(),false);
-		
-		
-//		new MultiSend();
+		start();
 	}
-	public MultiSend() {
-//		try{
-//			UIManager.setLookAndFeel("com.pagosoft.plaf.PgsLookAndFeel");
-//		}
-//		catch (Exception e){
-//		    new ErrorLogg(e, "Look and feel in MultiSend caught an error", "Cannot set look and feel", null);
-//		}
+	public static void start() {
+		try{
+			UIManager.setLookAndFeel("com.pagosoft.plaf.PgsLookAndFeel");
+		}
+		catch (Exception e){
+			new ErrorLogg(e, "Look and feel in MultiSend caught an error", "Cannot set look and feel", null);
+		}
 		
 		//Settings for JFrame
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(3);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		mainPanel = new JPanel(new MigLayout());
 		serverPanel = new JPanel(new MigLayout());
@@ -105,7 +95,7 @@ public class MultiSend extends ListenerAdapter {
 		button.setPreferredSize(new Dimension(frame.getWidth() / 2, frame.getHeight() / 4));
 		button.setText("SEND");
 		button.setFont(new Font("Arial",Font.BOLD, 30));
-		button.addActionListener(e -> {getLink();});
+		button.addActionListener(e -> sendPress());
 		
 		textarea.setPreferredSize(new Dimension(frame.getWidth() / 2, 3 * frame.getHeight() / 4));
 		textarea.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -117,16 +107,17 @@ public class MultiSend extends ListenerAdapter {
 		textPanel.add(textarea, "gaptop 5, wrap, gapbottom 15");
 		textPanel.add(button);
 		
-		JDA jda = null;
+		
 		try {
 			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).
-					addListener(new Test()).buildBlocking();
-			
+					addListener(new MultiSend()).buildBlocking();
 		} catch (Exception e) {
 			
 			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
+		
+		mentionKakan=jda.getUserById("165507757519273984").getAsMention();
 		
 		int yAxis = 0, xAxis = 0;
 		for (int j = 0; j < jda.getGuilds().size(); j++){
@@ -158,48 +149,129 @@ public class MultiSend extends ListenerAdapter {
 				yAxis++;
 			}
 		}
-		new Print("Shutting down for safety", true);
-		jda.shutdown();
 		
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);
 	}
 	
-	public void getLink(){
-		Guild guild=null;
-		for(int i = 0; i < checkList.size(); i++) {
-			DCheck check = checkList.get(i);
-			check.setEnabled(false);
-			TextChannel channel = check.getChannel();
-			if(check.isSelected())
-				guild = channel.getGuild();
-		}
-	}
-	
-	public void sendPress(){
+	public static void sendPress(){
 		
-		int answer = JOptionPane.showConfirmDialog(null, "BE CAREFUL, PLEASE!!","Are you sure you want to send?"
-				, 0, 2);
-		if(answer!=0){
-			new Print("ABORT", true);
-			System.exit(3);
+		if(textarea.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Please enter a message, you fuckwit",
+					"You idiot", JOptionPane.PLAIN_MESSAGE);
+			return;
+		}
+		Boolean anySelected = false;
+		for (int i = 0; i < checkList.size(); i++) {
+			if(checkList.get(i).isSelected()){
+				anySelected=true;
+				i=checkList.size()+5;
+			}
+		}
+		if(!anySelected){
+			new Print("Gotta select a channel, douche!");
+			return;
 		}
 		
 		textarea.setEditable(false);
 		textarea.setBackground(null);
 		
+		textarea.setText(textarea.getText().replace(";mention;",mentionKakan));
+		
+		//;mention USER_NAME#DISCRIMINATOR;
+		while(textarea.getText().contains(";mention ")){
+			String whoToMention = textarea.getText().substring(textarea.getText().indexOf(";mention ")+";mention ".length());
+			try{
+				String name = whoToMention.substring(0,whoToMention.indexOf("#")),
+						discriminator= whoToMention.substring(whoToMention.indexOf("#")+1,
+								whoToMention.indexOf(";",whoToMention.indexOf("#")));
+				java.util.List<User> listOfUsers = jda.getUsersByName(name,true);
+				
+				boolean foundUser = false;
+				
+				for (int i = 0; i < listOfUsers.size(); i++) {
+					if(listOfUsers.get(i).getDiscriminator().equals(discriminator)){
+						textarea.setText(textarea.getText().replace(";mention "+name+"#"+discriminator+";",listOfUsers.get(i)
+								.getAsMention()));
+						i=listOfUsers.size()+5;
+						foundUser=true;
+					}
+				}
+				if(!foundUser){
+					new Print("A user is not valid");
+					textarea.setEditable(true);
+					textarea.setBackground(Color.white);
+					textarea.requestFocus();
+					return;
+				}
+			}
+			catch (Exception e){
+				new Print("Cannot find a # in the ;mention USER_NAME#DISCRIMINATOR;, or no ; in the end");
+				new ErrorLogg(e, "Error in finding user in ;mention USER_NAME#DISCRIMINATOR", "In MultiSend", null);
+				textarea.setEditable(true);
+				textarea.setBackground(Color.white);
+				textarea.requestFocus();
+				return;
+			}
+		}
+		
+		Object[] options = {"Send","Abort"};
+		int answer = JOptionPane.showOptionDialog(null,
+				"BE CAREFUL, PLEASE!!","Are you sure you want to send?"
+				, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null, options, options[1]);
+		
+		if(answer!=0){
+			new Print("ABORT", true);
+			textarea.setEditable(true);
+			textarea.setBackground(Color.white);
+			textarea.requestFocus();
+			textarea.setText(textarea.getText().replace(mentionKakan, ";mention;"));
+			return;
+		}
+		
 		button.setEnabled(false);
 		
-		for(int i = 0; i < checkList.size(); i++){
+		frame.dispose();
+		
+		String message = "This message: \n"+textarea.getText()+" is going to be sent to the following channels (GUILD::CHANNEL) ";
+		for(int i = 0; i < checkList.size(); i++) {
 			DCheck check = checkList.get(i);
-			
 			check.setEnabled(false);
-			
-			
 			TextChannel channel = check.getChannel();
-			if(check.isSelected())
-			new Print("#"+channel.getName() + " in "+channel.getGuild().getName()+" is checked",false);
+			if(check.isSelected()) {
+				message+=channel.getGuild().getName()+"::"+channel.getName()+", ";
+				try{
+					messageList.add(channel.sendMessage(textarea.getText()).complete(true));
+				}
+				catch (Exception e){
+					new ErrorLogg(e, "Error with adding the sent message to list", "In MultiSend", null);
+				}
+			}
 		}
+		message=message.substring(0,message.length()-2);
+		new Print(message);
+		
+		Object[] deleteOptions = {"Delete","Keep em'"};
+		int delete = JOptionPane.showOptionDialog(null,
+				"Messages sent. Delete them?","Accept faith or delete?"
+				, JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, deleteOptions, deleteOptions[1]);
+		if(delete==0){
+			for(int i = 0; i < messageList.size(); i++){
+				messageList.get(i).delete().complete();
+			}
+		}
+	}
+}
+class DCheck extends JCheckBox {
+	TextChannel textChannel;
+	public DCheck(TextChannel channel){
+		this.textChannel=channel;
+	}
+	static public TextChannel getChannel(DCheck check){
+		return check.textChannel;
+	}
+	public TextChannel getChannel(){
+		return this.textChannel;
 	}
 }
