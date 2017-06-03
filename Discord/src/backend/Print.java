@@ -34,15 +34,20 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 public class Print {
+	
+	public Print(Object message){
+		new Print(message, false);
+	}
+	
 	public Print(Object message, Boolean isErrPrint) {
-
+		
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
 			String currentTime =sdf.format(cal.getTime());
-
+			
 			String currentContent="",newContent;
-
+			
 			if(isErrPrint==null){
 				newContent="	"+message+"\n";
 			}
@@ -52,7 +57,7 @@ public class Print {
 			else{
 				newContent="["+currentTime+"] "+ message+"\n";
 			}
-
+			
 			try{
 				String path="/var/lib/tomcat7/webapps/ROOT/";
 				FileReader reader = new FileReader(path+"Print.md");
@@ -68,7 +73,7 @@ public class Print {
 				currentContent=currentContent.
 						replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body> " +
 								"<pre><code>", "");
-
+				
 				try(FileWriter file = new FileWriter(path+"Print.md")){
 					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body> " +
 							"<pre><code>"+newContent+""+currentContent);
@@ -83,8 +88,12 @@ public class Print {
 				new ErrorLogg(e, "Error reading Print.md", "In File.read and others", null);
 			}
 		}
-		else{
-			System.out.println(message);
+		else {
+			if(isErrPrint) {
+				System.err.println(message);
+			} else {
+				System.out.println(message);
+			}
 		}
 	}
 }

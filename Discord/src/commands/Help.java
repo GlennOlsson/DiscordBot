@@ -43,7 +43,6 @@ public class Help {
 			try {
 				event.getAuthor().openPrivateChannel().complete(true);
 			} catch (RateLimitedException e) {
-				// FIXME Auto-generated catch block
 				new ErrorLogg(e, content, "Could not create PrivateChannel", event);
 			}
 			privateChannel=event.getAuthor().getPrivateChannel();
@@ -122,7 +121,7 @@ public class Help {
 		command+=";help";
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you " +
 				"can use. Send a **;help** followed by one of the features listed, to see specified help for that command. Some can" +
-				" also be done in PM. If you need more assistance, contact the creator, "+event.getJDA().
+				" also be done in PM. If you need more assistance, contact the developer, "+event.getJDA().
 				getUserById("165507757519273984").getAsMention()+" by PM. He'll be happy to assist you").queue();
 		return;
 

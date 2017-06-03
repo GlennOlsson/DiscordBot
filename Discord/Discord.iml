@@ -7,8 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Discord" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="Discord" level="project" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$APPLICATION_HOME_DIR$/redist/annotations-java8.jar!/" />

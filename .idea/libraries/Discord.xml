@@ -10,9 +10,12 @@
       <root url="jar://$PROJECT_DIR$/Discord/org.eclipse.jgit-4.6.0.201612231935-r.jar!/" />
       <root url="jar://$PROJECT_DIR$/Discord/JDA-3.0.BETA2_143-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/Discord/JDA-3.0.BETA2_143-withDependencies.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Discord/miglayout-4.0-swing.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Discord/pgslookandfeel-1.1.2.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/Discord/JDA-3.0.BETA2_143-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Discord/miglayout-4.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

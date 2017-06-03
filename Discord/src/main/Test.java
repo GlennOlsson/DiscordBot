@@ -44,24 +44,29 @@ import net.dv8tion.jda.core.managers.GuildController;
 import net.dv8tion.jda.core.managers.impl.AudioManagerImpl;
 
 public class Test extends ListenerAdapter{
-	
+	static Guild kakanistan;
+	static TextChannel general;
 	public static void main(String[] args) {
 		// FIXME Auto-generated method stub
 		
 		JDA jda = null;
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).addListener(new Test()).buildBlocking();
+			jda = new JDABuilder(AccountType.BOT)
+					.setToken(ReadWrite.getKey("oath"))
+					.addListener(new Test())
+					.buildBlocking();
 
 		} catch (Exception e) {
 
 			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 
 		}
-		TextChannel channels=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
+		kakanistan=jda.getGuildById("282109399617634304");
+		general = jda.getTextChannelById("282109399617634304");
 		String idKakan="165507757519273984", idKakansBot="282116563266437120";
 		
-		AudioManager audioManager = new AudioManagerImpl(channels.getGuild());
-		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
+//		AudioManager audioManager = new AudioManagerImpl(kakanistan);
+//		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
 		
 	}
@@ -74,18 +79,8 @@ public class Test extends ListenerAdapter{
 		String content = event.getMessage().getContent(), afterCommand="", command = content.substring(";".length());
 
 		if(event.getAuthor().getId().equals("165507757519273984")&&event.getGuild().getName().equals("Kakanistan")){
-				if(command.contains(" ")){
-					command=command.split(" ")[0];
-					afterCommand = content.substring(";".length()+command.length()+1);
-					new Print("Aftercommand=\""+afterCommand+"\"", false);
-				}
-
-				if(command.equals("game")){
-					new GameRoles(event.getChannel(),event,afterCommand);
-				}
-				else if(command.equals("editgame")){
-					GameRoles.editRoles(event, event.getChannel(), afterCommand);
-				}
+		
+		
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
