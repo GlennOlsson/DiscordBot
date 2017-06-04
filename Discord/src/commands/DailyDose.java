@@ -26,22 +26,18 @@
 
 package commands;
 
+import backend.ErrorLogg;
+import backend.Print;
+import backend.ReadWrite;
+import backend.Return;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.MessageChannel;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-import backend.*;
-import net.dv8tion.jda.core.entities.MessageChannel;
-
 public class DailyDose {
-
-	long recentlyChecked=0;
-	
-	public static void main(String[] args) {
-		// FIXME Auto-generated method stub
-		//		new DailyDose("aww", null);
-	}
-	public DailyDose(String subreddit, MessageChannel channel) {
+	@SuppressWarnings("WeakerAccess")
+	long recentlyChecked = 0;
+	private DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
 		Document doc;
 		try {
@@ -59,21 +55,20 @@ public class DailyDose {
 		}
 	}
 	public DailyDose(JDA jda) {
-		
 		if(System.currentTimeMillis() >= (recentlyChecked + 86400000)) {
-			
+			recentlyChecked =System.currentTimeMillis();
 			try {
 				String lastMsString = ReadWrite.getKey("dailyMs");
 				if(lastMsString == null || lastMsString.equals("")) {
 					ReadWrite.setKey("dailyMs", "0");
 					return;
 				}
-				long lastMs = 0;
+				long lastMs;
 				try {
 					lastMs = Long.parseLong(lastMsString);
 				} catch (Exception e) {
 					// FIXME: handle exception
-					new Print("Error with converting string -> long. Returning method and settign dailyMs JSON key to currentTimeMillis", false);
+					new Print("Error with converting string -> long. Returning method and setting dailyMs JSON key to currentTimeMillis", false);
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 					return;
 				}
@@ -85,7 +80,7 @@ public class DailyDose {
 				}
 			} catch (Exception e) {
 				// FIXME: handle exception
-				new ErrorLogg(e, "Error in onEvent", "Unknown errorc caught", null);
+				new ErrorLogg(e, "Error in onEvent", "Unknown error caught", null);
 			}
 		}
 	}

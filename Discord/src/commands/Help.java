@@ -26,15 +26,15 @@
 
 package commands;
 
-import backend.*;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.*;
-import net.dv8tion.jda.core.exceptions.*;
+import backend.ErrorLogg;
+import net.dv8tion.jda.core.entities.PrivateChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.exceptions.RateLimitedException;
 
 public class Help {
 	public Help(MessageReceivedEvent event, String content) {
 
-		PrivateChannel privateChannel=null;
+		PrivateChannel privateChannel;
 
 		if(event.getAuthor().hasPrivateChannel()){
 			privateChannel=event.getAuthor().getPrivateChannel();
@@ -84,7 +84,7 @@ public class Help {
 			}
 
 			else if (argument.equals("clean")||argument.equals(";clean")) {
-				privateChannel.sendMessage("Whith **;clean**, you can remove a certain amount of messages, from the privateChannel. You can specify both the ammount, and "
+				privateChannel.sendMessage("With **;clean**, you can remove a certain amount of messages, from the privateChannel. You can specify both the amount, and "
 						+ "messages from what kind of account that shall be removed. You must be authorized to use this."
 						+ " Use like: ;clean [1-100] [bots,users,all]").queue();
 				return;
@@ -92,7 +92,7 @@ public class Help {
 			else if (argument.equals("prefix")||argument.equals(";prefix")) {
 				privateChannel.sendMessage("If you send **;prefix**, followed by whatever, you can change the prefix (the sign before the command, here, ; is the prefix)"
 						+ " for the server, or private channel. Although, **;** will always be standard, and can always be used. "
-						+ "Also, if you would send only **prefix**, without any actuall prefix, I will reply with the current prefix of the server/private channel. "
+						+ "Also, if you would send only **prefix**, without any actual prefix, I will reply with the current prefix of the server/private channel. "
 						+ "Use like: ;prefix <newPrefix>").queue();
 				return;
 			}
@@ -118,14 +118,15 @@ public class Help {
 		}
 		String command = "";
 		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";game",";editgame"};
-		for (int i = 0; i < features.length; i++) {
-			command = command+ features[i]+", ";
+		for (String feature : features) {
+			command = command + feature + ", ";
 		}
 		command+=";help";
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you " +
 				"can use. Send a **;help** followed by one of the features listed, to see specified help for that command. Some can" +
 				" also be done in PM. If you need more assistance, contact the developer, "+event.getJDA().
 				getUserById("165507757519273984").getAsMention()+" by PM. He'll be happy to assist you").queue();
+		//noinspection UnnecessaryReturnStatement
 		return;
 
 	}

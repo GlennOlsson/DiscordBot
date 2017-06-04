@@ -26,26 +26,25 @@
 
 package commands;
 
-import backend.*;
+import backend.ErrorLogg;
+import backend.Print;
+import backend.ReadWrite;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
-import net.dv8tion.jda.core.managers.RoleManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Created by Glenn on 2017-05-20.
  */
 public class GameRoles {
 	public GameRoles(MessageChannel channel, MessageReceivedEvent event, String afterCommand) {
-//		String[] games = {"GTA V", "Siege", "TLOU", "Rocket League"};
-		String[] games = {};
+		String[] games;
 		try{
 			games = ReadWrite.getKey("games"+event.getGuild().getId()).split(",");
 		}
@@ -66,6 +65,7 @@ public class GameRoles {
 			return;
 		}
 		
+		//noinspection ForLoopReplaceableByForEach
 		for (int i = 0; i < games.length; i++) {
 			if(afterCommand.toLowerCase().equals(games[i].toLowerCase())) {
 				gameSpecified(games[i], channel, event);
@@ -76,7 +76,7 @@ public class GameRoles {
 				" Please refer to the following games. Be careful with spelling and spaces, but it is not case sensitive.", event);
 	}
 	
-	public static void noGameSpecified(MessageChannel channel, String message, MessageReceivedEvent event) {
+	private static void noGameSpecified(MessageChannel channel, String message, MessageReceivedEvent event) {
 		String[] games = ReadWrite.getKey("games"+event.getGuild().getId()).split(",");
 		
 		if(games.length==1&&games[0].equals("")){
@@ -84,8 +84,8 @@ public class GameRoles {
 			return;
 		}
 		new Print(games.length,false);
-		for (int i = 0; i < games.length; i++) {
-			message += "\n**" + games[i] + " **";
+		for (String game : games) {
+			message += "\n**" + game + " **";
 		}
 		message += "\nSend a message with the game's name to enable/disable the role for you.";
 		
@@ -93,13 +93,15 @@ public class GameRoles {
 		
 	}
 	
-	public void gameSpecified(String game, MessageChannel channel, MessageReceivedEvent event) {
+	private void gameSpecified(String game, MessageChannel channel, MessageReceivedEvent event) {
 		
 		List<Role> roles = event.getGuild().getRoles();
+		//noinspection ForLoopReplaceableByForEach
 		for (int i = 0; i < roles.size(); i++) {
 			if(roles.get(i).getName().toLowerCase().equals(game.toLowerCase())){
 				GuildController controller = new GuildController(event.getGuild());
 				List<Role> userRoles = event.getGuild().getMember(event.getAuthor()).getRoles();
+				//noinspection ForLoopReplaceableByForEach
 				for(int i1 = 0; i1 < userRoles.size(); i1++){
 					if(userRoles.get(i1).getName().toLowerCase().equals(roles.get(i).getName().toLowerCase())){
 						//Has role, removing
@@ -174,8 +176,8 @@ public class GameRoles {
 				
 				String currentGames="";
 				if(!games.get(0).equals("")) {
-					for (int i = 0; i < games.size(); i++) {
-						currentGames += games.get(i) + ",";
+					for (String game1 : games) {
+						currentGames += game1 + ",";
 					}
 				}
 				currentGames+=game;
@@ -220,8 +222,8 @@ public class GameRoles {
 				games.remove(index);
 				String currentGames = "";
 				if(games.size() > 0){
-					for (int i = 0; i < games.size(); i++) {
-						currentGames += games.get(i) + ",";
+					for (String game1 : games) {
+						currentGames += game1 + ",";
 					}
 					currentGames = currentGames.substring(0, currentGames.length() - 1);
 				}

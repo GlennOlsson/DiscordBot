@@ -26,24 +26,20 @@
 
 package backend;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
-
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class ErrorLogg {
 	public ErrorLogg(Exception exception, String content, String id, MessageReceivedEvent event) {
 
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			//if linux (RasPi)
-			String currentContent = "", newContent = "";
+			String currentContent = "", newContent;
 
 			new Print("An error was caught", true);
 
@@ -57,7 +53,7 @@ public class ErrorLogg {
 			SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
 			String currentTime =sdf.format(cal.getTime());
 
-			String eventMessage=null, guild=null;
+			String eventMessage=null, guild;
 
 			if(event!=null){
 				if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
@@ -92,7 +88,7 @@ public class ErrorLogg {
 				}
 				catch (Exception e) {
 					// FIXME: handle exception
-					new Error(e, "Error writing file", content, id);
+					new Error(e);
 				}
 				
 				new Print("Successfully edited", false);
@@ -100,7 +96,7 @@ public class ErrorLogg {
 			}
 			catch (Exception e) {
 				// FIXME: handle exception
-				new Error(e, "Error with reading, maybe", content, id);
+				new Error(e);
 			}
 		}
 		else {

@@ -26,18 +26,20 @@
 
 package commands;
 
-import backend.*;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.*;
+import backend.Print;
+import backend.ReadWrite;
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class Prefix {
-	public Prefix(MessageChannel channel, MessageReceivedEvent event, String content, String newPrefix) {
+	public Prefix(MessageChannel channel, MessageReceivedEvent event, String newPrefix) {
 		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
 		if(ReadWrite.isAuthorized(event.getTextChannel(), event, roleslist)){
-			new Print("HALLELULIA", false);
+			new Print("HALLELUJAH", false);
 			if(!newPrefix.equals("")){
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
-					//if privatechannel ---> no guildId
+					//if privateChannel ---> no guildId
 					ReadWrite.setPrefix(channel.getId(),newPrefix);
 				}
 				else {

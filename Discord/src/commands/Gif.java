@@ -26,21 +26,22 @@
 
 package commands;
 
-import org.jsoup.*;
-import org.jsoup.nodes.*;
-
-import backend.*;
+import backend.ErrorLogg;
+import backend.Print;
+import backend.Return;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.*;
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class Gif {
 	
-	Document doc = null;
-	String url = "", query = null, possiblyNumber="";
-	int indexOfGif = 1;
-	MessageChannel channel;
-	MessageReceivedEvent event;
+	private String query = null;
+	private String possiblyNumber="";
+	private MessageChannel channel;
+	private MessageReceivedEvent event;
 	
 	public Gif(MessageChannel channel, MessageReceivedEvent event, String content) {
 		try {
@@ -73,12 +74,14 @@ public class Gif {
 								possiblyNumber=" ["+Integer.toString(i)+"]";
 								fetchAndSend(i);
 							}
+							//noinspection UnnecessaryReturnStatement
 							return;
 						} else {
 							//To many -
 							channel.sendMessage("To many - inside the [ ]. You must specify like ;gif QUOTAS [" +
 									"LOW_LIMIT-HIGH_LIMIT]").
 									submit();
+							//noinspection UnnecessaryReturnStatement
 							return;
 						}
 					} else {
@@ -88,6 +91,7 @@ public class Gif {
 						}
 						event.getAuthor().getPrivateChannel().sendMessage("You need to send the ;gif command here if you " +
 								"are going to choose between multiple gifs!").complete();
+						//noinspection UnnecessaryReturnStatement
 						return;
 					}
 				}
@@ -112,14 +116,14 @@ public class Gif {
 			new ErrorLogg(e, "Error in Gif.java", "Unknown error", event);
 		}
 	}
-	public void fetchAndSend(int indexOfGif){
+	private void fetchAndSend(int indexOfGif){
 		try{
-			doc = Jsoup.connect(Return.convertUrl("https://www.tenor.co/search/"+query+"-gifs")).userAgent("Chrome").get();
-			url = "https://www.tenor.co/"+doc.select("#view > div > div.center-container.search > div > div > div:nth-child" +
-					"(1) > figure:nth-child("+indexOfGif+") > a").attr("href");
+			Document doc = Jsoup.connect(Return.convertUrl("https://www.tenor.co/search/" + query + "-gifs")).userAgent("Chrome").get();
+			String url = "https://www.tenor.co/" + doc.select("#view > div > div.center-container.search > div > div > div:nth-child" +
+					"(1) > figure:nth-child(" + indexOfGif + ") > a").attr("href");
 			
 			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ")
-					.replace("["+indexOfGif+"]","")+ "'*: " +url+possiblyNumber).queue();
+					.replace("["+indexOfGif+"]","")+ "'*: " + url +possiblyNumber).queue();
 			try {
 				if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//Check if I have MESSAGE_MANAGE permission, before trying to delete
@@ -144,6 +148,7 @@ public class Gif {
 						getAsMention()+" with id "+event.getMessage().getId());
 				new ErrorLogg(e, event.getMessage().getContent(), event.getMessage().getId(), event);
 			}
+			//noinspection UnnecessaryReturnStatement
 			return;
 		}
 		catch (Exception e){

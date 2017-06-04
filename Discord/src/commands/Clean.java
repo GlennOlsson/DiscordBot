@@ -26,12 +26,17 @@
 
 package commands;
 
-import java.util.List;
-
-import backend.*;
+import backend.ErrorLogg;
+import backend.Print;
+import backend.ReadWrite;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.*;
+import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.MessageHistory;
+import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import java.util.List;
 
 public class Clean {
 	public Clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
@@ -80,14 +85,14 @@ public class Clean {
 				if(content.split(" ").length>=4){
 					argument2=content.substring(content.indexOf(content.split(" ")[3].toLowerCase()));
 					new Print(argument2 + " == arg 2", false);
-					Boolean hasMemeber=false;
+					boolean hasMember=false;
 					for (int i = 0; i < channel.getMembers().size(); i++) {
 						if(channel.getMembers().get(i).getUser().getName().toLowerCase().equals(argument2)){
 							new Print("CHANNEL HAS USER", false);
-							hasMemeber=true;
+							hasMember=true;
 						}
 					}
-					if(!hasMemeber){
+					if(!hasMember){
 						channel.sendMessage("This channel does not have a user with that name. Aborting command").queue();
 						return;
 					}
@@ -106,61 +111,56 @@ public class Clean {
 			}
 			event.getMessage().delete().queue();
 			for (int i = 1; i < amount+1; i++) {
-				if(argument1.equals("bots")){
-					if(historyList.get(i).getAuthor().isBot()){
-						if(argument2.equals("all")){
-							historyList.get(i).delete().queue();
-						}
-						else {
-							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
+				switch (argument1) {
+					case "bots":
+						if(historyList.get(i).getAuthor().isBot()) {
+							if(argument2.equals("all")) {
 								historyList.get(i).delete().queue();
+							} else {
+								if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)) {
+									historyList.get(i).delete().queue();
+								} else {
+									amount++;
+								}
 							}
-							else {
-								amount++;
-							}
-						}
-					}
-					else{
-						amount++;
-					}
-				}
-				else if (argument1.equals("users")) {
-					if(!historyList.get(i).getAuthor().isBot()){
-						if(argument2.equals("all")){
-							historyList.get(i).delete().queue();
-						}
-						else {
-							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-								historyList.get(i).delete().queue();
-							}
-							else {
-								amount++;
-							}
-						}
-					}
-					else{
-						amount++;
-					}
-				}
-				else {
-					//if all user's messages shall go
-					if(argument2.equals("all")){
-						historyList.get(i).delete().queue();
-					}
-					else {
-						if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)){
-							historyList.get(i).delete().queue();
-						}
-						else {
+						} else {
 							amount++;
 						}
-					}
+						break;
+					case "users":
+						if(!historyList.get(i).getAuthor().isBot()) {
+							if(argument2.equals("all")) {
+								historyList.get(i).delete().queue();
+							} else {
+								if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)) {
+									historyList.get(i).delete().queue();
+								} else {
+									amount++;
+								}
+							}
+						} else {
+							amount++;
+						}
+						break;
+					default:
+						//if all user's messages shall go
+						if(argument2.equals("all")) {
+							historyList.get(i).delete().queue();
+						} else {
+							if(historyList.get(i).getAuthor().getName().toLowerCase().equals(argument2)) {
+								historyList.get(i).delete().queue();
+							} else {
+								amount++;
+							}
+						}
+						break;
 				}
 			}
 			new Print(amount+" = amount", true);
 		}
 		else {
 			//				channel.sendMessage("You are not authorized to execute that command, *"+event.getAuthor().getAsMention()+"*. Contact a Moderator").queue();
+			//noinspection UnnecessaryReturnStatement
 			return;
 		}
 	}

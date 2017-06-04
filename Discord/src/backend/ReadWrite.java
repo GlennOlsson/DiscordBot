@@ -26,26 +26,20 @@
 
 package backend;
 
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.Role;
+import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-
 
 public class ReadWrite {
-	
-	public enum JSONDocument {
-		secret, setting
-	}
-
 	public static Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String[] roleList) {
 		List<Role> roles = null;
 
@@ -58,8 +52,9 @@ public class ReadWrite {
 				}
 			}
 			ArrayList<String> rolesName = new ArrayList<>();
+			//noinspection ForLoopReplaceableByForEach
 			for (int i = 0; i < roles.size(); i++) {
-				rolesName.add(roles.get(i).getName().toString().toLowerCase());
+				rolesName.add(roles.get(i).getName().toLowerCase());
 				for (String aRoleList : roleList) {
 					if (rolesName.contains(aRoleList.toLowerCase())) {
 						return true;
@@ -78,7 +73,7 @@ public class ReadWrite {
 
 		//Check prefix
 		try {
-			String prefix=";";
+			String prefix;
 			JSONParser parser = new JSONParser();
 			Object object = parser.parse(new FileReader(getPath()));
 			JSONObject jsonObject = (JSONObject) object;
@@ -160,7 +155,7 @@ public class ReadWrite {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static String getPath(){
+	private static String getPath(){
 		if(System.getProperty("os.name").toLowerCase().contains("windows")){
 			return "C:\\Users\\Glenn\\Documents\\DiscordBot\\Secret.json";
 		}

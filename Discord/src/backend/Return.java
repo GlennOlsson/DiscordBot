@@ -26,10 +26,10 @@
 
 package backend;
 
+import org.jsoup.Jsoup;
+
 import java.net.URI;
 import java.net.URL;
-
-import org.jsoup.Jsoup;
 
 public class Return {
 	public static String convertUrl(String urlToConvert){

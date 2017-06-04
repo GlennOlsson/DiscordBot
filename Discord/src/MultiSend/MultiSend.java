@@ -41,34 +41,32 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Created by Glenn on 2017-05-31.
  */
-public class MultiSend extends ListenerAdapter{
+class MultiSend extends ListenerAdapter{
 	
-	static JFrame frame = new JFrame();
+	private static final JFrame frame = new JFrame();
 	
-	static JPanel mainPanel, textPanel, serverPanel;
+	private static final JTextArea textarea = new JTextArea();
 	
-	static JTextArea textarea = new JTextArea();
+	private static final JButton button = new JButton();
 	
-	static JButton button = new JButton();
+	private static String mentionKakan="";
 	
-	static String mentionKakan="";
+	private static final ArrayList<DCheck> checkList = new ArrayList<>();
 	
-	static ArrayList<DCheck> checkList = new ArrayList<>();
+	private static final ArrayList<Message> messageList = new ArrayList<>();
 	
-	static ArrayList<Message> messageList = new ArrayList<Message>();
-	
-	static JDA jda = null;
+	private static JDA jda = null;
 	
 	public static void main(String[] args) {
 		
 		start();
 	}
-	public static void start() {
+	private static void start() {
 		try{
 			UIManager.setLookAndFeel("com.pagosoft.plaf.PgsLookAndFeel");
 		}
@@ -81,12 +79,12 @@ public class MultiSend extends ListenerAdapter{
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
-		mainPanel = new JPanel(new MigLayout());
-		serverPanel = new JPanel(new MigLayout());
+		JPanel mainPanel = new JPanel(new MigLayout());
+		JPanel serverPanel = new JPanel(new MigLayout());
 		JScrollPane scrollPanel=new JScrollPane(serverPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPanel.setPreferredSize(new Dimension(frame.getWidth()/2, frame.getHeight()));
 //		scrollPanel.add(serverPanel);
-		textPanel = new JPanel(new MigLayout());
+		JPanel textPanel = new JPanel(new MigLayout());
 		
 		frame.add(mainPanel);
 		mainPanel.add(scrollPanel, "east");
@@ -155,7 +153,7 @@ public class MultiSend extends ListenerAdapter{
 		frame.setVisible(true);
 	}
 	
-	public static void sendPress(){
+	private static void sendPress(){
 		
 		if(textarea.getText().equals("")){
 			JOptionPane.showMessageDialog(null, "Please enter a message, you fuckwit",
@@ -235,16 +233,14 @@ public class MultiSend extends ListenerAdapter{
 		frame.dispose();
 		
 		String message = "This message: \n"+textarea.getText()+" is going to be sent to the following channels (GUILD::CHANNEL) ";
-		for(int i = 0; i < checkList.size(); i++) {
-			DCheck check = checkList.get(i);
+		for (DCheck check : checkList) {
 			check.setEnabled(false);
 			TextChannel channel = check.getChannel();
 			if(check.isSelected()) {
-				message+=channel.getGuild().getName()+"::"+channel.getName()+", ";
-				try{
+				message += channel.getGuild().getName() + "::" + channel.getName() + ", ";
+				try {
 					messageList.add(channel.sendMessage(textarea.getText()).complete(true));
-				}
-				catch (Exception e){
+				} catch (Exception e) {
 					new ErrorLogg(e, "Error with adding the sent message to list", "In MultiSend", null);
 				}
 			}
@@ -257,14 +253,14 @@ public class MultiSend extends ListenerAdapter{
 				"Messages sent. Delete them?","Accept faith or delete?"
 				, JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, deleteOptions, deleteOptions[1]);
 		if(delete==0){
-			for(int i = 0; i < messageList.size(); i++){
-				messageList.get(i).delete().complete();
+			for (Message aMessageList : messageList) {
+				aMessageList.delete().complete();
 			}
 		}
 	}
 }
 class DCheck extends JCheckBox {
-	TextChannel textChannel;
+	private final TextChannel textChannel;
 	public DCheck(TextChannel channel){
 		this.textChannel=channel;
 	}

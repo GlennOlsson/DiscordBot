@@ -26,30 +26,29 @@
 
 package main;
 /* ----------TODO
-Make a script that automatically:
-cd DiscordBot/DiscordBot/Discord
-git pull
-sh compile.sh
-tmux attach
-^C
-run.sh
 
 */
 
 
+import backend.ErrorLogg;
+import backend.Print;
+import backend.ReadWrite;
 import commands.*;
-import backend.*;
-import commands.GameRoles;
-import net.dv8tion.jda.core.*;
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.*;
-import net.dv8tion.jda.core.events.guild.member.*;
-import net.dv8tion.jda.core.events.message.*;
-import net.dv8tion.jda.core.events.message.priv.*;
-import net.dv8tion.jda.core.hooks.*;
+import net.dv8tion.jda.core.events.Event;
+import net.dv8tion.jda.core.events.ReadyEvent;
+import net.dv8tion.jda.core.events.ReconnectedEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 
-public class DiscordBot extends ListenerAdapter{
+class DiscordBot extends ListenerAdapter{
 	
 	public static void main(String[] args) {
 		try {
@@ -62,7 +61,7 @@ public class DiscordBot extends ListenerAdapter{
 			}
 			TextChannel channel=jda.getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 			
-			channel.sendMessage("Sucessfully logged in!").queue();
+			channel.sendMessage("Successfully logged in!").queue();
 			
 			try{
 				if(System.getProperty("os.name").toLowerCase().contains("linux")){
@@ -77,11 +76,11 @@ public class DiscordBot extends ListenerAdapter{
 						ReadWrite.getKey("runCount")+"\"", null);
 			}
 		} catch (Exception e) {
-			new ErrorLogg(e, "Error in Main", "Unkown error", null);
+			new ErrorLogg(e, "Error in Main", "Unknown error", null);
 		}
 	}
 	
-	public DiscordBot(){}
+	private DiscordBot(){}
 	
 	public void onReady(ReadyEvent event) {
 		try {
@@ -98,7 +97,7 @@ public class DiscordBot extends ListenerAdapter{
 			super.onReconnect(event);
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
 			
-			new Print("Reconected", false);
+			new Print("Reconnected", false);
 		}catch (Exception e) {
 			new ErrorLogg(e, "Error in onReconnect", "Unknown error", null);
 		}
@@ -138,9 +137,9 @@ public class DiscordBot extends ListenerAdapter{
 				}
 				
 				//Gets prefix
-				String prefix=";";
+				String prefix;
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
-					//if privatechannel ---> no guildId
+					//if privateChannel ---> no guildId
 					prefix=ReadWrite.getPrefix(channel.getId());
 				}
 				else {
@@ -151,12 +150,12 @@ public class DiscordBot extends ListenerAdapter{
 					onMessageReceivedPrefix(event, prefix, content, channel, contentCase);
 				} catch (Exception e) {
 					// FIXME: handle exception
-					new ErrorLogg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageRecievedPrefix for "+channel.getName()+ " channel", event);
+					new ErrorLogg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageReceivedPrefix for "+channel.getName()+ " channel", event);
 				}
 			}
 		}catch (Exception e) {
 			// FIXME: handle exception
-			new ErrorLogg(e, "Error with onMessageRecievedEvent","Unknown error", event);
+			new ErrorLogg(e, "Error with onMessageReceivedEvent","Unknown error", event);
 		}
 	}
 	
@@ -201,20 +200,12 @@ public class DiscordBot extends ListenerAdapter{
 				
 				case "prefix":
 					try {
-						new Prefix(channel, event, content, afterCommand);
+						new Prefix(channel, event, afterCommand);
 					} catch (Exception e) {
 						new ErrorLogg(e, content, "Error with prefix command", event);
 					}
 					break;
-				
-				case "up":
-					try {
-						//					new Up(channel, event, content);
-					} catch (Exception e) {
-						new ErrorLogg(e, content, "Error with up command", event);
-					}
-					break;
-				
+					
 				case "game":
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
@@ -271,6 +262,7 @@ public class DiscordBot extends ListenerAdapter{
 				String prefix=ReadWrite.getPrefix(channel.getId());
 				
 				if(content.equals("prefix")){
+					//noinspection UnnecessaryReturnStatement
 					return;
 				}
 				
@@ -279,6 +271,7 @@ public class DiscordBot extends ListenerAdapter{
 						channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 								+ "commands starting with "+prefix+". You can use "+prefix+"help for example, to see what commands you can use."
 								+ " Uppercase or lowercase does not matter").queue();
+						//noinspection UnnecessaryReturnStatement
 						return;
 					}
 				}
@@ -287,12 +280,13 @@ public class DiscordBot extends ListenerAdapter{
 						channel.sendMessage("Sorry, you did not start your message with \""+prefix+"\" character. I am a bot, and will only accept "
 								+ "commands starting with "+prefix+". You can use \""+prefix+"help\" for example, to see what commands you can use."
 								+ " Uppercase or lowercase does not matter").queue();
+					//noinspection UnnecessaryReturnStatement
 					return;
 				}
 			}
 		}catch (Exception e) {
 			new ErrorLogg(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
-					", channel: +"+event.getChannel().getName()+", MessageID: "+event.getMessage().getId(), "Unknown error in onPrivateMessageRecieved", null);
+					", channel: +"+event.getChannel().getName()+", MessageID: "+event.getMessage().getId(), "Unknown error in onPrivateMessageReceived", null);
 		}
 	}
 	
@@ -312,7 +306,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 				event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
 						event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just joined your guild \"**"+
-						event.getGuild().getName()+"**\". *If you don't want to recieve these as private messages, create a channel called \"modlog\", and I will post"
+						event.getGuild().getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
 						+ " this information there*").queue();
 			}
 		}
@@ -339,7 +333,7 @@ public class DiscordBot extends ListenerAdapter{
 				}
 				event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
 						event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just left your guild \"**"+
-						event.getGuild().getName()+"**\". *If you don't want to recieve these as private messages, create a channel called \"modlog\", and I will post"
+						event.getGuild().getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
 						+ " this information there*").queue();
 			}
 		}

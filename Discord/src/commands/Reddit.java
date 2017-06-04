@@ -26,20 +26,17 @@
 
 package commands;
 
-import org.jsoup.*;
-import org.jsoup.nodes.*;
-
-import backend.*;
+import backend.ErrorLogg;
+import backend.Print;
+import backend.Return;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.*;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class Reddit {
-
-	public static void main(String[] args) {
-		// FIXME Auto-generated method stub
-
-	}
+	
 	public Reddit(MessageChannel channel, MessageReceivedEvent event, String content){
 
 		//If reddit post
@@ -60,7 +57,7 @@ public class Reddit {
 		}
 
 		Document doc;
-		String url = null, title = null;
+		String url, title;
 		try {
 
 			doc = Jsoup.connect(Return.convertUrl(event.getMessage().getContent())).userAgent("Chrome").get();
@@ -277,6 +274,7 @@ public class Reddit {
 			event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 			new ErrorLogg(e, content, event.getMessage().getId(), event);
 		}
+		//noinspection UnnecessaryReturnStatement
 		return;
 	}	
 }

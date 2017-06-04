@@ -26,29 +26,24 @@
 
 package main;
 
+import backend.ErrorLogg;
+import backend.ReadWrite;
+import commands.Gif;
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import backend.*;
-import commands.GameRoles;
-import commands.Gif;
-import net.dv8tion.jda.core.*;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
-import net.dv8tion.jda.core.events.message.*;
-import net.dv8tion.jda.core.events.message.priv.*;
-import net.dv8tion.jda.core.hooks.*;
-import net.dv8tion.jda.core.managers.AudioManager;
-import net.dv8tion.jda.core.managers.GuildController;
-import net.dv8tion.jda.core.managers.impl.AudioManagerImpl;
-import net.dv8tion.jda.core.requests.RestAction;
-
+@SuppressWarnings("unused")
 public class Test extends ListenerAdapter{
 	
-	static Guild kakanistan;
-	static TextChannel general;
 	public static String mention, idKakan;
 	
 	public static void main(String[] args) {
@@ -66,8 +61,8 @@ public class Test extends ListenerAdapter{
 			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
-		kakanistan=jda.getGuildById("282109399617634304");
-		general = jda.getTextChannelById("282109399617634304");
+		Guild kakanistan = jda.getGuildById("282109399617634304");
+		TextChannel general = jda.getTextChannelById("282109399617634304");
 		String idKakan="165507757519273984", idKakansBot="282116563266437120";
 
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
@@ -75,7 +70,7 @@ public class Test extends ListenerAdapter{
 		
 		
 	}
-	public Test(){
+	private Test(){
 	
 	}
 	
@@ -118,12 +113,7 @@ public class Test extends ListenerAdapter{
 						
 					}
 					
-					Collections.sort(channelNames, new Comparator<String>() {
-						@Override
-						public int compare(String s1, String s2) {
-							return s1.compareToIgnoreCase(s2);
-						}
-					});
+					channelNames.sort(String::compareToIgnoreCase);
 					int i=0;
 					for (String string : channelNames) {
 						i++;
@@ -143,12 +133,7 @@ public class Test extends ListenerAdapter{
 						
 					}
 					
-					Collections.sort(channelNames, new Comparator<String>() {
-						@Override
-						public int compare(String s1, String s2) {
-							return s1.compareToIgnoreCase(s2);
-						}
-					});
+					channelNames.sort(String::compareToIgnoreCase);
 					
 					System.out.println(channelNames.get(Integer.parseInt(arg)-1));
 					
