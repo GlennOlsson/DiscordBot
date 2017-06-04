@@ -26,10 +26,15 @@
 
 package main;
 /* ----------TODO
+Make a script that automatically:
+cd DiscordBot/DiscordBot/Discord
+git pull
+sh compile.sh
+tmux attach
+^C
+run.sh
 
-Upgrade ;gif, so you can send other gifs than number one at that quota
-
- */
+*/
 
 
 import commands.*;
