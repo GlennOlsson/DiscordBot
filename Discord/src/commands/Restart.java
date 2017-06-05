@@ -28,6 +28,7 @@ package commands;
 
 import backend.ErrorLogg;
 import backend.Print;
+import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
@@ -45,6 +46,7 @@ public class Restart {
 		User author = event.getMessage().getAuthor();
 		if(author.getId().equals("165507757519273984")){
 			channel.sendMessage("Alright boss, shutting down...").submit();
+			event.getJDA().getPresence().setStatus(OnlineStatus.OFFLINE);
 			try{
 					Process proc = Runtime.getRuntime().exec(" sh restart.sh > cd &");
 					proc.waitFor();
