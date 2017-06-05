@@ -151,13 +151,13 @@ public class MessageEvents {
 					}
 					break;
 				
-//				case "restart":
-//					try {
-//						new Restart(channel, event);
-//					} catch (Exception e) {
-//						new ErrorLogg(e, content, "Error with Restart command", event);
-//					}
-//					break;
+				case "restart":
+					try {
+						new Restart(channel, event);
+					} catch (Exception e) {
+						new ErrorLogg(e, content, "Error with Restart command", event);
+					}
+					break;
 				
 				case "editgame":
 					try {
