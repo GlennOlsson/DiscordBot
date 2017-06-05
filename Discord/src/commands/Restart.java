@@ -34,10 +34,37 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 /**
  * Created by Glenn on 2017-06-05.
  */
 public class Restart {
+	
+	public static void main(String[] args) {
+		String command = "/bin/bash -c sh /home/pi/restart.sh";
+		Process proc=null;
+		try{
+			proc = Runtime.getRuntime().exec(command);
+			
+			
+			// Read the output
+			
+			BufferedReader reader =
+					new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			
+			String line = "";
+			while((line = reader.readLine()) != null) {
+				System.out.print(line + "\n");
+			}
+			proc.waitFor();
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public Restart(MessageChannel channel, MessageReceivedEvent event){
 		User author = event.getMessage().getAuthor();
 		if(author.getId().equals("165507757519273984")){
@@ -47,7 +74,7 @@ public class Restart {
 				Process proc = new ProcessBuilder(args).start();
 			}
 			catch (Exception e){
-			    new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
+				new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
 			}
 		}
 		else {
