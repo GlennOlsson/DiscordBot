@@ -11,4 +11,5 @@ echo 'Managed to exit running tmux script, trying to run and execute'
 tmux send-keys -t 0 'sh run.sh' Enter || { echo 'Could not run'; exit 1; }
 echo 'Managed send run and execute'
 #tmux send-keys -t 0 Enter|| { echo 'Could not run'; exit 1; }
-echo 'Successfully reset DiscordBot'
+echo 'Successfully reset DiscordBot, will try to kill temporary tmux'
+tmux kill-session -t temp && echo 'Temp tmux is terminated'
