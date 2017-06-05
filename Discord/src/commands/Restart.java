@@ -48,10 +48,10 @@ public class Restart {
 			channel.sendMessage("Alright boss, shutting down...").submit();
 			event.getJDA().getPresence().setStatus(OnlineStatus.OFFLINE);
 			try{
-				Process proc = Runtime.getRuntime().exec("tmux new -s temp");
+				Process proc = Runtime.getRuntime().exec("tmux new -s \"temp\"");
 				proc.waitFor();
 				Process proc2 = Runtime.getRuntime().exec(
-						"tmux send-keys -t temp 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
+						"tmux send-keys -t \"temp\" 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
 				proc2.waitFor();
 			}
 			catch (Exception e){
