@@ -46,7 +46,7 @@ public class Restart {
 		if(author.getId().equals("165507757519273984")){
 			channel.sendMessage("Alright boss, shutting down...").submit();
 			try{
-					Process proc = Runtime.getRuntime().exec("sh /home/pi/restart.sh");
+					Process proc = Runtime.getRuntime().exec(" sh restart.sh > cd &");
 					proc.waitFor();
 			}
 			catch (Exception e){
