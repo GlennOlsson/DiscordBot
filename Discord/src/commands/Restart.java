@@ -43,7 +43,8 @@ public class Restart {
 		if(author.getId().equals("165507757519273984")){
 			channel.sendMessage("Alright boss, shutting down...").submit();
 			try{
-				Runtime.getRuntime().exec("/bin/bash -c sh /home/pi/restart.sh");
+				String[] args = new String[] {"/bin/bash", "-c", "sh", "/home/pi/restart.sh"};
+				Process proc = new ProcessBuilder(args).start();
 			}
 			catch (Exception e){
 			    new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
