@@ -41,15 +41,17 @@ import java.io.InputStreamReader;
  * Created by Glenn on 2017-06-05.
  */
 public class Restart {
-
+	
 	public Restart(MessageChannel channel, MessageReceivedEvent event){
 		User author = event.getMessage().getAuthor();
 		if(author.getId().equals("165507757519273984")){
 			channel.sendMessage("Alright boss, shutting down...").submit();
 			event.getJDA().getPresence().setStatus(OnlineStatus.OFFLINE);
 			try{
-					Process proc = Runtime.getRuntime().exec(" sh restart.sh > cd &");
-					proc.waitFor();
+				Process proc = Runtime.getRuntime().exec(" sh restart.sh > cd &");
+				proc.waitFor();
+				Process proc2 = Runtime.getRuntime().exec(" disown -h %1");
+				proc2.waitFor();
 			}
 			catch (Exception e){
 				new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
@@ -60,12 +62,12 @@ public class Restart {
 			String guildText = "the "+event.getGuild().getName()+" server",
 					mentionText = " Hey "+event.getJDA().getUserById("165507757519273984").getAsMention() +
 							", do you know what "+author.getName() + " did?!";
-
+			
 			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 				guildText="a private message";
 				mentionText="";
 			}
-
+			
 			channel.sendMessage("Nuh uh, you are not **The Kakan**! He will hear about this!"+mentionText).
 					queue();
 			new Print("The user "+ author.getName() + "#"+author.getDiscriminator()
