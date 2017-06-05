@@ -35,11 +35,12 @@ import java.io.InputStreamReader;
 public class Restart {
 	
 	public static void main(String[] args) {
-		String command = "/bin/bash -c sh /home/pi/restart.sh";
+		String command = "sh /home/pi/restart.sh";
 		Process proc=null;
 		try{
 			proc = Runtime.getRuntime().exec(command);
 			
+System.out.println("COME ON!!");
 			
 			// Read the output
 			
