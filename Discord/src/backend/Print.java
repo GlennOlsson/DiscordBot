@@ -79,12 +79,10 @@ public class Print {
 							"<pre><code>"+newContent+""+currentContent);
 				}
 				catch (Exception e) {
-					// FIXME: handle exception
 					new ErrorLogg(e, "Error writing Print.md", "In File.write", null);
 				}
 			}
 			catch (Exception e) {
-				// FIXME: handle exception
 				new ErrorLogg(e, "Error reading Print.md", "In File.read and others", null);
 			}
 		}

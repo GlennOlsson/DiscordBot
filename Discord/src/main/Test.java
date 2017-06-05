@@ -29,6 +29,7 @@ package main;
 import backend.ErrorLogg;
 import backend.ReadWrite;
 import commands.Gif;
+import commands.Restart;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -47,8 +48,6 @@ public class Test extends ListenerAdapter{
 	public static String mention, idKakan;
 	
 	public static void main(String[] args) {
-		// FIXME Auto-generated method stub
-		
 		JDA jda = null;
 		try {
 			jda = new JDABuilder(AccountType.BOT)
@@ -79,8 +78,8 @@ public class Test extends ListenerAdapter{
 		String content = event.getMessage().getContent(), afterCommand="", command = content.substring(";".length());
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
-			if(content.contains(";gif")){
-				new Gif(event.getChannel(),event,content.substring(5));
+			if(content.contains(";restart")){
+				new Restart(event.getChannel(),event);
 			}
 		}
 	}

@@ -69,7 +69,6 @@ public class Clean {
 						amount=100;
 					}
 				} catch (Exception e) {
-					// FIXME: handle exception
 
 					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();
 					new ErrorLogg(e, content, event.getMessage().getId(), event);
@@ -105,7 +104,6 @@ public class Clean {
 			try {
 				historyList=history.retrievePast(100).complete(true);
 			} catch (Exception e) {
-				// FIXME Auto-generated catch block
 				channel.sendMessage("Error, contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id: "+event.getMessage().getId());
 				new ErrorLogg(e, content, event.getMessage().getId(), event);
 			}

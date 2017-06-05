@@ -87,7 +87,6 @@ public class ErrorLogg {
 					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>"+newContent+""+currentContent);
 				}
 				catch (Exception e) {
-					// FIXME: handle exception
 					new Error(e);
 				}
 				
@@ -95,7 +94,6 @@ public class ErrorLogg {
 
 			}
 			catch (Exception e) {
-				// FIXME: handle exception
 				new Error(e);
 			}
 		}

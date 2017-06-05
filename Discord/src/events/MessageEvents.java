@@ -86,7 +86,6 @@ public class MessageEvents {
 				try {
 					onMessageReceivedPrefix(event, prefix, content, channel, contentCase);
 				} catch (Exception e) {
-					// FIXME: handle exception
 					new ErrorLogg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageReceivedPrefix for "+channel.getName()+ " channel", event);
 				}
 			}
@@ -149,6 +148,14 @@ public class MessageEvents {
 					}
 					catch (Exception e){
 						new ErrorLogg(e, content, "Error with game command", event);
+					}
+					break;
+				
+				case "restart":
+					try {
+						new Restart(channel, event);
+					} catch (Exception e) {
+						new ErrorLogg(e, content, "Error with Restart command", event);
 					}
 					break;
 				

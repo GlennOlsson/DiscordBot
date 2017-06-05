@@ -50,7 +50,6 @@ public class DailyDose {
 			}			
 		}
 		catch (Exception e) {
-			// FIXME: handle exception
 			new ErrorLogg(e, "Error with DailyDose class", "Unknown error", null);
 		}
 	}
@@ -67,7 +66,6 @@ public class DailyDose {
 				try {
 					lastMs = Long.parseLong(lastMsString);
 				} catch (Exception e) {
-					// FIXME: handle exception
 					new Print("Error with converting string -> long. Returning method and setting dailyMs JSON key to currentTimeMillis", false);
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 					return;
@@ -79,7 +77,6 @@ public class DailyDose {
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 				}
 			} catch (Exception e) {
-				// FIXME: handle exception
 				new ErrorLogg(e, "Error in onEvent", "Unknown error caught", null);
 			}
 		}

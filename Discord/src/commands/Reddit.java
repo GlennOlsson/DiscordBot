@@ -44,7 +44,6 @@ public class Reddit {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
-			// FIXME Auto-generated catch block
 			new ErrorLogg(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
 		}
 		
@@ -108,7 +107,6 @@ public class Reddit {
 
 									doc2 = Jsoup.connect(Return.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
-									// FIXME Auto-generated catch block;
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 									new ErrorLogg(e, content, event.getMessage().getId(), event);
 								}
@@ -123,7 +121,6 @@ public class Reddit {
 								}
 
 							} catch (Exception e) {
-								// FIXME: handle exception
 								//Moving image: Gif, Gifv, mp4...
 								url2=url+".gifv";
 
@@ -211,7 +208,6 @@ public class Reddit {
 
 									doc2 = Jsoup.connect(Return.convertUrl(url)).userAgent("Chrome").get();
 								} catch (Exception e) {
-									// FIXME Auto-generated catch block
 									event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
 									new ErrorLogg(e, content, event.getMessage().getId(), event);
 								}
@@ -226,7 +222,6 @@ public class Reddit {
 								}
 
 							} catch (Exception e) {
-								// FIXME: handle exception
 								//Moving image: Gif, Gifv, mp4...
 								url2=url+".gifv";
 							}

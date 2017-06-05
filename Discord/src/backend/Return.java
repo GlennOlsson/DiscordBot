@@ -45,7 +45,6 @@ public class Return {
 
 				return uri.toASCIIString();
 			} catch (Exception e2) {
-				// FIXME: handle exception
 				new ErrorLogg(e2, "Error in convertUrl", "Error with URL -> URI  -> URI.toASCIIString", null);
 			}
 
