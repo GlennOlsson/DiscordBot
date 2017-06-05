@@ -79,7 +79,7 @@ public class Test extends ListenerAdapter{
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
 			if(content.contains(";restart")){
-				new Restart(event.getChannel(),event);
+//				new Restart(event.getChannel(),event);
 			}
 		}
 	}

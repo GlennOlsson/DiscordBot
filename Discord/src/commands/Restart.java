@@ -26,6 +26,13 @@
 
 package commands;
 
+import backend.ErrorLogg;
+import backend.Print;
+import net.dv8tion.jda.core.entities.ChannelType;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -33,59 +40,35 @@ import java.io.InputStreamReader;
  * Created by Glenn on 2017-06-05.
  */
 public class Restart {
-	
-	public static void main(String[] args) {
-		String command = "sh /home/pi/restart.sh";
-		Process proc=null;
-		try{
-			proc = Runtime.getRuntime().exec(command);
-			
-System.out.println("COME ON!!");
-			
-			// Read the output
-			
-			BufferedReader reader =
-					new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			
-			String line = "";
-			while((line = reader.readLine()) != null) {
-				System.out.print(line + "\n");
+
+	public Restart(MessageChannel channel, MessageReceivedEvent event){
+		User author = event.getMessage().getAuthor();
+		if(author.getId().equals("165507757519273984")){
+			channel.sendMessage("Alright boss, shutting down...").submit();
+			try{
+					Process proc = Runtime.getRuntime().exec("sh /home/pi/restart.sh");
+					proc.waitFor();
 			}
-			proc.waitFor();
+			catch (Exception e){
+				new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
+			}
 		}
-		catch (Exception e){
-			e.printStackTrace();
+		else {
+			//Is not Kakan
+			String guildText = "the "+event.getGuild().getName()+" server",
+					mentionText = " Hey "+event.getJDA().getUserById("165507757519273984").getAsMention() +
+							", do you know what "+author.getName() + " did?!";
+
+			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+				guildText="a private message";
+				mentionText="";
+			}
+
+			channel.sendMessage("Nuh uh, you are not **The Kakan**! He will hear about this!"+mentionText).
+					queue();
+			new Print("The user "+ author.getName() + "#"+author.getDiscriminator()
+					+"("+author.getId()+") tried to restart the bot in "+ guildText +", in the "
+					+event.getChannel().getName() + " channel. KILL THAT PERSON!!", true);
 		}
 	}
-	
-//	public Restart(MessageChannel channel, MessageReceivedEvent event){
-//		User author = event.getMessage().getAuthor();
-//		if(author.getId().equals("165507757519273984")){
-//			channel.sendMessage("Alright boss, shutting down...").submit();
-//			try{
-//				String[] args = new String[] {"/bin/bash", "-c", "sh", "/home/pi/restart.sh"};
-//				Process proc = new ProcessBuilder(args).start();
-//			}
-//			catch (Exception e){
-//				new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
-//			}
-//		}
-//		else {
-//			//Is not Kakan
-//			String guildText = "the "+event.getGuild().getName()+" server",
-//					mentionText = " Hey "+event.getJDA().getUserById("165507757519273984").getAsMention() +
-//							", do you know what "+author.getName() + " did?!";
-//
-//			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
-//				guildText="a private message";
-//				mentionText="";
-//			}
-//
-//			channel.sendMessage("Nuh uh, you are not **The Kakan**! He will hear about this!"+mentionText).
-//					queue();
-//			new Print("The user "+ author.getName() + "#"+author.getDiscriminator()
-//					+"("+author.getId()+") tried to restart the bot in "+ guildText +", in the "
-//					+event.getChannel().getName() + " channel. KILL THAT PERSON!!", true);
-//		}
-//	}
 }
