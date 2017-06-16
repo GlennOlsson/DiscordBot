@@ -44,7 +44,33 @@ public class Restart {
 	
 	public static void main(String[] args) throws Exception{
 		Process proc = Runtime.getRuntime().exec("tmux new -s \"temp\"");
+		BufferedReader reader =
+				new BufferedReader(new InputStreamReader(proc.getInputStream()));
+		String line = "";
+		while((line = reader.readLine()) != null) {
+			System.out.print(line + "\n");
+		}
 		proc.waitFor();
+		
+		Process proc1 = Runtime.getRuntime().exec(
+				"tmux send-keys -t \"temp\" 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
+		BufferedReader reader1 =
+				new BufferedReader(new InputStreamReader(proc1.getInputStream()));
+		String line1 = "";
+		while((line1 = reader1.readLine()) != null) {
+			System.out.print(line1 + "\n");
+		}
+		proc1.waitFor();
+		
+		Process proc2 = Runtime.getRuntime().exec(
+				"echo fuck");
+		BufferedReader reader2 =
+				new BufferedReader(new InputStreamReader(proc2.getInputStream()));
+		String line2 = "";
+		while((line2 = reader2.readLine()) != null) {
+			System.out.print(line2 + "\n");
+		}
+		proc2.waitFor();
 	}
 	
 	public Restart(MessageChannel channel, MessageReceivedEvent event){
