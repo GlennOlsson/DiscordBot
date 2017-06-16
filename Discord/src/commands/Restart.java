@@ -71,6 +71,17 @@ public class Restart {
 					System.out.print(line1 + "\n");
 				}
 				proc1.waitFor();
+				
+				Process proc2 = Runtime.getRuntime().exec(
+						"tmux send-keys -t \"temp\" 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
+				BufferedReader reader2 =
+						new BufferedReader(new InputStreamReader(proc2.getInputStream()));
+				String line2 = "";
+				while((line2 = reader2.readLine()) != null) {
+					System.out.print(line2 + "\n");
+				}
+				proc2.waitFor();
+				
 			}
 			catch (Exception e){
 				new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
