@@ -73,7 +73,7 @@ public class Restart {
 				proc1.waitFor();
 				
 				Process proc2 = Runtime.getRuntime().exec(
-						"tmux send-keys -t \"temp\" 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
+						"echo fuck");
 				BufferedReader reader2 =
 						new BufferedReader(new InputStreamReader(proc2.getInputStream()));
 				String line2 = "";
