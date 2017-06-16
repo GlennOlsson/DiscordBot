@@ -70,7 +70,7 @@ public class Gif {
 								return;
 							}
 							//We now got an upper limit, and a lower one.
-							for (int i = lowLimit; i < highLimit; i++) {
+							for (int i = lowLimit; i < highLimit+1; i++) {
 								possiblyNumber=" ["+Integer.toString(i)+"]";
 								fetchAndSend(i);
 							}
