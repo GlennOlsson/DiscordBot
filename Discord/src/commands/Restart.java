@@ -42,6 +42,11 @@ import java.io.InputStreamReader;
  */
 public class Restart {
 	
+	public static void main(String[] args) throws Exception{
+		Process proc = Runtime.getRuntime().exec("tmux new -s \"temp\"");
+		proc.waitFor();
+	}
+	
 	public Restart(MessageChannel channel, MessageReceivedEvent event){
 		User author = event.getMessage().getAuthor();
 		if(author.getId().equals("165507757519273984")){
