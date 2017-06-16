@@ -36,42 +36,13 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Glenn on 2017-06-05.
  */
 public class Restart {
-	
-	public static void main(String[] args) throws Exception{
-		Process proc = Runtime.getRuntime().exec("tmux new -s \"temp\"");
-		BufferedReader reader =
-				new BufferedReader(new InputStreamReader(proc.getInputStream()));
-		String line = "";
-		while((line = reader.readLine()) != null) {
-			System.out.print(line + "\n");
-		}
-		proc.waitFor();
-		
-		Process proc1 = Runtime.getRuntime().exec(
-				"tmux send-keys -t \"temp\" 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
-		BufferedReader reader1 =
-				new BufferedReader(new InputStreamReader(proc1.getInputStream()));
-		String line1 = "";
-		while((line1 = reader1.readLine()) != null) {
-			System.out.print(line1 + "\n");
-		}
-		proc1.waitFor();
-		
-		Process proc2 = Runtime.getRuntime().exec(
-				"echo fuck");
-		BufferedReader reader2 =
-				new BufferedReader(new InputStreamReader(proc2.getInputStream()));
-		String line2 = "";
-		while((line2 = reader2.readLine()) != null) {
-			System.out.print(line2 + "\n");
-		}
-		proc2.waitFor();
-	}
 	
 	public Restart(MessageChannel channel, MessageReceivedEvent event){
 		User author = event.getMessage().getAuthor();
@@ -116,7 +87,7 @@ public class Restart {
 		else {
 			//Is not Kakan
 			String guildText = "the "+event.getGuild().getName()+" server",
-					mentionText = " Hey "+event.getJDA().getUserById("165507757519273984").getAsMention() +
+					mentionText = "Hey "+event.getJDA().getUserById("165507757519273984").getAsMention() +
 							", do you know what "+author.getName() + " did?!";
 			
 			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
@@ -124,7 +95,7 @@ public class Restart {
 				mentionText="";
 			}
 			
-			channel.sendMessage("Nuh uh, you are not **The Kakan**! He will hear about this!"+mentionText).
+			channel.sendMessage("Nuh uh, you are not **The Kakan**! He will hear about this! "+mentionText).
 					queue();
 			new Print("The user "+ author.getName() + "#"+author.getDiscriminator()
 					+"("+author.getId()+") tried to restart the bot in "+ guildText +", in the "
