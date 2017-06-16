@@ -54,10 +54,23 @@ public class Restart {
 			event.getJDA().getPresence().setStatus(OnlineStatus.OFFLINE);
 			try{
 				Process proc = Runtime.getRuntime().exec("tmux new -s \"temp\"");
+				BufferedReader reader =
+						new BufferedReader(new InputStreamReader(proc.getInputStream()));
+				String line = "";
+				while((line = reader.readLine()) != null) {
+					System.out.print(line + "\n");
+				}
 				proc.waitFor();
-				Process proc2 = Runtime.getRuntime().exec(
+				
+				Process proc1 = Runtime.getRuntime().exec(
 						"tmux send-keys -t \"temp\" 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
-				proc2.waitFor();
+				BufferedReader reader1 =
+						new BufferedReader(new InputStreamReader(proc1.getInputStream()));
+				String line1 = "";
+				while((line1 = reader1.readLine()) != null) {
+					System.out.print(line1 + "\n");
+				}
+				proc1.waitFor();
 			}
 			catch (Exception e){
 				new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
