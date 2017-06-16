@@ -28,6 +28,7 @@ package main;
 
 import backend.ErrorLogg;
 import backend.ReadWrite;
+import backend.Return;
 import commands.Gif;
 import commands.Restart;
 import net.dv8tion.jda.core.AccountType;
@@ -38,6 +39,8 @@ import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +81,14 @@ public class Test extends ListenerAdapter{
 		String content = event.getMessage().getContent(), afterCommand="", command = content.substring(";".length());
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
-			if(content.contains(";restart")){
-//				new Restart(event.getChannel(),event);
+			try{
+			Document doc = Jsoup.connect(Return.convertUrl("https://tenor.com/search/hey-waddup-gifs")).userAgent("Chrome").get();
+			String url = "https://www.tenor.co/" + doc.select("#view > div > div > div > div > div:nth-child(1) > figure:nth-child("+
+					event.getMessage().getContent()+") > a").attr("href");
+				event.getChannel().sendMessage(url).queue();
+			}
+			catch (Exception e){
+				e.printStackTrace();
 			}
 		}
 	}
