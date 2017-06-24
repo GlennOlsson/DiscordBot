@@ -42,7 +42,6 @@ public class Return {
 			try {
 				URL url = new URL(urlToConvert);
 				URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
-
 				return uri.toASCIIString();
 			} catch (Exception e2) {
 				new ErrorLogg(e2, "Error in convertUrl", "Error with URL -> URI  -> URI.toASCIIString", null);
@@ -50,8 +49,6 @@ public class Return {
 
 		}
 		return null;
-
-
 	}
 
 
