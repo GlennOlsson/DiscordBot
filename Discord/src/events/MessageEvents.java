@@ -94,7 +94,7 @@ public class MessageEvents {
 		}
 	}
 	private static void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel,
-	                                     String contentCase) {
+	                                            String contentCase) {
 		// Made so that it can check ; as a prefix, if the first check fails. This way, ; is always a prefix
 		
 		if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
@@ -150,7 +150,7 @@ public class MessageEvents {
 						new ErrorLogg(e, content, "Error with game command", event);
 					}
 					break;
-				
+
 //				case "restart":
 //					try {
 //						new Restart(channel, event);
@@ -163,6 +163,16 @@ public class MessageEvents {
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
 							GameRoles.editRoles(event, channel, afterCommand);
+						}
+					}
+					catch (Exception e){
+						new ErrorLogg(e, content, "Error with editgame command", event);
+					}
+					break;
+				case "welcome":
+					try {
+						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
+							new WelcomeMessage(event, channel, afterCommand);
 						}
 					}
 					catch (Exception e){
