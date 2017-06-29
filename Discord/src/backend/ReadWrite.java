@@ -162,6 +162,10 @@ public class ReadWrite {
 		else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
 			return "/home/pi/DiscordBot/Secret.json";
 		}
+		else if(System.getProperty("os.name").toLowerCase().contains("mac os x")){
+			return "/Users/glenn/Documents/Idea projects/Secret.json";
+			
+		}
 		return null;
 	}
 }

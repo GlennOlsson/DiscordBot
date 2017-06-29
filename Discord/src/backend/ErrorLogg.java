@@ -98,7 +98,7 @@ public class ErrorLogg {
 			}
 		}
 		else {
-			//if windows
+			//if windows or mac
 			exception.printStackTrace();
 		}
 	}	

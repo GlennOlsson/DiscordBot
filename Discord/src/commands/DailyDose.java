@@ -31,23 +31,61 @@ import backend.Print;
 import backend.ReadWrite;
 import backend.Return;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.util.ArrayList;
+
 public class DailyDose {
 	@SuppressWarnings("WeakerAccess")
 	long recentlyChecked = 0;
 	private DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
 		Document doc;
+		ArrayList<Message> messages = new ArrayList<>();
 		try {
 //			channel=channel.getJDA().getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
-			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
-
+			
 			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
 			for (int i = 0; i < 3; i++) {
-				channel.sendMessage("**"+doc.select(".entry > .title > a").get(i).html() + "** "+doc.select(".thing").get(i).attr("data-url")).queue();
-			}			
+				
+				Element postTitleElement = doc.select("div.entry.unvoted > div.top-matter > p.title > a").get(i);
+				
+				new Print(Return.convertUrl(
+						"https://reddit.com"+postTitleElement.attr("href")));
+				
+				String postUrl = "";
+				
+				if(postTitleElement.attr("href").contains("/r/aww")){
+					Document currentPost = Jsoup.connect(Return.convertUrl(
+							"https://reddit.com"+postTitleElement.attr("href"))).userAgent("Chrome").get();
+					
+					postUrl = currentPost.select("div.entry.unvoted > div.top-matter > p.title > a").attr("href");
+				}
+				else{
+					postUrl=postTitleElement.attr("href");
+				}
+				
+				MessageBuilder message = new MessageBuilder();
+				
+				message.append("**"+postTitleElement.text() +"** "
+						+postUrl);
+				
+				messages.add(message.build());
+				
+			}
+			
+			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
+			
+			for(Message message : messages){
+				channel.sendMessage(message).complete();
+			}
+			
 		}
 		catch (Exception e) {
 			new ErrorLogg(e, "Error with DailyDose class", "Unknown error", null);
