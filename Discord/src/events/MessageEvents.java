@@ -100,10 +100,11 @@ public class MessageEvents {
 		if(content.length()>prefix.length()&&content.substring(0,prefix.length()).equals(prefix)){
 			//; commands
 			
-			String command = content.substring(prefix.length()), afterCommand = "";
+			String command = content.substring(prefix.length()), afterCommand = "", rawAfterCommand="";
 			if(command.contains(" ")){
 				command=command.split(" ")[0];
 				afterCommand = contentCase.substring(prefix.length()+command.length()+1);
+				rawAfterCommand = event.getMessage().getRawContent().substring(prefix.length()+command.length()+1);
 				new Print("Aftercommand=\""+afterCommand+"\"", false);
 			}
 			
@@ -169,16 +170,18 @@ public class MessageEvents {
 						new ErrorLogg(e, content, "Error with editgame command", event);
 					}
 					break;
+					
 				case "welcome":
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
-							new WelcomeMessage(event, channel, afterCommand);
+							new WelcomeMessage(event, channel, rawAfterCommand);
 						}
 					}
 					catch (Exception e){
 						new ErrorLogg(e, content, "Error with editgame command", event);
 					}
 					break;
+					
 				case "help":
 					
 					try {

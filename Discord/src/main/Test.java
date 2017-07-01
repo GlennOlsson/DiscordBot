@@ -32,6 +32,7 @@ import backend.ReadWrite;
 import backend.Return;
 import commands.Gif;
 import commands.Restart;
+import commands.WelcomeMessage;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -39,6 +40,7 @@ import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -75,6 +77,7 @@ public class Test extends ListenerAdapter{
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
+		new Print(ReadWrite.getKey("welcome282109399617634304"));
 		
 	}
 	private Test(){
@@ -83,10 +86,10 @@ public class Test extends ListenerAdapter{
 	
 	public void onMessageReceived(MessageReceivedEvent event){
 		
-		String content = event.getMessage().getContent(), afterCommand="", command = content.substring(";".length());
+		String content = event.getMessage().getRawContent(), afterCommand="", command = content.substring(";".length());
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
-		
+			new WelcomeMessage(event, event.getTextChannel(), content.substring(";welcome ".length()));
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){

@@ -27,6 +27,7 @@
 package events;
 
 import backend.ErrorLogg;
+import backend.ReadWrite;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
@@ -38,7 +39,16 @@ public class GuildMemberEvents {
 	public static void GuildMemberJoin(GuildMemberJoinEvent event){
 		try{
 			MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
-			channel.sendMessage("Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!").queue();
+			String welcomeMessage = ReadWrite.getKey("welcome"+event.getGuild().getId());
+			
+			if(welcomeMessage==null){
+				welcomeMessage="Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!";
+			}
+			else{
+				welcomeMessage=welcomeMessage.replace(";mention;",event.getMember().getAsMention());
+			}
+			
+			channel.sendMessage(welcomeMessage).queue();
 			
 			if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
 				event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
