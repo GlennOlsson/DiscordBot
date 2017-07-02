@@ -43,7 +43,7 @@ public class MessageEvents {
 	
 	public static void MessageReceived(MessageReceivedEvent event){
 		try{
-			if(!event.getAuthor().equals(event.getJDA().getSelfUser())){
+			if(!event.getAuthor().equals(event.getJDA().getSelfUser())&&!Ignore.shouldIgnore(event.getAuthor())){
 				String  contentCase=event.getMessage().getContent(), content = event.getMessage().getContent().toLowerCase();
 				MessageChannel channel = event.getChannel();
 				
@@ -87,6 +87,26 @@ public class MessageEvents {
 					onMessageReceivedPrefix(event, prefix, content, channel, contentCase);
 				} catch (Exception e) {
 					new ErrorLogg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageReceivedPrefix for "+channel.getName()+ " channel", event);
+				}
+			}
+			else{
+				//Either bot or shall ignore
+				if(event.getAuthor()!=event.getJDA().getSelfUser()){
+					//Should ignore
+					
+					String prefix;
+					if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+						//if privateChannel ---> no guildId
+						prefix=ReadWrite.getPrefix(event.getTextChannel().getId());
+					}
+					else {
+						//Not private --> has guild Id
+						prefix=ReadWrite.getPrefix(event.getGuild().getId());
+					}
+					
+					if(event.getMessage().getContent().equals(";ignore")||event.getMessage().getContent().equals(prefix+"ignore")){
+						new Ignore(event.getTextChannel(), event.getAuthor());
+					}
 				}
 			}
 		}catch (Exception e) {
@@ -179,6 +199,15 @@ public class MessageEvents {
 					}
 					catch (Exception e){
 						new ErrorLogg(e, content, "Error with editgame command", event);
+					}
+					break;
+				
+				case "ignore":
+					try {
+						new Ignore(event.getTextChannel(), event.getAuthor());
+					}
+					catch (Exception e){
+						new ErrorLogg(e, content, "Error with game command", event);
 					}
 					break;
 					

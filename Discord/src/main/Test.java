@@ -31,6 +31,7 @@ import backend.Print;
 import backend.ReadWrite;
 import backend.Return;
 import commands.Gif;
+import commands.Ignore;
 import commands.Restart;
 import commands.WelcomeMessage;
 import net.dv8tion.jda.core.AccountType;
@@ -89,7 +90,7 @@ public class Test extends ListenerAdapter{
 		String content = event.getMessage().getRawContent(), afterCommand="", command = content.substring(";".length());
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
-			new WelcomeMessage(event, event.getTextChannel(), content.substring(";welcome ".length()));
+			new Ignore(event.getTextChannel(), event.getAuthor());
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
