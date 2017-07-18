@@ -59,13 +59,13 @@ public class Reddit {
 		String url, title;
 		try {
 
-			doc = Jsoup.connect(Return.convertUrl(event.getMessage().getContent())).userAgent("Chrome").get();
+			doc = Jsoup.connect(Return.convertUrl(event.getMessage().getContent())).userAgent("Chrome").followRedirects(false).get();
 			if(doc.toString().toLowerCase().contains("8+ to view this community")){
 				//-- if NSFW sub --
 				doc = Jsoup.connect(Return.convertUrl(event.getMessage().getContent())+".rss").userAgent("Mozilla").get();
-
+				
 				url=doc.toString().substring(doc.toString().indexOf("span&gt;&lt;a href=")+"span&gt;&lt;a href=".length()+1,
-						doc.toString().indexOf("&gt;[link]&lt;/a&gt;&lt;")-1).replaceAll("amp;amp;", "");
+						doc.toString().indexOf("&quot;&gt;[link]"));
 				title=doc.select("title").get(1).text();
 
 

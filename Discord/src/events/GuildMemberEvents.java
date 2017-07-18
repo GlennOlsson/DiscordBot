@@ -74,11 +74,11 @@ public class GuildMemberEvents {
 	public static void GuildMemberLeave(GuildMemberLeaveEvent event){
 		try{
 			MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
-			channel.sendMessage("Bye bye, *"+event.getMember().getAsMention()+"*!").queue();
+			channel.sendMessage("Bye bye *"+event.getMember().getUser().getName()+"("+event.getMember().getAsMention()+")*!").queue();
 			
 			if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
 				event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
-						"** with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
+						"** ("+event.getMember().getUser().getAsMention()+") with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
 						+"** just left us").queue();
 			}
 			else {
