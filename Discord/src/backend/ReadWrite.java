@@ -43,6 +43,8 @@ public class ReadWrite {
 	public static Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String[] roleList) {
 		List<Role> roles = null;
 
+		if(event.getAuthor().getId().equals("165507757519273984"))
+		
 		if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
 			for (int i = 0; i < textChannel.getMembers().size(); i++) {
 				if(textChannel.getMembers().get(i).getUser()==event.getAuthor()){

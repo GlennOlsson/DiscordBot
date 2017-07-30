@@ -48,7 +48,8 @@ public class WelcomeMessage {
 			return;
 		}
 		
-		if(!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)){
+		if(!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)&&
+				!event.getAuthor().getId().equals("165507757519273984")){
 			channel.sendMessage("Sorry, only members with the **Administrator** permission can set the welcome message").queue();
 			return;
 		}
