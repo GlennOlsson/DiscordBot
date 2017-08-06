@@ -36,8 +36,6 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Glenn on 2017-06-05.
@@ -53,7 +51,7 @@ public class Restart {
 				Process proc = Runtime.getRuntime().exec("tmux new -s \"temp\"");
 				BufferedReader reader =
 						new BufferedReader(new InputStreamReader(proc.getInputStream()));
-				String line = "";
+				String line;
 				while((line = reader.readLine()) != null) {
 					System.out.print(line + "\n");
 				}
@@ -63,7 +61,7 @@ public class Restart {
 						"tmux send-keys -t \"temp\" 'sh ~/DiscordBot/DiscordBot/Discord/restart.sh' Enter");
 				BufferedReader reader1 =
 						new BufferedReader(new InputStreamReader(proc1.getInputStream()));
-				String line1 = "";
+				String line1;
 				while((line1 = reader1.readLine()) != null) {
 					System.out.print(line1 + "\n");
 				}
@@ -73,7 +71,7 @@ public class Restart {
 						"echo fuck");
 				BufferedReader reader2 =
 						new BufferedReader(new InputStreamReader(proc2.getInputStream()));
-				String line2 = "";
+				String line2;
 				while((line2 = reader2.readLine()) != null) {
 					System.out.print(line2 + "\n");
 				}

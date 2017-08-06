@@ -34,7 +34,6 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -59,7 +58,7 @@ public class DailyDose {
 				new Print(Return.convertUrl(
 						"https://reddit.com"+postTitleElement.attr("href")));
 				
-				String postUrl = "";
+				String postUrl;
 				
 				if(postTitleElement.attr("href").contains("/r/aww")){
 					Document currentPost = Jsoup.connect(Return.convertUrl(

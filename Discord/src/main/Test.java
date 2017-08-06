@@ -34,15 +34,12 @@ import commands.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,39 +50,38 @@ public class Test extends ListenerAdapter{
 	public static String mention, idKakan;
 	
 	public static void main(String[] args) {
-		JDA jda = null;
-		try {
-			jda = new JDABuilder(AccountType.BOT)
-					.setToken(ReadWrite.getKey("oath"))
-					.addListener(new Test())
-					.buildBlocking();
-			
-		} catch (Exception e) {
-			
-			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
-			
-		}
-		Guild kakanistan = jda.getGuildById("282109399617634304");
-		TextChannel general = jda.getTextChannelById("282109399617634304");
-		String idKakan="165507757519273984", idKakansBot="282116563266437120";
+//		JDA jda = null;
+//		try {
+//			jda = new JDABuilder(AccountType.BOT)
+//					.setToken(ReadWrite.getKey("oath"))
+//					.addListener(new Test())
+//					.buildBlocking();
+//
+//		} catch (Exception e) {
+//
+//			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+//
+//		}
+//		Guild kakanistan = jda.getGuildById("282109399617634304");
+//		TextChannel general = jda.getTextChannelById("282109399617634304");
+//		String idKakan = "165507757519273984", idKakansBot = "282116563266437120";
 
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		List<PrivateChannel> channels = jda.getPrivateChannels();
-		for(PrivateChannel channel : channels){
-			MessageHistory history = channel.getHistory();
-			List<Message> historyList = history.retrievePast(50).complete();
-			for(Message message : historyList){
-				new Print(channel.getUser()+" - "+message.getAuthor()+": "+message.getContent(),true);
-			}
-			new Print("\n\n");
-		}
 		
+		try {
+			Document doc = Jsoup.connect(Return.convertUrl("https://www.reddit.com/r/GoJb/comments/6rxv0v/waddup/"))
+					.userAgent("Chrome").followRedirects(false)
+					.cookie("over18", "1").get();
+			System.out.println(doc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	private Test(){
-	
-	}
+		
+		}
 	
 	public void onMessageReceived(MessageReceivedEvent event){
 		
