@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9e758b04-b9f9-4dd4-bf3d-51b6b9c568c2" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/DiscordBot$Test.coverage" NAME="Test Coverage Results" MODIFIED="1498908732767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="DiscordBot" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="WelcomeMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/commands/WelcomeMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="64" column="41" lean-forward="false" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameRoles.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/commands/GameRoles.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1683">
+              <caret line="134" column="98" lean-forward="false" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reddit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/commands/Reddit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1894">
+              <caret line="159" column="13" lean-forward="true" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gif.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Discord/src/commands/Gif.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="121" column="44" lean-forward="false" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/commands/DailyDose.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultiSend.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/MultiSend/MultiSend.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Clean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/commands/Clean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="59" column="29" lean-forward="false" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadWrite.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="45" column="63" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="75" column="42" lean-forward="true" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DiscordBot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Discord/src/main/DiscordBot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>aftercommand</find>
+      <find>e</find>
+      <find>equals(n</find>
+      <find>equals(</find>
+      <find>equals</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="WARN_ABOUT_CRLF" value="false" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Discord/src/backend/ErrorLogg.java" />
+        <option value="$PROJECT_DIR$/Discord/src/lib/JDA-3.0.BETA2_143-withDependencies.jar!/com/neovisionaries/ws/client/ListenerManager.class" />
+        <option value="$PROJECT_DIR$/Discord/src/commands/Ignore.java" />
+        <option value="$PROJECT_DIR$/Discord/src/events/MessageEvents.java" />
+        <option value="$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java" />
+        <option value="$PROJECT_DIR$/Discord/src/backend/ReadWrite.java" />
+        <option value="$PROJECT_DIR$/Discord/src/commands/WelcomeMessage.java" />
+        <option value="$PROJECT_DIR$/Discord/src/commands/DailyDose.java" />
+        <option value="$PROJECT_DIR$/Discord/src/main/Test.java" />
+        <option value="$PROJECT_DIR$/Discord/src/commands/Reddit.java" />
+        <option value="$PROJECT_DIR$/Discord/src/commands/Gif.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Discord" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Discord" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Discord" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="commands" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Discord" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.DiscordBot">
+    <configuration name="DiscordBot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="main.DiscordBot" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Discord" />
+      <envs />
+    </configuration>
+    <configuration name="Ignore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="commands.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="commands.Ignore" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Discord" />
+      <envs />
+    </configuration>
+    <configuration name="MultiSend" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="MultiSend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="MultiSend.MultiSend" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Discord" />
+      <envs />
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="main.Test" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Discord" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <Java />
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Discord" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Application.Test" />
+      <item index="1" class="java.lang.String" itemvalue="Application.MultiSend" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Ignore" />
+      <item index="3" class="java.lang.String" itemvalue="Application.DiscordBot" />
+    </list>
+    <recent_temporary>
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.DiscordBot" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Test" />
+        <item index="2" class="java.lang.String" itemvalue="Application.MultiSend" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Ignore" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9e758b04-b9f9-4dd4-bf3d-51b6b9c568c2" name="Default" comment="" />
+      <created>1498384747344</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1498384747344</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Updated DailyDose, now works after some kind of rewritten HTML, or something. Hopefully works when the link is directly towards the image as well...">
+      <created>1498750586513</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1498750586513</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Starting on WelcomeMessage.java, where Administrators shall be able to set the welcome message">
+      <created>1498762425846</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1498762425846</updated>
+    </task>
+    <task id="LOCAL-00003" summary="WelcomeMessage.java. Will be able to set personal welcome message">
+      <created>1498916762366</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1498916762366</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Ignore.java, you can now be ignored (hopefully) if, for example, you want to work on testing">
+      <created>1498983498744</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1498983498744</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added the actual name of the leaving memeber, so the name stays if the user removes/renames his/hers account">
+      <created>1500384822097</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1500384822097</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added me to always be authorized">
+      <created>1501458149575</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1501458149575</updated>
+    </task>
+    <task id="LOCAL-00007" summary="*;mention;* to **;mention;**">
+      <created>1501458397485</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1501458397485</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed NSFW links">
+      <created>1502019373696</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1502019373696</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixed tenor gifs again">
+      <created>1502019681680</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1502019681680</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.276" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22797619" sideWeight="0.49591836" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.49591836" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.5040816" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated DailyDose, now works after some kind of rewritten HTML, or something. Hopefully works when the link is directly towards the image as well..." />
+    <MESSAGE value="Starting on WelcomeMessage.java, where Administrators shall be able to set the welcome message" />
+    <MESSAGE value="WelcomeMessage.java. Will be able to set personal welcome message" />
+    <MESSAGE value="Ignore.java, you can now be ignored (hopefully) if, for example, you want to work on testing" />
+    <MESSAGE value="Added the actual name of the leaving memeber, so the name stays if the user removes/renames his/hers account" />
+    <MESSAGE value="Added me to always be authorized" />
+    <MESSAGE value="*;mention;* to **;mention;**" />
+    <MESSAGE value="Fixed NSFW links" />
+    <MESSAGE value="Fixed tenor gifs again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed tenor gifs again" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Reddit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="64" column="122" lean-forward="false" selection-start-line="64" selection-start-column="122" selection-end-line="64" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="80" column="73" lean-forward="false" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Clean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="100" column="8" lean-forward="false" selection-start-line="100" selection-start-column="8" selection-end-line="102" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/WelcomeMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/events/MessageEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Reddit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="64" column="122" lean-forward="false" selection-start-line="64" selection-start-column="122" selection-end-line="64" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Ignore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="38" column="11" lean-forward="false" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/Error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="164" column="46" lean-forward="false" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/DailyDose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="92" column="66" lean-forward="false" selection-start-line="92" selection-start-column="66" selection-end-line="92" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/WelcomeMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Ignore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="38" column="11" lean-forward="false" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/Error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="164" column="46" lean-forward="false" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/DailyDose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/events/MessageEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="40" column="3" lean-forward="true" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1496">
+          <caret line="88" column="8" lean-forward="false" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ErrorLogg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="100" column="31" lean-forward="false" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="164" column="46" lean-forward="false" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/DailyDose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ErrorLogg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="100" column="31" lean-forward="false" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="164" column="46" lean-forward="false" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="60" column="21" lean-forward="false" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="164" column="46" lean-forward="false" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/DailyDose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="39" column="105" lean-forward="true" selection-start-line="39" selection-start-column="105" selection-end-line="39" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="21" lean-forward="false" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="164" column="46" lean-forward="false" selection-start-line="164" selection-start-column="46" selection-end-line="164" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/Error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ErrorLogg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="57" column="28" lean-forward="true" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Discord/src/lib/JDA-3.0.BETA2_143-withDependencies.jar!/com/neovisionaries/ws/client/ListenerManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8194">
+          <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="482" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Restart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="52" column="16" lean-forward="false" selection-start-line="52" selection-start-column="16" selection-end-line="59" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/events/MessageEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="24" column="3" lean-forward="false" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/compile.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Ignore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="38" column="11" lean-forward="false" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="80" column="73" lean-forward="false" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/MultiSend/MultiSend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="48" column="40" lean-forward="false" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Clean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="59" column="29" lean-forward="false" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/GameRoles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="134" column="98" lean-forward="false" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/WelcomeMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="64" column="41" lean-forward="false" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/DailyDose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/backend/ReadWrite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="45" column="63" lean-forward="false" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="75" column="42" lean-forward="true" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/main/DiscordBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Reddit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1894">
+          <caret line="159" column="13" lean-forward="true" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Discord/src/commands/Gif.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="121" column="44" lean-forward="false" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Discord</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Discord</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
