@@ -38,6 +38,8 @@ import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.core.managers.AudioManager;
+import net.dv8tion.jda.core.managers.impl.AudioManagerImpl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -50,34 +52,28 @@ public class Test extends ListenerAdapter{
 	public static String mention, idKakan;
 	
 	public static void main(String[] args) {
-//		JDA jda = null;
-//		try {
-//			jda = new JDABuilder(AccountType.BOT)
-//					.setToken(ReadWrite.getKey("oath"))
-//					.addListener(new Test())
-//					.buildBlocking();
-//
-//		} catch (Exception e) {
-//
-//			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
-//
-//		}
-//		Guild kakanistan = jda.getGuildById("282109399617634304");
-//		TextChannel general = jda.getTextChannelById("282109399617634304");
-//		String idKakan = "165507757519273984", idKakansBot = "282116563266437120";
-
-//		AudioManager audioManager = new AudioManagerImpl(kakanistan);
-//		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
-		
-		
+		JDA jda = null;
 		try {
-			Document doc = Jsoup.connect(Return.convertUrl("https://www.reddit.com/r/GoJb/comments/6rxv0v/waddup/"))
-					.userAgent("Chrome").followRedirects(false)
-					.cookie("over18", "1").get();
-			System.out.println(doc);
+			jda = new JDABuilder(AccountType.BOT)
+					.setToken(ReadWrite.getKey("oath"))
+					.addListener(new Test())
+					.buildBlocking();
+
 		} catch (Exception e) {
-			e.printStackTrace();
+
+			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+
 		}
+		Guild kakanistan = jda.getGuildById("282109399617634304");
+		//General kakanistan
+		TextChannel general = jda.getTextChannelById("282109399617634304");
+		String idKakan = "165507757519273984", idKakansBot = "282116563266437120";
+
+		AudioManager audioManager = new AudioManagerImpl(kakanistan);
+		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
+		
+		System.out.println(kakanistan.getIconUrl());
+		
 	}
 	private Test(){
 		
@@ -107,7 +103,7 @@ public class Test extends ListenerAdapter{
 		
 		if(content.contains(";send")&&content.substring(0, ";send".length()).equals(";send")){
 			String user= event.getAuthor().getName().toLowerCase() + "#"+event.getAuthor().getDiscriminator().toLowerCase();
-			if (user.equals("kakan#2926")) {
+			if (event.getJDA().getUserById(idKakan)==event.getAuthor()) {
 				System.err.println("AUTHORIZED");
 				if(!content.contains(" ")){
 					event.getChannel().sendMessage("-- YOU CAN MESSAGE THE FOLLOWING CHANNELS --").queue();

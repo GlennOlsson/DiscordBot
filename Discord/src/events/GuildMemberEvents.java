@@ -28,6 +28,8 @@ package events;
 
 import backend.ErrorLogg;
 import backend.ReadWrite;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
@@ -37,62 +39,70 @@ import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
  */
 public class GuildMemberEvents {
 	public static void GuildMemberJoin(GuildMemberJoinEvent event){
+		
+		Member joinedMember = event.getMember();
+		Guild guildJoined = event.getGuild();
+		
 		try{
-			MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
-			String welcomeMessage = ReadWrite.getKey("welcome"+event.getGuild().getId());
+			MessageChannel channel = guildJoined.getTextChannelsByName("general", true).get(0);
+			String welcomeMessage = ReadWrite.getKey("welcome"+guildJoined.getId());
 			
 			if(welcomeMessage==null){
-				welcomeMessage="Welcome *"+event.getMember().getAsMention()+"* to "+event.getGuild().getName()+"!";
+				welcomeMessage="Welcome *"+joinedMember.getAsMention()+"* to "+guildJoined.getName()+"!";
 			}
 			else{
-				welcomeMessage=welcomeMessage.replace(";mention;",event.getMember().getAsMention());
+				welcomeMessage=welcomeMessage.replace(";mention;",joinedMember.getAsMention());
 			}
 			
 			channel.sendMessage(welcomeMessage).queue();
 			
-			if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
-				event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
-						"** with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
+			if(guildJoined.getTextChannelsByName("modlog", true).size()>0){
+				guildJoined.getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+joinedMember.getUser().getName()+
+						"** ("+joinedMember.getUser().getAsMention()+") with the # id **"+ joinedMember.getUser().getDiscriminator() + "** and long id as **"+joinedMember.getUser().getId()
 						+"** just joined us").queue();
 			}
 			else {
-				if(!event.getGuild().getOwner().getUser().hasPrivateChannel()){
-					event.getGuild().getOwner().getUser().openPrivateChannel().complete(true);
+				if(!guildJoined.getOwner().getUser().hasPrivateChannel()){
+					guildJoined.getOwner().getUser().openPrivateChannel().complete(true);
 				}
-				event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
-						event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just joined your guild \"**"+
-						event.getGuild().getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
+				guildJoined.getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+joinedMember.getUser().getName()+"#"+
+						joinedMember.getUser().getDiscriminator()+"\"** with long id: **"+joinedMember.getUser().getId()+"**) just joined your guild \"**"+
+						guildJoined.getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
 						+ " this information there*").queue();
 			}
 		}
 		catch (Exception e) {
-			new ErrorLogg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
+			new ErrorLogg(e, "Guild: "+guildJoined.getName()+", User: "+joinedMember.getUser().getName()+"#"+joinedMember.getUser().getDiscriminator()
 					, "Unknown error in onGuildMemeberJoin", null);
 		}
 	}
 	
 	public static void GuildMemberLeave(GuildMemberLeaveEvent event){
+		
+		Member leavedMember = event.getMember();
+		Guild guildLeft = event.getGuild();
+		
 		try{
-			MessageChannel channel = event.getGuild().getTextChannelsByName("general", true).get(0);
-			channel.sendMessage("Bye bye *"+event.getMember().getUser().getName()+"("+event.getMember().getAsMention()+")*!").queue();
+			MessageChannel channel = guildLeft.getTextChannelsByName("general", true).get(0);
+			channel.sendMessage("Bye bye *"+leavedMember.getUser().getName()+"("+leavedMember.getAsMention()+")*!").queue();
 			
-			if(event.getGuild().getTextChannelsByName("modlog", true).size()>0){
-				event.getGuild().getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+event.getMember().getUser().getName()+
-						"** ("+event.getMember().getUser().getAsMention()+") with the # id **"+ event.getMember().getUser().getDiscriminator() + "** and long id as **"+event.getMember().getUser().getId()
+			if(guildLeft.getTextChannelsByName("modlog", true).size()>0){
+				guildLeft.getTextChannelsByName("modlog", true).get(0).sendMessage("The user **"+leavedMember.getUser().getName()+
+						"** ("+leavedMember.getUser().getAsMention()+") with the # id **"+ leavedMember.getUser().getDiscriminator() + "** and long id as **"+leavedMember.getUser().getId()
 						+"** just left us").queue();
 			}
 			else {
-				if(!event.getGuild().getOwner().getUser().hasPrivateChannel()){
-					event.getGuild().getOwner().getUser().openPrivateChannel().complete(true);
+				if(!guildLeft.getOwner().getUser().hasPrivateChannel()){
+					guildLeft.getOwner().getUser().openPrivateChannel().complete(true);
 				}
-				event.getGuild().getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+event.getMember().getUser().getName()+"#"+
-						event.getMember().getUser().getDiscriminator()+"\"** with long id: **"+event.getMember().getUser().getId()+"**) just left your guild \"**"+
-						event.getGuild().getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
+				guildLeft.getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+leavedMember.getUser().getName()+"#"+
+						leavedMember.getUser().getDiscriminator()+"\"** with long id: **"+leavedMember.getUser().getId()+"**) just left your guild \"**"+
+						guildLeft.getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
 						+ " this information there*").queue();
 			}
 		}
 		catch (Exception e) {
-			new ErrorLogg(e, "Guild: "+event.getGuild().getName()+", User: "+event.getMember().getUser().getName()+"#"+event.getMember().getUser().getDiscriminator()
+			new ErrorLogg(e, "Guild: "+guildLeft.getName()+", User: "+leavedMember.getUser().getName()+"#"+leavedMember.getUser().getDiscriminator()
 					, "Unknown error in onGuildMemeberLeave", null);
 		}
 	}
