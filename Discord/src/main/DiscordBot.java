@@ -52,7 +52,7 @@ class DiscordBot extends ListenerAdapter{
 		try {
 			
 			try {
-				JDA jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).addListener(new DiscordBot()).buildBlocking();
+				JDA jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).addEventListener(new DiscordBot()).buildBlocking();
 			} catch (Exception e) {
 				new ErrorLogg(e, "JDA Builder", "JDA Builder", null);
 			}

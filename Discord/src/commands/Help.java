@@ -37,7 +37,7 @@ public class Help {
 		PrivateChannel privateChannel;
 
 		if(event.getAuthor().hasPrivateChannel()){
-			privateChannel=event.getAuthor().getPrivateChannel();
+			privateChannel=event.getAuthor().openPrivateChannel().complete();
 		}
 		else {
 			try {
@@ -45,7 +45,7 @@ public class Help {
 			} catch (RateLimitedException e) {
 				new ErrorLogg(e, content, "Could not create PrivateChannel", event);
 			}
-			privateChannel=event.getAuthor().getPrivateChannel();
+			privateChannel=event.getAuthor().openPrivateChannel().complete();
 		}
 
 		if(content.length()>";help".length()){

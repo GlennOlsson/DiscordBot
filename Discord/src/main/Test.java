@@ -56,7 +56,7 @@ public class Test extends ListenerAdapter{
 		try {
 			jda = new JDABuilder(AccountType.BOT)
 					.setToken(ReadWrite.getKey("oath"))
-					.addListener(new Test())
+					.addEventListener(new Test())
 					.buildBlocking();
 
 		} catch (Exception e) {
@@ -68,11 +68,11 @@ public class Test extends ListenerAdapter{
 		//General kakanistan
 		TextChannel general = jda.getTextChannelById("282109399617634304");
 		String idKakan = "165507757519273984", idKakansBot = "282116563266437120";
-
-		AudioManager audioManager = new AudioManagerImpl(kakanistan);
-		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
+//
+//		AudioManager audioManager = new AudioManagerImpl(kakanistan);
+//		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		System.out.println(kakanistan.getIconUrl());
+		System.out.println(jda.getTextChannelById("358375113718235147").getName());
 		
 	}
 	private Test(){

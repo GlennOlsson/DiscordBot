@@ -143,8 +143,13 @@ public class Reddit {
 					channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url).queue();
 					//Check if I have MESSAGE_MANAGE permission, before trying to delete
 					
+					if(event.getPrivateChannel()!=null){
+						new Print("Private channel, cannot delete!");
+						return;
+					}
+					
 					for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
-						if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
+						if(event.getTextChannel().getMembers().get(i).getUser().equals(event.getJDA().getSelfUser())){
 							//Is KakansBot
 							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
 								new Print("Cannot delete initial reddit URL message in "+event.getChannel().getName()

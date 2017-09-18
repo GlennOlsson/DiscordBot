@@ -89,7 +89,7 @@ public class Gif {
 						if(!event.getAuthor().hasPrivateChannel()) {
 							event.getAuthor().openPrivateChannel().complete();
 						}
-						event.getAuthor().getPrivateChannel().sendMessage("You need to send the ;gif command here if you " +
+						event.getAuthor().openPrivateChannel().complete().sendMessage("You need to send the ;gif command here if you " +
 								"are going to choose between multiple gifs!").complete();
 						//noinspection UnnecessaryReturnStatement
 						return;
@@ -104,7 +104,7 @@ public class Gif {
 						if(!event.getAuthor().hasPrivateChannel()) {
 						event.getAuthor().openPrivateChannel().complete();
 					}
-						event.getAuthor().getPrivateChannel().sendMessage("Could not accept those integers. Try again").submit();
+						event.getAuthor().openPrivateChannel().complete().sendMessage("Could not accept those integers. Try again").submit();
 					}
 				}
 			}

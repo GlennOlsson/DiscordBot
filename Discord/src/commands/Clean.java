@@ -69,8 +69,8 @@ public class Clean {
 						amount=100;
 					}
 				} catch (Exception e) {
-
-					event.getAuthor().getPrivateChannel().sendMessage("Error in argument, deleting one").queue();
+					
+					event.getAuthor().openPrivateChannel().complete().sendMessage("Error in argument, deleting one").queue();
 					new ErrorLogg(e, content, event.getMessage().getId(), event);
 				}
 				if(content.split(" ").length>=3){

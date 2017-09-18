@@ -65,7 +65,7 @@ public class GuildMemberEvents {
 				if(!guildJoined.getOwner().getUser().hasPrivateChannel()){
 					guildJoined.getOwner().getUser().openPrivateChannel().complete(true);
 				}
-				guildJoined.getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+joinedMember.getUser().getName()+"#"+
+				guildJoined.getOwner().getUser().openPrivateChannel().complete().sendMessage("A user (\"**"+joinedMember.getUser().getName()+"#"+
 						joinedMember.getUser().getDiscriminator()+"\"** with long id: **"+joinedMember.getUser().getId()+"**) just joined your guild \"**"+
 						guildJoined.getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
 						+ " this information there*").queue();
@@ -95,7 +95,7 @@ public class GuildMemberEvents {
 				if(!guildLeft.getOwner().getUser().hasPrivateChannel()){
 					guildLeft.getOwner().getUser().openPrivateChannel().complete(true);
 				}
-				guildLeft.getOwner().getUser().getPrivateChannel().sendMessage("A user (\"**"+leavedMember.getUser().getName()+"#"+
+				guildLeft.getOwner().getUser().openPrivateChannel().complete().sendMessage("A user (\"**"+leavedMember.getUser().getName()+"#"+
 						leavedMember.getUser().getDiscriminator()+"\"** with long id: **"+leavedMember.getUser().getId()+"**) just left your guild \"**"+
 						guildLeft.getName()+"**\". *If you don't want to receive these as private messages, create a channel called \"modlog\", and I will post"
 						+ " this information there*").queue();

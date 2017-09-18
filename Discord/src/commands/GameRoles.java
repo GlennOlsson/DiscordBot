@@ -128,7 +128,7 @@ public class GameRoles {
 				+ " as a role on this sever, so I cannot help you. I have contacted said person though.").queue();
 		
 		if(!owner.hasPrivateChannel()) owner.openPrivateChannel().queue();
-		owner.getPrivateChannel().sendMessage("A users in your server "+ event.getGuild().getName() +
+		owner.openPrivateChannel().complete().sendMessage("A users in your server "+ event.getGuild().getName() +
 				" wanted to add the game " + game + " as a role, but could not. Please add the role to your server.").queue();
 	}
 	public static void editRoles(MessageReceivedEvent event, MessageChannel channel, String afterCommand){
