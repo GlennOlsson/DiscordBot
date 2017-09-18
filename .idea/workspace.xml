@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e758b04-b9f9-4dd4-bf3d-51b6b9c568c2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.0.BETA2_143-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.0.BETA2_143-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.0.BETA2_143-withDependencies.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.0.BETA2_143.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Discord.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Discord.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260-javadoc.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260-sources.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260-withDependencies.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/MultiSend/MultiSend.java" afterPath="$PROJECT_DIR$/Discord/src/MultiSend/MultiSend.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/commands/Clean.java" afterPath="$PROJECT_DIR$/Discord/src/commands/Clean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/commands/GameRoles.java" afterPath="$PROJECT_DIR$/Discord/src/commands/GameRoles.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/commands/Gif.java" afterPath="$PROJECT_DIR$/Discord/src/commands/Gif.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/commands/Help.java" afterPath="$PROJECT_DIR$/Discord/src/commands/Help.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/commands/Reddit.java" afterPath="$PROJECT_DIR$/Discord/src/commands/Reddit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java" afterPath="$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/main/DiscordBot.java" afterPath="$PROJECT_DIR$/Discord/src/main/DiscordBot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Discord/src/main/Test.java" afterPath="$PROJECT_DIR$/Discord/src/main/Test.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -121,8 +111,8 @@
       <file leaf-file-name="Reddit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Discord/src/commands/Reddit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="151" column="118" lean-forward="false" selection-start-line="151" selection-start-column="118" selection-end-line="151" selection-end-column="118" />
+            <state relative-caret-position="473">
+              <caret line="167" column="20" lean-forward="false" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -622,7 +612,7 @@
       <workItem from="1504860185099" duration="541000" />
       <workItem from="1504860741411" duration="48000" />
       <workItem from="1504871903365" duration="761000" />
-      <workItem from="1505723561085" duration="1822000" />
+      <workItem from="1505723561085" duration="2062000" />
     </task>
     <task id="LOCAL-00001" summary="Updated DailyDose, now works after some kind of rewritten HTML, or something. Hopefully works when the link is directly towards the image as well...">
       <created>1498750586513</created>
@@ -694,11 +684,18 @@
       <option name="project" value="LOCAL" />
       <updated>1504860711801</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed the bot, somewhat. Added a new version of JDA as well, and fixed some errors because of it. Although, I recieve some errors on startup by some reason. Can't reach some channels apparently....">
+      <created>1505725576107</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1505725576107</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3981000" />
+    <option name="totallyTimeSpent" value="4221000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -763,7 +760,8 @@
     <MESSAGE value="Fixed NSFW links" />
     <MESSAGE value="Fixed tenor gifs again" />
     <MESSAGE value="Added a mention in the modlog whenever a member joins as well, to add to the earlier commit that only mentioned when someone left" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a mention in the modlog whenever a member joins as well, to add to the earlier commit that only mentioned when someone left" />
+    <MESSAGE value="Fixed the bot, somewhat. Added a new version of JDA as well, and fixed some errors because of it. Although, I recieve some errors on startup by some reason. Can't reach some channels apparently...." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the bot, somewhat. Added a new version of JDA as well, and fixed some errors because of it. Although, I recieve some errors on startup by some reason. Can't reach some channels apparently...." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1144,8 +1142,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Discord/src/commands/Reddit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="151" column="118" lean-forward="false" selection-start-line="151" selection-start-column="118" selection-end-line="151" selection-end-column="118" />
+        <state relative-caret-position="473">
+          <caret line="167" column="20" lean-forward="false" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
           <folding />
         </state>
       </provider>
