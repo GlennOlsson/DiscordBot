@@ -27,6 +27,16 @@
 package main;
 /* ----------TODO
 
+Reddit API
+
+Client ID
+uGN5rXPLJsdZ2Q
+
+https://www.reddit.com/api/v1/authorize?client_id=uGN5rXPLJsdZ2Q&response_type=code&state=suh&redirect_uri=https://github.com/kakan9898/DiscordBot&duration=temporary&scope=identity%20edit%20flair%20history%20modconfig%20modflair%20modlog%20modposts%20modwiki%20mysubreddits%20privatemessages%20read%20report%20save%20submit%20subscribe%20vote%20wikiedit%20wikiread
+
+https://www.reddit.com/api/v1/authorize?client_id=uGN5rXPLJsdZ2Q&response_type=code&state=suh&redirect_uri=https://github.com/kakan9898/DiscordBot&duration=temporary&scope=identity%20edit%20flair%20history%20modconfig%20modflair%20modlog%20modposts%20modwiki%20mysubreddits%20privatemessages%20read%20report%20save%20submit%20subscribe%20vote%20wikiedit%20wikiread
+
+
 */
 
 

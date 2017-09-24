@@ -45,10 +45,11 @@ public class DailyDose {
 	long recentlyChecked = 0;
 	private DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
+		new Print("Daily dose!");
 		Document doc;
 		ArrayList<Message> messages = new ArrayList<>();
 		try {
-//			channel=channel.getJDA().getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
+			//channel=channel.getJDA().getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 			
 			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
 			for (int i = 0; i < 3; i++) {

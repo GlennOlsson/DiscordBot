@@ -65,14 +65,14 @@ public class Reddit {
 			url = doc.select(".title > a").attr("href");
 			title=doc.select(".title > a").text();
 			new Print(url + " = RUL", false);
-			if(!url.substring(0,3).equals("/r/")){
+			if(!url.substring(0,3).equals("/r/")) {
 				//If not textpost
 				
-				if(url.contains("imgur.com")){
+				if(url.contains("imgur.com")) {
 					
-					String url2=null;
+					String url2 = null;
 					
-					if(url.length()-url.lastIndexOf(".")<=5){
+					if(url.length() - url.lastIndexOf(".") <= 5) {
 						
 						new Print("<=5", false);
 						
@@ -91,25 +91,25 @@ public class Reddit {
 						}
 						new Print(url2 + " ==== URL2", false);
 					}
-					if(url.length()-url.lastIndexOf(".")>5){
+					if(url.length() - url.lastIndexOf(".") > 5) {
 						new Print(">5", false);
 						try {
 							//Tries to get .zoom class (the class of the link if it's a picture
 							
-							Document doc2=null;
+							Document doc2 = null;
 							
 							try {
 								
 								doc2 = Jsoup.connect(Return.convertUrl(url)).userAgent("Chrome").get();
 							} catch (Exception e) {
-								event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
+								event.getChannel().sendMessage("Error was caught. Contact " + event.getJDA().getUserById("165507757519273984").getAsMention() + " with id " + event.getMessage().getId()).submit();
 								new ErrorLogg(e, content, event.getMessage().getId(), event);
 							}
 							
 							doc2.select(".zoom").attr("href");
-							url2="http:"+doc2.select(".zoom").attr("href");
-							new Print(url2+" = URL2", false);
-							if(url2.length()<7){
+							url2 = "http:" + doc2.select(".zoom").attr("href");
+							new Print(url2 + " = URL2", false);
+							if(url2.length() < 7) {
 								//Fails because .zoom does not exist --> not picture
 								new Print("ERROR", false);
 								throw new Exception();
@@ -117,54 +117,52 @@ public class Reddit {
 							
 						} catch (Exception e) {
 							//Moving image: Gif, Gifv, mp4...
-							url2=url+".gifv";
+							url2 = url + ".gifv";
 						}
 					}
-					channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url2).queue();
+					channel.sendMessage("*" + event.getAuthor().getName() + "* shared: **" + title + "** - " + url2).queue();
 					//Check if I have MESSAGE_MANAGE permission, before trying to delete
 					
-					for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
-						if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
+					for (int i = 0; i < event.getTextChannel().getMembers().size(); i++) {
+						if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())) {
 							//Is KakansBot
-							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
-								new Print("Cannot delete initial reddit URL message in "+event.getChannel().getName()
-										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
-							}
-							else {
+							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)) {
+								new Print("Cannot delete initial reddit URL message in " + event.getChannel().getName()
+										+ " channel in " + event.getGuild().getName() + " guild, because lack of MESSAGE_MANAGE", false);
+							} else {
 								event.getMessage().delete().queue();
 							}
-							i=event.getTextChannel().getMembers().size()+5;
+							i = event.getTextChannel().getMembers().size() + 5;
 						}
 					}
 					
-				}
-				
-				else{
-					channel.sendMessage("*"+event.getAuthor().getName()+"* shared: **"+title+"** - "+url).queue();
+				} else {
+					channel.sendMessage("*" + event.getAuthor().getName() + "* shared: **" + title + "** - " + url).queue();
 					//Check if I have MESSAGE_MANAGE permission, before trying to delete
 					
-					if(event.getPrivateChannel()!=null){
+					if(event.getPrivateChannel() != null) {
 						new Print("Private channel, cannot delete!");
 						return;
 					}
 					
-					for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
-						if(event.getTextChannel().getMembers().get(i).getUser().equals(event.getJDA().getSelfUser())){
+					for (int i = 0; i < event.getTextChannel().getMembers().size(); i++) {
+						if(event.getTextChannel().getMembers().get(i).getUser().equals(event.getJDA().getSelfUser())) {
 							//Is KakansBot
-							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
-								new Print("Cannot delete initial reddit URL message in "+event.getChannel().getName()
-										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE", false);
-							}
-							else {
+							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)) {
+								new Print("Cannot delete initial reddit URL message in " + event.getChannel().getName()
+										+ " channel in " + event.getGuild().getName() + " guild, because lack of MESSAGE_MANAGE", false);
+							} else {
 								event.getMessage().delete().queue();
 							}
-							i=event.getTextChannel().getMembers().size()+5;
+							i = event.getTextChannel().getMembers().size() + 5;
 						}
 					}
 				}
+			} else {
+				new Print("Is textpost");
 			}
 		} catch (Exception e) {
-			event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId());
+			event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id "+event.getMessage().getId()).submit();
 			new ErrorLogg(e, content, event.getMessage().getId(), event);
 		}
 		//noinspection UnnecessaryReturnStatement
