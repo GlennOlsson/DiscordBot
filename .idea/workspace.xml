@@ -2,105 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_arnabk_pgslookandfeel_1_1_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_json_simple_json_simple_1_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jcraft_jsch_0_1_54.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_miglayout_miglayout_core_5_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_miglayout_miglayout_swing_5_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_neovisionaries_nv_websocket_client_2_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_8_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_13_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_10.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_dv8tion_JDA_3_3_1_279.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_java_dev_jna_jna_4_4_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_trove4j_trove4j_3_0_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_collections4_4_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_json_json_20160810.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jsoup_jsoup_1_10_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_25.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_nop_1_7_24.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_main.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_test.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/Copyright_DiscordBot.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/Glenn.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Discord.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper5.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/javax_mail.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/Gd.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/Gd_main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/Gd_test.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/Discord.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/compile.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/restart.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/run.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/MultiSend/MultiSend.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/backend/Error.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/backend/ErrorLogg.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/backend/Print.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/backend/ReadWrite.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/backend/Return.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Clean.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/DailyDose.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/GameRoles.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Gif.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Help.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Ignore.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Prefix.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Reddit.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Restart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/Source.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/commands/WelcomeMessage.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/events/GenericEvents.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/events/GuildMemberEvents.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/events/JDAEvents.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/events/MessageEvents.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260-withDependencies.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/JDA-3.3.0_260.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/jsch-0.1.54.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/json-simple-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/jsoup-1.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/miglayout-4.0-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/miglayout-4.0-swing.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/org.eclipse.jgit-4.6.0.201612231935-r.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/pgslookandfeel-1.1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/lib/slf4j-api-1.7.24.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/main/DiscordBot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/src/main/Test.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Discord/start.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_config.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/JDA-3.0.BETA2_143-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/JDA-3.0.BETA2_143-sources.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/JDA-3.0.BETA2_143-withDependencies.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/JDA-3.0.BETA2_143.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/jsch-0.1.54.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/json-simple-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/jsoup-1.8.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/miglayout-4.0-javadoc.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/miglayout-4.0-swing.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/org.eclipse.jgit-4.6.0.201612231935-r.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/pgslookandfeel-1.1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Discord/lib/slf4j-api-1.7.24.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/JDA-3.3.0_260-javadoc.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/JDA-3.3.0_260-sources.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/JDA-3.3.0_260-withDependencies.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/JDA-3.3.0_260.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/jsch-0.1.54.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/json-simple-1.1.1.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/jsoup-1.8.1.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/miglayout-4.0-javadoc.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/miglayout-4.0-swing.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/org.eclipse.jgit-4.6.0.201612231935-r.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/pgslookandfeel-1.1.2.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/lib/slf4j-api-1.7.24.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/compile.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/MultiSend/MultiSend.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/backend/Error.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/backend/ErrorLogg.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/backend/Print.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/backend/Return.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Clean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/GameRoles.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Gif.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Help.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Ignore.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Prefix.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Reddit.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Restart.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/Source.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/events/GenericEvents.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/events/GuildMemberEvents.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/events/JDAEvents.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/events/MessageEvents.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/main/Test.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/restart.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/run.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/start.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -161,11 +101,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="134">
-              <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+              <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".name" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/.name">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -417,6 +377,12 @@
         </entry>
       </map>
     </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="4518763660000" />
+        <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" value="615277776" />
+      </map>
+    </option>
     <option name="projectBuildClasspath">
       <map>
         <entry key="$PROJECT_DIR$">
@@ -641,34 +607,8 @@
         <subPane>
           <expand>
             <path>
-              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DiscordBot.Glenn.Kakan" type="b2602c69:ProjectViewProjectNode" />
               <item name="DiscordBot" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBot" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBot" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBot" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DiscordBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DiscordBot" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -834,12 +774,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1506524369699</updated>
-      <workItem from="1506524370883" duration="154000" />
+      <workItem from="1506524370883" duration="276000" />
     </task>
+    <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
+      <created>1506524552088</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1506524552088</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154000" />
+    <option name="totallyTimeSpent" value="276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="948" extended-state="6" />
@@ -853,11 +801,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -880,6 +828,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="NOW it is maybe transered as Gradle instead of .jar. Let's hope!" />
+    <option name="LAST_COMMIT_MESSAGE" value="NOW it is maybe transered as Gradle instead of .jar. Let's hope!" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -896,7 +848,23 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
-          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+          <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/.name">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
