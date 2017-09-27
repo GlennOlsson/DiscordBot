@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Discord/Discord.iml" filepath="$PROJECT_DIR$/Discord/Discord.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan.iml" filepath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_main.iml" filepath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_main.iml" group="DiscordBot.Glenn.Kakan" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_test.iml" filepath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_test.iml" group="DiscordBot.Glenn.Kakan" />
     </modules>
   </component>
 </project>
