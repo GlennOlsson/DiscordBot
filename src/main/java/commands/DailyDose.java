@@ -74,18 +74,22 @@ public class DailyDose {
 				
 				MessageBuilder message = new MessageBuilder();
 				
-				message.append("**"+postTitleElement.text() +"** "
-						+postUrl);
+				message.append("**");
+				message.append(postTitleElement);
+				message.append("**");
+				message.append(postUrl);
 				
 				messages.add(message.build());
 				
 			}
 			
-			//channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
+			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
+			
+			new Print("Size of messages: "+messages.size());
 			
 			for(Message message : messages){
-				new Print(message.getContent());
-				//channel.sendMessage(message).complete();
+				new Print("Daily Dose message: "+message.getContent());
+				channel.sendMessage(message).complete();
 			}
 			
 		}
