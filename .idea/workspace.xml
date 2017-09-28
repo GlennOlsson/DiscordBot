@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="More debugging in DailyDose">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/DiscordBot.Glenn.Kakan-1.0.tar" afterPath="$PROJECT_DIR$/build/distributions/DiscordBot.Glenn.Kakan-1.0.tar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/DiscordBot.Glenn.Kakan-1.0.zip" afterPath="$PROJECT_DIR$/build/distributions/DiscordBot.Glenn.Kakan-1.0.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/DiscordBot.Glenn.Kakan-1.0.jar" afterPath="$PROJECT_DIR$/build/libs/DiscordBot.Glenn.Kakan-1.0.jar" />
+    <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/scripts/DiscordBot.Glenn.Kakan" afterPath="$PROJECT_DIR$/build/scripts/DiscordBot.Glenn.Kakan" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/scripts/DiscordBot.Glenn.Kakan.bat" afterPath="$PROJECT_DIR$/build/scripts/DiscordBot.Glenn.Kakan.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" afterPath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" afterPath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restart.sh" afterPath="$PROJECT_DIR$/restart.sh" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -59,7 +53,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="253">
@@ -79,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="restart.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="restart.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/restart.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+            <state relative-caret-position="136">
+              <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -577,8 +571,8 @@
         <option value="$PROJECT_DIR$/src/start.sh" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/main/Test.java" />
-        <option value="$PROJECT_DIR$/restart.sh" />
         <option value="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
+        <option value="$PROJECT_DIR$/restart.sh" />
       </list>
     </option>
   </component>
@@ -874,7 +868,7 @@
       <option name="presentableId" value="Default" />
       <updated>1506524369699</updated>
       <workItem from="1506524370883" duration="3747000" />
-      <workItem from="1506621682651" duration="2344000" />
+      <workItem from="1506621682651" duration="2431000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -925,11 +919,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506623375163</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="More debugging in DailyDose">
+      <created>1506624818290</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1506624818290</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6091000" />
+    <option name="totallyTimeSpent" value="6178000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1069,14 +1070,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/restart.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1097,6 +1090,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="79" column="40" lean-forward="true" selection-start-line="79" selection-start-column="40" selection-end-line="79" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/restart.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
           <folding />
         </state>
       </provider>
