@@ -77,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/restart.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+              <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -868,7 +868,7 @@
       <option name="presentableId" value="Default" />
       <updated>1506524369699</updated>
       <workItem from="1506524370883" duration="3747000" />
-      <workItem from="1506621682651" duration="2431000" />
+      <workItem from="1506621682651" duration="2473000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -926,11 +926,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506624818290</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="More sleeping in restart">
+      <created>1506624926096</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1506624926096</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6178000" />
+    <option name="totallyTimeSpent" value="6220000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -981,7 +988,8 @@
     <MESSAGE value="Dunno..." />
     <MESSAGE value="Added sleep to restar.sh" />
     <MESSAGE value="More debugging in DailyDose" />
-    <option name="LAST_COMMIT_MESSAGE" value="More debugging in DailyDose" />
+    <MESSAGE value="More sleeping in restart" />
+    <option name="LAST_COMMIT_MESSAGE" value="More sleeping in restart" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1097,7 +1105,7 @@
     <entry file="file://$PROJECT_DIR$/restart.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
           <folding />
         </state>
       </provider>
