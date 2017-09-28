@@ -90,8 +90,6 @@ public class Test extends ListenerAdapter{
 		
 		String content = event.getMessage().getContent().toLowerCase();
 		
-		System.out.println();
-		
 		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
 			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
 		}

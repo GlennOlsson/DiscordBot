@@ -42,6 +42,7 @@ import java.util.ArrayList;
 
 public class DailyDose {
 	@SuppressWarnings("WeakerAccess")
+	
 	long recentlyChecked = 0;
 	private DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
@@ -56,7 +57,7 @@ public class DailyDose {
 				
 				Element postTitleElement = doc.select("div.entry.unvoted > div.top-matter > p.title > a").get(i);
 				
-				new Print(Return.convertUrl(
+				new Print("Daily dose "+(i+1) +": " + Return.convertUrl(
 						"https://reddit.com"+postTitleElement.attr("href")));
 				
 				String postUrl;
@@ -80,10 +81,11 @@ public class DailyDose {
 				
 			}
 			
-			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
+			//channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
 			
 			for(Message message : messages){
-				channel.sendMessage(message).complete();
+				new Print(message.getContent());
+				//channel.sendMessage(message).complete();
 			}
 			
 		}
