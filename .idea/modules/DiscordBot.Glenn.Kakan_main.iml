@@ -14,6 +14,7 @@
     <orderEntry type="library" name="Gradle: com.jcraft:jsch:0.1.54" level="project" />
     <orderEntry type="library" name="Gradle: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.miglayout:miglayout-swing:5.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Gradle: com.github.arnabk:pgslookandfeel:1.1.4" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-collections4:4.1" level="project" />
@@ -26,6 +27,5 @@
     <orderEntry type="library" name="Gradle: com.miglayout:miglayout-core:5.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.13.0" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.25" level="project" />
   </component>
 </module>
