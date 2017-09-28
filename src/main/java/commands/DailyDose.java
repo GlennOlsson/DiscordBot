@@ -50,7 +50,7 @@ public class DailyDose {
 		Document doc;
 		ArrayList<Message> messages = new ArrayList<>();
 		try {
-			//channel=channel.getJDA().getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
+			channel=channel.getJDA().getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
 			
 			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
 			for (int i = 0; i < 3; i++) {
@@ -88,8 +88,8 @@ public class DailyDose {
 			new Print("Size of messages: "+messages.size());
 			
 			for(Message message : messages){
+				channel.sendMessage(message).submit();
 				new Print("Daily Dose message: "+message.getContent());
-				channel.sendMessage(message).complete();
 			}
 			
 		}
@@ -99,7 +99,7 @@ public class DailyDose {
 	}
 	public DailyDose(JDA jda) {
 		if(System.currentTimeMillis() >= (recentlyChecked + 86400000)) {
-			recentlyChecked =System.currentTimeMillis();
+			recentlyChecked = System.currentTimeMillis();
 			try {
 				String lastMsString = ReadWrite.getKey("dailyMs");
 				if(lastMsString == null || lastMsString.equals("")) {
@@ -115,10 +115,10 @@ public class DailyDose {
 					return;
 				}
 				if(System.currentTimeMillis() >= (lastMs + 86400000)) {
+					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 					for (int i = 0; i < jda.getTextChannelsByName("aww", true).size(); i++) {
 						new DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
 					}
-					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 				}
 			} catch (Exception e) {
 				new ErrorLogg(e, "Error in onEvent", "Unknown error caught", null);
