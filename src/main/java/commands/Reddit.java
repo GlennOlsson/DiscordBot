@@ -91,11 +91,11 @@ public class Reddit {
 	public Reddit(MessageChannel channel, MessageReceivedEvent event, String content){
 		
 		//If reddit post
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e1) {
-			new ErrorLogg(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
-		}
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e1) {
+//			new ErrorLogg(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
+//		}
 		
 		if(content.contains(" ")){
 			String[] split = content.split(" ");
