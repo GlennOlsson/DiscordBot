@@ -60,8 +60,6 @@ public class DailyDose {
 				String urlOfPost =  doc.select(".thing:nth-of-type("+(i)+") > div.entry.unvoted > div.top-matter > ul > li.first > a")
 						.attr("href");
 				
-				
-				
 				String[] mediaURLAndTitleOfPost = new Reddit().getRedditMediaURLAndTitle(Return.convertUrl(urlOfPost));
 				
 				String mediaURLofPost = mediaURLAndTitleOfPost[0];
@@ -86,7 +84,7 @@ public class DailyDose {
 			
 			for(Message message : messages){
 				channel.sendMessage(message).submit();
-				new Print("Daily Dose message: "+message.getContent());
+				new Print("Daily Dose message::: "+message.getContent());
 			}
 			
 		}

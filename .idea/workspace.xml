@@ -56,8 +56,8 @@
       <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="114" column="70" lean-forward="false" selection-start-line="114" selection-start-column="70" selection-end-line="114" selection-end-column="70" />
+            <state relative-caret-position="380">
+              <caret line="86" column="47" lean-forward="false" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -860,7 +860,7 @@
       <option name="presentableId" value="Default" />
       <updated>1506524369699</updated>
       <workItem from="1506524370883" duration="3747000" />
-      <workItem from="1506621682651" duration="13596000" />
+      <workItem from="1506621682651" duration="14128000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -946,11 +946,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506682383810</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Debugging DailyDose">
+      <created>1506685685869</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1506685685869</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17343000" />
+    <option name="totallyTimeSpent" value="17875000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1005,7 +1012,8 @@
     <MESSAGE value="Actually, nevermind" />
     <MESSAGE value="Something something /r/aww" />
     <MESSAGE value="Redid Reddit and DailyDose as bit, so that DailyDose uses Reddit to fetch link and title. Maybe, just maybe, is DailyDose fixed on Pi as well!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redid Reddit and DailyDose as bit, so that DailyDose uses Reddit to fetch link and title. Maybe, just maybe, is DailyDose fixed on Pi as well!" />
+    <MESSAGE value="Debugging DailyDose" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debugging DailyDose" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1158,8 +1166,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="114" column="70" lean-forward="false" selection-start-line="114" selection-start-column="70" selection-end-line="114" selection-end-column="70" />
+        <state relative-caret-position="380">
+          <caret line="86" column="47" lean-forward="false" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
           <folding />
         </state>
       </provider>
