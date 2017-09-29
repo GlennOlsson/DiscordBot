@@ -30,6 +30,8 @@ import backend.ErrorLogg;
 import backend.Print;
 import backend.ReadWrite;
 import backend.Return;
+import com.sun.org.apache.regexp.internal.RE;
+import main.Test;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
@@ -50,34 +52,29 @@ public class DailyDose {
 		Document doc;
 		ArrayList<Message> messages = new ArrayList<>();
 		try {
-			channel=channel.getJDA().getGuildsByName("Kakanistan",true).get(0).getTextChannels().get(0);
+			channel=channel.getJDA().getTextChannelById(Test.idKakanisatanGeneral);
 			
 			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
-			for (int i = 0; i < 3; i++) {
+			for (int i = 1; i < 6; i+=2) {
 				
-				Element postTitleElement = doc.select("div.entry.unvoted > div.top-matter > p.title > a").get(i);
+				String urlOfPost =  doc.select(".thing:nth-of-type("+(i)+") > div.entry.unvoted > div.top-matter > ul > li.first > a")
+						.attr("href");
 				
-				new Print("Daily dose "+(i+1) +": " + Return.convertUrl(
-						"https://reddit.com"+postTitleElement.attr("href")));
 				
-				String postUrl;
 				
-				if(postTitleElement.attr("href").contains("/r/aww")){
-					Document currentPost = Jsoup.connect(Return.convertUrl(
-							"https://reddit.com"+postTitleElement.attr("href"))).userAgent("Chrome").get();
-					
-					postUrl = currentPost.select("div.entry.unvoted > div.top-matter > p.title > a").attr("href");
-				}
-				else{
-					postUrl=postTitleElement.attr("href");
-				}
+				String[] mediaURLAndTitleOfPost = new Reddit().getRedditMediaURLAndTitle(Return.convertUrl(urlOfPost));
+				
+				String mediaURLofPost = mediaURLAndTitleOfPost[0];
+				String titleOfPost = mediaURLAndTitleOfPost[1];
+				
+				new Print("Daily dose "+(i+1) +": " + Return.convertUrl(urlOfPost));
 				
 				MessageBuilder message = new MessageBuilder();
 				
 				message.append("**");
-				message.append(postTitleElement);
+				message.append(titleOfPost);
 				message.append("**");
-				message.append(postUrl);
+				message.append(mediaURLofPost);
 				
 				messages.add(message.build());
 				
@@ -115,10 +112,10 @@ public class DailyDose {
 					return;
 				}
 				if(System.currentTimeMillis() >= (lastMs + 86400000)) {
-					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 					for (int i = 0; i < jda.getTextChannelsByName("aww", true).size(); i++) {
 						new DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
 					}
+					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 				}
 			} catch (Exception e) {
 				new ErrorLogg(e, "Error in onEvent", "Unknown error caught", null);

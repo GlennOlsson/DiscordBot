@@ -24,6 +24,7 @@
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+
 package main;
 
 import backend.ErrorLogg;
@@ -42,14 +43,17 @@ import net.dv8tion.jda.core.managers.AudioManager;
 import net.dv8tion.jda.core.managers.impl.AudioManagerImpl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public class Test extends ListenerAdapter{
+public class Test extends ListenerAdapter {
 	
-	public static String mention, idKakan;
+	public static String idKakan = "165507757519273984", idKakansBot = "282116563266437120",
+	idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
 	public static void main(String[] args) {
 		JDA jda = null;
@@ -64,10 +68,10 @@ public class Test extends ListenerAdapter{
 			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
 
 		}
+		
 		Guild kakanistan = jda.getGuildById("282109399617634304");
 		//General kakanistan
 		TextChannel general = jda.getTextChannelById("282109399617634304");
-		String idKakan = "165507757519273984", idKakansBot = "282116563266437120";
 //
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
@@ -76,7 +80,7 @@ public class Test extends ListenerAdapter{
 	}
 	private Test(){
 		
-		}
+	}
 	
 	public void onMessageReceived(MessageReceivedEvent event){
 		
