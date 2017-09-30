@@ -124,13 +124,11 @@ public class ReadWrite {
 			try {
 				JSONParser parser = new JSONParser();
 				
-				new Print(new FileReader(getPath()).read());
+				FileReader readFile = new FileReader(getPath());
 				
-				Object object = parser.parse(new FileReader(getPath()));
-
-				JSONObject jsonObject = (JSONObject) object;
-
-				return (String) jsonObject.get(key);
+				String valueOfKey = (String) ((JSONObject)parser.parse(readFile)).get(key);
+				
+				return valueOfKey;
 
 			} catch (Exception e) {
 				new ErrorLogg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
