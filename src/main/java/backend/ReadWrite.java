@@ -123,7 +123,12 @@ public class ReadWrite {
 	public static String getKey(String key){
 			try {
 				JSONParser parser = new JSONParser();
-				Object object = parser.parse(new FileReader(getPath()));
+				
+				FileReader readFile = new FileReader(getPath());
+				
+				new Print(readFile.read());
+				
+				Object object = parser.parse(readFile);
 
 				JSONObject jsonObject = (JSONObject) object;
 

@@ -67,7 +67,10 @@ public class ErrorLogg {
 						" channel"+guild;
 			}
 
-			newContent="##New error at "+currentTime+"\nMessage was: "+content+"\nId: "+id+eventMessage+"\n"+errors.toString()+"\n---------------\n\n";
+			newContent="##New error at "+currentTime+
+					"\nMessage was: "+content+
+					"\nId: "+id+eventMessage+
+					"\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
 				String path="/var/lib/tomcat7/webapps/ROOT/";
