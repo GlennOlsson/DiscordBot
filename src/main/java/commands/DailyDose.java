@@ -65,7 +65,7 @@ public class DailyDose {
 				String mediaURLofPost = mediaURLAndTitleOfPost[0];
 				String titleOfPost = mediaURLAndTitleOfPost[1];
 				
-				new Print("Daily dose "+(i+1) +": " + Return.convertUrl(urlOfPost));
+				new Print("Daily dose "+(i+1)/2 +": " + Return.convertUrl(urlOfPost));
 				
 				MessageBuilder message = new MessageBuilder();
 				
