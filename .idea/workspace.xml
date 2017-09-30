@@ -62,8 +62,8 @@
       <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-355">
-              <caret line="67" column="47" lean-forward="false" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
+            <state relative-caret-position="212">
+              <caret line="101" column="23" lean-forward="false" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -138,8 +138,8 @@
       <file leaf-file-name="ReadWrite.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/ReadWrite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="125" column="58" lean-forward="true" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
+            <state relative-caret-position="128">
+              <caret line="126" column="58" lean-forward="false" selection-start-line="126" selection-start-column="58" selection-end-line="126" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -939,7 +939,7 @@
       <option name="presentableId" value="Default" />
       <updated>1506524369699</updated>
       <workItem from="1506524370883" duration="3747000" />
-      <workItem from="1506621682651" duration="19817000" />
+      <workItem from="1506621682651" duration="20093000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -1074,11 +1074,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506790037045</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Something fucked up by some reason. Oh well, fall back">
+      <created>1506795652249</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1506795652249</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23564000" />
+    <option name="totallyTimeSpent" value="23840000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1140,7 +1147,8 @@
     <MESSAGE value="Some changes in DailyDose, dunno if anything is fixed though" />
     <MESSAGE value="This motherfucking workspace only" />
     <MESSAGE value="Debugging &quot;Unexpected token END OF FILE at position 0.&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debugging &quot;Unexpected token END OF FILE at position 0.&quot;" />
+    <MESSAGE value="Something fucked up by some reason. Oh well, fall back" />
+    <option name="LAST_COMMIT_MESSAGE" value="Something fucked up by some reason. Oh well, fall back" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1294,14 +1302,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-355">
-          <caret line="67" column="47" lean-forward="false" selection-start-line="67" selection-start-column="47" selection-end-line="67" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/ErrorLogg.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1318,10 +1318,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="101" column="23" lean-forward="false" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/ReadWrite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="125" column="58" lean-forward="true" selection-start-line="125" selection-start-column="58" selection-end-line="125" selection-end-column="58" />
+        <state relative-caret-position="128">
+          <caret line="126" column="58" lean-forward="false" selection-start-line="126" selection-start-column="58" selection-end-line="126" selection-end-column="58" />
           <folding />
         </state>
       </provider>
