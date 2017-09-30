@@ -139,13 +139,13 @@ public class Reddit {
 		Document RedditHTMLocument;
 		String url, redditTitle;
 		try {
-			RedditHTMLocument = Jsoup.connect(Return.convertUrl(redditURL)).userAgent("Chrome").followRedirects(false)
+			RedditHTMLocument = Jsoup.connect(Return.convertUrl(redditURL)).userAgent("Chrome").followRedirects(true)
 					.cookie("over18", "1").get();
 			
 			redditTitle = RedditHTMLocument.select(".title > a").text();
 			
 			url = RedditHTMLocument.select(".title > a").attr("href");
-			new Print(url + " = Reddit URL", false);
+			new Print("Reddit URL: "+ url + ", Reddit tile: "+redditTitle, false);
 			if(!url.substring(0, 3).equals("/r/")) {
 				//If not textpost
 				

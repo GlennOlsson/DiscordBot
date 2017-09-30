@@ -4,6 +4,7 @@
     <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Reddit.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Reddit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/Test.java" afterPath="$PROJECT_DIR$/src/main/java/main/Test.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -83,23 +84,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Reddit.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Reddit.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/commands/Reddit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="93" column="8" lean-forward="false" selection-start-line="93" selection-start-column="8" selection-end-line="97" selection-end-column="9" />
+            <state relative-caret-position="202">
+              <caret line="144" column="72" lean-forward="false" selection-start-line="144" selection-start-column="72" selection-end-line="144" selection-end-column="72" />
               <folding>
-                <element signature="e#0#8203#0" expanded="true" />
+                <element signature="e#0#8232#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="77" column="27" lean-forward="false" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
+            <state relative-caret-position="42">
+              <caret line="79" column="106" lean-forward="false" selection-start-line="79" selection-start-column="106" selection-end-line="79" selection-end-column="106" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -116,6 +117,7 @@
       <find>,</find>
       <find>nth</find>
       <find>urlAndTitle</find>
+      <find>Maybe</find>
     </findStrings>
     <replaceStrings>
       <replace>redditURL</replace>
@@ -573,8 +575,8 @@
         <option value="$PROJECT_DIR$/src/start.sh" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/restart.sh" />
-        <option value="$PROJECT_DIR$/src/main/java/main/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
+        <option value="$PROJECT_DIR$/src/main/java/main/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/Reddit.java" />
       </list>
     </option>
@@ -860,7 +862,7 @@
       <option name="presentableId" value="Default" />
       <updated>1506524369699</updated>
       <workItem from="1506524370883" duration="3747000" />
-      <workItem from="1506621682651" duration="14486000" />
+      <workItem from="1506621682651" duration="15539000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -960,11 +962,18 @@
       <option name="project" value="LOCAL" />
       <updated>1506686687613</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Even more debugging">
+      <created>1506687659840</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1506687659840</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18233000" />
+    <option name="totallyTimeSpent" value="19286000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -978,7 +987,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.502442" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3285568" sideWeight="0.492674" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3285568" sideWeight="0.492674" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.497558" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33367452" sideWeight="0.495116" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1021,7 +1030,8 @@
     <MESSAGE value="Redid Reddit and DailyDose as bit, so that DailyDose uses Reddit to fetch link and title. Maybe, just maybe, is DailyDose fixed on Pi as well!" />
     <MESSAGE value="Debugging DailyDose" />
     <MESSAGE value="More debugging DailyDose" />
-    <option name="LAST_COMMIT_MESSAGE" value="More debugging DailyDose" />
+    <MESSAGE value="Even more debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Even more debugging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1076,6 +1086,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1144,16 +1155,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="77" column="27" lean-forward="false" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/DiscordBot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
@@ -1172,10 +1173,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/Reddit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="93" column="8" lean-forward="false" selection-start-line="93" selection-start-column="8" selection-end-line="97" selection-end-column="9" />
+        <state relative-caret-position="202">
+          <caret line="144" column="72" lean-forward="false" selection-start-line="144" selection-start-column="72" selection-end-line="144" selection-end-column="72" />
           <folding>
-            <element signature="e#0#8203#0" expanded="true" />
+            <element signature="e#0#8232#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="79" column="106" lean-forward="false" selection-start-line="79" selection-start-column="106" selection-end-line="79" selection-end-column="106" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
