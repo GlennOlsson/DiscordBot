@@ -48,13 +48,13 @@ public class DailyDose {
 	long recentlyChecked = 0;
 	private DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
-		new Print("Daily dose!");
+		
+		new Print("DailyDose!");
+		
 		Document doc;
 		ArrayList<Message> messages = new ArrayList<>();
 		try {
-			channel=channel.getJDA().getTextChannelById(Test.idKakanisatanGeneral);
-			
-			new Print(".....DAILY");
+			//channel=channel.getJDA().getTextChannelById(Test.idKakanisatanGeneral);
 			
 			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
 			for (int i = 1; i < 6; i+=2) {
@@ -82,11 +82,8 @@ public class DailyDose {
 			
 			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
 			
-			new Print("Size of messages: "+messages.size());
-			
 			for(Message message : messages){
 				channel.sendMessage(message).submit();
-				new Print("Daily Dose message: "+message.getContent());
 			}
 			
 		}
@@ -112,9 +109,7 @@ public class DailyDose {
 					return;
 				}
 				if(System.currentTimeMillis() >= (lastMs + 86400000)) {
-					new Print("Daily dose for this many channels: " + jda.getTextChannelsByName("aww", true).size());
 					for (int i = 0; i < jda.getTextChannelsByName("aww", true).size(); i++) {
-						new Print("NEW DAILY", true);
 						new DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
 					}
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
