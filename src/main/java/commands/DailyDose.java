@@ -54,6 +54,8 @@ public class DailyDose {
 		try {
 			channel=channel.getJDA().getTextChannelById(Test.idKakanisatanGeneral);
 			
+			new Print(".....DAILY");
+			
 			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
 			for (int i = 1; i < 6; i+=2) {
 				
