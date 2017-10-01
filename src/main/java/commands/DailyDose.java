@@ -112,6 +112,7 @@ public class DailyDose {
 				if(System.currentTimeMillis() >= (lastMs + 86400000)) {
 					new Print("Daily dose for this many channels: " + jda.getTextChannelsByName("aww", true).size());
 					for (int i = 0; i < jda.getTextChannelsByName("aww", true).size(); i++) {
+						new Print("NEW DAILY", true);
 						new DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
 					}
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
