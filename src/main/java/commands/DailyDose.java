@@ -84,7 +84,7 @@ public class DailyDose {
 			
 			for(Message message : messages){
 				channel.sendMessage(message).submit();
-				new Print("Daily Dose message::: "+message.getContent());
+				new Print("Daily Dose message: "+message.getContent());
 			}
 			
 		}

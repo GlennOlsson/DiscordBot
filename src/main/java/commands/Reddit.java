@@ -155,8 +155,6 @@ public class Reddit {
 					
 					if(url.length() - url.lastIndexOf(".") <= 5) {
 						
-						new Print("<=5", false);
-						
 						//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
 						switch (url.substring(url.lastIndexOf("."))) {
 							case ".mp4":
@@ -173,7 +171,7 @@ public class Reddit {
 						new Print(imgurURL + " = IMGUR URL", false);
 					}
 					if(url.length() - url.lastIndexOf(".") > 5) {
-						new Print(">5", false);
+						
 						try {
 							//Tries to get .zoom class (the class of the link if it's a picture
 							
@@ -188,7 +186,7 @@ public class Reddit {
 							
 							imgurHTMLDocument.select(".zoom").attr("href");
 							imgurURL = "http:" + imgurHTMLDocument.select(".zoom").attr("href");
-							new Print(imgurURL + " = URL2", false);
+							new Print(imgurURL + " = IMGUR URL from .zoom", false);
 							if(imgurURL.length() < 7) {
 								//Fails because .zoom does not exist --> not picture
 								new Print("ERROR", false);
@@ -200,14 +198,10 @@ public class Reddit {
 							imgurURL = url + ".gifv";
 						}
 					}
-					String urlAndTitle[] = {imgurURL, redditTitle};
-					
-					
-					return urlAndTitle;
+					return new String[]{imgurURL, redditTitle};
 					
 				} else {
-					String urlAndTitle[] = {url, redditTitle};
-					return urlAndTitle;
+					return new String[]{url, redditTitle};
 				}
 			} else {
 				new Print("Is textpost");
@@ -215,7 +209,6 @@ public class Reddit {
 		} catch (Exception e) {
 			new ErrorLogg(e, "Error in .getRedditMediaURL", "Returning null as RedditMediaURL", null);
 		}
-		String nulling[] = {"",""};
-		return nulling;
+		return new String[]{"",""};
 	}
 }
