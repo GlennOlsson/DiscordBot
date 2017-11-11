@@ -33,8 +33,9 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +78,12 @@ public class ReadWrite {
 		try {
 			String prefix;
 			JSONParser parser = new JSONParser();
-			Object object = parser.parse(new FileReader(getPath()));
+			
+			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
+			String contentOfFile = new String(fileInBytes);
+			
+			Object object = parser.parse(contentOfFile);
+			
 			JSONObject jsonObject = (JSONObject) object;
 
 			if(jsonObject.containsKey("prefix"+id)){
@@ -101,17 +107,28 @@ public class ReadWrite {
 
 		try {
 			JSONParser parser = new JSONParser();
-			Object object = parser.parse(new FileReader(getPath()));
+			
+			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
+			String contentOfFile = new String(fileInBytes);
+			
+			Object object = parser.parse(contentOfFile);
 
 			JSONObject jsonObject = (JSONObject) object;
 
 			jsonObject.put("prefix"+id, prefix);
 
 			//WRITING JSON
-			try (FileWriter file = new FileWriter(getPath())){
-				file.write(jsonObject.toJSONString());
-				new Print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
-			}
+			
+			Path path = Paths.get(getPath());
+			
+			Files.write(path, jsonObject.toJSONString().getBytes());
+			
+			new Print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
+			
+//			try (FileWriter file = new FileWriter(getPath())){
+//				file.write(jsonObject.toJSONString());
+//				new Print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
+//			}
 		}
 		catch (Exception e) {
 			new Print("-- ERROR IN WRITING IN settings.json --", true);
@@ -124,9 +141,14 @@ public class ReadWrite {
 			try {
 				JSONParser parser = new JSONParser();
 				
-				FileReader readFile = new FileReader(getPath());
+				byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
+				String contentOfFile = new String(fileInBytes);
 				
-				String valueOfKey = (String) ((JSONObject)parser.parse(readFile)).get(key);
+				Object object = parser.parse(contentOfFile);
+				
+				JSONObject JSONFile = (JSONObject) object;
+				
+				String valueOfKey = (String) JSONFile.get(key);
 				
 				return valueOfKey;
 
@@ -141,16 +163,22 @@ public class ReadWrite {
 
 		try {
 			JSONParser parser = new JSONParser();
-			Object object = parser.parse(new FileReader(getPath()));
+			
+			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
+			String contentOfFile = new String(fileInBytes);
+			
+			Object object = parser.parse(contentOfFile);
 
 			JSONObject jsonObject = (JSONObject) object;
 
 			jsonObject.put(key, value);
+			
+			
+			Path path = Paths.get(getPath());
+			
+			Files.write(path, jsonObject.toJSONString().getBytes());
 
-			try (FileWriter file = new FileWriter(getPath())){
-				file.write(jsonObject.toJSONString());
-				new Print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
-			}
+			new Print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
 
 		} catch (Exception e) {
 			new ErrorLogg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);

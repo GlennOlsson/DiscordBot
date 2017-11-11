@@ -76,8 +76,7 @@ public class Test extends ListenerAdapter {
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		jda.getPresence().setGame(Game.of("Send ;help"));
-		new Print(jda.getPresence().getGame());
+		new Print(ReadWrite.getKey("dailyMs"));
 	
 	}
 	private Test(){
