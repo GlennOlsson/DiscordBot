@@ -73,7 +73,7 @@ public class ErrorLogg {
 					"\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
-				String path="/var/lib/tomcat7/webapps/ROOT/";
+				String path="/var/www/html/";
 				FileReader reader = new FileReader(path+"Errorlog.md");
 				@SuppressWarnings("resource")
 				BufferedReader br = new BufferedReader(reader); 
