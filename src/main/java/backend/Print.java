@@ -60,7 +60,7 @@ public class Print {
 			}
 			
 			try{
-				String path="/var/www/html/Website-Pi/html";
+				String path="/var/www/html/Website-Pi/html/";
 				FileReader reader = new FileReader(path+"Print.md");
 				@SuppressWarnings("resource")
 				BufferedReader br = new BufferedReader(reader);

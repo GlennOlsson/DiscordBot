@@ -74,7 +74,7 @@ public class ErrorLogg {
 					"\n"+errors.toString()+"\n---------------\n\n";
 
 			try{
-				String path="/var/www/html/Website-Pi/html";
+				String path="/var/www/html/Website-Pi/html/";
 				FileReader reader = new FileReader(path+"Errorlog.md");
 				@SuppressWarnings("resource")
 				BufferedReader br = new BufferedReader(reader); 
