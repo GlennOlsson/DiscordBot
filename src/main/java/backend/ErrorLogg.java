@@ -39,8 +39,9 @@ public class ErrorLogg {
 
 		if(System.getProperty("os.name").toLowerCase().contains("linux")){
 			//if linux (RasPi)
-			String currentContent = "", newContent;
-
+			StringBuilder currentContent = new StringBuilder();
+			String newContent;
+			
 			new Print("An error was caught", true);
 
 			//Parses the stackTrace as string for it to be saved
@@ -80,11 +81,11 @@ public class ErrorLogg {
 				Iterator<String> iterator= br.lines().iterator();
 				//Saves the earlier content to currentContent string
 				while (iterator.hasNext()) {
-					currentContent+=iterator.next()+"\n";
+					currentContent.append(iterator.next()).append("\n");
 				}
 				//Writes old + new content
 				
-				currentContent=currentContent.replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>", "");
+				currentContent = new StringBuilder(currentContent.toString().replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>", ""));
 				
 				try(FileWriter file = new FileWriter(path+"Errorlog.md")){
 					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>"+newContent+""+currentContent);

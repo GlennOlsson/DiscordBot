@@ -46,7 +46,8 @@ public class Print {
 			SimpleDateFormat sdf = new SimpleDateFormat("d/M - HH:mm:ss");
 			String currentTime =sdf.format(cal.getTime());
 			
-			String currentContent="",newContent;
+			StringBuilder currentContent= new StringBuilder();
+			String newContent;
 			
 			if(isErrPrint==null){
 				newContent="	"+message+"\n";
@@ -66,13 +67,13 @@ public class Print {
 				Iterator<String> iterator= br.lines().iterator();
 				//Saves the earlier content to currentContent string
 				while (iterator.hasNext()) {
-					currentContent+=iterator.next()+"\n";
+					currentContent.append(iterator.next()).append("\n");
 				}
 				
 				//Writes old + new content
-				currentContent=currentContent.
+				currentContent = new StringBuilder(currentContent.toString().
 						replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body> " +
-								"<pre><code>", "");
+								"<pre><code>", ""));
 				
 				try(FileWriter file = new FileWriter(path+"Print.md")){
 					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body> " +
