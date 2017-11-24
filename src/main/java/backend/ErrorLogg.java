@@ -85,10 +85,10 @@ public class ErrorLogg {
 				}
 				//Writes old + new content
 				
-				currentContent = new StringBuilder(currentContent.toString().replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>", ""));
+				currentContent = new StringBuilder(currentContent.toString());
 				
 				try(FileWriter file = new FileWriter(path+"Errorlog.md")){
-					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><plaintext>"+newContent+""+currentContent);
+					file.write(newContent + currentContent);
 				}
 				catch (Exception e) {
 					new Error(e);

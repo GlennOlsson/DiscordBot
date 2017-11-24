@@ -71,13 +71,10 @@ public class Print {
 				}
 				
 				//Writes old + new content
-				currentContent = new StringBuilder(currentContent.toString().
-						replace("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body> " +
-								"<pre><code>", ""));
+				currentContent = new StringBuilder(currentContent.toString());
 				
 				try(FileWriter file = new FileWriter(path+"Print.md")){
-					file.write("<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head><body> " +
-							"<pre><code>"+newContent+""+currentContent);
+					file.write(newContent + currentContent);
 				}
 				catch (Exception e) {
 					new ErrorLogg(e, "Error writing Print.md", "In File.write", null);
