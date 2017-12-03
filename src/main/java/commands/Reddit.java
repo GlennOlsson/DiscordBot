@@ -72,14 +72,12 @@ package commands;
 
 import backend.Logger;
 import backend.Return;
-import events.MessageEvents;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.rmi.server.ExportException;
 
 public class Reddit {
 	

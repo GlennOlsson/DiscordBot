@@ -65,7 +65,8 @@ public class Logger {
 			}
 		}
 		catch (Exception e){
-			//TODO: HANDLE EXCEPTION
+			System.err.println("ERROR!!!");
+			e.printStackTrace();
 		}
 	}
 	
@@ -117,7 +118,8 @@ public class Logger {
 			
 		}
 			catch (Exception e){
-			//TODO: HANDLE ERROR
+				System.err.println("ERROR!!!");
+				e.printStackTrace();
 		}
 	}
 		else {

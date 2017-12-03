@@ -2,30 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/Glenn.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/backend/Logger.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/backend/ErrorLogg.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/backend/Print.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultiSend/MultiSend.java" afterPath="$PROJECT_DIR$/src/main/java/MultiSend/MultiSend.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/backend/Error.java" afterPath="$PROJECT_DIR$/src/main/java/backend/Error.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" afterPath="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/backend/Return.java" afterPath="$PROJECT_DIR$/src/main/java/backend/Return.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Clean.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Clean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" afterPath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/GameRoles.java" afterPath="$PROJECT_DIR$/src/main/java/commands/GameRoles.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Gif.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Gif.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Help.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Help.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Prefix.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Prefix.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/backend/Logger.java" afterPath="$PROJECT_DIR$/src/main/java/backend/Logger.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Reddit.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Reddit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Restart.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Restart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" afterPath="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/events/GuildMemberEvents.java" afterPath="$PROJECT_DIR$/src/main/java/events/GuildMemberEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/events/JDAEvents.java" afterPath="$PROJECT_DIR$/src/main/java/events/JDAEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/events/MessageEvents.java" afterPath="$PROJECT_DIR$/src/main/java/events/MessageEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" afterPath="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/Test.java" afterPath="$PROJECT_DIR$/src/main/java/main/Test.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -136,15 +115,15 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Logger.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="386">
-                  <caret line="87" column="47" lean-forward="true" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
+                <state relative-caret-position="369">
+                  <caret line="120" column="16" lean-forward="false" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="16" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#4437#4438#0" expanded="true" />
-                    <element signature="e#4512#4513#0" expanded="true" />
+                    <element signature="e#4505#4506#0" expanded="true" />
+                    <element signature="e#4580#4581#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -158,16 +137,6 @@
                   <folding>
                     <element signature="e#0#8916#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Reddit.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/commands/Reddit.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="72" column="22" lean-forward="false" selection-start-line="72" selection-start-column="22" selection-end-line="72" selection-end-column="22" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -677,9 +646,9 @@
         <option value="$PROJECT_DIR$/src/main/java/backend/Print.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/ErrorLogg.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/backend/Logger.java" />
         <option value="$PROJECT_DIR$/src/main/java/MultiSend/MultiSend.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/Reddit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/backend/Logger.java" />
       </list>
     </option>
   </component>
@@ -1024,7 +993,7 @@
       <workItem from="1510593235619" duration="1722000" />
       <workItem from="1511105612458" duration="695000" />
       <workItem from="1511525793185" duration="2902000" />
-      <workItem from="1512321243404" duration="5166000" />
+      <workItem from="1512321243404" duration="5353000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -1257,11 +1226,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511525959901</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Redone printing and errorloggin, they are now static methods in one Logger class, so there are not a new instance of Print/Errorlog being created at every print/error">
+      <created>1512332495045</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1512332495045</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46799000" />
+    <option name="totallyTimeSpent" value="46986000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1314,7 +1290,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dunno..." />
     <MESSAGE value="Added sleep to restar.sh" />
     <MESSAGE value="More debugging in DailyDose" />
     <MESSAGE value="More sleeping in restart" />
@@ -1339,7 +1314,8 @@
     <MESSAGE value="New path once again" />
     <MESSAGE value="Fucked up by forgetting / at the end" />
     <MESSAGE value="Removed the head of the print and error log files, as they are no longer needed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed the head of the print and error log files, as they are no longer needed" />
+    <MESSAGE value="Redone printing and errorloggin, they are now static methods in one Logger class, so there are not a new instance of Print/Errorlog being created at every print/error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redone printing and errorloggin, they are now static methods in one Logger class, so there are not a new instance of Print/Errorlog being created at every print/error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1715,15 +1691,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/commands/Reddit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="87" column="47" lean-forward="true" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4437#4438#0" expanded="true" />
-            <element signature="e#4512#4513#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="73" column="22" lean-forward="false" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1737,11 +1709,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/commands/Reddit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="72" column="22" lean-forward="false" selection-start-line="72" selection-start-column="22" selection-end-line="72" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="369">
+          <caret line="120" column="16" lean-forward="false" selection-start-line="120" selection-start-column="16" selection-end-line="120" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4505#4506#0" expanded="true" />
+            <element signature="e#4580#4581#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
