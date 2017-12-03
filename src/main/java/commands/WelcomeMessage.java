@@ -92,13 +92,13 @@ public class WelcomeMessage {
 			int firstIndex = transformedMessage.indexOf("<@"), lastIndex = transformedMessage.indexOf(">");
 			
 			String maybeUserId = transformedMessage.substring(firstIndex + 2, lastIndex);
-			new Print(maybeUserId + "---");
+			Logger.print(maybeUserId + "---");
 			try {
 				User user = jda.getUserById(maybeUserId);
 				transformedMessage = transformedMessage.replaceFirst("<@" + maybeUserId + ">", "**@" + user.getName() + "#" +
 						user.getDiscriminator() + "**");
 			} catch (Exception e) {
-				new Print("Not a user ID");
+				Logger.print("Not a user ID");
 				transformedMessage = transformedMessage.replaceFirst("<@", "*<*@");
 			}
 		}

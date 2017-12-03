@@ -47,27 +47,27 @@ public class JDAEvents extends ListenerAdapter {
 			channel.sendMessage("Successfully logged in!").queue();
 			try{
 				if(System.getProperty("os.name").toLowerCase().contains("linux")){
-					new Print("\n		New run: Nr. "+Integer.toString(
+					Logger.print("\n		New run: Nr. "+Integer.toString(
 							Integer.parseInt(ReadWrite.getKey("runCount"))+1)+"\n", null);
 					ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount"))+1));
 				}
 			}catch (Exception e) {
 				//Probably could not convert string -> int
-				new ErrorLogg(e, "Error in JDAEvents.Ready", "Probably error with String -> int. runCount: \""+
+				Logger.logError(e, "Error in JDAEvents.Ready", "Probably error with String -> int. runCount: \""+
 						ReadWrite.getKey("runCount")+"\"", null);
 			}
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
 		}catch (Exception e) {
-			new ErrorLogg(e, "Error in JDAEvents.Ready", "Unknown error", null);
+			Logger.logError(e, "Error in JDAEvents.Ready", "Unknown error", null);
 		}
 	}
 	
 	public static void Reconnect(ReconnectedEvent event) {
 		try {
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
-			new Print("Reconnected", false);
+			Logger.print("Reconnected", false);
 		} catch (Exception e) {
-			new ErrorLogg(e, "Error in JDAEvents.Reconnect", "Unknown error", null);
+			Logger.logError(e, "Error in JDAEvents.Reconnect", "Unknown error", null);
 		}
 	}
 	
@@ -76,7 +76,7 @@ public class JDAEvents extends ListenerAdapter {
 			event.getJDA().getTextChannelById("282109399617634304").sendMessage("Shutting down").submit();
 		}
 		catch (Exception e){
-			new ErrorLogg(e, "Error in JDAEvents.Shutdown", "Unknown error", null);
+			Logger.logError(e, "Error in JDAEvents.Shutdown", "Unknown error", null);
 		}
 	}
 }

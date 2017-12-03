@@ -43,7 +43,7 @@ public class Help {
 			try {
 				event.getAuthor().openPrivateChannel().complete(true);
 			} catch (RateLimitedException e) {
-				new ErrorLogg(e, content, "Could not create PrivateChannel", event);
+				Logger.logError(e, content, "Could not create PrivateChannel", event);
 			}
 			privateChannel=event.getAuthor().openPrivateChannel().complete();
 		}

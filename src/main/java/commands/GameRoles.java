@@ -83,7 +83,7 @@ public class GameRoles {
 			channel.sendMessage("There are no longer any games to set on this server").queue();
 			return;
 		}
-		new Print(games.length,false);
+		Logger.print(games.length,false);
 		for (String game : games) {
 			message += "\n**" + game + " **";
 		}
@@ -108,7 +108,7 @@ public class GameRoles {
 						controller.removeRolesFromMember(event.getGuild().getMember(event.getAuthor()),roles.get(i)).queue();
 						channel.sendMessage(event.getAuthor().getAsMention()+", I removed **"+ roles.get(i).getName() + "** " +
 								"from you, so you will no longer be notified when someone mentions @"+roles.get(i).getName()).queue();
-						new Print("Removed " + roles.get(i).getName() + " from user "+event.getAuthor().getName() + " in " +
+						Logger.print("Removed " + roles.get(i).getName() + " from user "+event.getAuthor().getName() + " in " +
 								event.getGuild().getName() + " Guild",false);
 						return;
 					}
@@ -117,7 +117,7 @@ public class GameRoles {
 				controller.addRolesToMember(event.getGuild().getMember(event.getAuthor()),roles.get(i)).queue();
 				channel.sendMessage(event.getAuthor().getAsMention()+", I added **"+ roles.get(i).getName() + "** " +
 						"to you, so you will be notified when someone mentions @"+roles.get(i).getName()).queue();
-				new Print("Added " + roles.get(i).getName() + " to user "+event.getAuthor().getName() + " in " +
+				Logger.print("Added " + roles.get(i).getName() + " to user "+event.getAuthor().getName() + " in " +
 						event.getGuild().getName() + " Guild",false);
 				return;
 			}
@@ -156,7 +156,7 @@ public class GameRoles {
 			return;
 		}
 		
-		new Print("-"+afterCommand+"-",false);
+		Logger.print("-"+afterCommand+"-",false);
 		
 		if(afterCommand.toLowerCase().split(" ")[0].equals("add")){
 			//ADD
@@ -184,21 +184,21 @@ public class GameRoles {
 				
 				ReadWrite.setKey("games"+event.getGuild().getId(),currentGames);
 				
-				new Print("currentgames for "+event.getGuild().getName() + " guild: "+currentGames, false);
+				Logger.print("currentgames for "+event.getGuild().getName() + " guild: "+currentGames, false);
 				try{
-					new Print("Created role "+game,false);
+					Logger.print("Created role "+game,false);
 					GuildController controller = new GuildController(event.getGuild());
 					controller.createRole().setName(game).setMentionable(true).complete();
 				}
 				catch (Exception e){
-					new ErrorLogg(e, "Could not create role", game, event);
+					Logger.logError(e, "Could not create role", game, event);
 					channel.sendMessage("Sorry, but I could not create a role. You'll have to do it manually").queue();
 				}
 				
 				
 			}
 			catch (Exception e){
-				new Print("Creating games"+event.getGuild().getId()+
+				Logger.print("Creating games"+event.getGuild().getId()+
 						" in Secret.json, for "+ event.getGuild().getName(),false);
 				ReadWrite.setKey("games"+event.getGuild().getId(), game);
 			}
@@ -227,18 +227,18 @@ public class GameRoles {
 					}
 					currentGames = currentGames.substring(0, currentGames.length() - 1);
 				}
-				new Print(currentGames,false);
+				Logger.print(currentGames,false);
 				
 				ReadWrite.setKey("games"+event.getGuild().getId(),currentGames);
 				
-				new Print("currentgames for "+event.getGuild().getName() + " guild: "+currentGames, false);
+				Logger.print("currentgames for "+event.getGuild().getName() + " guild: "+currentGames, false);
 				
 				try{
 					event.getGuild().getRolesByName(game, true).get(0).delete().complete();
-					new Print("Removed role "+game,false);
+					Logger.print("Removed role "+game,false);
 				}
 				catch (Exception e){
-					new ErrorLogg(e, "Could not create role", game, event);
+					Logger.logError(e, "Could not create role", game, event);
 					channel.sendMessage("Sorry, but I could not remove the role. You'll have to do it manually").queue();
 				}
 				
@@ -250,7 +250,7 @@ public class GameRoles {
 		}
 		else{
 			channel.sendMessage("You must choose either **add** or **remove**").queue();
-			new Print(afterCommand.toLowerCase(),false);
+			Logger.print(afterCommand.toLowerCase(),false);
 			return;
 		}
 		noGameSpecified(channel,"These are now the current games on this server",event);

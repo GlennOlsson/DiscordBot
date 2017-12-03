@@ -70,8 +70,7 @@
 
 package commands;
 
-import backend.ErrorLogg;
-import backend.Print;
+import backend.Logger;
 import backend.Return;
 import events.MessageEvents;
 import net.dv8tion.jda.core.Permission;
@@ -94,7 +93,7 @@ public class Reddit {
 //		try {
 //			Thread.sleep(1000);
 //		} catch (InterruptedException e1) {
-//			new ErrorLogg(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
+//			Logger.logError(e1, "Cannot sleep", "Error with Thread.sleep in Reddit", null);
 //		}
 		
 		if(content.contains(" ")){
@@ -122,8 +121,8 @@ public class Reddit {
 			if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())) {
 				//Is KakansBot
 				if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)) {
-					new Print("Cannot delete initial reddit URL message in " + event.getChannel().getName()
-							+ " channel in " + event.getGuild().getName() + " guild, because lack of MESSAGE_MANAGE", false);
+					Logger.print("Cannot delete initial reddit URL message in " + event.getChannel().getName()
+							+ " channel in " + event.getGuild().getName() + " guild, because lack of MESSAGE_MANAGE");
 				} else {
 					event.getMessage().delete().queue();
 				}
@@ -145,7 +144,7 @@ public class Reddit {
 			redditTitle = RedditHTMLocument.select(".title > a").text();
 			
 			url = RedditHTMLocument.select(".title > a").attr("href");
-			new Print("Reddit URL: "+ url + ", Reddit tile: "+redditTitle, false);
+			Logger.print("Reddit URL: "+ url + ", Reddit tile: "+redditTitle);
 			if(!url.substring(0, 3).equals("/r/")) {
 				//If not textpost
 				
@@ -168,7 +167,7 @@ public class Reddit {
 								imgurURL = url;
 								break;
 						}
-						new Print(imgurURL + " = IMGUR URL", false);
+						Logger.print(imgurURL + " = IMGUR URL");
 					}
 					if(url.length() - url.lastIndexOf(".") > 5) {
 						
@@ -181,15 +180,15 @@ public class Reddit {
 								
 								imgurHTMLDocument = Jsoup.connect(Return.convertUrl(url)).userAgent("Chrome").get();
 							} catch (Exception e) {
-								new ErrorLogg(e, redditURL, "Error in .getRedditMediaURL", null);
+								Logger.logError(e, redditURL, "Error in .getRedditMediaURL", null);
 							}
 							
 							imgurHTMLDocument.select(".zoom").attr("href");
 							imgurURL = "http:" + imgurHTMLDocument.select(".zoom").attr("href");
-							new Print(imgurURL + " = IMGUR URL from .zoom", false);
+							Logger.print(imgurURL + " = IMGUR URL from .zoom");
 							if(imgurURL.length() < 7) {
 								//Fails because .zoom does not exist --> not picture
-								new Print("ERROR", false);
+								Logger.print("ERROR");
 								throw new Exception();
 							}
 							
@@ -204,10 +203,10 @@ public class Reddit {
 					return new String[]{url, redditTitle};
 				}
 			} else {
-				new Print("Is textpost");
+				Logger.print("Is textpost");
 			}
 		} catch (Exception e) {
-			new ErrorLogg(e, "Error in .getRedditMediaURL", "Returning null as RedditMediaURL", null);
+			Logger.logError(e, "Error in .getRedditMediaURL", "Returning null as RedditMediaURL", null);
 		}
 		return new String[]{"",""};
 	}

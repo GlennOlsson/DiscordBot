@@ -26,8 +26,7 @@
 
 package MultiSend;
 
-import backend.ErrorLogg;
-import backend.Print;
+import backend.Logger;
 import backend.ReadWrite;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -71,7 +70,7 @@ class MultiSend extends ListenerAdapter{
 			UIManager.setLookAndFeel("com.pagosoft.plaf.PgsLookAndFeel");
 		}
 		catch (Exception e){
-			new ErrorLogg(e, "Look and feel in MultiSend caught an error", "Cannot set look and feel", null);
+			Logger.logError(e, "Look and feel in MultiSend caught an error", "Cannot set look and feel", null);
 		}
 		
 		//Settings for JFrame
@@ -111,7 +110,7 @@ class MultiSend extends ListenerAdapter{
 					addEventListener(new MultiSend()).buildBlocking();
 		} catch (Exception e) {
 			
-			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
 			
 		}
 		
@@ -168,7 +167,7 @@ class MultiSend extends ListenerAdapter{
 			}
 		}
 		if(!anySelected){
-			new Print("Gotta select a channel, douche!");
+			Logger.print("Gotta select a channel, douche!");
 			return;
 		}
 		
@@ -197,7 +196,7 @@ class MultiSend extends ListenerAdapter{
 					}
 				}
 				if(!foundUser){
-					new Print("A user is not valid");
+					Logger.print("A user is not valid");
 					textarea.setEditable(true);
 					textarea.setBackground(Color.white);
 					textarea.requestFocus();
@@ -205,8 +204,8 @@ class MultiSend extends ListenerAdapter{
 				}
 			}
 			catch (Exception e){
-				new Print("Cannot find a # in the ;mention USER_NAME#DISCRIMINATOR;, or no ; in the end");
-				new ErrorLogg(e, "Error in finding user in ;mention USER_NAME#DISCRIMINATOR", "In MultiSend", null);
+				Logger.print("Cannot find a # in the ;mention USER_NAME#DISCRIMINATOR;, or no ; in the end");
+				Logger.logError(e, "Error in finding user in ;mention USER_NAME#DISCRIMINATOR", "In MultiSend", null);
 				textarea.setEditable(true);
 				textarea.setBackground(Color.white);
 				textarea.requestFocus();
@@ -220,7 +219,7 @@ class MultiSend extends ListenerAdapter{
 				, JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null, options, options[1]);
 		
 		if(answer!=0){
-			new Print("ABORT", true);
+			Logger.printError("ABORT");
 			textarea.setEditable(true);
 			textarea.setBackground(Color.white);
 			textarea.requestFocus();
@@ -241,12 +240,12 @@ class MultiSend extends ListenerAdapter{
 				try {
 					messageList.add(channel.sendMessage(textarea.getText()).complete(true));
 				} catch (Exception e) {
-					new ErrorLogg(e, "Error with adding the sent message to list", "In MultiSend", null);
+					Logger.logError(e, "Error with adding the sent message to list", "In MultiSend", null);
 				}
 			}
 		}
 		message=message.substring(0,message.length()-2);
-		new Print(message);
+		Logger.print(message);
 		
 		Object[] deleteOptions = {"Delete","Keep em'"};
 		int delete = JOptionPane.showOptionDialog(null,

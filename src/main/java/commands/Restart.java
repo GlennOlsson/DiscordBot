@@ -79,7 +79,7 @@ public class Restart {
 				
 			}
 			catch (Exception e){
-				new ErrorLogg(e, "Error with Restart", "Could not execute restart command", event);
+				Logger.logError(e, "Error with Restart", "Could not execute restart command", event);
 			}
 		}
 		else {
@@ -95,7 +95,7 @@ public class Restart {
 			
 			channel.sendMessage("Nuh uh, you are not **The Kakan**! He will hear about this! "+mentionText).
 					queue();
-			new Print("The user "+ author.getName() + "#"+author.getDiscriminator()
+			Logger.print("The user "+ author.getName() + "#"+author.getDiscriminator()
 					+"("+author.getId()+") tried to restart the bot in "+ guildText +", in the "
 					+event.getChannel().getName() + " channel. KILL THAT PERSON!!", true);
 		}

@@ -96,8 +96,8 @@ public class ReadWrite {
 			}
 		} catch (Exception e) {
 
-			new Print("ERROR WITH PREFIX, RETURNING \";\"", true);
-			new ErrorLogg(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
+			Logger.print("ERROR WITH PREFIX, RETURNING \";\"", true);
+			Logger.logError(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
 			return ";";
 		}
 	}
@@ -123,16 +123,16 @@ public class ReadWrite {
 			
 			Files.write(path, jsonObject.toJSONString().getBytes());
 			
-			new Print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
+			Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
 			
 //			try (FileWriter file = new FileWriter(getPath())){
 //				file.write(jsonObject.toJSONString());
-//				new Print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
+//				Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
 //			}
 		}
 		catch (Exception e) {
-			new Print("-- ERROR IN WRITING IN settings.json --", true);
-			new ErrorLogg(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
+			Logger.print("-- ERROR IN WRITING IN settings.json --", true);
+			Logger.logError(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
 		}
 	}
 	
@@ -153,7 +153,7 @@ public class ReadWrite {
 				return valueOfKey;
 
 			} catch (Exception e) {
-				new ErrorLogg(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
+				Logger.logError(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
 			}
 
 		return null;
@@ -178,10 +178,10 @@ public class ReadWrite {
 			
 			Files.write(path, jsonObject.toJSONString().getBytes());
 
-			new Print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
+			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
 
 		} catch (Exception e) {
-			new ErrorLogg(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
+			Logger.logError(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
 		}
 	}
 

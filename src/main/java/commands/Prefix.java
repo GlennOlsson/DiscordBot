@@ -36,7 +36,7 @@ public class Prefix {
 	public Prefix(MessageChannel channel, MessageReceivedEvent event, String newPrefix) {
 		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
 		if(ReadWrite.isAuthorized(event.getTextChannel(), event, roleslist)){
-			new Print("HALLELUJAH", false);
+			Logger.print("HALLELUJAH", false);
 			if(!newPrefix.equals("")){
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//if privateChannel ---> no guildId

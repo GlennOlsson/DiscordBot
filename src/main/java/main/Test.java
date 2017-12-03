@@ -27,10 +27,12 @@
 
 package main;
 
-import backend.ErrorLogg;
-import backend.Print;
-import backend.ReadWrite;
-import backend.Return;
+import backend.*;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.hooks.ListenerAdapter;
+
+import static backend.Logger.*;
+
 import commands.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -65,7 +67,7 @@ public class Test extends ListenerAdapter {
 
 		} catch (Exception e) {
 
-			new ErrorLogg(e, "JDA Fail in Test", "JDA Fail in Test", null);
+			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
 
 		}
 //
@@ -76,8 +78,8 @@ public class Test extends ListenerAdapter {
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		new Print(ReadWrite.getKey("dailyMs"));
-	
+		print(ReadWrite.getKey("dailyMs"));
+		
 	}
 	private Test(){
 		

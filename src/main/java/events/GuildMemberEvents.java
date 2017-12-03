@@ -72,7 +72,7 @@ public class GuildMemberEvents {
 			}
 		}
 		catch (Exception e) {
-			new ErrorLogg(e, "Guild: "+guildJoined.getName()+", User: "+joinedMember.getUser().getName()+"#"+joinedMember.getUser().getDiscriminator()
+			Logger.logError(e, "Guild: "+guildJoined.getName()+", User: "+joinedMember.getUser().getName()+"#"+joinedMember.getUser().getDiscriminator()
 					, "Unknown error in onGuildMemeberJoin", null);
 		}
 	}
@@ -102,7 +102,7 @@ public class GuildMemberEvents {
 			}
 		}
 		catch (Exception e) {
-			new ErrorLogg(e, "Guild: "+guildLeft.getName()+", User: "+leavedMember.getUser().getName()+"#"+leavedMember.getUser().getDiscriminator()
+			Logger.logError(e, "Guild: "+guildLeft.getName()+", User: "+leavedMember.getUser().getName()+"#"+leavedMember.getUser().getDiscriminator()
 					, "Unknown error in onGuildMemeberLeave", null);
 		}
 	}

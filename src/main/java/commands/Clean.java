@@ -45,7 +45,7 @@ public class Clean {
 			if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
 				//Is KakansBot
 				if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
-					new Print("Clean command, but I don't have MESSAGE_MANAGE permission in "+event.getChannel().getName()
+					Logger.print("Clean command, but I don't have MESSAGE_MANAGE permission in "+event.getChannel().getName()
 							+" channel in "+event.getGuild().getName()+" guild", false);
 					messageChannel.sendMessage("I can't delete the message, I need MESSAGE_MANAGE permission for that").queue();
 				return;
@@ -71,7 +71,7 @@ public class Clean {
 				} catch (Exception e) {
 					
 					event.getAuthor().openPrivateChannel().complete().sendMessage("Error in argument, deleting one").queue();
-					new ErrorLogg(e, content, event.getMessage().getId(), event);
+					Logger.logError(e, content, event.getMessage().getId(), event);
 				}
 				if(content.split(" ").length>=3){
 					//If at least length=3
@@ -83,11 +83,11 @@ public class Clean {
 				}
 				if(content.split(" ").length>=4){
 					argument2=content.substring(content.indexOf(content.split(" ")[3].toLowerCase()));
-					new Print(argument2 + " == arg 2", false);
+					Logger.print(argument2 + " == arg 2", false);
 					boolean hasMember=false;
 					for (int i = 0; i < channel.getMembers().size(); i++) {
 						if(channel.getMembers().get(i).getUser().getName().toLowerCase().equals(argument2)){
-							new Print("CHANNEL HAS USER", false);
+							Logger.print("CHANNEL HAS USER", false);
 							hasMember=true;
 						}
 					}
@@ -105,7 +105,7 @@ public class Clean {
 				historyList=history.retrievePast(100).complete(true);
 			} catch (Exception e) {
 				channel.sendMessage("Error, contact "+event.getJDA().getUserById("165507757519273984").getAsMention()+" with id: "+event.getMessage().getId());
-				new ErrorLogg(e, content, event.getMessage().getId(), event);
+				Logger.logError(e, content, event.getMessage().getId(), event);
 			}
 			event.getMessage().delete().queue();
 			for (int i = 1; i < amount+1; i++) {
@@ -154,7 +154,7 @@ public class Clean {
 						break;
 				}
 			}
-			new Print(amount+" = amount", true);
+			Logger.print(amount+" = amount", true);
 		}
 		else {
 			//				channel.sendMessage("You are not authorized to execute that command, *"+event.getAuthor().getAsMention()+"*. Contact a Moderator").queue();

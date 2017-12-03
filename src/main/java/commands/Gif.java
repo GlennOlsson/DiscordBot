@@ -113,7 +113,7 @@ public class Gif {
 			}
 		}
 		catch (Exception e) {
-			new ErrorLogg(e, "Error in Gif.java", "Unknown error", event);
+			Logger.logError(e, "Error in Gif.java", "Unknown error", event);
 		}
 	}
 	private void fetchAndSend(int indexOfGif){
@@ -131,7 +131,7 @@ public class Gif {
 						if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){
 							//Is KakansBot
 							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
-								new Print("Cannot delete initial Gif command message in "+event.getChannel().getName()
+								Logger.print("Cannot delete initial Gif command message in "+event.getChannel().getName()
 										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE",
 										false);
 							}
@@ -146,13 +146,13 @@ public class Gif {
 			} catch (Exception e) {
 				event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().getUserById("165507757519273984").
 						getAsMention()+" with id "+event.getMessage().getId());
-				new ErrorLogg(e, event.getMessage().getContent(), event.getMessage().getId(), event);
+				Logger.logError(e, event.getMessage().getContent(), event.getMessage().getId(), event);
 			}
 			//noinspection UnnecessaryReturnStatement
 			return;
 		}
 		catch (Exception e){
-			new ErrorLogg(e, "Error in fetchAndSend method in Gif", "Unknown error", event);
+			Logger.logError(e, "Error in fetchAndSend method in Gif", "Unknown error", event);
 		}
 	}
 }

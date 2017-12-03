@@ -67,7 +67,7 @@ public class MessageEvents {
 					try {
 						new Reddit(channel, event, content);
 					} catch (Exception e) {
-						new ErrorLogg(e, content, "Error with reddit command", event);
+						Logger.logError(e, content, "Error with reddit command", event);
 					}
 					
 					return;
@@ -86,7 +86,7 @@ public class MessageEvents {
 				try {
 					onMessageReceivedPrefix(event, prefix, content, channel, contentCase);
 				} catch (Exception e) {
-					new ErrorLogg(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageReceivedPrefix for "+channel.getName()+ " channel", event);
+					Logger.logError(e, "Prefix: "+prefix+", content: "+content, "Error with onMessageReceivedPrefix for "+channel.getName()+ " channel", event);
 				}
 			}
 			else{
@@ -110,7 +110,7 @@ public class MessageEvents {
 				}
 			}
 		}catch (Exception e) {
-			new ErrorLogg(e, "Error with onMessageReceivedEvent","Unknown error", event);
+			Logger.logError(e, "Error with onMessageReceivedEvent","Unknown error", event);
 		}
 	}
 	private static void onMessageReceivedPrefix(MessageReceivedEvent event, String prefix, String content, MessageChannel channel,
@@ -125,7 +125,7 @@ public class MessageEvents {
 				command=command.split(" ")[0];
 				afterCommand = contentCase.substring(prefix.length()+command.length()+1);
 				rawAfterCommand = event.getMessage().getRawContent().substring(prefix.length()+command.length()+1);
-				new Print("Aftercommand=\""+afterCommand+"\"", false);
+				Logger.print("Aftercommand=\""+afterCommand+"\"", false);
 			}
 			
 			switch (command) {
@@ -133,7 +133,7 @@ public class MessageEvents {
 					try {
 						new Clean(channel, event, content);
 					} catch (Exception e) {
-						new ErrorLogg(e, content, "Error with clean command", event);
+						Logger.logError(e, content, "Error with clean command", event);
 					}
 					break;
 				
@@ -141,7 +141,7 @@ public class MessageEvents {
 					try {
 						new Gif(channel, event, afterCommand);
 					} catch (Exception e) {
-						new ErrorLogg(e, content, "Error with gif command", event);
+						Logger.logError(e, content, "Error with gif command", event);
 					}
 					break;
 				
@@ -149,7 +149,7 @@ public class MessageEvents {
 					try {
 						new Source(channel);
 					} catch (Exception e) {
-						new ErrorLogg(e, content, "Error with source command", event);
+						Logger.logError(e, content, "Error with source command", event);
 					}
 					break;
 				
@@ -157,7 +157,7 @@ public class MessageEvents {
 					try {
 						new Prefix(channel, event, afterCommand);
 					} catch (Exception e) {
-						new ErrorLogg(e, content, "Error with prefix command", event);
+						Logger.logError(e, content, "Error with prefix command", event);
 					}
 					break;
 				
@@ -168,7 +168,7 @@ public class MessageEvents {
 						}
 					}
 					catch (Exception e){
-						new ErrorLogg(e, content, "Error with game command", event);
+						Logger.logError(e, content, "Error with game command", event);
 					}
 					break;
 
@@ -176,7 +176,7 @@ public class MessageEvents {
 //					try {
 //						new Restart(channel, event);
 //					} catch (Exception e) {
-//						new ErrorLogg(e, content, "Error with Restart command", event);
+//						Logger.logError(e, content, "Error with Restart command", event);
 //					}
 //					break;
 				
@@ -187,7 +187,7 @@ public class MessageEvents {
 						}
 					}
 					catch (Exception e){
-						new ErrorLogg(e, content, "Error with editgame command", event);
+						Logger.logError(e, content, "Error with editgame command", event);
 					}
 					break;
 					
@@ -198,7 +198,7 @@ public class MessageEvents {
 						}
 					}
 					catch (Exception e){
-						new ErrorLogg(e, content, "Error with editgame command", event);
+						Logger.logError(e, content, "Error with editgame command", event);
 					}
 					break;
 				
@@ -207,7 +207,7 @@ public class MessageEvents {
 						new Ignore(event.getTextChannel(), event.getAuthor());
 					}
 					catch (Exception e){
-						new ErrorLogg(e, content, "Error with game command", event);
+						Logger.logError(e, content, "Error with game command", event);
 					}
 					break;
 					
@@ -216,7 +216,7 @@ public class MessageEvents {
 					try {
 						new Help(event, content);
 					} catch (Exception e) {
-						new ErrorLogg(e, content, "Error with help command", event);
+						Logger.logError(e, content, "Error with help command", event);
 					}
 					break;
 			}
@@ -269,7 +269,7 @@ public class MessageEvents {
 				}
 			}
 		}catch (Exception e) {
-			new ErrorLogg(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
+			Logger.logError(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
 					", channel: +"+event.getChannel().getName()+", MessageID: "+event.getMessage().getId(), "Unknown error in onPrivateMessageReceived", null);
 		}
 	}

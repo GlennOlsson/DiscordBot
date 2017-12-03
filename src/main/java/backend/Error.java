@@ -28,7 +28,7 @@ package backend;
 
 class Error {
 	public Error(Exception exception) {
-		new Print(" ---- FUCK FUCK FUCK ----", true);
+		Logger.print(" ---- FUCK FUCK FUCK ----", true);
 		exception.printStackTrace();
 	}
 

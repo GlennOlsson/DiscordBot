@@ -49,7 +49,7 @@ public class DailyDose {
 	private DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
 		
-		new Print("DailyDose!");
+		Logger.print("DailyDose!");
 		
 		Document doc;
 		ArrayList<Message> messages = new ArrayList<>();
@@ -67,7 +67,7 @@ public class DailyDose {
 				String mediaURLofPost = mediaURLAndTitleOfPost[0];
 				String titleOfPost = mediaURLAndTitleOfPost[1];
 				
-				new Print("Daily dose "+(i+1)/2 +": " + Return.convertUrl(urlOfPost));
+				Logger.print("Daily dose "+(i+1)/2 +": " + Return.convertUrl(urlOfPost));
 				
 				MessageBuilder message = new MessageBuilder();
 				
@@ -88,7 +88,7 @@ public class DailyDose {
 			
 		}
 		catch (Exception e) {
-			new ErrorLogg(e, "Error with DailyDose class", "Unknown error", null);
+			Logger.logError(e, "Error with DailyDose class", "Unknown error", null);
 		}
 	}
 	public DailyDose(JDA jda) {
@@ -104,7 +104,7 @@ public class DailyDose {
 				try {
 					lastMs = Long.parseLong(lastMsString);
 				} catch (Exception e) {
-					new Print("Error with converting string -> long. Returning method and setting dailyMs JSON key to currentTimeMillis", false);
+					Logger.print("Error with converting string -> long. Returning method and setting dailyMs JSON key to currentTimeMillis", false);
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 					return;
 				}
@@ -115,7 +115,7 @@ public class DailyDose {
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 				}
 			} catch (Exception e) {
-				new ErrorLogg(e, "Error in onEvent", "Unknown error caught", null);
+				Logger.logError(e, "Error in onEvent", "Unknown error caught", null);
 			}
 		}
 	}

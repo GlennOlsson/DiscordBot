@@ -64,10 +64,10 @@ class DiscordBot extends ListenerAdapter{
 			try {
 				JDA jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).addEventListener(new DiscordBot()).buildBlocking();
 			} catch (Exception e) {
-				new ErrorLogg(e, "JDA Builder", "JDA Builder", null);
+				Logger.logError(e, "JDA Builder", "JDA Builder", null);
 			}
 		} catch (Exception e) {
-			new ErrorLogg(e, "Error in Main", "Unknown error", null);
+			Logger.logError(e, "Error in Main", "Unknown error", null);
 		}
 	}
 	
