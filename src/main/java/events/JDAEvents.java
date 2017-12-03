@@ -26,8 +26,9 @@
 
 package events;
 
-import backend.ErrorLogg;
-import backend.Print;
+
+
+import backend.Logger;
 import backend.ReadWrite;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -48,7 +49,7 @@ public class JDAEvents extends ListenerAdapter {
 			try{
 				if(System.getProperty("os.name").toLowerCase().contains("linux")){
 					Logger.print("\n		New run: Nr. "+Integer.toString(
-							Integer.parseInt(ReadWrite.getKey("runCount"))+1)+"\n", null);
+							Integer.parseInt(ReadWrite.getKey("runCount"))+1)+"\n");
 					ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount"))+1));
 				}
 			}catch (Exception e) {
@@ -65,7 +66,7 @@ public class JDAEvents extends ListenerAdapter {
 	public static void Reconnect(ReconnectedEvent event) {
 		try {
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
-			Logger.print("Reconnected", false);
+			Logger.print("Reconnected");
 		} catch (Exception e) {
 			Logger.logError(e, "Error in JDAEvents.Reconnect", "Unknown error", null);
 		}

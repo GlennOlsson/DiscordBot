@@ -26,7 +26,8 @@
 
 package commands;
 
-import backend.Print;
+
+import backend.Logger;
 import backend.ReadWrite;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -36,7 +37,7 @@ public class Prefix {
 	public Prefix(MessageChannel channel, MessageReceivedEvent event, String newPrefix) {
 		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
 		if(ReadWrite.isAuthorized(event.getTextChannel(), event, roleslist)){
-			Logger.print("HALLELUJAH", false);
+			Logger.print("HALLELUJAH");
 			if(!newPrefix.equals("")){
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//if privateChannel ---> no guildId

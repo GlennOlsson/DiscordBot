@@ -26,8 +26,9 @@
 
 package commands;
 
-import backend.ErrorLogg;
-import backend.Print;
+
+
+import backend.Logger;
 import backend.Return;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.ChannelType;
@@ -132,8 +133,7 @@ public class Gif {
 							//Is KakansBot
 							if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
 								Logger.print("Cannot delete initial Gif command message in "+event.getChannel().getName()
-										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE",
-										false);
+										+" channel in "+event.getGuild().getName()+" guild, because lack of MESSAGE_MANAGE");
 							}
 							else {
 								event.getMessage().delete().queue();

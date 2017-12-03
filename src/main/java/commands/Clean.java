@@ -26,8 +26,9 @@
 
 package commands;
 
-import backend.ErrorLogg;
-import backend.Print;
+
+import backend.Logger;
+
 import backend.ReadWrite;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Message;
@@ -46,7 +47,7 @@ public class Clean {
 				//Is KakansBot
 				if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)){
 					Logger.print("Clean command, but I don't have MESSAGE_MANAGE permission in "+event.getChannel().getName()
-							+" channel in "+event.getGuild().getName()+" guild", false);
+							+" channel in "+event.getGuild().getName()+" guild");
 					messageChannel.sendMessage("I can't delete the message, I need MESSAGE_MANAGE permission for that").queue();
 				return;
 				}
@@ -83,11 +84,11 @@ public class Clean {
 				}
 				if(content.split(" ").length>=4){
 					argument2=content.substring(content.indexOf(content.split(" ")[3].toLowerCase()));
-					Logger.print(argument2 + " == arg 2", false);
+					Logger.print(argument2 + " == arg 2");
 					boolean hasMember=false;
 					for (int i = 0; i < channel.getMembers().size(); i++) {
 						if(channel.getMembers().get(i).getUser().getName().toLowerCase().equals(argument2)){
-							Logger.print("CHANNEL HAS USER", false);
+							Logger.print("CHANNEL HAS USER");
 							hasMember=true;
 						}
 					}
@@ -154,7 +155,7 @@ public class Clean {
 						break;
 				}
 			}
-			Logger.print(amount+" = amount", true);
+			Logger.printError(amount+" = amount");
 		}
 		else {
 			//				channel.sendMessage("You are not authorized to execute that command, *"+event.getAuthor().getAsMention()+"*. Contact a Moderator").queue();

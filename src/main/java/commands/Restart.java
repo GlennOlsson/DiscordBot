@@ -26,8 +26,9 @@
 
 package commands;
 
-import backend.ErrorLogg;
-import backend.Print;
+
+
+import backend.Logger;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -95,9 +96,9 @@ public class Restart {
 			
 			channel.sendMessage("Nuh uh, you are not **The Kakan**! He will hear about this! "+mentionText).
 					queue();
-			Logger.print("The user "+ author.getName() + "#"+author.getDiscriminator()
+			Logger.printError("The user "+ author.getName() + "#"+author.getDiscriminator()
 					+"("+author.getId()+") tried to restart the bot in "+ guildText +", in the "
-					+event.getChannel().getName() + " channel. KILL THAT PERSON!!", true);
+					+event.getChannel().getName() + " channel. KILL THAT PERSON!!");
 		}
 	}
 }

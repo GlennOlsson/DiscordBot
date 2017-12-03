@@ -26,8 +26,7 @@
 
 package events;
 
-import backend.ErrorLogg;
-import backend.Print;
+import backend.Logger;
 import backend.ReadWrite;
 import commands.*;
 import net.dv8tion.jda.core.entities.ChannelType;
@@ -125,7 +124,7 @@ public class MessageEvents {
 				command=command.split(" ")[0];
 				afterCommand = contentCase.substring(prefix.length()+command.length()+1);
 				rawAfterCommand = event.getMessage().getRawContent().substring(prefix.length()+command.length()+1);
-				Logger.print("Aftercommand=\""+afterCommand+"\"", false);
+				Logger.print("Aftercommand=\""+afterCommand+"\"");
 			}
 			
 			switch (command) {

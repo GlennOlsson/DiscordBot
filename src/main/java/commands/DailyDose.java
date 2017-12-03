@@ -26,8 +26,9 @@
 
 package commands;
 
-import backend.ErrorLogg;
-import backend.Print;
+
+import backend.Logger;
+
 import backend.ReadWrite;
 import backend.Return;
 import com.sun.org.apache.regexp.internal.RE;
@@ -104,7 +105,7 @@ public class DailyDose {
 				try {
 					lastMs = Long.parseLong(lastMsString);
 				} catch (Exception e) {
-					Logger.print("Error with converting string -> long. Returning method and setting dailyMs JSON key to currentTimeMillis", false);
+					Logger.print("Error with converting string -> long. Returning method and setting dailyMs JSON key to currentTimeMillis");
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 					return;
 				}

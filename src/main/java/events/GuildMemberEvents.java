@@ -26,7 +26,8 @@
 
 package events;
 
-import backend.ErrorLogg;
+
+import backend.Logger;
 import backend.ReadWrite;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;

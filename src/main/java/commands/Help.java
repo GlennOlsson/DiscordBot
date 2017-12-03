@@ -26,7 +26,8 @@
 
 package commands;
 
-import backend.ErrorLogg;
+
+import backend.Logger;
 import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;

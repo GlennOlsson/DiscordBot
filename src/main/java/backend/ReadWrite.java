@@ -96,7 +96,7 @@ public class ReadWrite {
 			}
 		} catch (Exception e) {
 
-			Logger.print("ERROR WITH PREFIX, RETURNING \";\"", true);
+			Logger.printError("ERROR WITH PREFIX, RETURNING \";\"");
 			Logger.logError(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
 			return ";";
 		}
@@ -123,15 +123,15 @@ public class ReadWrite {
 			
 			Files.write(path, jsonObject.toJSONString().getBytes());
 			
-			Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
+			Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
 			
 //			try (FileWriter file = new FileWriter(getPath())){
 //				file.write(jsonObject.toJSONString());
-//				Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"", false);
+//				Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
 //			}
 		}
 		catch (Exception e) {
-			Logger.print("-- ERROR IN WRITING IN settings.json --", true);
+			Logger.printError("-- ERROR IN WRITING IN settings.json --");
 			Logger.logError(e, "In setPrefix", "Here's string Id: --"+id+"--, and Prefix: --"+prefix+"--", null);
 		}
 	}
@@ -178,7 +178,7 @@ public class ReadWrite {
 			
 			Files.write(path, jsonObject.toJSONString().getBytes());
 
-			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}", false);
+			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}");
 
 		} catch (Exception e) {
 			Logger.logError(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);

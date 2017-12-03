@@ -26,7 +26,8 @@
 
 package commands;
 
-import backend.Print;
+
+import backend.Logger;
 import backend.ReadWrite;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.Permission;
