@@ -78,7 +78,7 @@ public class Test extends ListenerAdapter {
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		new DailyDose("me_irl", general);
+//		new DailyDose("me_irl", general);
 		
 	}
 	private Test(){
