@@ -73,12 +73,12 @@ public class Test extends ListenerAdapter {
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
 //		//General kakanistan
-//		TextChannel general = jda.getTextChannelById("282109399617634304");
+		TextChannel general = jda.getTextChannelById("282109399617634304");
 //
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		print(ReadWrite.getKey("dailyMs"));
+		new DailyDose("me_irl", general);
 		
 	}
 	private Test(){

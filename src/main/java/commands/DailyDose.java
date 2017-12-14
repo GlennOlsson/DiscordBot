@@ -74,7 +74,7 @@ public class DailyDose {
 				
 				message.append("**");
 				message.append(titleOfPost);
-				message.append("**");
+				message.append("** - ");
 				message.append(mediaURLofPost);
 				
 				messages.add(message.build());
