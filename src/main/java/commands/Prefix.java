@@ -34,7 +34,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class Prefix {
-	public Prefix(MessageChannel channel, MessageReceivedEvent event, String newPrefix) {
+	public static void Prefix(MessageChannel channel, MessageReceivedEvent event, String newPrefix) {
 		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
 		if(ReadWrite.isAuthorized(event.getTextChannel(), event, roleslist)){
 			Logger.print("HALLELUJAH");

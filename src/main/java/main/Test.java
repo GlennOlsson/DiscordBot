@@ -31,7 +31,7 @@ import backend.*;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-import static backend.Logger.*;
+import static commands.Reddit.*;
 
 import commands.*;
 import net.dv8tion.jda.core.AccountType;
@@ -90,7 +90,7 @@ public class Test extends ListenerAdapter {
 		String content = event.getMessage().getRawContent(), afterCommand="", command = content.substring(";".length());
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
-			new Reddit(event.getChannel(), event, content);
+			Reddit(event.getChannel(), event, content);
 		}
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){

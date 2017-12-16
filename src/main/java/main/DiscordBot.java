@@ -41,6 +41,7 @@ https://www.reddit.com/api/v1/authorize?client_id=uGN5rXPLJsdZ2Q&response_type=c
 
 
 import backend.*;
+import commands.DailyDose;
 import events.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -54,9 +55,12 @@ import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import static events.GenericEvents.*;
 
 
 class DiscordBot extends ListenerAdapter{
+	
+	GenericEvents genericEvents = new GenericEvents();
 	
 	public static void main(String[] args) {
 		try {
@@ -106,6 +110,6 @@ class DiscordBot extends ListenerAdapter{
 	
 	//Generic Events
 	public void onGenericEvent(Event event) {
-		GenericEvents.GenericEvent(event);
+		genericEvents.GenericEvent(event);
 	}
 }

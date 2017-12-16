@@ -42,7 +42,7 @@ import java.util.List;
  * Created by Glenn on 2017-05-20.
  */
 public class GameRoles {
-	public GameRoles(MessageChannel channel, MessageReceivedEvent event, String afterCommand) {
+	public static void GameRoles(MessageChannel channel, MessageReceivedEvent event, String afterCommand) {
 		String[] games;
 		try{
 			games = ReadWrite.getKey("games"+event.getGuild().getId()).split(",");
@@ -92,7 +92,7 @@ public class GameRoles {
 		
 	}
 	
-	private void gameSpecified(String game, MessageChannel channel, MessageReceivedEvent event) {
+	private static void gameSpecified(String game, MessageChannel channel, MessageReceivedEvent event) {
 		
 		List<Role> roles = event.getGuild().getRoles();
 		//noinspection ForLoopReplaceableByForEach

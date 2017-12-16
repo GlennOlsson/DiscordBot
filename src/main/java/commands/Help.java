@@ -33,7 +33,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 
 public class Help {
-	public Help(MessageReceivedEvent event, String content) {
+	public static void Help(MessageReceivedEvent event, String content) {
 
 		PrivateChannel privateChannel;
 

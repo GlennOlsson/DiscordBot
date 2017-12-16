@@ -85,7 +85,7 @@ public class Reddit {
 	
 	}
 	
-	public Reddit(MessageChannel channel, MessageReceivedEvent event, String content){
+	public static void Reddit(MessageChannel channel, MessageReceivedEvent event, String content){
 		
 		//If reddit post
 //		try {
@@ -131,7 +131,7 @@ public class Reddit {
 	}
 	
 	//Returns a list of [RedditMediaURL, RedditTitle]
-	public String[] getRedditMediaURLAndTitle(String redditURL) {
+	public static String[] getRedditMediaURLAndTitle(String redditURL) {
 		
 		Document RedditHTMLocument;
 		String url, redditTitle;

@@ -40,7 +40,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
  * Created by glenn on 2017-06-29.
  */
 public class WelcomeMessage {
-	public WelcomeMessage(MessageReceivedEvent event, MessageChannel channel, String afterCommand){
+	public static void WelcomeMessage(MessageReceivedEvent event, MessageChannel channel, String afterCommand){
 		
 		String message = afterCommand;
 		
@@ -86,7 +86,7 @@ public class WelcomeMessage {
 		ReadWrite.setKey("welcome"+event.getGuild().getId(),afterCommand);
 	}
 	
-	private String getReadableMessage(String originalMessage, JDA jda){
+	private static String getReadableMessage(String originalMessage, JDA jda){
 		String transformedMessage = originalMessage;
 		
 		while ((transformedMessage.contains("<@") && transformedMessage.contains(">"))) {

@@ -40,7 +40,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import java.util.List;
 
 public class Clean {
-	public Clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
+	public static void Clean(MessageChannel messageChannel, MessageReceivedEvent event, String content){
 
 		for (int i =0;i<event.getTextChannel().getMembers().size();i++) {
 			if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())){

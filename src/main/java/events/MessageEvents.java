@@ -35,6 +35,17 @@ import net.dv8tion.jda.core.entities.PrivateChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 
+import static commands.Reddit.*;
+import static commands.GameRoles.*;
+import static commands.Gif.*;
+import static commands.Clean.*;
+import static commands.Help.*;
+import static commands.Ignore.*;
+import static commands.Prefix.*;
+import static commands.Restart.*;
+import static commands.Source.*;
+import static commands.WelcomeMessage.*;
+
 /**
  * Created by Glenn on 2017-06-04.
  */
@@ -64,7 +75,7 @@ public class MessageEvents {
 						content.substring(0,"https://reddit".length()).contains("https://reddit")||
 						content.substring(0,"http://reddit".length()).contains("http://reddit"))){
 					try {
-						new Reddit(channel, event, content);
+						Reddit(channel, event, content);
 					} catch (Exception e) {
 						Logger.logError(e, content, "Error with reddit command", event);
 					}
@@ -104,7 +115,7 @@ public class MessageEvents {
 					}
 					
 					if(event.getMessage().getContent().equals(";ignore")||event.getMessage().getContent().equals(prefix+"ignore")){
-						new Ignore(event.getTextChannel(), event.getAuthor());
+						Ignore(event.getTextChannel(), event.getAuthor());
 					}
 				}
 			}
@@ -130,7 +141,7 @@ public class MessageEvents {
 			switch (command) {
 				case "clean":
 					try {
-						new Clean(channel, event, content);
+						Clean(channel, event, content);
 					} catch (Exception e) {
 						Logger.logError(e, content, "Error with clean command", event);
 					}
@@ -138,7 +149,7 @@ public class MessageEvents {
 				
 				case "gif":
 					try {
-						new Gif(channel, event, afterCommand);
+						Gif(channel, event, afterCommand);
 					} catch (Exception e) {
 						Logger.logError(e, content, "Error with gif command", event);
 					}
@@ -146,7 +157,7 @@ public class MessageEvents {
 				
 				case "source":
 					try {
-						new Source(channel);
+						Source(channel);
 					} catch (Exception e) {
 						Logger.logError(e, content, "Error with source command", event);
 					}
@@ -154,7 +165,7 @@ public class MessageEvents {
 				
 				case "prefix":
 					try {
-						new Prefix(channel, event, afterCommand);
+						Prefix(channel, event, afterCommand);
 					} catch (Exception e) {
 						Logger.logError(e, content, "Error with prefix command", event);
 					}
@@ -163,7 +174,7 @@ public class MessageEvents {
 				case "game":
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
-							new GameRoles(channel, event, afterCommand);
+							 GameRoles(channel, event, afterCommand);
 						}
 					}
 					catch (Exception e){
@@ -189,11 +200,11 @@ public class MessageEvents {
 						Logger.logError(e, content, "Error with editgame command", event);
 					}
 					break;
-					
+				
 				case "welcome":
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
-							new WelcomeMessage(event, channel, rawAfterCommand);
+							 WelcomeMessage(event, channel, rawAfterCommand);
 						}
 					}
 					catch (Exception e){
@@ -203,17 +214,17 @@ public class MessageEvents {
 				
 				case "ignore":
 					try {
-						new Ignore(event.getTextChannel(), event.getAuthor());
+						 Ignore(event.getTextChannel(), event.getAuthor());
 					}
 					catch (Exception e){
 						Logger.logError(e, content, "Error with game command", event);
 					}
 					break;
-					
+				
 				case "help":
 					
 					try {
-						new Help(event, content);
+						 Help(event, content);
 					} catch (Exception e) {
 						Logger.logError(e, content, "Error with help command", event);
 					}

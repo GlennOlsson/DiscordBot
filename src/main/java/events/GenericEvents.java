@@ -33,7 +33,10 @@ import net.dv8tion.jda.core.events.Event;
  * Created by Glenn on 2017-06-04.
  */
 public class GenericEvents {
-	public static void GenericEvent(Event event){
-		new DailyDose(event.getJDA());
+	
+	DailyDose daily = new DailyDose();
+	
+	public void GenericEvent(Event event){
+		daily.DailyDose(event.getJDA());
 	}
 }

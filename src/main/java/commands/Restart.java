@@ -43,7 +43,7 @@ import java.io.InputStreamReader;
  */
 public class Restart {
 	
-	public Restart(MessageChannel channel, MessageReceivedEvent event){
+	public static void Restart(MessageChannel channel, MessageReceivedEvent event){
 		User author = event.getMessage().getAuthor();
 		if(author.getId().equals("165507757519273984")){
 			channel.sendMessage("Alright boss, shutting down...").submit();

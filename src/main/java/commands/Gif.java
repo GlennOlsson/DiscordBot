@@ -33,21 +33,18 @@ import backend.Return;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class Gif {
 	
-	private String query = null;
-	private String possiblyNumber="";
-	private MessageChannel channel;
-	private MessageReceivedEvent event;
+	private static String query = null;
+	private static String possiblyNumber="";
 	
-	public Gif(MessageChannel channel, MessageReceivedEvent event, String content) {
+	public static void Gif(MessageChannel channel, MessageReceivedEvent event, String content) {
 		try {
-			this.channel = channel;
-			this.event = event;
 			
 			query = content.replace(" ", "-");
 			
@@ -73,7 +70,7 @@ public class Gif {
 							//We now got an upper limit, and a lower one.
 							for (int i = lowLimit; i < highLimit+1; i++) {
 								possiblyNumber=" ["+Integer.toString(i)+"]";
-								fetchAndSend(i);
+								fetchAndSend(i, channel, event);
 							}
 							//noinspection UnnecessaryReturnStatement
 							return;
@@ -99,7 +96,7 @@ public class Gif {
 				else{
 					//If specific gif
 					try{
-						fetchAndSend(Integer.parseInt(insideBrackets));
+						fetchAndSend(Integer.parseInt(insideBrackets), channel, event);
 					}
 					catch (Exception e){
 						if(!event.getAuthor().hasPrivateChannel()) {
@@ -110,14 +107,14 @@ public class Gif {
 				}
 			}
 			else {
-				fetchAndSend(1);
+				fetchAndSend(1, channel, event);
 			}
 		}
 		catch (Exception e) {
 			Logger.logError(e, "Error in Gif.java", "Unknown error", event);
 		}
 	}
-	private void fetchAndSend(int indexOfGif){
+	private static void fetchAndSend(int indexOfGif, MessageChannel channel, MessageReceivedEvent event){
 		try{
 			Document doc = Jsoup.connect(Return.convertUrl("https://tenor.com/search/" + query + "-gifs")).userAgent("Chrome").get();
 			String url = "https://tenor.com/" + doc.select("#view > div > div > div > div > div:nth-child(1) > figure:nth-child("+

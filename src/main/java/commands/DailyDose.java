@@ -43,11 +43,13 @@ import org.jsoup.nodes.Element;
 
 import java.util.ArrayList;
 
+import static commands.Reddit.*;
+
 public class DailyDose {
 	@SuppressWarnings("WeakerAccess")
-	
 	long recentlyChecked = 0;
-	private DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
+
+	private static void DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
 		
 		Logger.print("DailyDose!");
@@ -63,7 +65,7 @@ public class DailyDose {
 				String urlOfPost =  doc.select(".thing:nth-of-type("+(i)+") > div.entry.unvoted > div.top-matter > ul > li.first > a")
 						.attr("href");
 				
-				String[] mediaURLAndTitleOfPost = new Reddit().getRedditMediaURLAndTitle(Return.convertUrl(urlOfPost));
+				String[] mediaURLAndTitleOfPost = getRedditMediaURLAndTitle(Return.convertUrl(urlOfPost));
 				
 				String mediaURLofPost = mediaURLAndTitleOfPost[0];
 				String titleOfPost = mediaURLAndTitleOfPost[1];
@@ -92,7 +94,7 @@ public class DailyDose {
 			Logger.logError(e, "Error with DailyDose class", "Unknown error", null);
 		}
 	}
-	public DailyDose(JDA jda) {
+	public void DailyDose(JDA jda) {
 		if(System.currentTimeMillis() >= (recentlyChecked + 86400000)) {
 			recentlyChecked = System.currentTimeMillis();
 			try {
@@ -111,7 +113,7 @@ public class DailyDose {
 				}
 				if(System.currentTimeMillis() >= (lastMs + 86400000)) {
 					for (int i = 0; i < jda.getTextChannelsByName("aww", true).size(); i++) {
-						new DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
+						DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
 					}
 					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 				}

@@ -29,7 +29,7 @@ package commands;
 import net.dv8tion.jda.core.entities.MessageChannel;
 
 public class Source {
-	public Source(MessageChannel channel){
+	public static void Source(MessageChannel channel){
 		channel.sendMessage("Nice, you are curious! Here's the link to github: https://github.com/kakan9898/DiscordBot").queue();
 		//noinspection UnnecessaryReturnStatement
 		return;

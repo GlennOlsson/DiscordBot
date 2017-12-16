@@ -38,7 +38,7 @@ public class Ignore {
 	
 	static ArrayList<User> listOfUsers = new ArrayList<>();
 	
-	public Ignore(TextChannel channel, User user){
+	public static void Ignore(TextChannel channel, User user){
 		if(listOfUsers.contains(user)){
 			listOfUsers.remove(user);
 			channel.sendMessage("You are no longer ignored by me").queue();
