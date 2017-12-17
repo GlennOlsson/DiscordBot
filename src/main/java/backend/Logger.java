@@ -58,7 +58,7 @@ public class Logger {
 				
 				newContent.append("["+currentTime+"] " + whatToPrint + "\n");
 				
-				saveToPath(newContent.toString() + currentContent, printFile);
+				saveToPath(newContent.toString(), printFile);
 			}
 			else{
 				//If on testing device, ex. mac
@@ -115,7 +115,7 @@ public class Logger {
 						"\nId: "+id+eventMessage+
 						"\n"+errors.toString()+"\n---------------\n\n";
 				
-				saveToPath(newContent + currentContent, errorFile);
+				saveToPath(newContent, errorFile);
 			
 		}
 			catch (Exception e){
