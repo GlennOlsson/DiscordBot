@@ -98,7 +98,7 @@ public class DailyDose {
 		if(System.currentTimeMillis() >= (recentlyChecked + 86400000)) {
 			recentlyChecked = System.currentTimeMillis();
 			try {
-				String lastMsString = ReadWrite.getKey("dailyMs");
+				String lastMsString = ReadWrite.getKey("dailyMs").getAsString();
 				if(lastMsString == null || lastMsString.equals("")) {
 					ReadWrite.setKey("dailyMs", "0");
 					return;

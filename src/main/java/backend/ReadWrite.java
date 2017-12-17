@@ -135,14 +135,14 @@ public class ReadWrite {
 	}
 	
 	//Earlier RetrieveSetting.java
-	public static String getKey(String key){
+	public static JsonElement getKey(String key){
 			try {
 				byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 				String contentOfFile = new String(fileInBytes);
 				
 				JsonObject jsonObject = parseStringToJSON(contentOfFile);
 				
-				String valueOfKey = jsonObject.get(key).getAsString();
+				JsonElement valueOfKey = jsonObject.get(key);
 				
 				return valueOfKey;
 
@@ -153,15 +153,14 @@ public class ReadWrite {
 		return null;
 	}
 	@SuppressWarnings("unchecked")
-	public static void setKey(String key, String value){
-
+	public static void setKey(String key, JsonElement value){
 		try {
 			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 			String contentOfFile = new String(fileInBytes);
 			
 			JsonObject jsonObject = parseStringToJSON(contentOfFile);
 
-			jsonObject.addProperty(key, value);
+			jsonObject.add(key, value);
 			
 			String beautyJSON = beautifyJSON(jsonObject);
 			
@@ -171,6 +170,28 @@ public class ReadWrite {
 
 			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}");
 
+		} catch (Exception e) {
+			Logger.logError(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
+		}
+	}
+	
+	public static void setKey(String key, String value){
+		try {
+			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
+			String contentOfFile = new String(fileInBytes);
+			
+			JsonObject jsonObject = parseStringToJSON(contentOfFile);
+			
+			jsonObject.addProperty(key, value);
+			
+			String beautyJSON = beautifyJSON(jsonObject);
+			
+			Path path = Paths.get(getPath());
+			
+			Files.write(path, beautyJSON.getBytes());
+			
+			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}");
+			
 		} catch (Exception e) {
 			Logger.logError(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
 		}

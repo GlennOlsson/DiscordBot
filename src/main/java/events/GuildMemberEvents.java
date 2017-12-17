@@ -46,7 +46,7 @@ public class GuildMemberEvents {
 		
 		try{
 			MessageChannel channel = guildJoined.getTextChannelsByName("general", true).get(0);
-			String welcomeMessage = (String) ReadWrite.getKey("welcome"+guildJoined.getId());
+			String welcomeMessage = ReadWrite.getKey("welcome"+guildJoined.getId()).getAsString();
 			
 			if(welcomeMessage==null){
 				welcomeMessage="Welcome *"+joinedMember.getAsMention()+"* to "+guildJoined.getName()+"!";

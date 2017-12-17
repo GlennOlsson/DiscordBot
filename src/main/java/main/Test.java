@@ -29,6 +29,7 @@ package main;
 
 import backend.*;
 import com.sun.org.apache.regexp.internal.RE;
+import com.sun.xml.internal.ws.api.server.SDDocument;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -62,7 +63,7 @@ public class Test extends ListenerAdapter {
 		JDA jda = null;
 		try {
 			jda = new JDABuilder(AccountType.BOT)
-					.setToken(ReadWrite.getKey("oath"))
+					.setToken(ReadWrite.getKey("oath").getAsString())
 					.addEventListener(new Test())
 					.buildBlocking();
 
@@ -79,7 +80,10 @@ public class Test extends ListenerAdapter {
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		ReadWrite.setKey("hey", "boi");
+		List<Guild> guilds = jda.getGuilds();
+		for(Guild guild : guilds){
+			System.out.println(guild.getName() + ", " + guild.getId());
+		}
 	
 	}
 	private Test(){
