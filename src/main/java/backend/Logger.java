@@ -42,7 +42,7 @@ import java.util.Calendar;
 
 public class Logger {
 	
-	private static String path = "/var/www/html/Website-Pi/html/";
+	private static String path = "/var/www/Website-Pi/html";
 	private static String printFile = "Print.md";
 	private static String errorFile = "Errorlog.md";
 	
