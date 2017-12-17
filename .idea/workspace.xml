@@ -137,8 +137,8 @@
       <file leaf-file-name="Logger.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="132" column="80" lean-forward="true" selection-start-line="132" selection-start-column="80" selection-end-line="132" selection-end-column="80" />
+            <state relative-caret-position="308">
+              <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1054,7 +1054,7 @@
       <workItem from="1512321243404" duration="6695000" />
       <workItem from="1512470050319" duration="14000" />
       <workItem from="1513256483226" duration="801000" />
-      <workItem from="1513438044769" duration="4885000" />
+      <workItem from="1513438044769" duration="5643000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -1364,11 +1364,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513510971145</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Append instead of on top">
+      <created>1513512192515</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1513512192515</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54028000" />
+    <option name="totallyTimeSpent" value="54786000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1422,7 +1429,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="This motherfucking workspace only" />
     <MESSAGE value="Debugging &quot;Unexpected token END OF FILE at position 0.&quot;" />
     <MESSAGE value="Something fucked up by some reason. Oh well, fall back" />
     <MESSAGE value="Debugging ReadWrite" />
@@ -1447,7 +1453,8 @@
     <MESSAGE value="One simple /" />
     <MESSAGE value="Changing Secret file to Tau" />
     <MESSAGE value="Converting from Pi to Tau" />
-    <option name="LAST_COMMIT_MESSAGE" value="Converting from Pi to Tau" />
+    <MESSAGE value="Append instead of on top" />
+    <option name="LAST_COMMIT_MESSAGE" value="Append instead of on top" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1840,8 +1847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="132" column="80" lean-forward="true" selection-start-line="132" selection-start-column="80" selection-end-line="132" selection-end-column="80" />
+        <state relative-caret-position="308">
+          <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
