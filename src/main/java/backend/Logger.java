@@ -37,6 +37,7 @@ import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -129,7 +130,7 @@ public class Logger {
 	
 	private static void saveToPath(String whatToSave, String pathName) throws IOException{
 		Path fullPath = Paths.get(path + pathName);
-		Files.write(fullPath, whatToSave.getBytes());
+		Files.write(fullPath, whatToSave.getBytes(), StandardOpenOption.APPEND);
 	}
 	
 	private static String getContentOfFile(String fileName) throws IOException{
