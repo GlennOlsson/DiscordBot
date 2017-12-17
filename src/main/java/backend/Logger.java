@@ -53,7 +53,6 @@ public class Logger {
 				
 				String currentTime = getDate();
 				
-				String currentContent = getContentOfFile(printFile);
 				StringBuilder newContent = new StringBuilder();
 				
 				newContent.append("["+currentTime+"] " + whatToPrint + "\n");
@@ -84,8 +83,6 @@ public class Logger {
 		if(isLinux()){
 			try{
 				printError("An error was caught");
-				
-				String currentContent = getContentOfFile(errorFile);
 				
 				String currentDate = getDate();
 				
@@ -131,15 +128,6 @@ public class Logger {
 	private static void saveToPath(String whatToSave, String pathName) throws IOException{
 		Path fullPath = Paths.get(path + pathName);
 		Files.write(fullPath, whatToSave.getBytes(), StandardOpenOption.APPEND);
-	}
-	
-	private static String getContentOfFile(String fileName) throws IOException{
-		String contentOfFile = "";
-		
-		byte[] fileInBytes = Files.readAllBytes(Paths.get(path + fileName));
-		contentOfFile = new String(fileInBytes);
-		
-		return contentOfFile;
 	}
 	
 	private static String getDate(){

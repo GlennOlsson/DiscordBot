@@ -45,7 +45,8 @@ public class GameRoles {
 	public static void GameRoles(MessageChannel channel, MessageReceivedEvent event, String afterCommand) {
 		String[] games;
 		try{
-			games = ReadWrite.getKey("games"+event.getGuild().getId()).split(",");
+			String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
+			games = key.split(",");
 		}
 		catch (Exception e){
 			channel.sendMessage("This channel does not have any games set. Have someone with permission to manage" +
@@ -76,7 +77,8 @@ public class GameRoles {
 	}
 	
 	private static void noGameSpecified(MessageChannel channel, String message, MessageReceivedEvent event) {
-		String[] games = ReadWrite.getKey("games"+event.getGuild().getId()).split(",");
+		String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
+		String[] games = key.split(",");
 		
 		if(games.length==1&&games[0].equals("")){
 			channel.sendMessage("There are no longer any games to set on this server").queue();
@@ -162,7 +164,8 @@ public class GameRoles {
 			String game=afterCommand.substring(4);
 			try{
 				ArrayList<String> games = new ArrayList<>();
-				String[] list = ReadWrite.getKey("games"+event.getGuild().getId()).split(",");
+				String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
+				String[] list = key.split(",");
 				
 				for(int i = 0; i < list.length; i++){
 					games.add(list[i]);
@@ -208,7 +211,9 @@ public class GameRoles {
 				String game = afterCommand.substring(7);
 				int index = -50;
 				ArrayList<String> games = new ArrayList<>();
-				String[] list = ReadWrite.getKey("games" + event.getGuild().getId()).split(",");
+				String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
+				String[] list = key.split(",");
+				
 				for (int i = 0; i < list.length; i++) {
 					games.add(list[i]);
 					if(game.toLowerCase().equals(games.get(i).toLowerCase())) {
