@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="Changing path for Errorlog and Print files">
+    <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/backend/Logger.java" afterPath="$PROJECT_DIR$/src/main/java/backend/Logger.java" />
     </list>
@@ -118,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
-              <caret line="44" column="58" lean-forward="false" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="58" />
+              <caret line="44" column="59" lean-forward="false" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1052,7 +1052,7 @@
       <workItem from="1512321243404" duration="6695000" />
       <workItem from="1512470050319" duration="14000" />
       <workItem from="1513256483226" duration="801000" />
-      <workItem from="1513438044769" duration="2806000" />
+      <workItem from="1513438044769" duration="2891000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -1334,11 +1334,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513439545081</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Changing path for Errorlog and Print files">
+      <created>1513509264163</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1513509264163</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51949000" />
+    <option name="totallyTimeSpent" value="52034000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1808,7 +1815,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
-          <caret line="44" column="58" lean-forward="false" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="58" />
+          <caret line="44" column="59" lean-forward="false" selection-start-line="44" selection-start-column="59" selection-end-line="44" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
