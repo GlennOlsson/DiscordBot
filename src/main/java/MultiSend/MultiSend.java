@@ -106,7 +106,7 @@ class MultiSend extends ListenerAdapter{
 		
 		
 		try {
-			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath")).
+			jda = new JDABuilder(AccountType.BOT).setToken((String) ReadWrite.getKey("oath")).
 					addEventListener(new MultiSend()).buildBlocking();
 		} catch (Exception e) {
 			

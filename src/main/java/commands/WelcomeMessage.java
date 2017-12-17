@@ -61,7 +61,7 @@ public class WelcomeMessage {
 		}
 		
 		if(message.equals("?")){
-			String currentWelcome = ReadWrite.getKey("welcome"+event.getGuild().getId());
+			String currentWelcome = (String) ReadWrite.getKey("welcome"+event.getGuild().getId());
 			if(currentWelcome==null){
 				currentWelcome="Welcome **;mention;** to "+event.getGuild().getName()+"!";
 			}

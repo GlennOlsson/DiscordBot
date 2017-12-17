@@ -28,6 +28,7 @@
 package main;
 
 import backend.*;
+import com.sun.org.apache.regexp.internal.RE;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -78,9 +79,8 @@ public class Test extends ListenerAdapter {
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 		
-		DailyDose dailyDose = new DailyDose();
-		dailyDose.DailyDose(jda);
-		
+		ReadWrite.setKey("hey", "boi");
+	
 	}
 	private Test(){
 		

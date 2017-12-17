@@ -26,13 +26,16 @@
 
 package backend;
 
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import jdk.nashorn.internal.parser.JSONParser;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONObject;
 
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -77,17 +80,14 @@ public class ReadWrite {
 		//Check prefix
 		try {
 			String prefix;
-			JSONParser parser = new JSONParser();
 			
 			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 			String contentOfFile = new String(fileInBytes);
 			
-			Object object = parser.parse(contentOfFile);
-			
-			JSONObject jsonObject = (JSONObject) object;
+			JsonObject jsonObject = parseStringToJSON(contentOfFile);
 
-			if(jsonObject.containsKey("prefix"+id)){
-				prefix=(String) jsonObject.get("prefix"+id);
+			if(jsonObject.has("prefix"+id)){
+				prefix = jsonObject.get("prefix"+id).getAsString();
 				return prefix;
 			}
 			else {
@@ -106,22 +106,20 @@ public class ReadWrite {
 	public static void setPrefix(String id, String prefix) {
 
 		try {
-			JSONParser parser = new JSONParser();
-			
 			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 			String contentOfFile = new String(fileInBytes);
 			
-			Object object = parser.parse(contentOfFile);
+			JsonObject jsonObject = parseStringToJSON(contentOfFile);
 
-			JSONObject jsonObject = (JSONObject) object;
-
-			jsonObject.put("prefix"+id, prefix);
-
+			jsonObject.addProperty("prefix"+id, prefix);
+			
+			String beautyJSON = beautifyJSON(jsonObject);
+			
 			//WRITING JSON
 			
 			Path path = Paths.get(getPath());
 			
-			Files.write(path, jsonObject.toJSONString().getBytes());
+			Files.write(path, beautyJSON.getBytes());
 			
 			Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
 			
@@ -139,16 +137,12 @@ public class ReadWrite {
 	//Earlier RetrieveSetting.java
 	public static String getKey(String key){
 			try {
-				JSONParser parser = new JSONParser();
-				
 				byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 				String contentOfFile = new String(fileInBytes);
 				
-				Object object = parser.parse(contentOfFile);
+				JsonObject jsonObject = parseStringToJSON(contentOfFile);
 				
-				JSONObject JSONFile = (JSONObject) object;
-				
-				String valueOfKey = (String) JSONFile.get(key);
+				String valueOfKey = jsonObject.get(key).getAsString();
 				
 				return valueOfKey;
 
@@ -162,21 +156,18 @@ public class ReadWrite {
 	public static void setKey(String key, String value){
 
 		try {
-			JSONParser parser = new JSONParser();
-			
 			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 			String contentOfFile = new String(fileInBytes);
 			
-			Object object = parser.parse(contentOfFile);
+			JsonObject jsonObject = parseStringToJSON(contentOfFile);
 
-			JSONObject jsonObject = (JSONObject) object;
-
-			jsonObject.put(key, value);
+			jsonObject.addProperty(key, value);
 			
+			String beautyJSON = beautifyJSON(jsonObject);
 			
 			Path path = Paths.get(getPath());
 			
-			Files.write(path, jsonObject.toJSONString().getBytes());
+			Files.write(path, beautyJSON.getBytes());
 
 			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}");
 
@@ -184,7 +175,20 @@ public class ReadWrite {
 			Logger.logError(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
 		}
 	}
-
+	
+	private static JsonObject parseStringToJSON(String theString) throws JsonSyntaxException {
+		JsonElement jsonElement = new JsonParser().parse(theString);
+		JsonObject jsonObject = jsonElement.getAsJsonObject();
+		
+		return jsonObject;
+	}
+	
+	private static String beautifyJSON(JsonObject json){
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
+		return gson.toJson(json);
+	}
+	
 	@SuppressWarnings("unchecked")
 	private static String getPath(){
 		if(System.getProperty("os.name").toLowerCase().contains("windows")){
