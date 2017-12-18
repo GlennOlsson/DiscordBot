@@ -101,7 +101,7 @@ public class Help {
 			else if (argument.equals("game")||argument.equals(";game")) {
 				privateChannel.sendMessage("This command enables you to set roles for yourself, consisting of games. " +
 						"You choose the games that you actively play, so that members on the server can mention you, " +
-						"when they just want to notify people on specific games. Send **;game**, and I'll show you available games" +
+						"when they just want to notify people on specific games. Send **;game**, and I'll show you available games " +
 						"on the server, and then you choose which to add, one at a time.").queue();
 				return;
 			}
@@ -112,6 +112,8 @@ public class Help {
 						"make it possible for the users to add that role themselves.").queue();
 				return;
 			}
+			
+			//TODO: Add ;welcomeMessage (and ?)
 			
 			else if (argument.length()>1) {
 				privateChannel.sendMessage("Sorry, but your argument did not get a match").queue();

@@ -29,6 +29,7 @@ package commands;
 
 import backend.Logger;
 import backend.ReadWrite;
+import com.google.gson.JsonObject;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.ChannelType;
@@ -49,20 +50,17 @@ public class WelcomeMessage {
 			return;
 		}
 		
-		if(!event.getGuild().getMember(event.getAuthor()).hasPermission(Permission.ADMINISTRATOR)&&
-				!event.getAuthor().getId().equals("165507757519273984")){
+		if(! ReadWrite.isAuthorized(event, Permission.ADMINISTRATOR)){
 			channel.sendMessage("Sorry, only members with the **Administrator** permission can set the welcome message").queue();
 			return;
 		}
 		
-		if(message.contains("\"")){
-			channel.sendMessage("You can absolutely not have any \" in the message. That would really fuck up a lot. you may use ' instead").queue();
-			return;
-		}
+		JsonObject guild = ReadWrite.getGuild(event.getGuild());
 		
 		if(message.equals("?")){
-			String currentWelcome = (String) ReadWrite.getKey("welcome"+event.getGuild().getId());
-			if(currentWelcome==null){
+			String currentWelcome = guild.get("welcomeMessage").getAsString();
+			
+			if(currentWelcome.length() == 0){
 				currentWelcome="Welcome **;mention;** to "+event.getGuild().getName()+"!";
 			}
 			else{
@@ -70,10 +68,8 @@ public class WelcomeMessage {
 			}
 			channel.sendMessage("The current welcome message is:\n\n"+currentWelcome+"\n\nNote that **;mention;** will be replaced with the " +
 					"a mention of the joined user").queue();
-			return;
 		}
-		
-		if(message==null||message.equals("")){
+		else if(message.length() == 0){
 			channel.sendMessage("You have removed the welcome message for **"+event.getGuild().getName()+"**").queue();
 		}
 		else {
@@ -83,7 +79,10 @@ public class WelcomeMessage {
 					message + "\n\nIf there are ;mention; blocks in blod text, it means " +
 					"that the mention will work. Otherwise, something is wrong, and you should try to see if you misspelled or something.").queue();
 		}
-		ReadWrite.setKey("welcome"+event.getGuild().getId(),afterCommand);
+		
+		guild.addProperty("welcomeMessage", message);
+		
+		ReadWrite.addEditedGuild(event.getGuild(), guild);
 	}
 	
 	private static String getReadableMessage(String originalMessage, JDA jda){

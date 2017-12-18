@@ -28,6 +28,9 @@ package commands;
 
 import backend.Logger;
 import backend.ReadWrite;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.Role;
@@ -45,50 +48,47 @@ public class GameRoles {
 	public static void GameRoles(MessageChannel channel, MessageReceivedEvent event, String afterCommand) {
 		String[] games;
 		try{
-			String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
-			games = key.split(",");
-		}
-		catch (Exception e){
-			channel.sendMessage("This channel does not have any games set. Have someone with permission to manage" +
-					" roles to add games, with **;editgame [add/remove] [gamename]**").queue();
+			JsonObject guild = ReadWrite.getGuild(event.getGuild());
+			JsonArray gamesArray = guild.get("games").getAsJsonArray();
+			
+			if(gamesArray.size() == 0){
+				throw new Exception();
+			}
+		
+		if(afterCommand.length() < 1) {
+			noGameSpecified(channel, "Choose from these games: ", event);
 			return;
 		}
 		
-		if(games[0].length()<1){
-			channel.sendMessage("This channel does not have any games set. Have someone with permission to manage" +
-					" roles to add games, with **;editgame [add/remove] [gamename]**").queue();
-			return;
-		}
-		
-		if(afterCommand.equals("")) {
-			noGameSpecified(channel, "Choose from these games:",event);
-			return;
-		}
-		
-		//noinspection ForLoopReplaceableByForEach
-		for (int i = 0; i < games.length; i++) {
-			if(afterCommand.toLowerCase().equals(games[i].toLowerCase())) {
-				gameSpecified(games[i], channel, event);
+		for(JsonElement jsonElement : gamesArray){
+			String thisGame = jsonElement.getAsString();
+			if(thisGame.toLowerCase().equals(afterCommand.toLowerCase())){
+				gameSpecified(thisGame, channel, event);
 				return;
 			}
 		}
+		
 		noGameSpecified(channel, "That game is not available as a role on this server." +
 				" Please refer to the following games. Be careful with spelling and spaces, but it is not case sensitive.", event);
+			
+		}
+		catch (Exception e){
+			channel.sendMessage("This channel does not have any games set. Have someone with permission to manage" +
+					" roles to add games, with **;editgame [add/remove] [NAME_OF_GAME]**").queue();
+			return;
+		}
 	}
 	
 	private static void noGameSpecified(MessageChannel channel, String message, MessageReceivedEvent event) {
-		String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
-		String[] games = key.split(",");
 		
-		if(games.length==1&&games[0].equals("")){
-			channel.sendMessage("There are no longer any games to set on this server").queue();
-			return;
-		}
-		Logger.print(games.length);
-		for (String game : games) {
+		JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
+		JsonArray gamesArray = guildObject.get("games").getAsJsonArray();
+		
+		for (JsonElement gameElement : gamesArray) {
+			String game = gameElement.getAsString();
 			message += "\n**" + game + " **";
 		}
-		message += "\nSend a message with the game's name to enable/disable the role for you.";
+		message += "\nSend a message like **;game [NAME_OF_GAME]** to enable/disable the role for you.";
 		
 		channel.sendMessage(message).queue();
 		
@@ -163,30 +163,25 @@ public class GameRoles {
 			//ADD
 			String game=afterCommand.substring(4);
 			try{
-				ArrayList<String> games = new ArrayList<>();
-				String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
-				String[] list = key.split(",");
+				JsonObject guild = ReadWrite.getGuild(event.getGuild()).getAsJsonObject();
+				JsonArray gamesArray = guild.get("games").getAsJsonArray();
 				
-				for(int i = 0; i < list.length; i++){
-					games.add(list[i]);
-					if(game.toLowerCase().equals(games.get(i).toLowerCase())){
+				for(JsonElement gameJSON : gamesArray){
+					String gameString = gameJSON.getAsString();
+					if(game.toLowerCase().equals(gameString.toLowerCase())){
 						channel.sendMessage("That game has already been added").queue();
 						return;
 					}
 				}
+				
 				//If game does not exist
+				gamesArray.add(game);
 				
-				String currentGames="";
-				if(!games.get(0).equals("")) {
-					for (String game1 : games) {
-						currentGames += game1 + ",";
-					}
-				}
-				currentGames+=game;
+				guild.add("games", gamesArray);
 				
-				ReadWrite.setKey("games"+event.getGuild().getId(),currentGames);
+				ReadWrite.addEditedGuild(event.getGuild(), guild);
 				
-				Logger.print("currentgames for "+event.getGuild().getName() + " guild: "+currentGames);
+				Logger.print("currentgames for "+event.getGuild().getName() + " guild: " + gamesArray.toString());
 				try{
 					Logger.print("Created role "+game);
 					GuildController controller = new GuildController(event.getGuild());
@@ -200,49 +195,45 @@ public class GameRoles {
 				
 			}
 			catch (Exception e){
-				Logger.print("Creating games"+event.getGuild().getId()+
-						" in Secret.json, for "+ event.getGuild().getName());
-				ReadWrite.setKey("games"+event.getGuild().getId(), game);
+				Logger.print("");
+				Logger.logError(e, "Error with add game", "In " + event.getGuild().getName() + " guild", event);
 			}
 		}
 		else if(afterCommand.toLowerCase().split(" ")[0].equals("remove")){
 			//Remove
 			try {
 				String game = afterCommand.substring(7);
-				int index = -50;
-				ArrayList<String> games = new ArrayList<>();
-				String key = (String) ReadWrite.getKey("games"+event.getGuild().getId());
-				String[] list = key.split(",");
 				
-				for (int i = 0; i < list.length; i++) {
-					games.add(list[i]);
-					if(game.toLowerCase().equals(games.get(i).toLowerCase())) {
-						index = i;
+				JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
+				JsonArray gamesArray = guildObject.get("games").getAsJsonArray();
+				
+				int arrayLength = gamesArray.size();
+				
+				for(JsonElement jsonElement : gamesArray){
+					String thisGame = jsonElement.getAsString();
+					if(thisGame.toLowerCase().equals(game.toLowerCase())){
+						//Array contains game
+						gamesArray.remove(jsonElement);
 					}
 				}
-				//If game does not exist
-				if(index < 0) throw new Exception();
 				
-				games.remove(index);
-				String currentGames = "";
-				if(games.size() > 0){
-					for (String game1 : games) {
-						currentGames += game1 + ",";
-					}
-					currentGames = currentGames.substring(0, currentGames.length() - 1);
+				if(arrayLength == gamesArray.size()){
+					//Element has not been removed, as the game was not found
+					throw new Exception();
 				}
-				Logger.print(currentGames);
+				//Game was removed
 				
-				ReadWrite.setKey("games"+event.getGuild().getId(),currentGames);
+				guildObject.add("games", gamesArray);
+				ReadWrite.addEditedGuild(event.getGuild(), guildObject);
 				
-				Logger.print("currentgames for "+event.getGuild().getName() + " guild: "+currentGames);
+				Logger.print("currentgames for "+event.getGuild().getName() + " guild: " + gamesArray.toString());
 				
 				try{
 					event.getGuild().getRolesByName(game, true).get(0).delete().complete();
-					Logger.print("Removed role "+game);
+					Logger.print("Removed role " + game);
 				}
 				catch (Exception e){
-					Logger.logError(e, "Could not create role", game, event);
+					Logger.logError(e, "Could not remove role", game, event);
 					channel.sendMessage("Sorry, but I could not remove the role. You'll have to do it manually").queue();
 				}
 				

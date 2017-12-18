@@ -29,6 +29,9 @@ package events;
 
 import backend.Logger;
 import backend.ReadWrite;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.sun.org.apache.regexp.internal.RE;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -45,10 +48,15 @@ public class GuildMemberEvents {
 		Guild guildJoined = event.getGuild();
 		
 		try{
-			MessageChannel channel = guildJoined.getTextChannelsByName("general", true).get(0);
-			String welcomeMessage = ReadWrite.getKey("welcome"+guildJoined.getId()).getAsString();
+			MessageChannel channel = guildJoined.getTextChannelById(guildJoined.getIdLong());
 			
-			if(welcomeMessage==null){
+			JsonObject guilds = ReadWrite.getGuildsObject();
+			
+			JsonObject thisGuildObject = guilds.get(guildJoined.getId()).getAsJsonObject();
+			
+			String welcomeMessage = thisGuildObject.get("welcomeMessage").getAsString();
+			
+			if(welcomeMessage.length() == 0){
 				welcomeMessage="Welcome *"+joinedMember.getAsMention()+"* to "+guildJoined.getName()+"!";
 			}
 			else{

@@ -48,14 +48,13 @@ public class JDAEvents extends ListenerAdapter {
 			channel.sendMessage("Successfully logged in!").queue();
 			try{
 				if(System.getProperty("os.name").toLowerCase().contains("linux")){
-					Logger.print("\n		New run: Nr. "+Integer.toString(
-							Integer.parseInt(ReadWrite.getKey("runCount"))+1)+"\n");
-					ReadWrite.setKey("runCount", Integer.toString(Integer.parseInt(ReadWrite.getKey("runCount"))+1));
+					int newRun = ReadWrite.getKey("runCount").getAsInt() + 1;
+					Logger.print("\n		New run: Nr. " + newRun + "\n");
+					ReadWrite.setKey("runCount", newRun);
 				}
 			}catch (Exception e) {
 				//Probably could not convert string -> int
-				Logger.logError(e, "Error in JDAEvents.Ready", "Probably error with String -> int. runCount: \""+
-						ReadWrite.getKey("runCount")+"\"", null);
+				Logger.logError(e, "Error in JDAEvents.Ready", "Run count: " + ReadWrite.getKey("runCount"), null);
 			}
 			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
 		}catch (Exception e) {

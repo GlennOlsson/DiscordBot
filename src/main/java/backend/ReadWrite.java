@@ -29,9 +29,8 @@ package backend;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import jdk.nashorn.internal.parser.JSONParser;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.json.JSONObject;
 
@@ -44,89 +43,65 @@ import java.util.List;
 
 
 public class ReadWrite {
-	public static Boolean isAuthorized(TextChannel textChannel, MessageReceivedEvent event, String[] roleList) {
-		List<Role> roles = null;
-
-		if(event.getAuthor().getId().equals("165507757519273984"))
+	public static Boolean isAuthorized(MessageReceivedEvent event, Permission permission) {
+		Member memeber = event.getMember();
 		
-		if(!event.getChannel().getType().equals(ChannelType.PRIVATE)){
-			for (int i = 0; i < textChannel.getMembers().size(); i++) {
-				if(textChannel.getMembers().get(i).getUser()==event.getAuthor()){
-					roles =textChannel.getMembers().get(i).getRoles();
-					//just so it stops the loop for sure
-					i = textChannel.getMembers().size()+5;
-				}
-			}
-			ArrayList<String> rolesName = new ArrayList<>();
-			//noinspection ForLoopReplaceableByForEach
-			for (int i = 0; i < roles.size(); i++) {
-				rolesName.add(roles.get(i).getName().toLowerCase());
-				for (String aRoleList : roleList) {
-					if (rolesName.contains(aRoleList.toLowerCase())) {
-						return true;
-					}
-				}
-			}
-		}
-		else {
+		if(event.getAuthor().getId().equals("165507757519273984")){
 			return true;
 		}
-		return false;
-
+		
+		return memeber.hasPermission(permission);
 	}
-
+	
 	public static String getPrefix(String id) {
-
+		
 		//Check prefix
 		try {
-			String prefix;
-			
 			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 			String contentOfFile = new String(fileInBytes);
 			
 			JsonObject jsonObject = parseStringToJSON(contentOfFile);
-
-			if(jsonObject.has("prefix"+id)){
-				prefix = jsonObject.get("prefix"+id).getAsString();
-				return prefix;
-			}
-			else {
-				//If specific prefix for channel doesn't exist
+			
+			JsonObject allGuilds = jsonObject.get("guilds").getAsJsonObject();
+			JsonObject thisGuild = allGuilds.get(id).getAsJsonObject();
+			
+			String prefix = thisGuild.get("prefix").getAsString();
+			if(prefix.length() == 0){
+				//No prefix
 				return ";";
 			}
+			//Else
+			return prefix;
+			
 		} catch (Exception e) {
-
+			
 			Logger.printError("ERROR WITH PREFIX, RETURNING \";\"");
 			Logger.logError(e, "In getPrefix", "Here's string Id: --"+id+"--", null);
 			return ";";
 		}
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public static void setPrefix(String id, String prefix) {
-
 		try {
 			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 			String contentOfFile = new String(fileInBytes);
 			
 			JsonObject jsonObject = parseStringToJSON(contentOfFile);
-
-			jsonObject.addProperty("prefix"+id, prefix);
+			
+			JsonObject allGuilds = jsonObject.get("guilds").getAsJsonObject();
+			JsonObject thisGuild = allGuilds.get(id).getAsJsonObject();
+			
+			thisGuild.addProperty("prefix", prefix);
 			
 			String beautyJSON = beautifyJSON(jsonObject);
 			
 			//WRITING JSON
-			
 			Path path = Paths.get(getPath());
 			
 			Files.write(path, beautyJSON.getBytes());
 			
-			Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
-			
-//			try (FileWriter file = new FileWriter(getPath())){
-//				file.write(jsonObject.toJSONString());
-//				Logger.print("Successfully wrote {\"prefix"+id+"\":\""+prefix+"\"");
-//			}
+			Logger.print("Successfully wrote prefix " + prefix + " for id " + id);
 		}
 		catch (Exception e) {
 			Logger.printError("-- ERROR IN WRITING IN settings.json --");
@@ -136,22 +111,39 @@ public class ReadWrite {
 	
 	//Earlier RetrieveSetting.java
 	public static JsonElement getKey(String key){
-			try {
-				byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
-				String contentOfFile = new String(fileInBytes);
-				
-				JsonObject jsonObject = parseStringToJSON(contentOfFile);
-				
-				JsonElement valueOfKey = jsonObject.get(key);
-				
-				return valueOfKey;
-
-			} catch (Exception e) {
-				Logger.logError(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
-			}
-
+		try {
+			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
+			String contentOfFile = new String(fileInBytes);
+			
+			JsonObject jsonObject = parseStringToJSON(contentOfFile);
+			
+			JsonElement valueOfKey = jsonObject.get(key);
+			
+			return valueOfKey;
+			
+		} catch (Exception e) {
+			Logger.logError(e, "Error in fetching from settings file", "String key: --"+key+"--", null);
+		}
+		
 		return null;
 	}
+	
+	public static JsonObject getGuildsObject(){
+		JsonObject guilds = getKey("guilds").getAsJsonObject();
+		return guilds;
+	}
+	
+	public static void addEditedGuild(Guild guild, JsonObject guildJSON){
+		JsonObject currentGuilds = getGuildsObject();
+		currentGuilds.add(guild.getId(), guildJSON);
+		setKey("guilds", currentGuilds);
+	}
+	
+	public static JsonObject getGuild(Guild guild){
+		JsonObject guilds = getGuildsObject();
+		return guilds.get(guild.getId()).getAsJsonObject();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static void setKey(String key, JsonElement value){
 		try {
@@ -159,7 +151,7 @@ public class ReadWrite {
 			String contentOfFile = new String(fileInBytes);
 			
 			JsonObject jsonObject = parseStringToJSON(contentOfFile);
-
+			
 			jsonObject.add(key, value);
 			
 			String beautyJSON = beautifyJSON(jsonObject);
@@ -167,15 +159,37 @@ public class ReadWrite {
 			Path path = Paths.get(getPath());
 			
 			Files.write(path, beautyJSON.getBytes());
-
+			
 			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}");
-
+			
 		} catch (Exception e) {
 			Logger.logError(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
 		}
 	}
 	
 	public static void setKey(String key, String value){
+		try {
+			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
+			String contentOfFile = new String(fileInBytes);
+			
+			JsonObject jsonObject = parseStringToJSON(contentOfFile);
+			
+			jsonObject.addProperty(key, value);
+			
+			String beautyJSON = beautifyJSON(jsonObject);
+			
+			Path path = Paths.get(getPath());
+			
+			Files.write(path, beautyJSON.getBytes());
+			
+			Logger.print("Successfully wrote {\""+key+"\":\""+value+"\"}");
+			
+		} catch (Exception e) {
+			Logger.logError(e, "setKey in RetrieveSettings", "Trying to setKey in settings.json", null);
+		}
+	}
+	
+	public static void setKey(String key, int value){
 		try {
 			byte[] fileInBytes = Files.readAllBytes(Paths.get(getPath()));
 			String contentOfFile = new String(fileInBytes);

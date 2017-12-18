@@ -31,25 +31,30 @@ import backend.Logger;
 
 import backend.ReadWrite;
 import backend.Return;
-import com.sun.org.apache.regexp.internal.RE;
-import main.Test;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.MessageBuilder;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
-import java.util.ArrayList;
+import javax.swing.Timer;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static commands.Reddit.*;
 
 public class DailyDose {
 	@SuppressWarnings("WeakerAccess")
-	long recentlyChecked = 0;
-
-	private static void DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
+	
+	public static void DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
 		
 		Logger.print("DailyDose!");
@@ -94,32 +99,64 @@ public class DailyDose {
 			Logger.logError(e, "Error with DailyDose class", "Unknown error", null);
 		}
 	}
-	public void DailyDose(JDA jda) {
-		if(System.currentTimeMillis() >= (recentlyChecked + 86400000)) {
-			recentlyChecked = System.currentTimeMillis();
-			try {
-				String lastMsString = ReadWrite.getKey("dailyMs").getAsString();
-				if(lastMsString == null || lastMsString.equals("")) {
-					ReadWrite.setKey("dailyMs", "0");
-					return;
-				}
-				long lastMs;
-				try {
-					lastMs = Long.parseLong(lastMsString);
-				} catch (Exception e) {
-					Logger.print("Error with converting string -> long. Returning method and setting dailyMs JSON key to currentTimeMillis");
-					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
-					return;
-				}
-				if(System.currentTimeMillis() >= (lastMs + 86400000)) {
-					for (int i = 0; i < jda.getTextChannelsByName("aww", true).size(); i++) {
-						DailyDose("aww", jda.getTextChannelsByName("aww", true).get(i));
+	
+	public static void checkDose(JDA jda){
+		try {
+			List<Guild> listOfGuilds = jda.getGuilds();
+			
+			JsonObject guildsJSONObject = ReadWrite.getGuildsObject();
+			
+			for(Guild currentGuild : listOfGuilds){
+				JsonObject currentJSONGuild = guildsJSONObject.getAsJsonObject(currentGuild.getId()).getAsJsonObject();
+				JsonArray dailyDosesArray = currentJSONGuild.get("dailyDoses").getAsJsonArray();
+				
+				for(JsonElement dailyDoseElement : dailyDosesArray){
+					JsonObject dailyDoseObject = dailyDoseElement.getAsJsonObject();
+					
+					//Getting the object's last send date and send time, to compare to current time. If it one
+					//day later, a new DailyDose is sent
+					String dateSent = dailyDoseObject.get("lastSent").getAsString();
+					String timeToSend = dailyDoseObject.get("sendTime").getAsString();
+					
+					DateFormat fullCalendarFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					
+					String lastSentString = dateSent + " " + timeToSend;
+					
+					Date lastSent = fullCalendarFormat.parse(lastSentString);
+					Calendar lastSentCalendar = Calendar.getInstance();
+					lastSentCalendar.setTime(lastSent);
+					
+					Calendar now = Calendar.getInstance();
+					
+					Calendar sentPlusOneDay = (Calendar) lastSentCalendar.clone();
+					sentPlusOneDay.add(Calendar.DAY_OF_MONTH, 1);
+					
+					//Checking that one day has passed, then preforming the DailyDose for channel and subreddit
+					if(now.after(sentPlusOneDay)){
+						String subreddit = dailyDoseObject.get("subreddit").getAsString();
+						long channelID = dailyDoseObject.get("channel").getAsLong();
+						TextChannel channel = jda.getTextChannelById(channelID);
+						
+						DailyDose(subreddit,channel);
+						
+						DateFormat calendarFormat = new SimpleDateFormat("yyyy-MM-dd");
+						
+						String formattedDate = calendarFormat.format(now);
+						
+						dailyDoseObject.addProperty("lastSent", formattedDate);
+						
+						Logger.print("New DailyDose success");
 					}
-					ReadWrite.setKey("dailyMs", Long.toString(System.currentTimeMillis()));
 				}
-			} catch (Exception e) {
-				Logger.logError(e, "Error in onEvent", "Unknown error caught", null);
 			}
+		} catch (Exception e) {
+			Logger.logError(e, "Error in onEvent", "Unknown error caught", null);
 		}
+	}
+	
+	public static void DailyDose(JDA jda) {
+		//Every 15th min
+		Timer timer = new Timer(1000 * 60 * 15, e -> checkDose(jda));
+		timer.start();
 	}
 }

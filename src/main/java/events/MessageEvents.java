@@ -138,6 +138,8 @@ public class MessageEvents {
 				Logger.print("Aftercommand=\""+afterCommand+"\"");
 			}
 			
+			Logger.print("Message: " + event.getMessage().getContentRaw());
+			
 			switch (command) {
 				case "clean":
 					try {

@@ -48,43 +48,73 @@ import net.dv8tion.jda.core.managers.impl.AudioManagerImpl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import sun.rmi.runtime.Log;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
 
 @SuppressWarnings("unused")
 public class Test extends ListenerAdapter {
 	
 	public static String idKakan = "165507757519273984", idKakansBot = "282116563266437120",
-	idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
+			idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		JDA jda = null;
 		try {
 			jda = new JDABuilder(AccountType.BOT)
 					.setToken(ReadWrite.getKey("oath").getAsString())
 					.addEventListener(new Test())
 					.buildBlocking();
-
+			
 		} catch (Exception e) {
-
+			
 			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
-
+			
 		}
+
+		
+		
+
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
 //		//General kakanistan
-		TextChannel general = jda.getTextChannelById("282109399617634304");
+//		TextChannel general = jda.getTextChannelById("282109399617634304");
 //
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
-		
-		List<Guild> guilds = jda.getGuilds();
-		for(Guild guild : guilds){
-			System.out.println(guild.getName() + ", " + guild.getId());
-		}
+
+
+
+//		String lastSentDate = "2017-12-18";
+//		String toSendTime = "15:34";
+//
+//		DateFormat calendarFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//
+//		String lastSentString = lastSentDate + " " + toSendTime;
+//
+//		Date lastSent = calendarFormat.parse(lastSentString);
+//		Calendar lastSentCalendar = Calendar.getInstance();
+//		lastSentCalendar.setTime(lastSent);
+//
+//		Calendar now = Calendar.getInstance();
+//
+//		Calendar sentPlusOneDay = (Calendar) lastSentCalendar.clone();
+//		sentPlusOneDay.add(Calendar.DAY_OF_MONTH, 1);
+//
+//		if(now.after(sentPlusOneDay)){
+//			Logger.print("New DailyDose");
+//		}
+//		else{
+//			Logger.print("NO NEW DAILY");
+//		}
+//
+//		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
 	
+		
 	}
 	private Test(){
 		

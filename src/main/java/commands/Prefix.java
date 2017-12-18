@@ -29,15 +29,15 @@ package commands;
 
 import backend.Logger;
 import backend.ReadWrite;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class Prefix {
 	public static void Prefix(MessageChannel channel, MessageReceivedEvent event, String newPrefix) {
-		String[] roleslist ={"Moderator", "Commissioner", "Server Owner"};
-		if(ReadWrite.isAuthorized(event.getTextChannel(), event, roleslist)){
-			Logger.print("HALLELUJAH");
+		if(ReadWrite.isAuthorized(event, Permission.MANAGE_PERMISSIONS)){
+			Logger.print("Authorized");
 			if(!newPrefix.equals("")){
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//if privateChannel ---> no guildId

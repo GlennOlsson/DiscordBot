@@ -85,11 +85,16 @@ public class Restart {
 		}
 		else {
 			//Is not Kakan
-			String guildText = "the "+event.getGuild().getName()+" server",
-					mentionText = "Hey "+event.getJDA().getUserById("165507757519273984").getAsMention() +
-							", do you know what "+author.getName() + " did?!";
+			String guildText = "", mentionText = "";
 			
-			if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
+			if(!event.getChannel().getType().equals(ChannelType.PRIVATE)) {
+				guildText = "the " + event.getGuild().getName() + " server";
+				
+				mentionText = "Hey " + event.getJDA().getUserById("165507757519273984").getAsMention() +
+						", do you know what " + author.getName() + " did?!";
+			}
+			else{
+				//is private channel
 				guildText="a private message";
 				mentionText="";
 			}
