@@ -54,7 +54,8 @@ public class MessageEvents {
 	public static void MessageReceived(MessageReceivedEvent event){
 		try{
 			if(!event.getAuthor().equals(event.getJDA().getSelfUser())&&!Ignore.shouldIgnore(event.getAuthor())){
-				String  contentCase=event.getMessage().getContent(), content = event.getMessage().getContent().toLowerCase();
+				String  contentCase=event.getMessage().getContentRaw(),
+						content = event.getMessage().getContentRaw().toLowerCase();
 				MessageChannel channel = event.getChannel();
 				
 				channel.sendTyping();
@@ -114,7 +115,7 @@ public class MessageEvents {
 						prefix=ReadWrite.getPrefix(event.getGuild().getId());
 					}
 					
-					if(event.getMessage().getContent().equals(";ignore")||event.getMessage().getContent().equals(prefix+"ignore")){
+					if(event.getMessage().getContentRaw().equals(";ignore")||event.getMessage().getContentRaw().equals(prefix+"ignore")){
 						Ignore(event.getTextChannel(), event.getAuthor());
 					}
 				}
@@ -134,7 +135,7 @@ public class MessageEvents {
 			if(command.contains(" ")){
 				command=command.split(" ")[0];
 				afterCommand = contentCase.substring(prefix.length()+command.length()+1);
-				rawAfterCommand = event.getMessage().getRawContent().substring(prefix.length()+command.length()+1);
+				rawAfterCommand = event.getMessage().getContentRaw().substring(prefix.length()+command.length()+1);
 				Logger.print("Aftercommand=\""+afterCommand+"\"");
 			}
 			
@@ -176,7 +177,7 @@ public class MessageEvents {
 				case "game":
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
-							 GameRoles(channel, event, afterCommand);
+							GameRoles(channel, event, afterCommand);
 						}
 					}
 					catch (Exception e){
@@ -206,7 +207,7 @@ public class MessageEvents {
 				case "welcome":
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
-							 WelcomeMessage(event, channel, rawAfterCommand);
+							WelcomeMessage(event, channel, rawAfterCommand);
 						}
 					}
 					catch (Exception e){
@@ -216,17 +217,28 @@ public class MessageEvents {
 				
 				case "ignore":
 					try {
-						 Ignore(event.getTextChannel(), event.getAuthor());
+						Ignore(event.getTextChannel(), event.getAuthor());
 					}
 					catch (Exception e){
-						Logger.logError(e, content, "Error with game command", event);
+						Logger.logError(e, content, "Error with ignore command", event);
+					}
+					break;
+				
+				case "dailydose":
+					try {
+						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
+							DailyDose.dailyCommand(event, rawAfterCommand, channel);
+						}
+					}
+					catch (Exception e){
+						Logger.logError(e, content, "Error with dailydose command", event);
 					}
 					break;
 				
 				case "help":
 					
 					try {
-						 Help(event, content);
+						Help(event, content);
 					} catch (Exception e) {
 						Logger.logError(e, content, "Error with help command", event);
 					}

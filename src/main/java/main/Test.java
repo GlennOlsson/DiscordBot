@@ -63,21 +63,18 @@ public class Test extends ListenerAdapter {
 			idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
 	public static void main(String[] args) throws Exception{
-		JDA jda = null;
-		try {
-			jda = new JDABuilder(AccountType.BOT)
-					.setToken(ReadWrite.getKey("oath").getAsString())
-					.addEventListener(new Test())
-					.buildBlocking();
-			
-		} catch (Exception e) {
-			
-			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
-			
-		}
-
-		
-		
+//		JDA jda = null;
+//		try {
+//			jda = new JDABuilder(AccountType.BOT)
+//					.setToken(ReadWrite.getKey("oath").getAsString())
+//					.addEventListener(new Test())
+//					.buildBlocking();
+//
+//		} catch (Exception e) {
+//
+//			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
+//
+//		}
 
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
@@ -89,18 +86,20 @@ public class Test extends ListenerAdapter {
 
 
 
-//		String lastSentDate = "2017-12-18";
-//		String toSendTime = "15:34";
-//
-//		DateFormat calendarFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-//
-//		String lastSentString = lastSentDate + " " + toSendTime;
-//
-//		Date lastSent = calendarFormat.parse(lastSentString);
-//		Calendar lastSentCalendar = Calendar.getInstance();
-//		lastSentCalendar.setTime(lastSent);
-//
-//		Calendar now = Calendar.getInstance();
+		String lastSentDate = "2017-12-18";
+		String toSendTime = "15:64";
+
+		DateFormat calendarFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+		String lastSentString = lastSentDate + " " + toSendTime;
+
+		Date lastSent = calendarFormat.parse(lastSentString);
+		Calendar lastSentCalendar = Calendar.getInstance();
+		lastSentCalendar.setTime(lastSent);
+
+		Calendar now = Calendar.getInstance();
+		
+		System.out.println(lastSent);
 //
 //		Calendar sentPlusOneDay = (Calendar) lastSentCalendar.clone();
 //		sentPlusOneDay.add(Calendar.DAY_OF_MONTH, 1);

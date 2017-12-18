@@ -35,12 +35,15 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import com.sun.org.apache.regexp.internal.RE;
+import main.Test;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -52,8 +55,139 @@ import java.util.*;
 import static commands.Reddit.*;
 
 public class DailyDose {
-	@SuppressWarnings("WeakerAccess")
 	
+	public static void dailyCommand(MessageReceivedEvent event, String aftercommand, MessageChannel channel){
+		
+		String[] commands = aftercommand.split(" ");
+		
+		if(aftercommand.length()==0){
+			//No aftercommand, printing current ones for guild
+			JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
+			JsonArray dailyDosesArray = guildObject.get("dailyDoses").getAsJsonArray();
+			
+			StringBuilder messageBuilder = new StringBuilder();
+			
+			if(dailyDosesArray.size() != 0) {
+				messageBuilder.append("These are the current Daily Doses for this server");
+			}
+			else{
+				messageBuilder.append("There are no Daily Doses for this server at the moment. If you have ");
+				messageBuilder.append("**Manage Server** permission, you can add Daily Doses with the **;dailydose** command. ");
+				messageBuilder.append("Send **;help dailydose** for more info");
+			}
+			
+			for(JsonElement jsonElement : dailyDosesArray){
+				JsonObject currentDailyDose = jsonElement.getAsJsonObject();
+				
+				String subreddit = currentDailyDose.get("subreddit").getAsString();
+				long channelID = currentDailyDose.get("channel").getAsLong();
+				TextChannel sendToChannel = event.getJDA().getTextChannelById(channelID);
+				String timeToSend = currentDailyDose.get("sendTime").getAsString();
+				
+				messageBuilder.append("\n\n");
+				messageBuilder.append("Daily dose from subreddit ");
+				messageBuilder.append(subreddit);
+				messageBuilder.append(" to a channel with the name ");
+				messageBuilder.append(sendToChannel.getName());
+				messageBuilder.append(" is supposed to be sent at ");
+				messageBuilder.append(timeToSend);
+				messageBuilder.append(" (CET) every day");
+				
+			}
+			channel.sendMessage(messageBuilder.toString()).queue();
+		}
+		else if(aftercommand.startsWith("add")){
+			//Must be "add SUBREDDIT HOUR:MINUTE
+			if(commands.length != 3){
+				channel.sendMessage("Wrong amount of arguments! To add a Daily Dose, use it like \n" +
+						";dailydose add SUBREDDIT HOURTOSEND:MINUTETOSEND").queue();
+				return;
+			}
+			try{
+				String subreddit = commands[1].replace("/r/", "");
+				String timeToSend = commands[2];
+				
+				//Must be HH:MM
+				if(timeToSend.length() != 5 || timeToSend.split(":").length != 2){
+					throw new Exception();
+				}
+				
+				JsonObject newDailyDoseObject = new JsonObject();
+				newDailyDoseObject.addProperty("subreddit", subreddit);
+				newDailyDoseObject.addProperty("sendTime", timeToSend);
+				newDailyDoseObject.addProperty("lastSent", "1970-01-01");
+				newDailyDoseObject.addProperty("channel", channel.getIdLong());
+				
+				JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
+				JsonArray dailyDosesArray = guildObject.get("dailyDoses").getAsJsonArray();
+				dailyDosesArray.add(newDailyDoseObject);
+				
+				ReadWrite.addEditedGuild(event.getGuild(), guildObject);
+				
+				Logger.print("Added new Daily Dose to " + event.getGuild().getName() + " guild, with subreddit "
+						+ subreddit + " and on the time " + timeToSend);
+				
+				channel.sendMessage("Added daily dose for /r/" + subreddit).queue();
+			}
+			catch (Exception e){
+				Logger.logError(e, "Could not add new Daily Dose", "Aftercommand: " + aftercommand, event);
+				channel.sendMessage("Could not add Daily Dose").queue();
+			}
+			
+		}
+		else if(aftercommand.startsWith("remove")){
+			//Must be "remove SUBREDDIT
+			if(commands.length != 2){
+				channel.sendMessage("Wrong amount of arguments! To remove a Daily Dose, use it like \n" +
+						";dailydose remove SUBREDDIT").queue();
+				return;
+			}
+			try{
+				String subreddit = commands[1].replace("/r/", "");
+				
+				JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
+				JsonArray dailyDosesArray = guildObject.get("dailyDoses").getAsJsonArray();
+				
+				for(JsonElement jsonElement : dailyDosesArray){
+					JsonObject currentDailyDoseObject = jsonElement.getAsJsonObject();
+					String thisSubreddit = currentDailyDoseObject.get("subreddit").getAsString();
+					
+					if(thisSubreddit.toLowerCase().equals(subreddit.toLowerCase())){
+						dailyDosesArray.remove(jsonElement);
+					}
+				}
+				
+				ReadWrite.addEditedGuild(event.getGuild(), guildObject);
+				
+				Logger.print("Removed Daily Dose with subreddit " + subreddit);
+				
+				channel.sendMessage("Removed daily dose for /r/" + subreddit).queue();
+				
+			}
+			catch (Exception e){
+				Logger.logError(e, "Could not remove new Daily Dose", "Aftercommand: " + aftercommand, event);
+				channel.sendMessage("Could not remove Daily Dose").queue();
+			}
+		}
+		else if(aftercommand.startsWith("force")){
+			//Must be me!!
+			if(event.getAuthor().getId().equals(Test.idKakan)) {
+				if(commands.length != 2){
+					channel.sendMessage("Must be one and only one parameter. ;dailydose SUBREDDIT").queue();
+					return;
+				}
+				
+				String subreddit = commands[1];
+				
+				DailyDose(subreddit, channel);
+			}
+		}
+		else{
+			channel.sendMessage("I do not understand what you mean");
+		}
+	}
+	
+	@SuppressWarnings("WeakerAccess")
 	public static void DailyDose(@SuppressWarnings("SameParameterValue") String subreddit, MessageChannel channel) {
 		//Connect to reddit.com/r/*subreddit*
 		

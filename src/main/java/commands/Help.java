@@ -69,8 +69,8 @@ public class Help {
 				privateChannel.sendMessage("With the **;gif** feature, you just follow the command with a space, and then type your search quotas for the gif. "
 						+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -. " +
 						"You can also choose another gif than the first one of the search quota. To see the selection, send me a PM like ;gif " +
-						"**QUOTAS** [**LOWER_LIMIT**-**UPPER_LIMIT**] (for example ;gif hello 1-54). Then send the gif you want, by sending the corresponding number like " +
-						";gif **QUOTAS** [**NUMBER**] (for example ;gif hello 45)").queue();
+						"**QUOTAS** [**LOWER_LIMIT**-**UPPER_LIMIT**] (for example ;gif hello [1-54]). Then send the gif you want, by sending the corresponding number like " +
+						";gif **QUOTAS** [**NUMBER**] (for example ;gif hello [45])").queue();
 				return;
 			}
 			//			else if (argument.equals("up")||argument.equals(";up")) {
@@ -110,6 +110,16 @@ public class Help {
 				privateChannel.sendMessage("This command is used by people that has the ability to manage roles in the server." +
 						" By sending **;editgame [add/remove] [name of game]**, I will add a role with the name, and " +
 						"make it possible for the users to add that role themselves.").queue();
+				return;
+			}
+			
+			else if (argument.equals("dailydose")||argument.equals(";dailydose")) {
+				privateChannel.sendMessage("Use this command to add or remove daily doses for your server. The daily doses consists" +
+						" of the 3 top posts of the day from a specified subreddit, and will be sent on a daily basis to the channel where " +
+						"you add the command. You must also specify the time you want the dose to be sent, in CET timezone. \n" +
+						"To add a Daily Dose, use **;dailydose add SUBREDDIT HOURTOSEND:MINUTETOSEND**\n" +
+						"To remove a Daily Dose, use **;dailydose remove SUBREDDIT**\n" +
+						"To list the current set Daily Doses for the server, use **;dailydose**").queue();
 				return;
 			}
 			
