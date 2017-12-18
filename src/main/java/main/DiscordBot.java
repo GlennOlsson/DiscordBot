@@ -26,6 +26,7 @@
 
 package main;
 /* ----------TODO
+Fix bot.glennolsson.se/SERVER_NAME to display the settings of the server, using spark server
 
 Reddit API
 
