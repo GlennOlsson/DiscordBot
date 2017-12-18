@@ -3,21 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/MultiSend/MultiSend.java" afterPath="$PROJECT_DIR$/src/main/java/MultiSend/MultiSend.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" afterPath="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Clean.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Clean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" afterPath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/GameRoles.java" afterPath="$PROJECT_DIR$/src/main/java/commands/GameRoles.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Help.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Help.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Prefix.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Prefix.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/Restart.java" afterPath="$PROJECT_DIR$/src/main/java/commands/Restart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" afterPath="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/events/GenericEvents.java" afterPath="$PROJECT_DIR$/src/main/java/events/GenericEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/events/GuildMemberEvents.java" afterPath="$PROJECT_DIR$/src/main/java/events/GuildMemberEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/events/JDAEvents.java" afterPath="$PROJECT_DIR$/src/main/java/events/JDAEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/events/MessageEvents.java" afterPath="$PROJECT_DIR$/src/main/java/events/MessageEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" afterPath="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/Test.java" afterPath="$PROJECT_DIR$/src/main/java/main/Test.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -104,18 +90,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuildUpdateEvents.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/events/GuildUpdateEvents.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GenericEvents.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/events/GenericEvents.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -146,7 +120,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DiscordBot.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DiscordBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/DiscordBot.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -158,12 +132,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Help.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Help.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/commands/Help.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1002">
-              <caret line="115" column="47" lean-forward="false" selection-start-line="115" selection-start-column="47" selection-end-line="115" selection-end-column="47" />
+            <state relative-caret-position="-565">
+              <caret line="72" column="81" lean-forward="false" selection-start-line="72" selection-start-column="81" selection-end-line="72" selection-end-column="81" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WelcomeMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageEvents.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/events/MessageEvents.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-237">
+              <caret line="169" column="61" lean-forward="false" selection-start-line="169" selection-start-column="61" selection-end-line="169" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -214,6 +210,7 @@
       <find>(String)</find>
       <find>list</find>
       <find>games</find>
+      <find>todo</find>
     </findStrings>
     <replaceStrings>
       <replace>redditURL</replace>
@@ -693,7 +690,6 @@
         <option value="$PROJECT_DIR$/src/main/java/commands/Prefix.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" />
         <option value="$PROJECT_DIR$/src/main/java/events/MessageEvents.java" />
-        <option value="$PROJECT_DIR$/src/main/java/commands/Help.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/Restart.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/Clean.java" />
@@ -702,6 +698,7 @@
         <option value="$PROJECT_DIR$/src/main/java/main/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" />
+        <option value="$PROJECT_DIR$/src/main/java/commands/Help.java" />
       </list>
     </option>
   </component>
@@ -1059,7 +1056,7 @@
       <workItem from="1512470050319" duration="14000" />
       <workItem from="1513256483226" duration="801000" />
       <workItem from="1513438044769" duration="16461000" />
-      <workItem from="1513592802964" duration="18117000" />
+      <workItem from="1513592802964" duration="19050000" />
     </task>
     <task id="LOCAL-00001" summary="NOW it is maybe transered as Gradle instead of .jar. Let's hope!">
       <created>1506524552088</created>
@@ -1397,11 +1394,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513550888903</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="JSON Should be working with new type">
+      <created>1513626157457</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1513626157457</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83721000" />
+    <option name="totallyTimeSpent" value="84654000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1431,6 +1435,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2002442" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1446,7 +1451,6 @@
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="100" y="100" width="1480" height="850" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1456,7 +1460,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="New way of parsing value in ReadWrite" />
     <MESSAGE value="Debugging DailyDose" />
     <MESSAGE value="Debugging DailyDose, debugging, even more debugging" />
     <MESSAGE value="I honestly don't know what I've done, but it seems to work... :D" />
@@ -1481,7 +1484,8 @@
     <MESSAGE value="Not adding the whole file again.... God damnit" />
     <MESSAGE value="SimpleJSON --&gt; GSON" />
     <MESSAGE value="The Secret.json will now have a guild objects where things like daily dose, welcome message and prefix can be easily viewed and set. So far, the bot will create new JSON objects for new guilds when joined. It will also remove old ones. Although the bot will not work at this time" />
-    <option name="LAST_COMMIT_MESSAGE" value="The Secret.json will now have a guild objects where things like daily dose, welcome message and prefix can be easily viewed and set. So far, the bot will create new JSON objects for new guilds when joined. It will also remove old ones. Although the bot will not work at this time" />
+    <MESSAGE value="JSON Should be working with new type" />
+    <option name="LAST_COMMIT_MESSAGE" value="JSON Should be working with new type" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1674,6 +1678,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1704,16 +1709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-399">
           <caret line="51" column="71" lean-forward="true" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/events/MessageEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="169" column="61" lean-forward="false" selection-start-line="169" selection-start-column="61" selection-end-line="169" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1792,14 +1787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/events/GuildUpdateEvents.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1807,14 +1794,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/commands/Help.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1002">
-          <caret line="115" column="47" lean-forward="false" selection-start-line="115" selection-start-column="47" selection-end-line="115" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1881,6 +1860,32 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/events/MessageEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-237">
+          <caret line="169" column="61" lean-forward="false" selection-start-line="169" selection-start-column="61" selection-end-line="169" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/commands/Help.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-565">
+          <caret line="72" column="81" lean-forward="false" selection-start-line="72" selection-start-column="81" selection-end-line="72" selection-end-column="81" />
+          <folding />
         </state>
       </provider>
     </entry>

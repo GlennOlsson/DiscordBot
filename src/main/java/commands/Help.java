@@ -69,8 +69,8 @@ public class Help {
 				privateChannel.sendMessage("With the **;gif** feature, you just follow the command with a space, and then type your search quotas for the gif. "
 						+ "I will then send the first gif meeting that criteria. You can either separate the quotas with spaces, or with -. " +
 						"You can also choose another gif than the first one of the search quota. To see the selection, send me a PM like ;gif " +
-						"**QUOTAS** [**LOWER_LIMIT**-**UPPER_LIMIT**]. Then send the gif you want, by sending the corresponding number like " +
-						";gif **QUOTAS** [**NUMBER**]").queue();
+						"**QUOTAS** [**LOWER_LIMIT**-**UPPER_LIMIT**] (for example ;gif hello 1-54). Then send the gif you want, by sending the corresponding number like " +
+						";gif **QUOTAS** [**NUMBER**] (for example ;gif hello 45)").queue();
 				return;
 			}
 			//			else if (argument.equals("up")||argument.equals(";up")) {
@@ -113,14 +113,24 @@ public class Help {
 				return;
 			}
 			
-			//TODO: Add ;welcomeMessage (and ?)
+			else if (argument.equals("welcome")||argument.equals(";welcome")) {
+				privateChannel.sendMessage("Use this command to set a welcome message for your server for when people join. You" +
+						" can use **;mention;** tags to mention the joined user. You can mention other users and channels without any" +
+						" problem. \n" +
+						"Use it like **;welcome [WELCOME_MESSAGE]** to set a new message.\n" +
+						"Use it like **;welcome ?** to see the current message.\n" +
+						"You cannot disable the welcome message").queue();
+				return;
+			}
+			
+			//TODO: daily dose
 			
 			else if (argument.length()>1) {
 				privateChannel.sendMessage("Sorry, but your argument did not get a match").queue();
 			}
 		}
 		String command = "";
-		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";game",";editgame"};
+		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";game",";editgame",";welcome"};
 		for (String feature : features) {
 			command = command + feature + ", ";
 		}
