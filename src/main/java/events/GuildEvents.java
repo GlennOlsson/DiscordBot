@@ -48,6 +48,7 @@ public class GuildEvents {
 		
 		newGuildObject.addProperty("name", guild.getName());
 		newGuildObject.addProperty("welcomeMessage", "");
+		newGuildObject.addProperty("prefix", "");
 		
 		JsonArray emptyArray = new JsonArray();
 		
