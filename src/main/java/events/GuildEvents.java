@@ -28,6 +28,7 @@
 
 package events;
 
+import backend.Logger;
 import backend.ReadWrite;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -36,9 +37,12 @@ import com.sun.org.apache.regexp.internal.RE;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.guild.GuildJoinEvent;
 import net.dv8tion.jda.core.events.guild.GuildLeaveEvent;
+import sun.rmi.runtime.Log;
 
 public class GuildEvents {
 	public static void GuildJoin(GuildJoinEvent event){
+		Logger.print("Joined guild " + event.getGuild().getName());
+		
 		Guild guild = event.getGuild();
 		JsonObject newGuildObject = new JsonObject();
 		
@@ -57,6 +61,8 @@ public class GuildEvents {
 		
 	}
 	public static void GuildLeave(GuildLeaveEvent event){
+		Logger.print("Left guild " + event.getGuild().getName());
+		
 		JsonObject guildsObject = ReadWrite.getKey("guilds").getAsJsonObject();
 		guildsObject.remove(event.getGuild().getId());
 		ReadWrite.setKey("guilds", guildsObject);

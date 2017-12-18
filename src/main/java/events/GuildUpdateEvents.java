@@ -28,15 +28,17 @@
 
 package events;
 
+import backend.Logger;
 import backend.ReadWrite;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.sun.xml.internal.bind.v2.TODO;
 import net.dv8tion.jda.core.events.guild.update.GuildUpdateNameEvent;
 
 public class GuildUpdateEvents {
 	
 	public static void GuildUpdateName(GuildUpdateNameEvent event){
+		
+		Logger.print("Guild changing name. From " + event.getOldName() + " to --> " + event.getGuild().getName());
+		
 		JsonObject guildsObject = ReadWrite.getKey("guilds").getAsJsonObject();
 		JsonObject thisGuildObject = guildsObject.get(event.getGuild().getId()).getAsJsonObject();
 		thisGuildObject.addProperty("name", event.getGuild().getName());

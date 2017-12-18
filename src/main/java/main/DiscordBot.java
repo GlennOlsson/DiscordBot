@@ -50,8 +50,11 @@ import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.ReconnectedEvent;
 import net.dv8tion.jda.core.events.ShutdownEvent;
+import net.dv8tion.jda.core.events.guild.GuildJoinEvent;
+import net.dv8tion.jda.core.events.guild.GuildLeaveEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.core.events.guild.update.GuildUpdateNameEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -78,8 +81,6 @@ class DiscordBot extends ListenerAdapter{
 			Logger.logError(e, "Error in Main", "Unknown error", null);
 		}
 	}
-	
-	private DiscordBot(){}
 	
 	//JDA Events
 	public void onReady(ReadyEvent event) {
@@ -111,6 +112,14 @@ class DiscordBot extends ListenerAdapter{
 	public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
 		GuildMemberEvents.GuildMemberLeave(event);
 	}
+	
+	//Guild Events
+	public void onGuildJoin(GuildJoinEvent event){GuildEvents.GuildJoin(event);}
+	
+	public void onGuildLeave(GuildLeaveEvent event){GuildEvents.GuildLeave(event);}
+	
+	//Guild Update Events
+	public void onGuildUpdateName(GuildUpdateNameEvent event){GuildUpdateEvents.GuildUpdateName(event);}
 	
 	//Generic Events
 	public void onGenericEvent(Event event) {
