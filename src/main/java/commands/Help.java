@@ -132,9 +132,6 @@ public class Help {
 						"You cannot disable the welcome message").queue();
 				return;
 			}
-			
-			//TODO: daily dose
-			
 			else if (argument.length()>1) {
 				privateChannel.sendMessage("Sorry, but your argument did not get a match").queue();
 			}

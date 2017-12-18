@@ -27,30 +27,14 @@
 
 package main;
 
-import backend.*;
-import com.sun.org.apache.regexp.internal.RE;
-import com.sun.xml.internal.ws.api.server.SDDocument;
-import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import static commands.Reddit.*;
 
-import commands.*;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import net.dv8tion.jda.core.managers.AudioManager;
-import net.dv8tion.jda.core.managers.impl.AudioManagerImpl;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import sun.rmi.runtime.Log;
 
-import java.awt.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
