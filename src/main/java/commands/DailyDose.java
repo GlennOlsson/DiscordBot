@@ -276,7 +276,7 @@ public class DailyDose {
 						
 						DateFormat calendarFormat = new SimpleDateFormat("yyyy-MM-dd");
 						
-						String formattedDate = calendarFormat.format(now);
+						String formattedDate = calendarFormat.format(now.getTime());
 						
 						dailyDoseObject.addProperty("lastSent", formattedDate);
 						

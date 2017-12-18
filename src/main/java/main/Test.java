@@ -82,8 +82,9 @@ public class Test extends ListenerAdapter {
 		lastSentCalendar.setTime(lastSent);
 
 		Calendar now = Calendar.getInstance();
+		String formatted = calendarFormat.format(now.getTime());
 		
-		System.out.println(lastSent);
+		System.out.println(formatted);
 //
 //		Calendar sentPlusOneDay = (Calendar) lastSentCalendar.clone();
 //		sentPlusOneDay.add(Calendar.DAY_OF_MONTH, 1);
