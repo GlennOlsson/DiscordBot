@@ -154,6 +154,7 @@ public class DailyDose {
 					
 					if(thisSubreddit.toLowerCase().equals(subreddit.toLowerCase())){
 						dailyDosesArray.remove(jsonElement);
+						break;
 					}
 				}
 				
@@ -177,7 +178,7 @@ public class DailyDose {
 					return;
 				}
 				
-				String subreddit = commands[1];
+				String subreddit = commands[1].replace("/r/", "");
 				
 				DailyDose(subreddit, channel);
 			}

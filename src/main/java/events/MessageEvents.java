@@ -88,11 +88,11 @@ public class MessageEvents {
 				String prefix;
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
 					//if privateChannel ---> no guildId
-					prefix=ReadWrite.getPrefix(channel.getId());
+					prefix = ReadWrite.getPrefix(channel.getId());
 				}
 				else {
 					//Not private --> has guild Id
-					prefix=ReadWrite.getPrefix(event.getGuild().getId());
+					prefix = ReadWrite.getPrefix(event.getGuild().getId());
 				}
 				try {
 					onMessageReceivedPrefix(event, prefix, content, channel, contentCase);
