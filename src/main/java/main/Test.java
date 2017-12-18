@@ -27,6 +27,11 @@
 
 package main;
 
+import backend.Logger;
+import backend.ReadWrite;
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import static commands.Reddit.*;
@@ -34,6 +39,7 @@ import static commands.Reddit.*;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
+import server.Listener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -47,18 +53,18 @@ public class Test extends ListenerAdapter {
 			idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
 	public static void main(String[] args) throws Exception{
-//		JDA jda = null;
-//		try {
-//			jda = new JDABuilder(AccountType.BOT)
-//					.setToken(ReadWrite.getKey("oath").getAsString())
-//					.addEventListener(new Test())
-//					.buildBlocking();
-//
-//		} catch (Exception e) {
-//
-//			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
-//
-//		}
+		JDA jda = null;
+		try {
+			jda = new JDABuilder(AccountType.BOT)
+					.setToken(ReadWrite.getKey("oath").getAsString())
+					.addEventListener(new Test())
+					.buildBlocking();
+
+		} catch (Exception e) {
+
+			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
+
+		}
 
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
@@ -69,23 +75,23 @@ public class Test extends ListenerAdapter {
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));
 
 
-
-		String lastSentDate = "2017-12-18";
-		String toSendTime = "15:64";
-
-		DateFormat calendarFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-		String lastSentString = lastSentDate + " " + toSendTime;
-
-		Date lastSent = calendarFormat.parse(lastSentString);
-		Calendar lastSentCalendar = Calendar.getInstance();
-		lastSentCalendar.setTime(lastSent);
-
-		Calendar now = Calendar.getInstance();
-		String formatted = calendarFormat.format(now.getTime());
-		
-		System.out.println(formatted);
 //
+//		String lastSentDate = "2017-12-18";
+//		String toSendTime = "15:64";
+//
+//		DateFormat calendarFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//
+//		String lastSentString = lastSentDate + " " + toSendTime;
+//
+//		Date lastSent = calendarFormat.parse(lastSentString);
+//		Calendar lastSentCalendar = Calendar.getInstance();
+//		lastSentCalendar.setTime(lastSent);
+//
+//		Calendar now = Calendar.getInstance();
+//		String formatted = calendarFormat.format(now.getTime());
+//
+//		System.out.println(formatted);
+////
 //		Calendar sentPlusOneDay = (Calendar) lastSentCalendar.clone();
 //		sentPlusOneDay.add(Calendar.DAY_OF_MONTH, 1);
 //
@@ -98,6 +104,7 @@ public class Test extends ListenerAdapter {
 //
 //		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
 	
+		new Listener(jda);
 		
 	}
 	private Test(){
