@@ -28,6 +28,7 @@
 
 package server;
 
+import backend.Logger;
 import backend.ReadWrite;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -62,17 +63,13 @@ public class Listener {
 				String guildJSON = objectOfGuild.toString();
 				JsonObject guildJSONAsObject = ReadWrite.parseStringToJSON(guildJSON);
 				
-				System.out.println(guildJSONAsObject.get("welcomeMessage").getAsString());
-				
 				guildJSON = ReadWrite.beautifyJSON(guildJSONAsObject);
-				
-				System.out.println(guildJSON);
 				
 				return "<html> <pre>" + guildJSON + " </pre> </html>";
 				
 			}
 			catch (Exception e){
-				e.printStackTrace();
+				Logger.logError(e, "Error with server", "Req parameter: " + req.params(":guild"), null);
 				return "ERROR - 500";
 			}
 		});
