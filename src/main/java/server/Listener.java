@@ -32,6 +32,7 @@ import backend.ReadWrite;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.sun.org.apache.regexp.internal.RE;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
 
@@ -51,12 +52,23 @@ public class Listener {
 				
 				List<Guild> guildList = jda.getGuildsByName(guildName, true);
 				
+				if(guildList.size() == 0){
+					//No guild with that name
+					return "There's no guild with that name";
+				}
+				
 				JsonObject objectOfGuild = ReadWrite.getGuild(guildList.get(0));
 				
-				String guildJSON = objectOfGuild.toString().replace(",", ",\n");
+				String guildJSON = objectOfGuild.toString();
+				JsonObject guildJSONAsObject = ReadWrite.parseStringToJSON(guildJSON);
+				
+				System.out.println(guildJSONAsObject.get("welcomeMessage").getAsString());
+				
+				guildJSON = ReadWrite.beautifyJSON(guildJSONAsObject);
+				
 				System.out.println(guildJSON);
 				
-				return guildJSON;
+				return "<html> <pre>" + guildJSON + " </pre> </html>";
 				
 			}
 			catch (Exception e){

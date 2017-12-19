@@ -211,14 +211,14 @@ public class ReadWrite {
 		}
 	}
 	
-	private static JsonObject parseStringToJSON(String theString) throws JsonSyntaxException {
+	public static JsonObject parseStringToJSON(String theString) throws JsonSyntaxException {
 		JsonElement jsonElement = new JsonParser().parse(theString);
 		JsonObject jsonObject = jsonElement.getAsJsonObject();
 		
 		return jsonObject;
 	}
 	
-	private static String beautifyJSON(JsonObject json){
+	public static String beautifyJSON(JsonObject json){
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		
 		return gson.toJson(json);

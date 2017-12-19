@@ -59,6 +59,8 @@ import net.dv8tion.jda.core.events.guild.update.GuildUpdateNameEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import server.Listener;
+
 import static events.GenericEvents.*;
 
 
@@ -75,6 +77,9 @@ class DiscordBot extends ListenerAdapter{
 						.buildBlocking();
 				
 				DailyDose.DailyDose(jda);
+				
+				new Listener(jda);
+				
 			} catch (Exception e) {
 				Logger.logError(e, "JDA Builder", "JDA Builder", null);
 			}
