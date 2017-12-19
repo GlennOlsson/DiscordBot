@@ -47,7 +47,7 @@ public class Listener {
 		
 		port(8080);
 		
-		get("/Discord/Settings/:guild", (req, res) -> {
+		get("/:guild", (req, res) -> {
 			try{
 				String guildName = req.params(":guild");
 				
