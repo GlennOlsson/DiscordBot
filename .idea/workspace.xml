@@ -157,8 +157,8 @@
       <file leaf-file-name="Listener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+            <state relative-caret-position="559">
+              <caret line="118" column="46" lean-forward="true" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1051,14 +1051,7 @@
       <workItem from="1512470050319" duration="14000" />
       <workItem from="1513256483226" duration="801000" />
       <workItem from="1513438044769" duration="16461000" />
-      <workItem from="1513592802964" duration="36410000" />
-    </task>
-    <task id="LOCAL-00016" summary="Fixed error with some reddit links by changing .followRedirect from false to true">
-      <created>1506767888530</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1506767888530</updated>
+      <workItem from="1513592802964" duration="37781000" />
     </task>
     <task id="LOCAL-00017" summary="Some changes in DailyDose, dunno if anything is fixed though">
       <created>1506787276066</created>
@@ -1396,11 +1389,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513701495104</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Think I found the problem, reverting to preferd URL">
+      <created>1513701966888</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1513701966888</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102014000" />
+    <option name="totallyTimeSpent" value="103385000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1455,7 +1455,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Almost all constructors has been changed to static methods in the respective classes instead" />
     <MESSAGE value="Changing path for Errorlog and Print files" />
     <MESSAGE value="One simple /" />
     <MESSAGE value="Changing Secret file to Tau" />
@@ -1480,7 +1479,8 @@
     <MESSAGE value="Fixes so Dailydose does not save the full guilds object in the guild with a daily dose" />
     <MESSAGE value="Changed URL from /Settings/:guild ---&gt; /:guild" />
     <MESSAGE value="URL not working, debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="URL not working, debugging" />
+    <MESSAGE value="Think I found the problem, reverting to preferd URL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Think I found the problem, reverting to preferd URL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1876,8 +1876,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        <state relative-caret-position="559">
+          <caret line="118" column="46" lean-forward="true" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

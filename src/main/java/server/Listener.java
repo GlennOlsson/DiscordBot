@@ -35,6 +35,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.sun.org.apache.regexp.internal.RE;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Guild;
 
 import java.util.List;
@@ -60,12 +61,77 @@ public class Listener {
 				
 				JsonObject objectOfGuild = ReadWrite.getGuild(guildList.get(0));
 				
-				String guildJSON = objectOfGuild.toString();
-				JsonObject guildJSONAsObject = ReadWrite.parseStringToJSON(guildJSON);
+				//Reading all JSON so it will be readable
+				String name = objectOfGuild.get("name").getAsString();
+				String welcomeMessage = objectOfGuild.get("welcomeMessage").getAsString();
+				String prefix = objectOfGuild.get("prefix").getAsString();
 				
-				guildJSON = ReadWrite.beautifyJSON(guildJSONAsObject);
+				JsonArray gamesArray = objectOfGuild.get("games").getAsJsonArray();
 				
-				return "<html> <pre>" + guildJSON + " </pre> </html>";
+				JsonArray dailyDoseArray = objectOfGuild.get("dailyDoses").getAsJsonArray();
+				
+				StringBuilder contentBuilder = new StringBuilder();
+				
+				contentBuilder.append("<pre>");
+				
+				contentBuilder.append("Name: ");
+				contentBuilder.append(name);
+				
+				contentBuilder.append("\n\n");
+				
+				contentBuilder.append("Welcome message: ");
+				contentBuilder.append(welcomeMessage);
+				
+				contentBuilder.append("\n\n");
+				
+				
+				contentBuilder.append("Prefix: ");
+				contentBuilder.append(prefix);
+				
+				contentBuilder.append("\n\n");
+				
+				
+				contentBuilder.append("Games: ");
+				for(JsonElement jsonElement : gamesArray){
+					String game = jsonElement.getAsString();
+					contentBuilder.append("\n     ");
+					contentBuilder.append(game);
+				}
+				
+				contentBuilder.append("\n\n");
+				
+				contentBuilder.append("Daily doses: ");
+				for(JsonElement jsonElement : dailyDoseArray){
+					JsonObject dailyDoseObject = jsonElement.getAsJsonObject();
+					
+					String subreddit = dailyDoseObject.get("subreddit").getAsString();
+					String sendTime = dailyDoseObject.get("sendTime").getAsString();
+					String lastSent = dailyDoseObject.get("lastSent").getAsString();
+					long channelID = dailyDoseObject.get("channel").getAsLong();
+					
+					Channel channel = jda.getTextChannelById(channelID);
+					
+					String channelName = channel.getName();
+					
+					contentBuilder.append("\n  Subredddit:    /r/");
+					contentBuilder.append(subreddit);
+					
+					contentBuilder.append(",\n  Send time     ");
+					contentBuilder.append(sendTime);
+					
+					contentBuilder.append(",\n  Last sent     ");
+					contentBuilder.append(lastSent);
+					
+					contentBuilder.append(",\n  Channel       ");
+					contentBuilder.append(channelName);
+				}
+				
+				contentBuilder.append("\n");
+				
+				
+				contentBuilder.append("</pre>");
+				
+				return contentBuilder.toString();
 				
 			}
 			catch (Exception e){
