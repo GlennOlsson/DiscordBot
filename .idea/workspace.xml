@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="Added possibility to view guild settings on the web">
+    <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="Removed sysouts and stacktrace prints">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Listener.java" afterPath="$PROJECT_DIR$/src/main/java/server/Listener.java" />
     </list>
@@ -92,8 +92,8 @@
       <file leaf-file-name="ReadWrite.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/ReadWrite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="142" column="46" lean-forward="true" selection-start-line="142" selection-start-column="46" selection-end-line="142" selection-end-column="46" />
+            <state relative-caret-position="295">
+              <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -156,8 +156,8 @@
       <file leaf-file-name="Listener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="71" column="96" lean-forward="false" selection-start-line="71" selection-start-column="96" selection-end-line="71" selection-end-column="96" />
+            <state relative-caret-position="138">
+              <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1050,14 +1050,7 @@
       <workItem from="1512470050319" duration="14000" />
       <workItem from="1513256483226" duration="801000" />
       <workItem from="1513438044769" duration="16461000" />
-      <workItem from="1513592802964" duration="32536000" />
-    </task>
-    <task id="LOCAL-00011" summary="Something something /r/aww">
-      <created>1506626757505</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1506626757505</updated>
+      <workItem from="1513592802964" duration="33441000" />
     </task>
     <task id="LOCAL-00012" summary="Redid Reddit and DailyDose as bit, so that DailyDose uses Reddit to fetch link and title. Maybe, just maybe, is DailyDose fixed on Pi as well!">
       <created>1506682383810</created>
@@ -1395,11 +1388,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513693729237</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Removed sysouts and stacktrace prints">
+      <created>1513694966531</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1513694966531</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98140000" />
+    <option name="totallyTimeSpent" value="99045000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1454,7 +1454,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Error &quot;handling&quot;" />
     <MESSAGE value="Fixed an uncaught compile error" />
     <MESSAGE value="More compile errors, for the old Print() constructor, mostly" />
     <MESSAGE value="Fixed spacing in dailydose print" />
@@ -1479,7 +1478,8 @@
     <MESSAGE value="Should work to save new date after new DailyDose... ahhahahhahahhahhahahhhahahahhahhahaahhahhaah" />
     <MESSAGE value="Working on an easy settings web server, where you can go to glennolsson.se/DiscordBot/GUILD_NAME to see its settings" />
     <MESSAGE value="Added possibility to view guild settings on the web" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added possibility to view guild settings on the web" />
+    <MESSAGE value="Removed sysouts and stacktrace prints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed sysouts and stacktrace prints" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1834,6 +1834,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/events/JDAEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/DiscordBot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1846,19 +1854,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/ReadWrite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="142" column="46" lean-forward="true" selection-start-line="142" selection-start-column="46" selection-end-line="142" selection-end-column="46" />
+        <state relative-caret-position="295">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/events/JDAEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1874,8 +1874,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="71" column="96" lean-forward="false" selection-start-line="71" selection-start-column="96" selection-end-line="71" selection-end-column="96" />
+        <state relative-caret-position="138">
+          <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
