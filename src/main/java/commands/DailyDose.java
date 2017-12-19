@@ -280,7 +280,7 @@ public class DailyDose {
 						
 						dailyDoseObject.addProperty("lastSent", formattedDate);
 						
-						ReadWrite.addEditedGuild(currentGuild, guildsJSONObject);
+						ReadWrite.addEditedGuild(currentGuild, currentJSONGuild);
 						
 						Logger.print("New DailyDose success");
 					}
