@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" afterPath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Listener.java" afterPath="$PROJECT_DIR$/src/main/java/server/Listener.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,10 +64,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="1066">
               <caret line="282" column="79" lean-forward="false" selection-start-line="282" selection-start-column="79" selection-end-line="282" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -154,11 +154,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Listener.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Listener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="138">
-              <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="22" />
+              <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -699,8 +699,8 @@
         <option value="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/Listener.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Listener.java" />
       </list>
     </option>
   </component>
@@ -1051,14 +1051,7 @@
       <workItem from="1512470050319" duration="14000" />
       <workItem from="1513256483226" duration="801000" />
       <workItem from="1513438044769" duration="16461000" />
-      <workItem from="1513592802964" duration="34580000" />
-    </task>
-    <task id="LOCAL-00013" summary="Debugging DailyDose">
-      <created>1506685685869</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1506685685869</updated>
+      <workItem from="1513592802964" duration="35312000" />
     </task>
     <task id="LOCAL-00014" summary="More debugging DailyDose">
       <created>1506686687613</created>
@@ -1396,11 +1389,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513696192972</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fixes so Dailydose does not save the full guilds object in the guild with a daily dose">
+      <created>1513698033242</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1513698033242</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100184000" />
+    <option name="totallyTimeSpent" value="100916000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1455,7 +1455,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="More compile errors, for the old Print() constructor, mostly" />
     <MESSAGE value="Fixed spacing in dailydose print" />
     <MESSAGE value="Forgot to comment out some testing" />
     <MESSAGE value="Almost all constructors has been changed to static methods in the respective classes instead" />
@@ -1480,7 +1479,8 @@
     <MESSAGE value="Added possibility to view guild settings on the web" />
     <MESSAGE value="Removed sysouts and stacktrace prints" />
     <MESSAGE value="Server update by changing URL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Server update by changing URL" />
+    <MESSAGE value="Fixes so Dailydose does not save the full guilds object in the guild with a daily dose" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes so Dailydose does not save the full guilds object in the guild with a daily dose" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1852,16 +1852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/ReadWrite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1874,12 +1864,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="1066">
           <caret line="282" column="79" lean-forward="false" selection-start-line="282" selection-start-column="79" selection-end-line="282" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6949#6982#0" expanded="true" />
             <element signature="e#7013#7052#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="49" column="13" lean-forward="false" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
