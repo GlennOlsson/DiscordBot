@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/backend/Logger.java" afterPath="$PROJECT_DIR$/src/main/java/backend/Logger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/Test.java" afterPath="$PROJECT_DIR$/src/main/java/main/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restart.sh" afterPath="$PROJECT_DIR$/restart.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/start.sh" afterPath="$PROJECT_DIR$/start.sh" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -65,22 +65,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3961">
-              <caret line="282" column="79" lean-forward="false" selection-start-line="282" selection-start-column="79" selection-end-line="282" selection-end-column="79" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1547">
+            <state relative-caret-position="1836">
               <caret line="132" column="59" lean-forward="false" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -92,8 +80,8 @@
       <file leaf-file-name="ReadWrite.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/ReadWrite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="143" column="33" lean-forward="true" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
+            <state relative-caret-position="2023">
+              <caret line="143" column="33" lean-forward="false" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="45" column="70" lean-forward="false" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
+            <state relative-caret-position="142">
+              <caret line="47" column="51" lean-forward="false" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -154,7 +142,7 @@
       <file leaf-file-name="Listener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1360">
+            <state relative-caret-position="1564">
               <caret line="118" column="46" lean-forward="false" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -163,11 +151,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WelcomeMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java">
+      <file leaf-file-name="restart.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/restart.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="62" column="12" lean-forward="false" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+            <state relative-caret-position="170">
+              <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/start.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -670,7 +668,6 @@
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/src/restart.sh" />
         <option value="$PROJECT_DIR$/src/start.sh" />
-        <option value="$PROJECT_DIR$/restart.sh" />
         <option value="$PROJECT_DIR$/src/main/java/backend/Print.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/ErrorLogg.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/Error.java" />
@@ -698,6 +695,8 @@
         <option value="$PROJECT_DIR$/src/main/java/server/Listener.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/Logger.java" />
+        <option value="$PROJECT_DIR$/restart.sh" />
+        <option value="$PROJECT_DIR$/start.sh" />
       </list>
     </option>
   </component>
@@ -707,9 +706,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="140" />
+    <option name="y" value="208" />
     <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="height" value="939" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -729,10 +730,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -802,6 +799,10 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1052,14 +1053,8 @@
       <workItem from="1513989296470" duration="452000" />
       <workItem from="1514035405599" duration="13000" />
       <workItem from="1514036169593" duration="2251000" />
-      <workItem from="1514915500923" duration="102000" />
-    </task>
-    <task id="LOCAL-00018" summary="This motherfucking workspace only">
-      <created>1506787543658</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1506787543658</updated>
+      <workItem from="1514915500923" duration="1472000" />
+      <workItem from="1514933104862" duration="206000" />
     </task>
     <task id="LOCAL-00019" summary="Debugging &quot;Unexpected token END OF FILE at position 0.&quot;">
       <created>1506790037045</created>
@@ -1397,11 +1392,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513703528876</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Changed location of Print.md and Errorlog.md">
+      <created>1514915626551</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1514915626552</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106429000" />
+    <option name="totallyTimeSpent" value="108005000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1456,7 +1458,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="One simple /" />
     <MESSAGE value="Changing Secret file to Tau" />
     <MESSAGE value="Converting from Pi to Tau" />
     <MESSAGE value="Append instead of on top" />
@@ -1481,7 +1482,8 @@
     <MESSAGE value="URL not working, debugging" />
     <MESSAGE value="Think I found the problem, reverting to preferd URL" />
     <MESSAGE value="Fixed displaying of the settings, looks better know. Not just plain JSON" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed displaying of the settings, looks better know. Not just plain JSON" />
+    <MESSAGE value="Changed location of Print.md and Errorlog.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed location of Print.md and Errorlog.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1646,20 +1648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/restart.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/start.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="53" lean-forward="false" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/Prefix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1787,16 +1775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="118" column="46" lean-forward="false" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1807,7 +1785,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3961">
+        <state relative-caret-position="4386">
           <caret line="282" column="79" lean-forward="false" selection-start-line="282" selection-start-column="79" selection-end-line="282" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1817,7 +1795,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
+        <state relative-caret-position="1836">
           <caret line="132" column="59" lean-forward="false" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1859,8 +1837,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/ReadWrite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="143" column="33" lean-forward="true" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
+        <state relative-caret-position="2023">
+          <caret line="143" column="33" lean-forward="false" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1869,8 +1847,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/backend/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="45" column="70" lean-forward="false" selection-start-line="45" selection-start-column="70" selection-end-line="45" selection-end-column="70" />
+        <state relative-caret-position="142">
+          <caret line="47" column="51" lean-forward="false" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="118" column="46" lean-forward="false" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/restart.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
           <folding />
         </state>
       </provider>
