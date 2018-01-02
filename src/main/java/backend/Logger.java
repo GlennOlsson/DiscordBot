@@ -43,7 +43,7 @@ import java.util.Calendar;
 
 public class Logger {
 	
-	private static String path = "/var/www/Website-Pi/html/";
+	private static String path = "/var/www/Website-Pi/html/DiscordBot/";
 	private static String printFile = "Print.md";
 	private static String errorFile = "Errorlog.md";
 	

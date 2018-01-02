@@ -103,8 +103,17 @@ public class Test extends ListenerAdapter {
 //		}
 //
 //		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
-	
-		new Listener(jda);
+		
+		List<TextChannel> channels = jda.getTextChannels();
+		System.out.println(channels.size());
+		for(TextChannel channel : channels){
+			try{
+				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
+				
+			}
+			catch (Exception e){
+			}
+		}
 		
 	}
 	private Test(){
@@ -113,7 +122,7 @@ public class Test extends ListenerAdapter {
 	
 	public void onMessageReceived(MessageReceivedEvent event){
 		
-		String content = event.getMessage().getRawContent(), afterCommand="", command = content.substring(";".length());
+		String content = event.getMessage().getContentRaw(), afterCommand="", command = content.substring(";".length());
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
 			Reddit(event.getChannel(), event, content);
@@ -121,7 +130,7 @@ public class Test extends ListenerAdapter {
 	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
 		
-		String content = event.getMessage().getContent().toLowerCase();
+		String content = event.getMessage().getContentRaw().toLowerCase();
 		
 		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
 			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
