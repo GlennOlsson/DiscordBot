@@ -84,6 +84,15 @@ public class MessageEvents {
 					return;
 				}
 				
+				//Trying "react to message"
+				try{
+					WordReactions.tryToReact(event, content);
+					return;
+				}
+				catch (Exception e){
+					Logger.logError(e, "content", "Error with reactToWord", event);
+				}
+				
 				//Gets prefix
 				String prefix;
 				if(event.getChannel().getType().equals(ChannelType.PRIVATE)){
@@ -260,7 +269,7 @@ public class MessageEvents {
 	public static void PrivateMessage(PrivateMessageReceivedEvent event){
 		try{
 			PrivateChannel channel=event.getChannel();
-			String content = event.getMessage().getContent();
+			String content = event.getMessage().getContentDisplay();
 			
 			if(!event.getAuthor().equals(event.getJDA().getSelfUser())){
 				

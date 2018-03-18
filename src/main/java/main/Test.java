@@ -104,16 +104,18 @@ public class Test extends ListenerAdapter {
 //
 //		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
 		
-		List<TextChannel> channels = jda.getTextChannels();
-		System.out.println(channels.size());
-		for(TextChannel channel : channels){
-			try{
-				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
-				
-			}
-			catch (Exception e){
-			}
-		}
+//		List<TextChannel> channels = jda.getTextChannels();
+//		System.out.println(channels.size());
+//		for(TextChannel channel : channels){
+//			try{
+//				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
+//
+//			}
+//			catch (Exception e){
+//			}
+//		}
+		
+	
 		
 	}
 	private Test(){
