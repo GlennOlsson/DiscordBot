@@ -29,6 +29,9 @@ package main;
 
 import backend.Logger;
 import backend.ReadWrite;
+import com.google.gson.JsonObject;
+import com.vdurmont.emoji.EmojiManager;
+import com.vdurmont.emoji.EmojiParser;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -53,18 +56,21 @@ public class Test extends ListenerAdapter {
 			idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
 	public static void main(String[] args) throws Exception{
-		JDA jda = null;
-		try {
-			jda = new JDABuilder(AccountType.BOT)
-					.setToken(ReadWrite.getKey("oath").getAsString())
-					.addEventListener(new Test())
-					.buildBlocking();
-
-		} catch (Exception e) {
-
-			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
-
-		}
+		
+		System.out.println(EmojiManager.getForAlias(":-1:").getUnicode());
+		
+//		JDA jda = null;
+//		try {
+//			jda = new JDABuilder(AccountType.BOT)
+//					.setToken(ReadWrite.getKey("oath").getAsString())
+//					.addEventListener(new Test())
+//					.buildBlocking();
+//
+//		} catch (Exception e) {
+//
+//			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
+//
+//		}
 
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
@@ -104,9 +110,15 @@ public class Test extends ListenerAdapter {
 //
 //		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
 		
-//		List<TextChannel> channels = jda.getTextChannels();
+		//280772605072375809
+		
+//		User user = jda.getUserById(idKakan);
+//
+//		System.out.println(jda.getPrivateChannelById(idKakan));
+//
+//		List<PrivateChannel> channels = jda.getPrivateChannels();
 //		System.out.println(channels.size());
-//		for(TextChannel channel : channels){
+//		for(PrivateChannel channel : channels){
 //			try{
 //				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
 //
@@ -114,8 +126,8 @@ public class Test extends ListenerAdapter {
 //			catch (Exception e){
 //			}
 //		}
-		
-	
+//
+//		System.out.println(jda.getGuildById(idKakanisatanGeneral).getEmotesByName("<:discordemote:425013364809269269>", true));
 		
 	}
 	private Test(){
@@ -125,6 +137,8 @@ public class Test extends ListenerAdapter {
 	public void onMessageReceived(MessageReceivedEvent event){
 		
 		String content = event.getMessage().getContentRaw(), afterCommand="", command = content.substring(";".length());
+		
+		System.out.println(content);
 		
 		if(event.getAuthor().getId().equals("165507757519273984")){
 			Reddit(event.getChannel(), event, content);

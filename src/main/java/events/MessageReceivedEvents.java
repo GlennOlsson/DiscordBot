@@ -49,7 +49,7 @@ import static commands.WelcomeMessage.*;
 /**
  * Created by Glenn on 2017-06-04.
  */
-public class MessageEvents {
+public class MessageReceivedEvents {
 	
 	public static void MessageReceived(MessageReceivedEvent event){
 		try{
@@ -86,8 +86,8 @@ public class MessageEvents {
 				
 				//Trying "react to message"
 				try{
-					WordReactions.tryToReact(event, content);
-					return;
+					if(WordReactions.tryToReact(event, content))
+						return;
 				}
 				catch (Exception e){
 					Logger.logError(e, "content", "Error with reactToWord", event);
@@ -183,16 +183,16 @@ public class MessageEvents {
 					}
 					break;
 				
-				case "game":
-					try {
-						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
-							GameRoles(channel, event, afterCommand);
-						}
-					}
-					catch (Exception e){
-						Logger.logError(e, content, "Error with game command", event);
-					}
-					break;
+//				case "game":
+//					try {
+//						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
+//							GameRoles(channel, event, afterCommand);
+//						}
+//					}
+//					catch (Exception e){
+//						Logger.logError(e, content, "Error with game command", event);
+//					}
+//					break;
 
 //				case "restart":
 //					try {
@@ -302,7 +302,7 @@ public class MessageEvents {
 				}
 			}
 		}catch (Exception e) {
-			Logger.logError(e, "Content: "+event.getMessage().getContent()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
+			Logger.logError(e, "Content: "+event.getMessage().getContentDisplay()+ ", Author: "+event.getAuthor().getName() + "#"+event.getAuthor().getDiscriminator()+
 					", channel: +"+event.getChannel().getName()+", MessageID: "+event.getMessage().getId(), "Unknown error in onPrivateMessageReceived", null);
 		}
 	}

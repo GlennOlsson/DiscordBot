@@ -43,6 +43,7 @@ https://www.reddit.com/api/v1/authorize?client_id=uGN5rXPLJsdZ2Q&response_type=c
 
 import backend.*;
 import commands.DailyDose;
+import commands.GameRoles;
 import events.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -57,11 +58,13 @@ import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.guild.update.GuildUpdateNameEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.react.GenericGuildMessageReactionEvent;
+import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
+import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionRemoveEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.react.GenericMessageReactionEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import server.Listener;
-
-import static events.GenericEvents.*;
 
 
 class DiscordBot extends ListenerAdapter{
@@ -77,6 +80,8 @@ class DiscordBot extends ListenerAdapter{
 						.buildBlocking();
 				
 				DailyDose.DailyDose(jda);
+				
+				GameRoles.sendReactToMessage(jda.getTextChannelById(Test.idKakanisatanGeneral));
 				
 				new Listener(jda);
 				
@@ -103,11 +108,19 @@ class DiscordBot extends ListenerAdapter{
 	
 	//Message Events
 	public void onMessageReceived(MessageReceivedEvent event){
-		MessageEvents.MessageReceived(event);
+		MessageReceivedEvents.MessageReceived(event);
 	}
 	
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
-		MessageEvents.PrivateMessage(event);
+		MessageReceivedEvents.PrivateMessage(event);
+	}
+	
+	public void onGuildMessageReactionAdd(GuildMessageReactionAddEvent event){
+		GameRoles.messageReactedTo(event);
+	}
+	
+	public void onGuildMessageReactionRemove(GuildMessageReactionRemoveEvent event){
+		GameRoles.reactionRemovedFromMessage(event);
 	}
 	
 	//Guild Member Events

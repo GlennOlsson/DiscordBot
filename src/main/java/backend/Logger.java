@@ -113,17 +113,19 @@ public class Logger {
 						"\n"+errors.toString()+"\n---------------\n\n";
 				
 				saveToPath(newContent, errorFile);
-			
-		}
+				
+			}
 			catch (Exception e){
 				System.err.println("ERROR!!!");
 				e.printStackTrace();
+			}
+		}
+		else {
+			System.err.println("Content: " + content);
+			System.err.println("Id: " + id);
+			exception.printStackTrace();
 		}
 	}
-		else {
-		exception.printStackTrace();
-	}
-}
 	
 	private static void saveToPath(String whatToSave, String pathName) throws IOException{
 		Path fullPath = Paths.get(path + pathName);

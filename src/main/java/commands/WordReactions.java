@@ -55,11 +55,13 @@ public class WordReactions {
 		return "";
 	}
 	
-	public static void tryToReact(MessageReceivedEvent event, String content){
+	public static boolean tryToReact(MessageReceivedEvent event, String content){
 		String reactString = reactTo(content);
 		
 		if(reactString != null && reactString.length() > 0){
-			event.getChannel().sendMessage(reactString).queue();
+			event.getChannel().sendMessage(reactString).submit();
+			return true;
 		}
+		return false;
 	}
 }

@@ -56,7 +56,7 @@ public class JDAEvents extends ListenerAdapter {
 				//Probably could not convert string -> int
 				Logger.logError(e, "Error in JDAEvents.Ready", "Run count: " + ReadWrite.getKey("runCount"), null);
 			}
-			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+			event.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT,"Send ;help"));
 		}catch (Exception e) {
 			Logger.logError(e, "Error in JDAEvents.Ready", "Unknown error", null);
 		}
@@ -64,7 +64,7 @@ public class JDAEvents extends ListenerAdapter {
 	
 	public static void Reconnect(ReconnectedEvent event) {
 		try {
-			event.getJDA().getPresence().setGame(Game.of("Send ;help"));
+			event.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT,"Send ;help"));
 			Logger.print("Reconnected");
 		} catch (Exception e) {
 			Logger.logError(e, "Error in JDAEvents.Reconnect", "Unknown error", null);
