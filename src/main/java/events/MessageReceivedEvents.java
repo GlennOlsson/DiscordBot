@@ -29,6 +29,7 @@ package events;
 import backend.Logger;
 import backend.ReadWrite;
 import commands.*;
+import main.Test;
 import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.PrivateChannel;
@@ -183,16 +184,18 @@ public class MessageReceivedEvents {
 					}
 					break;
 				
-//				case "game":
-//					try {
-//						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
-//							GameRoles(channel, event, afterCommand);
-//						}
-//					}
-//					catch (Exception e){
-//						Logger.logError(e, content, "Error with game command", event);
-//					}
-//					break;
+				case "game":
+					try {
+						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
+							channel.sendMessage("This command ahs been deprecated. Now, react or un-react to the message that I have sent. " +
+									"Contact a moderator or " + event.getJDA().getUserById(Test.idKakan).getAsMention() + " for more information")
+									.complete();
+						}
+					}
+					catch (Exception e){
+						Logger.logError(e, content, "Error with game command", event);
+					}
+					break;
 
 //				case "restart":
 //					try {

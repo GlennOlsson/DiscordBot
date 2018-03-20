@@ -98,18 +98,22 @@ public class Help {
 				return;
 			}
 			
-			else if (argument.equals("game")||argument.equals(";game")) {
-				privateChannel.sendMessage("This command enables you to set roles for yourself, consisting of games. " +
-						"You choose the games that you actively play, so that members on the server can mention you, " +
-						"when they just want to notify people on specific games. Send **;game**, and I'll show you available games " +
-						"on the server, and then you choose which to add, one at a time.").queue();
-				return;
-			}
+//			else if (argument.equals("game")||argument.equals(";game")) {
+//				privateChannel.sendMessage("This command enables you to set roles for yourself, consisting of games. " +
+//						"You choose the games that you actively play, so that members on the server can mention you, " +
+//						"when they just want to notify people on specific games. Send **;game**, and I'll show you available games " +
+//						"on the server, and then you choose which to add, one at a time.").queue();
+//				return;
+//			}
 			
 			else if (argument.equals("editgame")||argument.equals(";editgame")) {
 				privateChannel.sendMessage("This command is used by people that has the ability to manage roles in the server." +
-						" By sending **;editgame [add/remove] [name of game]**, I will add a role with the name, and " +
-						"make it possible for the users to add that role themselves.").queue();
+						" By starting the command with **;editgame [add/remove] [emoji] [the game]**, I will add/remove a role with the name, " +
+						"and make it possible for the users to add that role themselves. If you are removing a game, you don't have to provide" +
+						" the game name, only the emoji. \n\nAfter you send this command, a message will be sent with all the available games " +
+						"on the server with the corresponding emoji. The users can then react to this message to add that game to themselves. " +
+						"If you want this message to be in another channel than the one you sent in, send **;editgame create** in the channel" +
+						" of your desire!").queue();
 				return;
 			}
 			
@@ -137,7 +141,7 @@ public class Help {
 			}
 		}
 		String command = "";
-		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";game",";editgame",";welcome"};
+		String[] features = {"Reddit",";gif",";source",";clean",";prefix",";editgame",";welcome"};
 		for (String feature : features) {
 			command = command + feature + ", ";
 		}

@@ -56,8 +56,8 @@ public class GameRoles {
 	public static void messageReactedTo(GuildMessageReactionAddEvent event){
 		if(!event.getUser().getId().equals(Test.idKakansBot)) {
 			JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
-			String reactionMessageID = guildObject.get("gamesMessageID").getAsString();
-			if(event.getMessageId().equals(reactionMessageID)) {
+			JsonElement reactionMessageID = guildObject.get("gamesMessageID");
+			if(reactionMessageID != null && !reactionMessageID.isJsonNull() && event.getMessageId().equals(reactionMessageID.getAsString())) {
 				genericReaction(event, EditType.ADD, guildObject);
 			}
 		}
@@ -66,8 +66,8 @@ public class GameRoles {
 	public static void reactionRemovedFromMessage(GuildMessageReactionRemoveEvent event){
 		if(!event.getUser().getId().equals(Test.idKakansBot)) {
 			JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
-			String reactionMessageID = guildObject.get("gamesMessageID").getAsString();
-			if(event.getMessageId().equals(reactionMessageID)) {
+			JsonElement reactionMessageID = guildObject.get("gamesMessageID");
+			if(reactionMessageID != null && !reactionMessageID.isJsonNull() && event.getMessageId().equals(reactionMessageID.getAsString())) {
 				genericReaction(event, EditType.REMOVE, guildObject);
 			}
 		}
