@@ -81,8 +81,6 @@ class DiscordBot extends ListenerAdapter{
 				
 				DailyDose.DailyDose(jda);
 				
-				GameRoles.sendReactToMessage(jda.getTextChannelById(Test.idKakanisatanGeneral));
-				
 				new Listener(jda);
 				
 			} catch (Exception e) {

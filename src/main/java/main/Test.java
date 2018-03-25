@@ -131,7 +131,22 @@ public class Test extends ListenerAdapter {
 		
 	}
 	private Test(){
+		int day = 0, bankAmount = 0, salary = 0;
+		day = new Random().nextInt(2);
 		
+		
+		if(day == 25){
+			bankAmount += salary;
+			
+			spend(salary);
+		}
+		
+		System.out.println(bankAmount);
+		
+	}
+	
+	private void spend(int i){
+	
 	}
 	
 	public void onMessageReceived(MessageReceivedEvent event){
