@@ -15,7 +15,7 @@ sourceCompatibility = 1.8
 mainClassName = 'main.DiscordBot'
 
 version '1.0'
-def jdaVersion = '3.5.1_351'
+def jdaVersion = '3.6.0_360'
 
 sourceCompatibility = 1.8
 
@@ -60,6 +60,12 @@ dependencies {
 
     // https://github.com/vdurmont/emoji-java
     compile 'com.vdurmont:emoji-java:4.0.0'
+
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+
+    // https://bintray.com/thatjavanerd/maven/JRAW/1.1.0
+    compile 'net.dean.jraw:JRAW:1.1.0'
 
 }
 

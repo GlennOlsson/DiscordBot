@@ -55,22 +55,22 @@ public class Test extends ListenerAdapter {
 	public static String idKakan = "165507757519273984", idKakansBot = "282116563266437120",
 			idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
+
+//		System.out.println(EmojiManager.getForAlias(":-1:").getUnicode());
 		
-		System.out.println(EmojiManager.getForAlias(":-1:").getUnicode());
-		
-//		JDA jda = null;
-//		try {
-//			jda = new JDABuilder(AccountType.BOT)
-//					.setToken(ReadWrite.getKey("oath").getAsString())
-//					.addEventListener(new Test())
-//					.buildBlocking();
-//
-//		} catch (Exception e) {
-//
-//			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
-//
-//		}
+		JDA jda = null;
+		try {
+			jda = new JDABuilder(AccountType.BOT)
+					.setToken(ReadWrite.getKey("oath").getAsString())
+					.addEventListener(new Test())
+					.buildBlocking();
+			
+		} catch (Exception e) {
+			
+			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
+			
+		}
 
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
@@ -111,108 +111,108 @@ public class Test extends ListenerAdapter {
 //		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
 		
 		//280772605072375809
-		
-//		User user = jda.getUserById(idKakan);
 //
-//		System.out.println(jda.getPrivateChannelById(idKakan));
+		System.out.println(jda.getPrivateChannelById("283333281477558272").getUser());
 //
-//		List<PrivateChannel> channels = jda.getPrivateChannels();
+		List<PrivateChannel> channels = jda.getPrivateChannels();
 //		System.out.println(channels.size());
-//		for(PrivateChannel channel : channels){
-//			try{
-//				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
-//
-//			}
-//			catch (Exception e){
-//			}
-//		}
+		for (PrivateChannel channel : channels) {
+			try {
+				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
+				
+			} catch (Exception e) {
+			}
+		}
 //
 //		System.out.println(jda.getGuildById(idKakanisatanGeneral).getEmotesByName("<:discordemote:425013364809269269>", true));
-		
-	}
-	private Test(){
-		int day = 0, bankAmount = 0, salary = 0;
-		day = new Random().nextInt(2);
-		
-		
-		if(day == 25){
-			bankAmount += salary;
-			
-			spend(salary);
-		}
-		
-		System.out.println(bankAmount);
-		
-	}
+
+}
 	
-	private void spend(int i){
-	
-	}
-	
-	public void onMessageReceived(MessageReceivedEvent event){
-		
-		String content = event.getMessage().getContentRaw(), afterCommand="", command = content.substring(";".length());
-		
-		System.out.println(content);
-		
-		if(event.getAuthor().getId().equals("165507757519273984")){
-			Reddit(event.getChannel(), event, content);
-		}
-	}
+//	public void onMessageReceived(MessageReceivedEvent event){
+//
+//		String content = event.getMessage().getContentRaw(), afterCommand="", command = content.substring(";".length());
+//
+//		System.out.println(content);
+//
+//		if(event.getAuthor().getId().equals("165507757519273984")){
+//			Reddit(event.getChannel(), event, content);
+//		}
+//	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
+		
+		System.out.println(event.getChannel().getId());
 		
 		String content = event.getMessage().getContentRaw().toLowerCase();
 		
-		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
-			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
+		//Iterator<PrivateChannel> it = event.getJDA().getPrivateChannelCache().iterator();
+		
+		Iterator<Guild> it = event.getJDA().getGuilds().iterator();
+		
+		while(it.hasNext()){
+			Guild pc = it.next();
+			System.out.println(pc.getName());
 		}
 		
-		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
-			System.out.println();
-		}
-		
-		if(content.contains(";send")&&content.substring(0, ";send".length()).equals(";send")){
-			String user= event.getAuthor().getName().toLowerCase() + "#"+event.getAuthor().getDiscriminator().toLowerCase();
-			if (event.getJDA().getUserById(idKakan)==event.getAuthor()) {
-				System.err.println("AUTHORIZED");
-				if(!content.contains(" ")){
-					event.getChannel().sendMessage("-- YOU CAN MESSAGE THE FOLLOWING CHANNELS --").queue();
-					List<TextChannel> channels = event.getJDA().getTextChannels();
-					
-					List<String> channelNames=new ArrayList<>();
-					
-					for (TextChannel channel : event.getJDA().getTextChannels()) {
-						channelNames.add(channel.getGuild().getName() +" - "+ channel.getName());
-						
-					}
-					
-					channelNames.sort(String::compareToIgnoreCase);
-					int i=0;
-					for (String string : channelNames) {
-						i++;
-						event.getChannel().sendMessage(i+". "+string).queue();
-					}
-					
-					event.getChannel().sendMessage("-- THAT IS ALL --").queue();
-				}
-				else if (content.split(" ").length==2) {
-					String arg = content.split(" ")[1];
-					
-					List<TextChannel> channels = event.getJDA().getTextChannels();
-					List<String> channelNames=new ArrayList<>();
-					
-					for (TextChannel channel : event.getJDA().getTextChannels()) {
-						channelNames.add(channel.getGuild().getName() +" - "+ channel.getName());
-						
-					}
-					
-					channelNames.sort(String::compareToIgnoreCase);
-					
-					System.out.println(channelNames.get(Integer.parseInt(arg)-1));
-					
-				}
+		List<PrivateChannel> channels = event.getJDA().getPrivateChannels();
+//		System.out.println(channels.size());
+		for (PrivateChannel channel : channels) {
+			try {
+				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
+				
+			} catch (Exception e) {
 			}
 		}
+		
+//		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
+//			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
+//		}
+//
+//		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
+//			System.out.println();
+//		}
+//
+//		if(content.contains(";send")&&content.substring(0, ";send".length()).equals(";send")){
+//			String user= event.getAuthor().getName().toLowerCase() + "#"+event.getAuthor().getDiscriminator().toLowerCase();
+//			if (event.getJDA().getUserById(idKakan)==event.getAuthor()) {
+//				System.err.println("AUTHORIZED");
+//				if(!content.contains(" ")){
+//					event.getChannel().sendMessage("-- YOU CAN MESSAGE THE FOLLOWING CHANNELS --").queue();
+//					List<TextChannel> channels = event.getJDA().getTextChannels();
+//
+//					List<String> channelNames=new ArrayList<>();
+//
+//					for (TextChannel channel : event.getJDA().getTextChannels()) {
+//						channelNames.add(channel.getGuild().getName() +" - "+ channel.getName());
+//
+//					}
+//
+//					channelNames.sort(String::compareToIgnoreCase);
+//					int i=0;
+//					for (String string : channelNames) {
+//						i++;
+//						event.getChannel().sendMessage(i+". "+string).queue();
+//					}
+//
+//					event.getChannel().sendMessage("-- THAT IS ALL --").queue();
+//				}
+//				else if (content.split(" ").length==2) {
+//					String arg = content.split(" ")[1];
+//
+//					List<TextChannel> channels = event.getJDA().getTextChannels();
+//					List<String> channelNames=new ArrayList<>();
+//
+//					for (TextChannel channel : event.getJDA().getTextChannels()) {
+//						channelNames.add(channel.getGuild().getName() +" - "+ channel.getName());
+//
+//					}
+//
+//					channelNames.sort(String::compareToIgnoreCase);
+//
+//					System.out.println(channelNames.get(Integer.parseInt(arg)-1));
+//
+//				}
+//			}
+//		}
 		
 	}
 	
