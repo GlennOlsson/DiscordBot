@@ -81,7 +81,7 @@ public class Test extends ListenerAdapter {
 //		//General kakanistan
 		TextChannel general = jda.getTextChannelById("282109399617634304");
 		
-		DailyDose.DailyDose("aww", general);
+		//DailyDose.DailyDose("aww", general);
 		
 //
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
@@ -118,14 +118,13 @@ public class Test extends ListenerAdapter {
 //		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
 		
 		//280772605072375809
+
 //
-		System.out.println(jda.getPrivateChannelById("283333281477558272").getUser());
-//
-		List<PrivateChannel> channels = jda.getPrivateChannels();
+		List<TextChannel> channels = jda.getTextChannels();
 //		System.out.println(channels.size());
-		for (PrivateChannel channel : channels) {
+		for (TextChannel channel : channels) {
 			try {
-				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
+				System.out.println("Name: " + channel.getName() + ", ID: " + channel.getId());
 				
 			} catch (Exception e) {
 			}

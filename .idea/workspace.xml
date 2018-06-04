@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="471eaac9-811c-425e-8e8e-630fae2d155b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_moshi_moshi_1_6_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_10_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_14_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_dean_jraw_JRAW_1_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_dv8tion_JDA_3_6_0_360.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_6.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_2_41.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/RedditAPI/RedditClient.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_8_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_13_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__net_dv8tion_JDA_3_5_1_351.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/DiscordBot.Glenn.Kakan_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/RedditAPI/RedditPost.java" afterPath="$PROJECT_DIR$/src/main/java/RedditAPI/RedditPost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" afterPath="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" afterPath="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/Test.java" afterPath="$PROJECT_DIR$/src/main/java/main/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Listener.java" afterPath="$PROJECT_DIR$/src/main/java/server/Listener.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -87,11 +68,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+            <state relative-caret-position="-522">
+              <caret line="83" column="10" lean-forward="false" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,8 +93,8 @@
       <file leaf-file-name="DailyDose.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="205" column="0" lean-forward="false" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+            <state relative-caret-position="160">
+              <caret line="235" column="12" lean-forward="true" selection-start-line="235" selection-start-column="12" selection-end-line="235" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -157,11 +138,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Listener.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Listener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
-              <caret line="118" column="46" lean-forward="false" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+            <state relative-caret-position="416">
+              <caret line="99" column="55" lean-forward="false" selection-start-line="99" selection-start-column="55" selection-end-line="99" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -188,6 +169,16 @@
                 <element signature="method#onPrivateMessageReceived#0;class#DiscordBot#0" expanded="false" />
                 <element signature="method#onGuildMessageReactionRemove#0;class#DiscordBot#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageReceivedEvents.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/events/MessageReceivedEvents.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="694">
+              <caret line="191" column="36" lean-forward="false" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -708,7 +699,6 @@
         <option value="$PROJECT_DIR$/src/main/java/events/GuildEvents.java" />
         <option value="$PROJECT_DIR$/src/main/java/backend/ReadWrite.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/WelcomeMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/Listener.java" />
         <option value="$PROJECT_DIR$/restart.sh" />
         <option value="$PROJECT_DIR$/start.sh" />
         <option value="$PROJECT_DIR$/src/main/java/events/MessageEvents.java" />
@@ -728,6 +718,7 @@
         <option value="$PROJECT_DIR$/src/main/java/commands/DailyDose.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/DiscordBot.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/Test.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Listener.java" />
       </list>
     </option>
   </component>
@@ -1121,14 +1112,7 @@
       <workItem from="1525193614745" duration="18000" />
       <workItem from="1528110140753" duration="2962000" />
       <workItem from="1528117799007" duration="2461000" />
-      <workItem from="1528120495658" duration="5136000" />
-    </task>
-    <task id="LOCAL-00025" summary="Debugging DailyDose, debugging, even more debugging">
-      <created>1506849599599</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1506849599600</updated>
+      <workItem from="1528120495658" duration="5894000" />
     </task>
     <task id="LOCAL-00026" summary="I honestly don't know what I've done, but it seems to work... :D">
       <created>1506850657340</created>
@@ -1466,11 +1450,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528123743415</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Redesigned Daily Dose with JPRAW, a reddit api. Will redo the linking feature in the future as well">
+      <created>1528126610208</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1528126610208</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153869000" />
+    <option name="totallyTimeSpent" value="154627000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1525,7 +1516,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="JSON Should be working with new type" />
     <MESSAGE value="Added welcome to the help commands" />
     <MESSAGE value="Added command for Daily Dose. You can add/remove Daily Doses from a server now (not tested). If you are the one and only Kakan, you can also force a daily dose" />
     <MESSAGE value="Removing some imports due to compile error" />
@@ -1550,7 +1540,8 @@
     <MESSAGE value="Edited ;editgame in ;help and created a deprecated message for ;game command" />
     <MESSAGE value="Let's not create a new ReactMessage in Kakanistan at restart!" />
     <MESSAGE value="Somewhat stable version of Reddit. Will redo the whole reddit part now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Somewhat stable version of Reddit. Will redo the whole reddit part now" />
+    <MESSAGE value="Redesigned Daily Dose with JPRAW, a reddit api. Will redo the linking feature in the future as well" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redesigned Daily Dose with JPRAW, a reddit api. Will redo the linking feature in the future as well" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1814,22 +1805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/events/MessageReceivedEvents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2516">
-          <caret line="191" column="36" lean-forward="false" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="118" column="46" lean-forward="false" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.6/57cc0a7af46d66754e632bddc558a913b9e66ac3/httpcore-4.4.6-sources.jar!/org/apache/http/entity/ContentType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -1905,6 +1880,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/events/MessageReceivedEvents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="694">
+          <caret line="191" column="36" lean-forward="false" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/RedditAPI/RedditClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
@@ -1917,19 +1900,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/DailyDose.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="205" column="0" lean-forward="false" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+        <state relative-caret-position="160">
+          <caret line="235" column="12" lean-forward="true" selection-start-line="235" selection-start-column="12" selection-end-line="235" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+        <state relative-caret-position="-522">
+          <caret line="83" column="10" lean-forward="false" selection-start-line="83" selection-start-column="10" selection-end-line="83" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Listener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="99" column="55" lean-forward="false" selection-start-line="99" selection-start-column="55" selection-end-line="99" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

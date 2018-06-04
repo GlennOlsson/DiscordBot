@@ -39,6 +39,7 @@ import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Guild;
 
 import java.util.List;
+import java.util.Map;
 
 import static spark.Spark.*;
 
@@ -66,7 +67,7 @@ public class Listener {
 				String welcomeMessage = objectOfGuild.get("welcomeMessage").getAsString();
 				String prefix = objectOfGuild.get("prefix").getAsString();
 				
-				JsonArray gamesArray = objectOfGuild.get("games").getAsJsonArray();
+				JsonObject gamesObject = objectOfGuild.get("games").getAsJsonObject();
 				
 				JsonArray dailyDoseArray = objectOfGuild.get("dailyDoses").getAsJsonArray();
 				
@@ -92,10 +93,11 @@ public class Listener {
 				
 				
 				contentBuilder.append("Games: ");
-				for(JsonElement jsonElement : gamesArray){
-					String game = jsonElement.getAsString();
+				for(Map.Entry<String, JsonElement> keySet : gamesObject.entrySet()){
+					String game = keySet.getValue().getAsString();
+					String emoji = keySet.getKey();
 					contentBuilder.append("\n     ");
-					contentBuilder.append(game);
+					contentBuilder.append(emoji + " - " + game);
 				}
 				
 				contentBuilder.append("\n\n");
