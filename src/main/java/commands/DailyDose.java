@@ -27,6 +27,8 @@
 package commands;
 
 
+import RedditAPI.RedditClient;
+import RedditAPI.RedditPost;
 import backend.Logger;
 
 import backend.ReadWrite;
@@ -36,7 +38,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import com.sun.org.apache.regexp.internal.RE;
+import main.DiscordBot;
 import main.Test;
+import net.dean.jraw.models.SubredditSort;
+import net.dean.jraw.models.TimePeriod;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Guild;
@@ -194,36 +199,24 @@ public class DailyDose {
 		
 		Logger.print("DailyDose!");
 		
-		Document doc;
 		ArrayList<Message> messages = new ArrayList<>();
 		try {
 			//channel=channel.getJDA().getTextChannelById(Test.idKakanisatanGeneral);
 			
-			doc = Jsoup.connect(Return.convertUrl("https://reddit.com/r/"+subreddit.toLowerCase()+"/top/?sort=top&t=day")).userAgent("Chrome").get();
-			for (int i = 1; i < 6; i+=2) {
-				
-				String urlOfPost =  doc.select(".thing:nth-of-type("+(i)+") > div.entry.unvoted > div.top-matter > ul > li.first > a")
-						.attr("href");
-				
-				String[] mediaURLAndTitleOfPost = getRedditMediaURLAndTitle(Return.convertUrl(urlOfPost));
-				
-				String mediaURLofPost = mediaURLAndTitleOfPost[0];
-				String titleOfPost = mediaURLAndTitleOfPost[1];
-				
-				Logger.print("Daily dose "+(i+1)/2 +": " + Return.convertUrl(urlOfPost));
-				
+			ArrayList<RedditPost> posts = DiscordBot.redditClient.getTopPosts(subreddit, 3, SubredditSort.TOP, TimePeriod.DAY);
+			
+			for(RedditPost post : posts){
 				MessageBuilder message = new MessageBuilder();
 				
 				message.append("**");
-				message.append(titleOfPost);
+				message.append(post.getTitle());
 				message.append("** - ");
-				message.append(mediaURLofPost);
+				message.append(post.getMediaUrl());
 				
 				messages.add(message.build());
-				
 			}
 			
-			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).queue();
+			channel.sendMessage("Here's your daily dose of /r/"+ subreddit).submit();
 			
 			for(Message message : messages){
 				channel.sendMessage(message).submit();

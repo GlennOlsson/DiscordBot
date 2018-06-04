@@ -41,6 +41,7 @@ https://www.reddit.com/api/v1/authorize?client_id=uGN5rXPLJsdZ2Q&response_type=c
 */
 
 
+import RedditAPI.RedditClient;
 import backend.*;
 import commands.DailyDose;
 import commands.GameRoles;
@@ -67,9 +68,11 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import server.Listener;
 
 
-class DiscordBot extends ListenerAdapter{
+public class DiscordBot extends ListenerAdapter{
 	
 	GenericEvents genericEvents = new GenericEvents();
+	
+	public static RedditClient redditClient;
 	
 	public static void main(String[] args) {
 		try {
@@ -80,6 +83,8 @@ class DiscordBot extends ListenerAdapter{
 						.buildBlocking();
 				
 				DailyDose.DailyDose(jda);
+				
+				redditClient = new RedditClient();
 				
 				new Listener(jda);
 				

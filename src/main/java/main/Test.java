@@ -27,11 +27,13 @@
 
 package main;
 
+import RedditAPI.RedditClient;
 import backend.Logger;
 import backend.ReadWrite;
 import com.google.gson.JsonObject;
 import com.vdurmont.emoji.EmojiManager;
 import com.vdurmont.emoji.EmojiParser;
+import commands.DailyDose;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -66,6 +68,8 @@ public class Test extends ListenerAdapter {
 					.addEventListener(new Test())
 					.buildBlocking();
 			
+			DiscordBot.redditClient = new RedditClient();
+			
 		} catch (Exception e) {
 			
 			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
@@ -75,7 +79,10 @@ public class Test extends ListenerAdapter {
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
 //		//General kakanistan
-//		TextChannel general = jda.getTextChannelById("282109399617634304");
+		TextChannel general = jda.getTextChannelById("282109399617634304");
+		
+		DailyDose.DailyDose("aww", general);
+		
 //
 //		AudioManager audioManager = new AudioManagerImpl(kakanistan);
 //		audioManager.openAudioConnection(jda.getGuildsByName("Kakanistan", true).get(0).getVoiceChannels().get(0));

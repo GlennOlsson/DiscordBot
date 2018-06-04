@@ -39,22 +39,17 @@ public class RedditPost {
 	private String mediaUrl;
 	private String title;
 	private String postUrl;
+	private boolean isTextpost;
 	
-	public RedditPost(String jsonString){
-		JsonObject json = ReadWrite.parseStringToJSON(jsonString);
-		
-		//If is link
-		if(json.has("kind") && json.get("kind").equals("t3")){
-			JsonObject dataJson = json.getAsJsonObject("data");
-			title = dataJson.get("title").getAsString();
-			mediaUrl = dataJson.get("url").getAsString();
-			postUrl = dataJson.get("permalink").getAsString();
-		}
-		else{
-			Logger.print("Not a link input. Either does not have \"kind\" field or it is not equal to t3");
-			throw new IllegalArgumentException("Not a link");
-		}
-		
+	public RedditPost(String mediaUrl, String title, String postUrl, boolean isTextpost) {
+		this.mediaUrl = mediaUrl;
+		this.title = title;
+		this.postUrl = postUrl;
+		this.isTextpost = isTextpost;
+	}
+	
+	public boolean isTextpost() {
+		return isTextpost;
 	}
 	
 	public String getMediaUrl() {
