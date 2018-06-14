@@ -28,12 +28,14 @@
 package main;
 
 import RedditAPI.RedditClient;
+import RedditAPI.RedditPost;
 import backend.Logger;
 import backend.ReadWrite;
 import com.google.gson.JsonObject;
 import com.vdurmont.emoji.EmojiManager;
 import com.vdurmont.emoji.EmojiParser;
 import commands.DailyDose;
+import net.dean.jraw.models.Submission;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -46,10 +48,13 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
 import server.Listener;
 
+import java.net.URI;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("unused")
 public class Test extends ListenerAdapter {
@@ -61,25 +66,25 @@ public class Test extends ListenerAdapter {
 
 //		System.out.println(EmojiManager.getForAlias(":-1:").getUnicode());
 		
-		JDA jda = null;
-		try {
-			jda = new JDABuilder(AccountType.BOT)
-					.setToken(ReadWrite.getKey("oath").getAsString())
-					.addEventListener(new Test())
-					.buildBlocking();
-			
+//		JDA jda = null;
+//		try {
+//			jda = new JDABuilder(AccountType.BOT)
+//					.setToken(ReadWrite.getKey("oath").getAsString())
+//					.addEventListener(new Test())
+//					.buildBlocking();
+//
 			DiscordBot.redditClient = new RedditClient();
-			
-		} catch (Exception e) {
-			
-			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
-			
-		}
+//
+//		} catch (Exception e) {
+//
+//			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);
+//
+//		}
 
 //
 //		Guild kakanistan = jda.getGuildById("282109399617634304");
 //		//General kakanistan
-		TextChannel general = jda.getTextChannelById("282109399617634304");
+//		TextChannel general = jda.getTextChannelById("282109399617634304");
 		
 		//DailyDose.DailyDose("aww", general);
 		
@@ -120,18 +125,59 @@ public class Test extends ListenerAdapter {
 		//280772605072375809
 
 //
-		List<TextChannel> channels = jda.getTextChannels();
-//		System.out.println(channels.size());
-		for (TextChannel channel : channels) {
-			try {
-				System.out.println("Name: " + channel.getName() + ", ID: " + channel.getId());
-				
-			} catch (Exception e) {
-			}
-		}
+//		List<TextChannel> channels = jda.getTextChannels();
+////		System.out.println(channels.size());
+//		for (TextChannel channel : channels) {
+//			try {
+//				System.out.println("Name: " + channel.getName() + ", ID: " + channel.getId());
+//
+//			} catch (Exception e) {
+//			}
+//		}
 //
 //		System.out.println(jda.getGuildById(idKakanisatanGeneral).getEmotesByName("<:discordemote:425013364809269269>", true));
-
+		
+		String redditTests[] = {
+				"https://www.reddit.com/r/SiliconValleyHBO/comments/730qcz/how_did_jareddonald_celebrate/",
+				"https://www.reddit.com/r/worldnews/comments/734bbp/puerto_rico_rejects_loan_offers_accusing_hedge/",
+				"https://www.reddit.com/r/woahdude/comments/730nv5/escher_circle_limit/",
+				"https://www.reddit.com/r/oddlysatisfying/comments/735eei/this_group_of_gentlemen_bobbing_their_heads/",
+				"https://www.reddit.com/r/mildlyinteresting/comments/7349fj/hurricane_irma_eroded_away_the_dune_this_pine/",
+				"https://www.reddit.com/r/AdviceAnimals/comments/733lgf/never_hurts_to_use_the_google/",
+				"https://www.reddit.com/r/pics/comments/733k4v/the_mount_rushmore_of_selfies/",
+				"https://www.reddit.com/r/me_irl/comments/733ufb/meirl/",
+				"https://www.reddit.com/r/firstworldanarchists/comments/730fpq/mad_lass/",
+				"https://www.reddit.com/r/videos/comments/734xd0/fucking_shit/",
+				"https://www.reddit.com/r/AbruptChaos/comments/730528/give_us_another_one/",
+				"https://www.reddit.com/r/WTF/comments/732qhd/thats_some_serious_faith_you_have_there/",
+				"https://www.reddit.com/r/gifs/comments/734jy3/synchronized_backflip/",
+				"https://www.reddit.com/r/yesyesyesyesno/comments/8qm2y9/almost_had_it/?st=jidc6ebo&sh=7c931f4b",
+				"https://www.reddit.com/r/gaming/comments/8qzwul/no_you_cant_go_play_with_the_other_consoles/"
+		};
+		
+		
+		Pattern pattern = Pattern.compile("comments/((([0-9]|[A-z])[A-z]*[0-9]*){5})");
+		
+		for(String url : redditTests){
+			Matcher matcher = pattern.matcher(url);
+			if (matcher.find()) {
+				String id = matcher.group(1);
+				System.out.println(id);
+				
+				RedditPost post = DiscordBot.redditClient.getPostWithID(id);
+				
+				if(!post.isTextpost())
+					System.out.println(post.getTitle() + " - " + post.getMediaUrl());
+				
+				
+			}
+			else{
+				System.out.println("None found");
+			}
+		}
+		
+		
+		
 }
 	
 //	public void onMessageReceived(MessageReceivedEvent event){

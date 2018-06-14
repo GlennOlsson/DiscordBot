@@ -74,15 +74,16 @@ public class RedditClient {
 		int index = 0;
 		
 		postIterator.forEach(post -> {
-			String mediaURL = post.getUrl();
-			String title = post.getTitle();
-			String permalink = post.getPermalink();
-			boolean isTextpost = post.isSelfPost();
-			
-			postList.add(new RedditPost(mediaURL, title, permalink, isTextpost));
+			postList.add(new RedditPost(post));
 		});
 		
 		return postList;
+	}
+	
+	public RedditPost getPostWithID(String id){
+		Submission submission = client.submission(id).inspect();
+		RedditPost post = new RedditPost(submission);
+		return post;
 	}
 	
 	enum sortType{

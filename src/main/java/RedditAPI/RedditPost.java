@@ -33,6 +33,7 @@ import backend.ReadWrite;
 import backend.Return;
 import com.google.gson.JsonObject;
 import commands.Reddit;
+import net.dean.jraw.models.Submission;
 
 public class RedditPost {
 	
@@ -46,6 +47,13 @@ public class RedditPost {
 		this.title = title;
 		this.postUrl = postUrl;
 		this.isTextpost = isTextpost;
+	}
+	
+	public RedditPost(Submission submission){
+		this.mediaUrl = submission.getUrl();
+		this.title = submission.getTitle();
+		this.postUrl = submission.getPermalink();
+		this.isTextpost = submission.isSelfPost();
 	}
 	
 	public boolean isTextpost() {

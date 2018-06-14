@@ -70,13 +70,19 @@
 
 package commands;
 
+import RedditAPI.RedditPost;
 import backend.Logger;
 import backend.Return;
+import main.DiscordBot;
+import main.Test;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Reddit {
@@ -102,110 +108,39 @@ public class Reddit {
 			content=split[0];
 		}
 		
-		String[] redditMediaURLAndTitle = getRedditMediaURLAndTitle(content);
+		String id = getIdOfURL(content);
 		
-		if(redditMediaURLAndTitle[0].equals("")){
+		if(id == null){
+			Logger.logError(new IllegalStateException("No match found"), "Could not find ID in url", "in getIdOfURL(), url: " + content, event);
+			Logger.print("Could not find id in reddit url: " + content);
+			channel.sendMessage("Sorry, could not parse the link to the reddit url").submit();
+		}
+		
+		RedditPost post = DiscordBot.redditClient.getPostWithID(id);
+		
+		if(post.isTextpost()){
 			return;
 		}
 		
-		String redditMediaURL = redditMediaURLAndTitle[0];
-		String redditTitile = redditMediaURLAndTitle[1];
+		channel.sendMessage("*" + event.getAuthor().getName() + "* shared: **" + post.getTitle() + "** - " + post.getMediaUrl()).queue();
 		
-		
-		channel.sendMessage("*" + event.getAuthor().getName() + "* shared: **" + redditTitile + "** - " + redditMediaURL).queue();
 		//Check if I have MESSAGE_MANAGE permission, before trying to delete
-		
-		for (int i = 0; i < event.getTextChannel().getMembers().size(); i++) {
-			if(event.getTextChannel().getMembers().get(i).getUser().getId().equals(event.getJDA().getSelfUser().getId())) {
-				//Is KakansBot
-				if(!event.getTextChannel().getMembers().get(i).hasPermission(Permission.MESSAGE_MANAGE)) {
-					Logger.print("Cannot delete initial reddit URL message in " + event.getChannel().getName()
-							+ " channel in " + event.getGuild().getName() + " guild, because lack of MESSAGE_MANAGE");
-				} else {
-					event.getMessage().delete().queue();
-				}
-				i = event.getTextChannel().getMembers().size() + 5;
-			}
+		if(!event.getGuild().getMemberById(Test.idKakansBot).hasPermission(Permission.MESSAGE_MANAGE)) {
+			Logger.print("Cannot delete initial reddit URL message in " + event.getChannel().getName()
+					+ " channel in " + event.getGuild().getName() + " guild, because lack of MESSAGE_MANAGE");
+		} else {
+			event.getMessage().delete().queue();
 		}
-		
 	}
 	
-	//Returns a list of [RedditMediaURL, RedditTitle]
-	public static String[] getRedditMediaURLAndTitle(String redditURL) {
-		
-		Document RedditHTMLocument;
-		String url, redditTitle;
-		try {
-			RedditHTMLocument = Jsoup.connect(Return.convertUrl(redditURL)).userAgent("Chrome").followRedirects(true)
-					.cookie("over18", "1").get();
-			
-			redditTitle = RedditHTMLocument.select(".title > a").text();
-			
-			url = RedditHTMLocument.select(".title > a").attr("href");
-			Logger.print("Reddit URL: "+ url + ", Reddit tile: "+redditTitle);
-			if(!url.substring(0, 3).equals("/r/")) {
-				//If not textpost
-				
-				if(url.contains("imgur.com")) {
-					
-					String imgurURL = null;
-					
-					if(url.length() - url.lastIndexOf(".") <= 5) {
-						
-						//Makes imgur.com/IDNUMBER.mp4 --> imgur.com/IDNUMBER.gifv
-						switch (url.substring(url.lastIndexOf("."))) {
-							case ".mp4":
-								imgurURL = url.replace(".mp4", ".gifv");
-								break;
-							//Makes imgur.com/IDNUMBER.gif --> imgur.com/IDNUMBER.gifv
-							case ".gif":
-								imgurURL = url.replace(".gif", ".gifv");
-								break;
-							default:
-								imgurURL = url;
-								break;
-						}
-						Logger.print(imgurURL + " = IMGUR URL");
-					}
-					if(url.length() - url.lastIndexOf(".") > 5) {
-						
-						try {
-							//Tries to get .zoom class (the class of the link if it's a picture
-							
-							Document imgurHTMLDocument = null;
-							
-							try {
-								
-								imgurHTMLDocument = Jsoup.connect(Return.convertUrl(url)).userAgent("Chrome").get();
-							} catch (Exception e) {
-								Logger.logError(e, redditURL, "Error in .getRedditMediaURL", null);
-							}
-							
-							imgurHTMLDocument.select(".zoom").attr("href");
-							imgurURL = "http:" + imgurHTMLDocument.select(".zoom").attr("href");
-							Logger.print(imgurURL + " = IMGUR URL from .zoom");
-							if(imgurURL.length() < 7) {
-								//Fails because .zoom does not exist --> not picture
-								Logger.print("ERROR");
-								throw new Exception();
-							}
-							
-						} catch (Exception e) {
-							//Moving image: Gif, Gifv, mp4...
-							imgurURL = url + ".gifv";
-						}
-					}
-					return new String[]{imgurURL, redditTitle};
-					
-				} else {
-					return new String[]{url, redditTitle};
-				}
-			} else {
-				Logger.print("Is textpost");
-			}
-		} catch (Exception e) {
-			Logger.logError(e, "Error in .getRedditMediaURL", "Returning null as RedditMediaURL", null);
+	public static String getIdOfURL(String redditURL) {
+		Pattern pattern = Pattern.compile("comments/((([0-9]|[A-z])[A-z]*[0-9]*){5})");
+		Matcher matcher = pattern.matcher(redditURL);
+		if (matcher.find()) {
+			return matcher.group(1);
 		}
-		return new String[]{"",""};
+		else {
+			return null;
+		}
 	}
 }
