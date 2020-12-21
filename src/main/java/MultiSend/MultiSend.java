@@ -114,7 +114,7 @@ class MultiSend extends ListenerAdapter{
 			
 		}
 		
-		mentionKakan=jda.getUserById("165507757519273984").getAsMention();
+		mentionKakan = jda.retrieveUserById(Test.idKakan).complete().getAsMention();
 		
 		int yAxis = 0, xAxis = 0;
 		for (int j = 0; j < jda.getGuilds().size(); j++){

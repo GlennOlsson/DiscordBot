@@ -94,7 +94,7 @@ public class WelcomeMessage {
 			String maybeUserId = transformedMessage.substring(firstIndex + 2, lastIndex);
 			Logger.print(maybeUserId + "---");
 			try {
-				User user = jda.getUserById(maybeUserId);
+				User user = jda.retrieveUserById(maybeUserId).complete();
 				transformedMessage = transformedMessage.replaceFirst("<@" + maybeUserId + ">", "**@" + user.getName() + "#" +
 						user.getDiscriminator() + "**");
 			} catch (Exception e) {

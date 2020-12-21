@@ -29,6 +29,8 @@ package commands;
 
 import backend.Logger;
 import net.dv8tion.jda.api.entities.PrivateChannel;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.RateLimitedException;
 
@@ -146,14 +148,19 @@ public class Help {
 			command = command + feature + ", ";
 		}
 		command+=";help";
+		JDA jda = event.getJDA();
+		System.out.println(event.getAuthor().getId());
+		// User u = jda.retrieveUserById(event.getAuthor().getId());
+		// System.out.println("USER: " + u);
+		// System.out.println(u + " - " + u.getAsMention());
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you " +
 				"can use. Send a **;help** followed by one of the features listed, to see specified help for that command. Some can" +
 				" also be done in PM. If you need more assistance, contact the developer, "+event.getJDA().
-				getUserById("165507757519273984").getAsMention()+" by PM. He'll be happy to assist you").queue();
+				retrieveUserById(Test.idKakan).complete().getAsMention()+" by PM. He'll be happy to assist you").queue();
 		//noinspection UnnecessaryReturnStatement
 		return;
 
-	}
+	} 
 
 
 }

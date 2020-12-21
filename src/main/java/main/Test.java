@@ -59,7 +59,7 @@ import java.util.regex.Pattern;
 @SuppressWarnings("unused")
 public class Test extends ListenerAdapter {
 	
-	public static String idKakan = "165507757519273984", idKakansBot = "282116563266437120",
+	public static String idKakan = Test.idKakan, idKakansBot = "282116563266437120",
 			idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
 	public static void main(String[] args) throws Exception {
@@ -186,7 +186,7 @@ public class Test extends ListenerAdapter {
 //
 //		System.out.println(content);
 //
-//		if(event.getAuthor().getId().equals("165507757519273984")){
+//		if(event.getAuthor().getId().equals(Test.idKakan)){
 //			Reddit(event.getChannel(), event, content);
 //		}
 //	}
@@ -216,7 +216,7 @@ public class Test extends ListenerAdapter {
 		}
 		
 //		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
-//			event.getChannel().sendMessage(event.getJDA().getUserById("165507757519273984").getAsMention()).queue();
+//			event.getChannel().sendMessage(event.getJDA().retrieveUserById(getUserById(Test.idKakan)).queue().getAsMention()).queue();
 //		}
 //
 //		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
@@ -225,7 +225,7 @@ public class Test extends ListenerAdapter {
 //
 //		if(content.contains(";send")&&content.substring(0, ";send".length()).equals(";send")){
 //			String user= event.getAuthor().getName().toLowerCase() + "#"+event.getAuthor().getDiscriminator().toLowerCase();
-//			if (event.getJDA().getUserById(idKakan)==event.getAuthor()) {
+//			if (event.getJDA().retrieveUserById(getUserById(idKakan)).queue()==event.getAuthor()) {
 //				System.err.println("AUTHORIZED");
 //				if(!content.contains(" ")){
 //					event.getChannel().sendMessage("-- YOU CAN MESSAGE THE FOLLOWING CHANNELS --").queue();

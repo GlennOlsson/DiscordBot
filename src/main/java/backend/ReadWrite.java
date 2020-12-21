@@ -46,7 +46,7 @@ public class ReadWrite {
 	public static Boolean isAuthorized(MessageReceivedEvent event, Permission permission) {
 		Member memeber = event.getMember();
 		
-		if(event.getAuthor().getId().equals("165507757519273984")){
+		if(event.getAuthor().getId().equals(Test.idKakan)){
 			return true;
 		}
 		
@@ -63,15 +63,19 @@ public class ReadWrite {
 			JsonObject jsonObject = parseStringToJSON(contentOfFile);
 			
 			JsonObject allGuilds = jsonObject.get("guilds").getAsJsonObject();
-			JsonObject thisGuild = allGuilds.get(id).getAsJsonObject();
+			JsonElement guildElem = allGuilds.get(id);
+			if(guildElem == null)
+				return ";";
+
+			JsonObject thisGuild = guildElem.getAsJsonObject();
 			
-			String prefix = thisGuild.get("prefix");
+			JsonElement prefix = thisGuild.get("prefix");
 			if(prefix == null || prefix.getAsString().length() == 0){
 				//No prefix
 				return ";";
 			}
 			//Else
-			return prefix;
+			return prefix.getAsString();
 			
 		} catch (Exception e) {
 			

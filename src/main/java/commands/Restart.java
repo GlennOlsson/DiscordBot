@@ -45,7 +45,7 @@ public class Restart {
 	
 	public static void Restart(MessageChannel channel, MessageReceivedEvent event){
 		User author = event.getMessage().getAuthor();
-		if(author.getId().equals("165507757519273984")){
+		if(author.getId().equals(Test.idKakan)){
 			channel.sendMessage("Alright boss, shutting down...").submit();
 			event.getJDA().getPresence().setStatus(OnlineStatus.OFFLINE);
 			try{
@@ -90,7 +90,7 @@ public class Restart {
 			if(!event.getChannel().getType().equals(ChannelType.PRIVATE)) {
 				guildText = "the " + event.getGuild().getName() + " server";
 				
-				mentionText = "Hey " + event.getJDA().getUserById("165507757519273984").getAsMention() +
+				mentionText = "Hey " + event.getJDA().retrieveUserById(Test.idKakan).complete().getAsMention() +
 						", do you know what " + author.getName() + " did?!";
 			}
 			else{

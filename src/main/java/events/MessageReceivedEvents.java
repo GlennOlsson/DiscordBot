@@ -188,7 +188,7 @@ public class MessageReceivedEvents {
 					try {
 						if(!event.getChannelType().equals(ChannelType.PRIVATE)) {
 							channel.sendMessage("This command ahs been deprecated. Now, react or un-react to the message that I have sent. " +
-									"Contact a moderator or " + event.getJDA().getUserById(Test.idKakan).getAsMention() + " for more information")
+									"Contact a moderator or " + event.getJDA().retrieveUserById(Test.idKakan).complete().getAsMention() + " for more information")
 									.complete();
 						}
 					}
@@ -255,6 +255,8 @@ public class MessageReceivedEvents {
 						Logger.logError(e, content, "Error with help command", event);
 					}
 					break;
+				default:
+					channel.sendMessage("Command not supported").complete();
 			}
 			
 			//				else{
