@@ -29,9 +29,9 @@ package backend;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import jdk.nashorn.internal.parser.JSONParser;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.json.JSONObject;
 
 import java.io.StringReader;

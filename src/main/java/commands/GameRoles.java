@@ -34,14 +34,13 @@ import com.google.gson.JsonObject;
 import com.vdurmont.emoji.EmojiManager;
 import com.vdurmont.emoji.EmojiParser;
 import main.Test;
-import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.guild.react.GenericGuildMessageReactionEvent;
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionRemoveEvent;
-import net.dv8tion.jda.core.managers.GuildController;
+import net.dv8tion.jda.api.MessageBuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.react.GenericGuildMessageReactionEvent;
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionRemoveEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,17 +96,19 @@ public class GameRoles {
 	private static void toggleGameRole(User user, String game, Guild guild, EditType editType){
 		List<Role> roles = guild.getRolesByName(game, true);
 		if(roles.size() > 0){
-			GuildController controller = new GuildController(guild);
+			// GuildController controller = new GuildController(guild);
 			Member member = guild.getMember(user);
 			
 			Role role = roles.get(0);
 			if(editType == EditType.REMOVE){
 				System.out.println("Removing " + role.getName());
-				controller.removeSingleRoleFromMember(member, role).queue();
+				guild.removeRoleFromMember(member, role).queue();
+				// controller.removeSingleRoleFromMember(member, role).queue();
 			}
 			else{
 				System.out.println("Adding " + role.getName());
-				controller.addRolesToMember(member, role).queue();
+				guild.removeRoleFromMember(member, role).queue();
+				// controller.addRolesToMember(member, role).queue();
 			}
 		}
 	}
@@ -139,7 +140,7 @@ public class GameRoles {
 			if(channel.getGuild().getMember(channel.getJDA().getSelfUser()).hasPermission(Permission.MESSAGE_MANAGE)){
 				try{
 					String reactionMessageID = guildObject.get("gamesMessageID").getAsString();
-					channel.getMessageById(reactionMessageID).complete().delete().queue();
+					channel.retrieveMessageById​(reactionMessageID).complete().delete().queue();
 				}
 				catch (Exception e){
 					//Do nothing
@@ -157,7 +158,7 @@ public class GameRoles {
 			
 			guildObject.addProperty("gamesMessageID", messageID);
 			ReadWrite.addEditedGuild(channel.getGuild(), guildObject);
-			//		Message sentMessage = channel.getMessageById(messageID).complete();
+			//		Message sentMessage = channel.retrieveMessageById​(messageID).complete();
 			for(Map.Entry<String, JsonElement> emojiGamePair : emojiGameSet){
 				addEmoteToMessage(emojiGamePair.getKey(), channel.getGuild(), sentMessage);
 			}
@@ -307,8 +308,10 @@ public class GameRoles {
 				Logger.print("Added " + game + " to " + event.getGuild().getName() + " with emoji " + emoji);
 				try{
 					Logger.print("Created role "+game);
-					GuildController controller = new GuildController(event.getGuild());
-					controller.createRole().setName(game).setMentionable(true).complete();
+					// GuildController controller = new GuildController(event.getGuild());
+
+					event.getGuild().createRole().setName(game).setMentionable(true).complete();
+					// controller.createRole().setName(game).setMentionable(true).complete();
 				}
 				catch (Exception e){
 					Logger.logError(e, "Could not create role", game, event);

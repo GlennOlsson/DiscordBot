@@ -31,7 +31,7 @@ package events;
 import backend.Logger;
 import backend.ReadWrite;
 import com.google.gson.JsonObject;
-import net.dv8tion.jda.core.events.guild.update.GuildUpdateNameEvent;
+import net.dv8tion.jda.api.events.guild.update.GuildUpdateNameEvent;
 
 public class GuildUpdateEvents {
 	

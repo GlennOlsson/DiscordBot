@@ -28,14 +28,14 @@ package MultiSend;
 
 import backend.Logger;
 import backend.ReadWrite;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -107,7 +107,7 @@ class MultiSend extends ListenerAdapter{
 		
 		try {
 			jda = new JDABuilder(AccountType.BOT).setToken(ReadWrite.getKey("oath").getAsString()).
-					addEventListener(new MultiSend()).buildBlocking();
+					addEventListeners(new MultiSend()).build();
 		} catch (Exception e) {
 			
 			Logger.logError(e, "JDA Fail in Test", "JDA Fail in Test", null);

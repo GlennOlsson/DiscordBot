@@ -1,6 +1,7 @@
 .gradle/*
 build/classes/*
 
+*.class
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij,gradle,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij,gradle,vscode
@@ -136,3 +137,7 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,gradle,vscode
+
+bin/
+*.idea
+*.vscode

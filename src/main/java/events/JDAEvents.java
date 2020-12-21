@@ -30,12 +30,12 @@ package events;
 
 import backend.Logger;
 import backend.ReadWrite;
-import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.ReadyEvent;
-import net.dv8tion.jda.core.events.ReconnectedEvent;
-import net.dv8tion.jda.core.events.ShutdownEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+// import net.dv8tion.jda.api.entities.Game;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.events.ReconnectedEvent;
+import net.dv8tion.jda.api.events.ShutdownEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 /**
  * Created by Glenn on 2017-06-04.
@@ -56,7 +56,7 @@ public class JDAEvents extends ListenerAdapter {
 				//Probably could not convert string -> int
 				Logger.logError(e, "Error in JDAEvents.Ready", "Run count: " + ReadWrite.getKey("runCount"), null);
 			}
-			event.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT,"Send ;help"));
+			// event.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT,"Send ;help"));
 		}catch (Exception e) {
 			Logger.logError(e, "Error in JDAEvents.Ready", "Unknown error", null);
 		}
@@ -64,7 +64,7 @@ public class JDAEvents extends ListenerAdapter {
 	
 	public static void Reconnect(ReconnectedEvent event) {
 		try {
-			event.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT,"Send ;help"));
+			// event.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT,"Send ;help"));
 			Logger.print("Reconnected");
 		} catch (Exception e) {
 			Logger.logError(e, "Error in JDAEvents.Reconnect", "Unknown error", null);

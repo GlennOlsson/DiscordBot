@@ -27,7 +27,7 @@
 package events;
 
 import commands.DailyDose;
-import net.dv8tion.jda.core.events.Event;
+import net.dv8tion.jda.api.events.Event;
 
 /**
  * Created by Glenn on 2017-06-04.

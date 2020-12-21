@@ -15,7 +15,7 @@ sourceCompatibility = 1.8
 mainClassName = 'main.DiscordBot'
 
 version '1.0'
-def jdaVersion = '3.6.0_360'
+def jdaVersion = '4.2.0_223'
 
 sourceCompatibility = 1.8
 

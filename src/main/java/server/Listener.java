@@ -34,9 +34,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.sun.org.apache.regexp.internal.RE;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Channel;
-import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.Guild;
 
 import java.util.List;
 import java.util.Map;
@@ -111,7 +111,7 @@ public class Listener {
 					String lastSent = dailyDoseObject.get("lastSent").getAsString();
 					long channelID = dailyDoseObject.get("channel").getAsLong();
 					
-					Channel channel = jda.getTextChannelById(channelID);
+					TextChannel channel = jda.getTextChannelById(channelID);
 					
 					String channelName = channel.getName();
 					

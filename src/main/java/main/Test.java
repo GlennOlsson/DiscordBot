@@ -36,16 +36,16 @@ import com.vdurmont.emoji.EmojiManager;
 import com.vdurmont.emoji.EmojiParser;
 import commands.DailyDose;
 import net.dean.jraw.models.Submission;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import static commands.Reddit.*;
 
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.priv.PrivateMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import server.Listener;
 
 import java.net.URI;
@@ -209,7 +209,7 @@ public class Test extends ListenerAdapter {
 //		System.out.println(channels.size());
 		for (PrivateChannel channel : channels) {
 			try {
-				System.out.println("Name: " + channel.getName() + ", Content: " + channel.getMessageById(channel.getLatestMessageId()).complete().getContentRaw());
+				System.out.println("Name: " + channel.getName() + ", Content: " + channel.retrieveMessageById​(channel.getLatestMessageId()).complete().getContentRaw());
 				
 			} catch (Exception e) {
 			}

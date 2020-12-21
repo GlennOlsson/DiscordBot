@@ -26,7 +26,7 @@
 
 package commands;
 
-import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.MessageChannel;
 
 public class Source {
 	public static void Source(MessageChannel channel){

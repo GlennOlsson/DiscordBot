@@ -53,7 +53,7 @@ public class RedditClient {
 		String password = ReadWrite.getKey("bot-pass").getAsString();
 		String clientId = ReadWrite.getKey("client-id").getAsString();
 		String clientSecret = ReadWrite.getKey("client-secret").getAsString();
-		
+
 		Credentials oauthCreds = Credentials.script(username, password, clientId, clientSecret);
 		UserAgent userAgent = new UserAgent("bot", "se.glennolsson.KakansBot", "1.0.0", "KakansBot");
 		
