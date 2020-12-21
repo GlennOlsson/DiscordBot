@@ -104,7 +104,7 @@ public class Clean {
 			try {
 				historyList=history.retrievePast(100).complete(true);
 			} catch (Exception e) {
-				channel.sendMessage("Error, contact "+event.getJDA().retrieveUserById(Test.idKakan).complete().getAsMention()+" with id: "+event.getMessage().getId());
+				channel.sendMessage("Error, contact "+event.getJDA().retrieveUserById("165507757519273984").complete().getAsMention()+" with id: "+event.getMessage().getId());
 				Logger.logError(e, content, event.getMessage().getId(), event);
 			}
 			event.getMessage().delete().queue();

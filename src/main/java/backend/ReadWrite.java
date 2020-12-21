@@ -46,7 +46,7 @@ public class ReadWrite {
 	public static Boolean isAuthorized(MessageReceivedEvent event, Permission permission) {
 		Member memeber = event.getMember();
 		
-		if(event.getAuthor().getId().equals(Test.idKakan)){
+		if(event.getAuthor().getId().equals("165507757519273984")){
 			return true;
 		}
 		

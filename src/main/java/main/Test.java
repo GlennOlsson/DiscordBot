@@ -59,7 +59,7 @@ import java.util.regex.Pattern;
 @SuppressWarnings("unused")
 public class Test extends ListenerAdapter {
 	
-	public static String idKakan = Test.idKakan, idKakansBot = "282116563266437120",
+	public static String idKakan = "165507757519273984", idKakansBot = "282116563266437120",
 			idKakanisatanGeneral = "282109399617634304", idKakanistanGuild = "282109399617634304";
 	
 	public static void main(String[] args) throws Exception {
@@ -186,7 +186,7 @@ public class Test extends ListenerAdapter {
 //
 //		System.out.println(content);
 //
-//		if(event.getAuthor().getId().equals(Test.idKakan)){
+//		if(event.getAuthor().getId().equals("165507757519273984")){
 //			Reddit(event.getChannel(), event, content);
 //		}
 //	}
@@ -216,7 +216,7 @@ public class Test extends ListenerAdapter {
 		}
 		
 //		if(content.contains(";testing")&&content.substring(0, ";testing".length()).equals(";testing")){
-//			event.getChannel().sendMessage(event.getJDA().retrieveUserById(getUserById(Test.idKakan)).queue().getAsMention()).queue();
+//			event.getChannel().sendMessage(event.getJDA().retrieveUserById(getUserById("165507757519273984")).queue().getAsMention()).queue();
 //		}
 //
 //		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){

@@ -156,7 +156,7 @@ public class Help {
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you " +
 				"can use. Send a **;help** followed by one of the features listed, to see specified help for that command. Some can" +
 				" also be done in PM. If you need more assistance, contact the developer, "+event.getJDA().
-				retrieveUserById(Test.idKakan).complete().getAsMention()+" by PM. He'll be happy to assist you").queue();
+				retrieveUserById("165507757519273984").complete().getAsMention()+" by PM. He'll be happy to assist you").queue();
 		//noinspection UnnecessaryReturnStatement
 		return;
 

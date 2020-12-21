@@ -141,7 +141,7 @@ public class Gif {
 					
 				}
 			} catch (Exception e) {
-				event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().retrieveUserById(Test.idKakan).complete().
+				event.getChannel().sendMessage("Error was caught. Contact "+event.getJDA().retrieveUserById("165507757519273984").complete().
 						getAsMention()+" with id "+event.getMessage().getId());
 				Logger.logError(e, event.getMessage().getContentDisplay(), event.getMessage().getId(), event);
 			}
