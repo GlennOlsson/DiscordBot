@@ -42,13 +42,15 @@ import net.dean.jraw.oauth.OAuthHelper;
 import net.dean.jraw.pagination.DefaultPaginator;
 import net.dean.jraw.pagination.RedditIterable;
 
+import backend.Logger;
+
 import java.util.ArrayList;
 
 public class RedditClient {
 	
 	private net.dean.jraw.RedditClient client;
 	
-	public RedditClient(){
+	public RedditClient() {
 		String username = "KakansBot";
 		String password = ReadWrite.getKey("bot-pass").getAsString();
 		String clientId = ReadWrite.getKey("client-id").getAsString();
@@ -96,7 +98,7 @@ public class RedditClient {
 	    ArrayList<RedditPost> posts = client.getTopPosts("aww", 3, SubredditSort.TOP, TimePeriod.DAY);
 	    
 	    for(RedditPost post : posts){
-		    System.out.println("**" + post.getTitle() + "** - " + post.getMediaUrl());
+		    Logger.print("**" + post.getTitle() + "** - " + post.getMediaUrl());
 	    }
 	}
 }

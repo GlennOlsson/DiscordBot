@@ -48,6 +48,7 @@ import commands.GameRoles;
 import events.*;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.events.Event;
 import net.dv8tion.jda.api.events.ReadyEvent;
@@ -78,8 +79,7 @@ public class DiscordBot extends ListenerAdapter{
 	public static void main(String[] args) {
 		try {
 			try {
-				JDA jda = new JDABuilder(AccountType.BOT)
-						.setToken(ReadWrite.getKey("oath").getAsString())
+				JDA jda = JDABuilder.createDefault(ReadWrite.getKey("oath").getAsString())
 						.addEventListeners(new DiscordBot())
 						.setActivity​(Activity.playing("Send ;help"))
 						.build();
@@ -87,9 +87,9 @@ public class DiscordBot extends ListenerAdapter{
 				DailyDose.DailyDose(jda);
 				
 				redditClient = new RedditClient();
-				
+
 				new Listener(jda);
-				
+
 			} catch (Exception e) {
 				Logger.logError(e, "JDA Builder", "JDA Builder", null);
 			}

@@ -75,7 +75,7 @@ public class GetTopPosts {
 		
 		String url = mainUrl + subreddit + "/top.json?t=" + sort.name();
 		
-		//System.out.println(GET(url).length() + ", " + url);
+		//Logger.print(GET(url).length() + ", " + url);
 		
 		newAccessToken();
 		
@@ -130,7 +130,7 @@ public class GetTopPosts {
 		
 		String url = "https://www.reddit.com/api/v1/access_token";
 		
-		System.out.println(POST(url, auth64).getResponseString());
+		Logger.print(POST(url, auth64).getResponseString());
 		
 	}
 	
@@ -147,7 +147,7 @@ public class GetTopPosts {
 			post.addHeader("Authorization", "Basic " + credentials);
 			
 			
-			System.out.println(post.getAllHeaders()[1]);
+			Logger.print(post.getAllHeaders()[1]);
 			
 			String params = "grant_type=client_credentials";
 			
@@ -155,7 +155,7 @@ public class GetTopPosts {
 			post.setEntity(body);
 			
 			
-			System.out.println(post.getRequestLine());
+			Logger.print(post.getRequestLine());
 			
 			HttpResponse response = client.execute(post);
 			

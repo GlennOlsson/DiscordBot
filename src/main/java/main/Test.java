@@ -64,7 +64,7 @@ public class Test extends ListenerAdapter {
 	
 	public static void main(String[] args) throws Exception {
 
-//		System.out.println(EmojiManager.getForAlias(":-1:").getUnicode());
+//		Logger.print(EmojiManager.getForAlias(":-1:").getUnicode());
 		
 //		JDA jda = null;
 //		try {
@@ -108,7 +108,7 @@ public class Test extends ListenerAdapter {
 //		Calendar now = Calendar.getInstance();
 //		String formatted = calendarFormat.format(now.getTime());
 //
-//		System.out.println(formatted);
+//		Logger.print(formatted);
 ////
 //		Calendar sentPlusOneDay = (Calendar) lastSentCalendar.clone();
 //		sentPlusOneDay.add(Calendar.DAY_OF_MONTH, 1);
@@ -120,22 +120,22 @@ public class Test extends ListenerAdapter {
 //			Logger.print("NO NEW DAILY");
 //		}
 //
-//		System.out.println("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
+//		Logger.print("Now: " + now.getTime() + ", Then: " + sentPlusOneDay.getTime());
 		
 		//280772605072375809
 
 //
 //		List<TextChannel> channels = jda.getTextChannels();
-////		System.out.println(channels.size());
+////		Logger.print(channels.size());
 //		for (TextChannel channel : channels) {
 //			try {
-//				System.out.println("Name: " + channel.getName() + ", ID: " + channel.getId());
+//				Logger.print("Name: " + channel.getName() + ", ID: " + channel.getId());
 //
 //			} catch (Exception e) {
 //			}
 //		}
 //
-//		System.out.println(jda.getGuildById(idKakanisatanGeneral).getEmotesByName("<:discordemote:425013364809269269>", true));
+//		Logger.print(jda.getGuildById(idKakanisatanGeneral).getEmotesByName("<:discordemote:425013364809269269>", true));
 		
 		String redditTests[] = {
 				"https://www.reddit.com/r/SiliconValleyHBO/comments/730qcz/how_did_jareddonald_celebrate/",
@@ -162,17 +162,17 @@ public class Test extends ListenerAdapter {
 			Matcher matcher = pattern.matcher(url);
 			if (matcher.find()) {
 				String id = matcher.group(1);
-				System.out.println(id);
+				Logger.print(id);
 				
 				RedditPost post = DiscordBot.redditClient.getPostWithID(id);
 				
 				if(!post.isTextpost())
-					System.out.println(post.getTitle() + " - " + post.getMediaUrl());
+					Logger.print(post.getTitle() + " - " + post.getMediaUrl());
 				
 				
 			}
 			else{
-				System.out.println("None found");
+				Logger.print("None found");
 			}
 		}
 		
@@ -184,7 +184,7 @@ public class Test extends ListenerAdapter {
 //
 //		String content = event.getMessage().getContentRaw(), afterCommand="", command = content.substring(";".length());
 //
-//		System.out.println(content);
+//		Logger.print(content);
 //
 //		if(event.getAuthor().getId().equals("165507757519273984")){
 //			Reddit(event.getChannel(), event, content);
@@ -192,7 +192,7 @@ public class Test extends ListenerAdapter {
 //	}
 	public void onPrivateMessageReceived(PrivateMessageReceivedEvent event){
 		
-		System.out.println(event.getChannel().getId());
+		Logger.print(event.getChannel().getId());
 		
 		String content = event.getMessage().getContentRaw().toLowerCase();
 		
@@ -202,14 +202,14 @@ public class Test extends ListenerAdapter {
 		
 		while(it.hasNext()){
 			Guild pc = it.next();
-			System.out.println(pc.getName());
+			Logger.print(pc.getName());
 		}
 		
 		List<PrivateChannel> channels = event.getJDA().getPrivateChannels();
-//		System.out.println(channels.size());
+//		Logger.print(channels.size());
 		for (PrivateChannel channel : channels) {
 			try {
-				System.out.println("Name: " + channel.getName() + ", Content: " + channel.retrieveMessageById​(channel.getLatestMessageId()).complete().getContentRaw());
+				Logger.print("Name: " + channel.getName() + ", Content: " + channel.retrieveMessageById​(channel.getLatestMessageId()).complete().getContentRaw());
 				
 			} catch (Exception e) {
 			}
@@ -220,7 +220,7 @@ public class Test extends ListenerAdapter {
 //		}
 //
 //		if(content.contains(";sup")&&content.substring(0, ";sup".length()).equals(";sup")){
-//			System.out.println();
+//			Logger.print();
 //		}
 //
 //		if(content.contains(";send")&&content.substring(0, ";send".length()).equals(";send")){
@@ -260,7 +260,7 @@ public class Test extends ListenerAdapter {
 //
 //					channelNames.sort(String::compareToIgnoreCase);
 //
-//					System.out.println(channelNames.get(Integer.parseInt(arg)-1));
+//					Logger.print(channelNames.get(Integer.parseInt(arg)-1));
 //
 //				}
 //			}

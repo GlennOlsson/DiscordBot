@@ -148,11 +148,6 @@ public class Help {
 			command = command + feature + ", ";
 		}
 		command+=";help";
-		JDA jda = event.getJDA();
-		System.out.println(event.getAuthor().getId());
-		// User u = jda.retrieveUserById(event.getAuthor().getId());
-		// System.out.println("USER: " + u);
-		// System.out.println(u + " - " + u.getAsMention());
 		privateChannel.sendMessage("Hello. I am a very friendly bot. I have some special features (**"+command+"**) that you " +
 				"can use. Send a **;help** followed by one of the features listed, to see specified help for that command. Some can" +
 				" also be done in PM. If you need more assistance, contact the developer, "+event.getJDA().

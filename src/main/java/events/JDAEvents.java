@@ -45,7 +45,7 @@ public class JDAEvents extends ListenerAdapter {
 	public static void Ready(ReadyEvent event) {
 		try {
 			TextChannel channel=event.getJDA().getTextChannelById("282109399617634304");
-			channel.sendMessage("Successfully logged in!").queue();
+			channel.sendMessage("Successfully logged in!").complete();
 			try{
 				if(System.getProperty("os.name").toLowerCase().contains("linux")){
 					int newRun = ReadWrite.getKey("runCount").getAsInt() + 1;

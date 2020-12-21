@@ -74,7 +74,7 @@ public class GameRoles {
 	
 	public static void genericReaction(GenericGuildMessageReactionEvent event, EditType editType, JsonObject guildObject){
 		String emoteName = getEmoteName(event);
-		System.out.println("Generic reaction with emote " + emoteName);
+		Logger.print("Generic reaction with emote " + emoteName);
 		
 		JsonObject gamesObject = guildObject.get("games").getAsJsonObject();
 		JsonElement gameElement = gamesObject.get(emoteName);
@@ -90,7 +90,7 @@ public class GameRoles {
 		
 		toggleGameRole(user, game, event.getGuild(), editType);
 		
-		System.out.println(emoteName);
+		Logger.print(emoteName);
 	}
 	
 	private static void toggleGameRole(User user, String game, Guild guild, EditType editType){
@@ -101,12 +101,12 @@ public class GameRoles {
 			
 			Role role = roles.get(0);
 			if(editType == EditType.REMOVE){
-				System.out.println("Removing " + role.getName());
+				Logger.print("Removing " + role.getName());
 				guild.removeRoleFromMember(member, role).queue();
 				// controller.removeSingleRoleFromMember(member, role).queue();
 			}
 			else{
-				System.out.println("Adding " + role.getName());
+				Logger.print("Adding " + role.getName());
 				guild.removeRoleFromMember(member, role).queue();
 				// controller.addRolesToMember(member, role).queue();
 			}
@@ -154,7 +154,7 @@ public class GameRoles {
 			Message sentMessage = channel.sendMessage(message).submit().get();
 			
 			String messageID = sentMessage.getId();
-			System.out.println(messageID);
+			Logger.print(messageID);
 			
 			guildObject.addProperty("gamesMessageID", messageID);
 			ReadWrite.addEditedGuild(channel.getGuild(), guildObject);
@@ -329,7 +329,7 @@ public class GameRoles {
 				JsonObject guildObject = ReadWrite.getGuild(event.getGuild());
 				JsonObject gamesObject = guildObject.get("games").getAsJsonObject();
 				
-				System.out.println(emoji);
+				Logger.print(emoji);
 				
 				JsonElement gameOfEmoji = gamesObject.remove(emoji);
 				

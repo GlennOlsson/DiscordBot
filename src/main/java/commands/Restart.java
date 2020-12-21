@@ -54,7 +54,7 @@ public class Restart {
 						new BufferedReader(new InputStreamReader(proc.getInputStream()));
 				String line;
 				while((line = reader.readLine()) != null) {
-					System.out.print(line + "\n");
+					Logger.print(line + "\n");
 				}
 				proc.waitFor();
 				
@@ -64,7 +64,7 @@ public class Restart {
 						new BufferedReader(new InputStreamReader(proc1.getInputStream()));
 				String line1;
 				while((line1 = reader1.readLine()) != null) {
-					System.out.print(line1 + "\n");
+					Logger.print(line1 + "\n");
 				}
 				proc1.waitFor();
 				
@@ -74,7 +74,7 @@ public class Restart {
 						new BufferedReader(new InputStreamReader(proc2.getInputStream()));
 				String line2;
 				while((line2 = reader2.readLine()) != null) {
-					System.out.print(line2 + "\n");
+					Logger.print(line2 + "\n");
 				}
 				proc2.waitFor();
 				
