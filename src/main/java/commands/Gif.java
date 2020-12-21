@@ -117,7 +117,7 @@ public class Gif {
 	private static void fetchAndSend(int indexOfGif, MessageChannel channel, MessageReceivedEvent event){
 		try{
 			Document doc = Jsoup.connect(Return.convertUrl("https://tenor.com/search/" + query + "-gifs")).userAgent("Chrome").get();
-			String url = "https://tenor.com/" + doc.select("#view > div > div > div > div > div:nth-child(1) > figure:nth-child("+
+			String url = "https://tenor.com" + doc.select("#view > div > div > div > div > div:nth-child(1) > figure:nth-child("+
 					indexOfGif+") > a").attr("href");
 			
 			channel.sendMessage("*"+event.getAuthor().getName()+"* shared a .gif of *'"+query.replace("-", " ")

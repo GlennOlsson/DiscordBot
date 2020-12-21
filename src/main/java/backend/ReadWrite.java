@@ -65,8 +65,8 @@ public class ReadWrite {
 			JsonObject allGuilds = jsonObject.get("guilds").getAsJsonObject();
 			JsonObject thisGuild = allGuilds.get(id).getAsJsonObject();
 			
-			String prefix = thisGuild.get("prefix").getAsString();
-			if(prefix.length() == 0){
+			String prefix = thisGuild.get("prefix");
+			if(prefix == null || prefix.getAsString().length() == 0){
 				//No prefix
 				return ";";
 			}
