@@ -44,7 +44,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import sun.misc.Request;
 
 import java.io.BufferedReader;
 import java.io.IOException;

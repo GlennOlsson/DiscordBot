@@ -31,7 +31,6 @@ import backend.Logger;
 import backend.ReadWrite;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.sun.org.apache.regexp.internal.RE;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;

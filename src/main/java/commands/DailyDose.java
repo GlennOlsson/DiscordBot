@@ -37,7 +37,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import com.sun.org.apache.regexp.internal.RE;
 import main.DiscordBot;
 import main.Test;
 import net.dean.jraw.models.SubredditSort;

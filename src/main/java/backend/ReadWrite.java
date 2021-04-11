@@ -234,7 +234,7 @@ public class ReadWrite {
 			return "C:\\Users\\Glenn\\Documents\\DiscordBot\\Secret.json";
 		}
 		else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
-			return "/home/tau/DiscordBot/Secret.json";
+			return "/home/pi/DiscordBot/Secret.json";
 		}
 		else if(System.getProperty("os.name").toLowerCase().contains("mac os x")){
 			return "/Users/glenn/Documents/Idea projects/Secret.json";

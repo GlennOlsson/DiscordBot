@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo 'Trying to cd'
-cd /home/tau/DiscordBot/DiscordBot || { echo 'cd failed' ; exit 1; }
+cd /home/pi/DiscordBot || { echo 'cd failed' ; exit 1; }
 echo 'Managed to cd, trying to git pull'
 git pull || { echo 'git pull failed' ; exit 1; }
 echo 'Managed to git pull, trying to exit running tmux'

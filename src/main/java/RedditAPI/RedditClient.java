@@ -29,7 +29,6 @@
 package RedditAPI;
 
 import backend.ReadWrite;
-import com.sun.org.apache.regexp.internal.RE;
 import commands.Reddit;
 import net.dean.jraw.http.OkHttpNetworkAdapter;
 import net.dean.jraw.http.UserAgent;
